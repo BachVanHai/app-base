@@ -2,9 +2,9 @@
   "name": "base-app",
   "version": "1.0.0",
   "description": "Base app",
-  "author": "longocsl96",
+  "author": "BachVanHai",
   "license": "MIT",
-  "repository": "longocsl96/base-app",
+  "repository": "BachVanHai/base-app",
   "main": "index.js",
   "module": "index.modern.js",
   "engines": {
