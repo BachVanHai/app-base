@@ -8672,9 +8672,10 @@ const AppSelection = ({
   };
   return /*#__PURE__*/React.createElement("div", {
     className: "text-center mt-2 mb-3"
-  }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: isLogin ? 'socialLogin.youLoginAs' : 'socialLogin.youRegisterAs'
-  })), /*#__PURE__*/
+  }, 
+  // /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+  //   id: isLogin ? 'socialLogin.youLoginAs' : 'socialLogin.youRegisterAs'
+  // })), /*#__PURE__*/
   // React.createElement(ButtonGroup, {
   //   className: "w-100"
   // }, /*#__PURE__*/

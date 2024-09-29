@@ -9717,9 +9717,10 @@ var AppSelection = function AppSelection(_ref) {
 
   return /*#__PURE__*/React__default.createElement("div", {
     className: "text-center mt-2 mb-3"
-  }, /*#__PURE__*/React__default.createElement("p", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
-    id: isLogin ? 'socialLogin.youLoginAs' : 'socialLogin.youRegisterAs'
-  })), 
+  }, 
+  // /*#__PURE__*/React__default.createElement("p", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+  //   id: isLogin ? 'socialLogin.youLoginAs' : 'socialLogin.youRegisterAs'
+  // })), 
   // /*#__PURE__*/React__default.createElement(reactstrap.ButtonGroup, {
   //   className: "w-100"
   // }, /*#__PURE__*/React__default.createElement(reactstrap.Button, {
