@@ -4637,6 +4637,7 @@ const BaseFormGroup = ({
   maxLength,
   disabled,
   onChange,
+  onBlur,
   isShowErrorMessage: _isShowErrorMessage = true,
   isRequired: _isRequired = true
 }) => {
@@ -4647,6 +4648,9 @@ const BaseFormGroup = ({
     } = e.target;
     value = value.trim();
     form.setFieldValue(fieldName, value);
+    if(onBlur) {
+      onBlur(e,form);
+    }
   };
   const handleChange = (e, form) => {
     form.handleChange(e);

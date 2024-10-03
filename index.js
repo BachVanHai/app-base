@@ -5307,6 +5307,7 @@ var BaseFormGroup = function BaseFormGroup(_ref) {
       maxLength = _ref.maxLength,
       disabled = _ref.disabled,
       onChange = _ref.onChange,
+      onBlur = _ref.onBlur,
       _ref$isShowErrorMessa = _ref.isShowErrorMessage,
       isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
       _ref$isRequired = _ref.isRequired,
@@ -5317,6 +5318,9 @@ var BaseFormGroup = function BaseFormGroup(_ref) {
     var value = e.target.value;
     value = value.trim();
     form.setFieldValue(fieldName, value);
+    if(onBlur){
+      onBlur(e,form);
+    }
   };
 
   var handleChange = function handleChange(e, form) {
