@@ -8069,7 +8069,8 @@ const ShareWithFriends = () => {
   } = useSelector(state => state.customizer.appId === AppId.ELITE_APP ? state.auth.guest : state.auth);
   const [qrCodeInstance, setQRCodeInstance] = useState(null);
   const qrCode = useRef();
-  const shareUrl = `${document.location.origin}/home?refId=${user.username}`;
+  // const shareUrl = `${document.location.origin}/home?refId=${user.username}`;
+  const shareUrl = `${document.location.origin}/home?refId=${user.refId}`;
   useEffect(() => {
     const options = {
       text: shareUrl,

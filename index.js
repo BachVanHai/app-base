@@ -9001,7 +9001,8 @@ var ShareWithFriends = function ShareWithFriends() {
       setQRCodeInstance = _useState[1];
 
   var qrCode = React.useRef();
-  var shareUrl = document.location.origin + "/home?refId=" + user.username;
+  // var shareUrl = document.location.origin + "/home?refId=" + user.username;
+  var shareUrl = document.location.origin + "/home?refId=" + user.refId;
   React.useEffect(function () {
     var options = {
       text: shareUrl,
