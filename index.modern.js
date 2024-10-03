@@ -4641,7 +4641,7 @@ const BaseFormGroup = ({
   isShowErrorMessage: _isShowErrorMessage = true,
   isRequired: _isRequired = true
 }) => {
-  const onBlur = (e, form) => {
+  const handleOnBlur = (e, form) => {
     form.handleBlur(e);
     let {
       value
@@ -4675,7 +4675,7 @@ const BaseFormGroup = ({
     maxLength: maxLength,
     value: field.value,
     placeholder: msg,
-    onBlur: e => onBlur(e, form),
+    onBlur: e => handleOnBlur(e, form),
     onChange: e => handleChange(e, form)
   }))), _isRequired && _isShowErrorMessage && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) ? /*#__PURE__*/React.createElement("div", {
     className: "text-danger"
