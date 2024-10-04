@@ -318,7 +318,8 @@
   padding: 7.48px 0 0 0;
   line-height: 1;
   height: 34px;
-  display: inline-block;
+  /* display: inline-block; */
+  display: inline-flex;
   text-align: center;
   -webkit-transform: translate3d(0px, 0px, 0px);
           transform: translate3d(0px, 0px, 0px);
@@ -9358,7 +9359,8 @@ html {
     html body p {
       line-height: 1.5rem; }
     html body .bg-full-screen-image {
-      background: no-repeat center center;
+      background: no-repeat center
+ center;
       background-size: cover; }
     html body .blank-page .content {
       margin-left: 0; }
