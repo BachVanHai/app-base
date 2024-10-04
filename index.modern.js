@@ -5821,7 +5821,7 @@ function FlatpickrInstance(element, instanceConfig) {
                 !!self.config.minDate &&
                     self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
         }
-        var currentMonth = createElement("div", "flatpickr-current-month d-flex");
+        var currentMonth = createElement("div", "flatpickr-current-month");
         currentMonth.appendChild(monthElement);
         currentMonth.appendChild(yearInput);
         monthNavFragment.appendChild(currentMonth);
