@@ -6600,7 +6600,7 @@ var flatpickr = createCommonjsModule(function (module, exports) {
                     !!self.config.minDate &&
                         self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
             }
-            var currentMonth = createElement("div", "flatpickr-current-month");
+            var currentMonth = createElement("div", "flatpickr-current-month d-flex");
             currentMonth.appendChild(monthElement);
             currentMonth.appendChild(yearInput);
             monthNavFragment.appendChild(currentMonth);
