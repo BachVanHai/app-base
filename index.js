@@ -8146,7 +8146,7 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
     var field = _ref2.field,
         form = _ref2.form;
     return /*#__PURE__*/React__default.createElement(DatePicker, {
-      className: "d-flex form-control position-relative " + (!disabled ? 'bg-white' : '') + " " + (isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid') + " " + className,
+      className: "form-control position-relative " + (!disabled ? 'bg-white' : '') + " " + (isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid') + " " + className,
       placeholder: messageId ? intl.formatMessage({
         id: messageId
       }) : '',
