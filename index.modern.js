@@ -7336,7 +7336,7 @@ const DatePicker = props => {
     value: props.value,
     onClose: () => props.onClose && props.onClose(),
     onChange: date => props.onChange && props.onChange(date)
-  }), /*#__PURE__*/React.createElement(Label, null, props.placeholder), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement(Label, null, props.label), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
     className: "text-danger"
   }, getPropObject(props.errors, props.fieldName)) : null);
 };
@@ -7368,6 +7368,7 @@ const BaseFormDatePicker = ({
   }) => /*#__PURE__*/React.createElement(DatePicker, {
     className: `form-control position-relative ${!disabled ? 'bg-white' : ''} ${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'} ${className}`,
     placeholder: placeHolder ? placeHolder : intl.formatMessage({ id: messageId }),
+    label: messageId ? intl.formatMessage({ id: messageId }) : '',
     isShowErrorMessage: isShowErrorMessage,
     fieldName: fieldName,
     notRequired: !_isRequired,
