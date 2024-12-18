@@ -7325,7 +7325,7 @@ const DatePicker = props => {
   }, /*#__PURE__*/React.createElement(Flatpickr, {
     options: {
       disableMobile: true,
-      allowInput: false,
+      allowInput: true,
       locale: intl.locale === 'vi' ? flatpickr.l10ns.vn : '',
       ...props.options
     },
