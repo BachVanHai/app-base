@@ -8105,6 +8105,9 @@ var DatePicker = function DatePicker(props) {
 
   // Hàm định dạng input để tự động thêm dấu "/"
   var formatInputDate = function formatInputDate(value) {
+
+    console.log('value', value);
+
     var digits = value.replace(/\D/g, ''); // Loại bỏ các ký tự không phải số
     var parts = [];
 
@@ -8117,6 +8120,7 @@ var DatePicker = function DatePicker(props) {
 
   // Xử lý sự kiện onInput để định dạng ngày
   var handleInput = function handleInput(e) {
+    console.log('e.target.value', e.target.value);
     var formattedValue = formatInputDate(e.target.value);
     props.onChange && props.onChange(formattedValue); // Cập nhật giá trị ngày
   };
