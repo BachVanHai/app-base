@@ -7319,6 +7319,26 @@ unwrapExports(vn);
 
 const DatePicker = props => {
   const intl = useIntl();
+
+
+  // Hàm định dạng input để tự động thêm dấu "/"
+  var formatInputDate = function formatInputDate(value) {
+    var digits = value.replace(/\D/g, ''); // Loại bỏ các ký tự không phải số
+    var parts = [];
+
+    if (digits.length > 2) parts.push(digits.slice(0, 2)); // Ngày
+    if (digits.length > 4) parts.push(digits.slice(2, 4)); // Tháng
+    if (digits.length > 4) parts.push(digits.slice(4, 8)); // Năm
+
+    return parts.join('/'); // Nối các phần lại với "/"
+  };
+
+  // Xử lý sự kiện onInput để định dạng ngày
+  var handleInput = function handleInput(e) {
+    var formattedValue = formatInputDate(e.target.value);
+    props.onChange && props.onChange(formattedValue); // Cập nhật giá trị ngày
+  };
+
   return /*#__PURE__*/React.createElement(FormGroup, {
     className: "form-label-group position-relative"
   }, /*#__PURE__*/React.createElement(Flatpickr, {
@@ -7333,6 +7353,7 @@ const DatePicker = props => {
     "data-enable-time": true,
     className: `form-control position-relative bg-white flatpickr-input ${props.className}`,
     value: props.value,
+    onInput: handleInput,
     onClose: () => props.onClose && props.onClose(),
     onChange: date => props.onChange && props.onChange(date)
   }), /*#__PURE__*/React.createElement(Label, null, props.placeholder), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
