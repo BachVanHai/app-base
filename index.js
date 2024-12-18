@@ -8100,80 +8100,8 @@ var vn = createCommonjsModule(function (module, exports) {
 
 unwrapExports(vn);
 
-// var DatePicker = function DatePicker(props) {
-//   var intl = reactIntl.useIntl();
-//
-//   // Hàm định dạng input để tự động thêm dấu "/"
-//   var formatInputDate = function formatInputDate(value) {
-//
-//     console.log('value', value);
-//
-//     var digits = value.replace(/\D/g, ''); // Loại bỏ các ký tự không phải số
-//     var parts = [];
-//
-//     if (digits.length > 2) parts.push(digits.slice(0, 2)); // Ngày
-//     if (digits.length > 4) parts.push(digits.slice(2, 4)); // Tháng
-//     if (digits.length > 4) parts.push(digits.slice(4, 8)); // Năm
-//
-//     return parts.join('/'); // Nối các phần lại với "/"
-//   };
-//
-//   // Xử lý sự kiện onInput để định dạng ngày
-//   var handleInput = function handleInput(e) {
-//     console.log('e.target.value', e.target.value);
-//     var formattedValue = formatInputDate(e.target.value);
-//     console.log('formattedValue',formattedValue);
-//     props.onChange && props.onChange(formattedValue); // Cập nhật giá trị ngày
-//   };
-//
-//   return /*#__PURE__*/React__default.createElement(reactstrap.FormGroup, {
-//     className: "form-label-group position-relative"
-//   }, /*#__PURE__*/React__default.createElement(Flatpickr, {
-//     options: _extends({
-//       disableMobile: true,
-//       allowInput: false,
-//       locale: intl.locale === 'vi' ? flatpickr.l10ns.vn : ''
-//     }, props.options),
-//     disabled: props.disabled,
-//     placeholder: props.placeholder,
-//     "data-enable-time": true,
-//     className: "form-control position-relative bg-white flatpickr-input " + props.className,
-//     value: props.value,
-//     onInput: handleInput,
-//     onClose: function onClose() {
-//       return props.onClose && props.onClose();
-//     },
-//     onChange: function onChange(date) {
-//       return props.onChange && props.onChange(date);
-//     }
-//   }), /*#__PURE__*/React__default.createElement(reactstrap.Label, null, props.placeholder), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React__default.createElement("div", {
-//     className: "text-danger"
-//   }, getPropObject(props.errors, props.fieldName)) : null);
-// };
-
-
 var DatePicker = function DatePicker(props) {
   var intl = reactIntl.useIntl();
-  var [inputValue, setInputValue] = useState(props.value || "");
-
-  // Hàm định dạng input để tự động thêm dấu "/"
-  var formatInputDate = function formatInputDate(value) {
-
-    var digits = value.replace(/\D/g, ''); // Loại bỏ các ký tự không phải số
-    var parts = [];
-
-    if (digits.length > 2) parts.push(digits.slice(0, 2)); // Ngày
-    if (digits.length > 4) parts.push(digits.slice(2, 4)); // Tháng
-    if (digits.length > 4) parts.push(digits.slice(4, 8)); // Năm
-
-    return parts.join('/'); // Nối các phần lại với "/"
-  };
-
-  // Xử lý sự kiện onInput để định dạng ngày
-  var handleInput = function handleInput(e) {
-    var formattedValue = formatInputDate(e.target.value);
-    props.onChange && props.onChange(formattedValue); // Cập nhật giá trị ngày
-  };
 
   return /*#__PURE__*/React__default.createElement(reactstrap.FormGroup, {
     className: "form-label-group position-relative"
@@ -8188,16 +8116,11 @@ var DatePicker = function DatePicker(props) {
     "data-enable-time": true,
     className: "form-control position-relative bg-white flatpickr-input " + props.className,
     value: props.value,
-    onInput: handleInput,
     onClose: function onClose() {
       return props.onClose && props.onClose();
     },
     onChange: function onChange(date) {
-      const formattedDate = date[0]
-        ? formatInputDate(date[0].toLocaleDateString("en-GB"))
-        : "";
-      setInputValue(formattedDate); // Cập nhật giá trị khi chọn từ lịch
-      return props.onChange && props.onChange(formattedDate);
+      return props.onChange && props.onChange(date);
     }
   }), /*#__PURE__*/React__default.createElement(reactstrap.Label, null, props.placeholder), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React__default.createElement("div", {
     className: "text-danger"
