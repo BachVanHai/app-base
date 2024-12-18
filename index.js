@@ -8122,6 +8122,7 @@ var DatePicker = function DatePicker(props) {
   var handleInput = function handleInput(e) {
     console.log('e.target.value', e.target.value);
     var formattedValue = formatInputDate(e.target.value);
+    console.log('formattedValue',formattedValue);
     props.onChange && props.onChange(formattedValue); // Cập nhật giá trị ngày
   };
 
