@@ -7368,7 +7368,7 @@ unwrapExports(vn);
 
 
 const DatePicker = function DatePicker(props) {
-  const intl = reactIntl.useIntl();
+  const intl = useIntl();
   const [inputValue, setInputValue] = useState(props.value || "");
 
   // Hàm định dạng input để tự động thêm dấu "/"
