@@ -7367,65 +7367,58 @@ unwrapExports(vn);
 // };
 
 
-const DatePicker = (props) => {
-  const intl = useIntl();
-  const [inputValue, setInputValue] = useState(props.value || ""); // State để lưu giá trị input
+const DatePicker = function DatePicker(props) {
+  const intl = reactIntl.useIntl();
+  const [inputValue, setInputValue] = useState(props.value || "");
 
   // Hàm định dạng input để tự động thêm dấu "/"
-  const formatInputDate = (value) => {
-    const digits = value.replace(/\D/g, ""); // Loại bỏ các ký tự không phải số
+  const formatInputDate = function formatInputDate(value) {
+
+    const digits = value.replace(/\D/g, ''); // Loại bỏ các ký tự không phải số
     const parts = [];
 
-    if (digits.length > 0) parts.push(digits.slice(0, 2)); // Ngày
-    if (digits.length > 2) parts.push(digits.slice(2, 4)); // Tháng
+    if (digits.length > 2) parts.push(digits.slice(0, 2)); // Ngày
+    if (digits.length > 4) parts.push(digits.slice(2, 4)); // Tháng
     if (digits.length > 4) parts.push(digits.slice(4, 8)); // Năm
 
-    return parts.join("/"); // Nối các phần lại với "/"
+    return parts.join('/'); // Nối các phần lại với "/"
   };
 
-  // Xử lý sự kiện khi người dùng nhập liệu
-  const handleInput = (e) => {
+  // Xử lý sự kiện onInput để định dạng ngày
+  const handleInput = function handleInput(e) {
     const formattedValue = formatInputDate(e.target.value);
-    setInputValue(formattedValue); // Cập nhật state
-    props.onChange && props.onChange(formattedValue); // Gọi onChange nếu có
+    props.onChange && props.onChange(formattedValue); // Cập nhật giá trị ngày
   };
 
-  return (
-    <FormGroup className="form-label-group position-relative">
-      <Flatpickr
-        options={{
-          disableMobile: true,
-          allowInput: true, // Cho phép nhập tay
-          locale: intl.locale === "vi" ? Flatpickr.l10ns.vn : "",
-          ...props.options,
-        }}
-        disabled={props.disabled}
-        placeholder={props.placeholder}
-        className={`form-control position-relative bg-white flatpickr-input ${props.className}`}
-        value={inputValue} // Gán giá trị input
-        onInput={handleInput} // Sự kiện nhập liệu
-        onClose={() => props.onClose && props.onClose()}
-        onChange={(date) => {
-          const formattedDate = date[0]
-            ? formatInputDate(date[0].toLocaleDateString("en-GB"))
-            : "";
-          setInputValue(formattedDate); // Cập nhật giá trị khi chọn từ lịch
-          props.onChange && props.onChange(formattedDate);
-        }}
-      />
-      <Label>{props.placeholder}</Label>
-      {props.errors &&
-        props.touched &&
-        props.isShowErrorMessage &&
-        getPropObject(props.errors, props.fieldName) &&
-        getPropObject(props.touched, props.fieldName) && (
-          <div className="text-danger">
-            {getPropObject(props.errors, props.fieldName)}
-          </div>
-        )}
-    </FormGroup>
-  );
+  return /*#__PURE__*/React.createElement(FormGroup, {
+    className: "form-label-group position-relative"
+  }, /*#__PURE__*/React.createElement(Flatpickr, {
+    options: _extends({
+      disableMobile: true,
+      allowInput: false,
+      locale: intl.locale === 'vi' ? flatpickr.l10ns.vn : ''
+    }, props.options),
+    disabled: props.disabled,
+    placeholder: props.placeholder,
+    "data-enable-time": true,
+    className: "form-control position-relative bg-white flatpickr-input " + props.className,
+    value: props.value,
+    onInput: handleInput,
+    onClose: function onClose() {
+      return props.onClose && props.onClose();
+    },
+    onChange: function onChange(date) {
+      const formattedDate = date[0]
+        ? formatInputDate(date[0].toLocaleDateString("en-GB"))
+        : "";
+      setInputValue(formattedDate); // Cập nhật giá trị khi chọn từ lịch
+      return props.onChange && props.onChange(formattedDate);
+    }
+  }), /*#__PURE__*/React.createElement(Label, null, props.placeholder), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React__default.createElement("div", {
+    className: "text-danger"
+  }, getPropObject(props.errors, props.fieldName)) : null);
 };
+
 
 const BaseFormDatePicker = ({
   fieldName,
