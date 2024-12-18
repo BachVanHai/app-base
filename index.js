@@ -8141,7 +8141,7 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       _ref$isRequired = _ref.isRequired,
       isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
   var defaultOptions = {
-    dateFormat: 'm/d/Y'
+    dateFormat: 'd/m/Y'
   };
   var intl = reactIntl.useIntl();
   return /*#__PURE__*/React__default.createElement(reactstrap.FormGroup, null, /*#__PURE__*/React__default.createElement(formik.Field, {

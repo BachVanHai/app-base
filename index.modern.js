@@ -7356,7 +7356,7 @@ const BaseFormDatePicker = ({
   isRequired: _isRequired = true
 }) => {
   const defaultOptions = {
-    dateFormat: 'm/d/Y'
+    dateFormat: 'd/m/Y'
   };
   const intl = useIntl();
   return /*#__PURE__*/React.createElement(FormGroup, null, /*#__PURE__*/React.createElement(Field, {
