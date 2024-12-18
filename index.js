@@ -8139,6 +8139,7 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       disabled = _ref.disabled,
       isShowErrorMessage = _ref.isShowErrorMessage,
       _ref$isRequired = _ref.isRequired,
+      _placeHolder = _ref._placeHolder,
       isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
   var defaultOptions = {
     dateFormat: 'd/m/Y'
@@ -8151,9 +8152,7 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
         form = _ref2.form;
     return /*#__PURE__*/React__default.createElement(DatePicker, {
       className: "form-control position-relative " + (!disabled ? 'bg-white' : '') + " " + (isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid') + " " + className,
-      placeholder: messageId ? intl.formatMessage({
-        id: messageId
-      }) : '',
+      placeholder: _placeHolder ? _placeHolder : intl.formatMessage({ id: messageId }),
       isShowErrorMessage: isShowErrorMessage,
       fieldName: fieldName,
       notRequired: !isRequired,

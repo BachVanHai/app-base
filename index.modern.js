@@ -7353,6 +7353,7 @@ const BaseFormDatePicker = ({
   onChange,
   disabled,
   isShowErrorMessage,
+  placeHolder,
   isRequired: _isRequired = true
 }) => {
   const defaultOptions = {
@@ -7366,9 +7367,7 @@ const BaseFormDatePicker = ({
     form
   }) => /*#__PURE__*/React.createElement(DatePicker, {
     className: `form-control position-relative ${!disabled ? 'bg-white' : ''} ${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'} ${className}`,
-    placeholder: messageId ? intl.formatMessage({
-      id: messageId
-    }) : '',
+    placeholder: placeHolder ? placeHolder : intl.formatMessage({ id: messageId }),
     isShowErrorMessage: isShowErrorMessage,
     fieldName: fieldName,
     notRequired: !_isRequired,
