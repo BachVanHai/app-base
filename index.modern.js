@@ -4290,6 +4290,7 @@ var messages_vi = {
 	"menu.personalContracts": "Hợp đồng cá nhân",
 	"menu.partnerContracts": "Hợp đồng đối tác",
 	"menu.allContracts": "Tất cả hợp đồng",
+  "menu.exportAvailableContracts": "Xuất báo cáo",
 	"menu.account": "Tài khoản",
 	"menu.createAccount": "Tạo mới tài khoản",
 	"menu.accountManagement": "Quản lý tài khoản",
