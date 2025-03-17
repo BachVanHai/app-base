@@ -495,7 +495,7 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     }
     switch (e.response.status) {
       case 400:
-        const clientMessageId = e.config.headers['clientmessageid'];
+        const clientMessageId = e.config.requestUUID;
         if(clientMessageId){
           toastInfo(clientMessageId);
         }else{
