@@ -495,9 +495,14 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     }
     switch (e.response.status) {
       case 400:
-        toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.error.400"
-        }));
+        const clientMessageId = e.config.headers['client-message-id'];
+        if(clientMessageId){
+          toastInfo(clientMessageId);
+        }else{
+          toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.error.400"
+          }));
+        }
         break;
       case 403:
         if (e.response.data.error === 'Forbidden') {
@@ -512,9 +517,13 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         history.push('/login');
         break;
       case 500:
-        toastInfo( /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.error.500"
-        }));
+        if(clientMessageId){
+          toastInfo(clientMessageId);
+        }else{
+          toastInfo( /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.error.500"
+          }));
+        }
     }
     store.dispatch({
       type: HIDE_LOADING_BAR,
