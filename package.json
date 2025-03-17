@@ -8,8 +8,7 @@
   "main": "index.js",
   "module": "index.modern.js",
   "engines": {
-    "node": ">=20.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=10"
   },
   "peerDependencies": {
     "axios": "^0.19.2",
