@@ -495,9 +495,16 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     }
     switch (e.response.status) {
       case 400:
-        toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.error.400"
-        }));
+        const clientMessageId = e.response.config.headers.clientmessageid || 
+                           e.response.config.headers.clientMessageId || 
+                           e.response.config.headers['client-message-id'];
+        if(clientMessageId){
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+        }else{
+          toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.error.400"
+          }));
+        }
         break;
       case 403:
         if (e.response.data.error === 'Forbidden') {
@@ -512,9 +519,13 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         history.push('/login');
         break;
       case 500:
-        toastInfo( /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.error.500"
-        }));
+        if(clientMessageId){
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+        }else{
+          toastInfo( /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.error.500"
+          }));
+        }
     }
     store.dispatch({
       type: HIDE_LOADING_BAR,
@@ -4290,6 +4301,8 @@ var messages_vi = {
 	"menu.personalContracts": "Hợp đồng cá nhân",
 	"menu.partnerContracts": "Hợp đồng đối tác",
 	"menu.allContracts": "Tất cả hợp đồng",
+  "menu.exportAvailableContracts": "Xuất báo cáo",
+  "menu.transactionManage": "Quản lý giao dịch",
 	"menu.account": "Tài khoản",
 	"menu.createAccount": "Tạo mới tài khoản",
 	"menu.accountManagement": "Quản lý tài khoản",
