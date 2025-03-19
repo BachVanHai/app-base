@@ -495,7 +495,9 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     }
     switch (e.response.status) {
       case 400:
-        const clientMessageId = e.response.config.headers.clientMessageId;
+        const clientMessageId = e.response.config.headers.clientmessageid || 
+                           e.response.config.headers.clientMessageId || 
+                           e.response.config.headers['client-message-id'];
         if(clientMessageId){
           toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         }else{
