@@ -495,9 +495,9 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     }
     switch (e.response.status) {
       case 400:
-        const clientMessageId = e.config.requestUUID;
+        const clientMessageId = e.response.config.headers.clientMessageId;
         if(clientMessageId){
-          toastInfo(clientMessageId);
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         }else{
           toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
             id: "common.error.400"
@@ -518,7 +518,7 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         break;
       case 500:
         if(clientMessageId){
-          toastInfo(clientMessageId);
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         }else{
           toastInfo( /*#__PURE__*/React.createElement(FormattedMessage, {
             id: "common.error.500"
