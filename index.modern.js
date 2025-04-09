@@ -7399,9 +7399,8 @@ const BaseFormDatePicker = ({
     },
       onBlur: function onBlur(date) {
           form.setFieldValue(fieldName, date[0]);
-
-          if (_onChange) {
-              _onChange(date, form);
+          if (onChange) {
+              onChange(date, form);
           }
       }
   })));
