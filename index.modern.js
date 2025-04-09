@@ -7391,6 +7391,7 @@ const BaseFormDatePicker = ({
     value: field.value,
     options: options || defaultOptions,
     onChange: date => {
+      console.log('date',date);
       form.setFieldValue(fieldName, date[0]);
       if (onChange) {
         onChange(date, form);
