@@ -2583,18 +2583,16 @@ const NavbarUser = props => {
   }, /*#__PURE__*/React.createElement(NavLink, {
     className: "nav-link-search pt-2",
     onClick: e => handleNavigation(e, '/app/bonus-point')
-  }, /*#__PURE__*/React.createElement(DollarSign, {
-    size: 21,
-    color: "#338955"
-  }))), /*#__PURE__*/React.createElement(NavItem, {
+  }, /*#__PURE__*/
+  // React.createElement(DollarSign, { size: 21, color: "#338955"})
+  )), /*#__PURE__*/React.createElement(NavItem, {
     className: "nav-search",
     onClick: handleNavbarSearch
   }, /*#__PURE__*/React.createElement(NavLink, {
     className: "nav-link-search pt-2"
-  }, /*#__PURE__*/React.createElement(Search, {
-    size: 21,
-    "data-tour": "search"
-  })), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/
+  // React.createElement(Search, {size: 21,"data-tour": "search"})
+  ), /*#__PURE__*/React.createElement("div", {
     className: classnames('search-input', {
       open: navbarSearch,
       'd-none': navbarSearch === false
@@ -2651,7 +2649,10 @@ const NavbarUser = props => {
       setNavbarSearch(false);
       props.handleAppOverlay('');
     }
-  })))), /*#__PURE__*/React.createElement(Bells, null), /*#__PURE__*/React.createElement(UncontrolledDropdown, {
+  })))), /*#__PURE__*/
+  // React.createElement(Bells, null), 
+  
+  /*#__PURE__*/React.createElement(UncontrolledDropdown, {
     tag: "li",
     className: "dropdown-user nav-item"
   }, /*#__PURE__*/React.createElement(DropdownToggle, {
