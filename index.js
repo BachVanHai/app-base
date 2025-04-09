@@ -2971,6 +2971,7 @@ var Bells = function Bells() {
   })))));
 };
 
+/* NavbarUser Component Đã Chỉnh Sửa */
 var NavbarUser = function NavbarUser(props) {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth.user;
@@ -2978,130 +2979,11 @@ var NavbarUser = function NavbarUser(props) {
     userSettings = _useSelector.userSettings,
     user = _objectWithoutPropertiesLoose(_useSelector, ["userSettings", "userDetails"]);
 
-  var _useSelector2 = reactRedux.useSelector(function (state) {
-    return state.customizer;
-  });
-
-  var _useSelector3 = reactRedux.useSelector(function (state) {
-    return state.navbar;
-  }),
-    _useSelector3$roles = _useSelector3.roles,
-    roles = _useSelector3$roles === void 0 ? [] : _useSelector3$roles;
-
-  var _useState = React.useState(false),
-    navbarSearch = _useState[0],
-    setNavbarSearch = _useState[1];
-
-  var _useState2 = React.useState([]),
-    suggestions = _useState2[0],
-    setSuggestions = _useState2[1];
-
-  var intl = reactIntl.useIntl();
   userSettings = userSettings || {};
-  React.useEffect(function () {
-    var roleData = [];
-
-    if (Array.isArray(roles)) {
-      roleData = [].concat(roles);
-    }
-
-    var newSuggestions = roleData.map(function (item) {
-      item.name = intl.formatMessage({
-        id: "menu." + item.keyLang
-      });
-      item.isExternalApp = false;
-      item.navLinkExternal = getExternalAppUrl(item.appId, item.menuPath);
-      return item;
-    });
-    setSuggestions(newSuggestions);
-  }, [roles]);
-
-  var handleNavbarSearch = function handleNavbarSearch() {
-    setNavbarSearch(function (prevState) {
-      return !prevState;
-    });
-  };
-
-  var onSuggestionItemClick = function onSuggestionItemClick(item) {
-    if (!item.isExternalApp) {
-      history.push(item.navLinkExternal);
-    } else {
-      window.location.href = item.navLinkExternal;
-    }
-  };
 
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("ul", {
     className: "nav navbar-nav navbar-nav-user float-right"
-  }, /*#__PURE__*/React__default.createElement(reactstrap.NavItem, {
-    className: "nav-search",
-    onClick: handleNavbarSearch
-  }, /*#__PURE__*/React__default.createElement(reactstrap.NavLink, {
-    className: "nav-link-search pt-2"
-  }, /*#__PURE__*/React__default.createElement(Icon.Search, {
-    size: 21,
-    "data-tour": "search"
-  })), /*#__PURE__*/React__default.createElement("div", {
-    className: classnames('search-input', {
-      open: navbarSearch,
-      'd-none': navbarSearch === false
-    })
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: "search-input-icon"
-  }, /*#__PURE__*/React__default.createElement(Icon.Search, {
-    size: 17,
-    className: "primary"
-  })), /*#__PURE__*/React__default.createElement(Autocomplete, {
-    className: "form-control",
-    suggestions: suggestions,
-    filterKey: "name",
-    onSuggestionClick: onSuggestionItemClick,
-    autoFocus: true,
-    clearInput: navbarSearch,
-    externalClick: function externalClick() {
-      setNavbarSearch(false);
-    },
-    onKeyDown: function onKeyDown(e) {
-      if (e.keyCode === 27 || e.keyCode === 13) {
-        setNavbarSearch(false);
-        props.handleAppOverlay('');
-      }
-    },
-    customRender: function customRender(item, i, filteredData, activeSuggestion, onSuggestionItemClick, onSuggestionItemHover) {
-      var IconTag = Icon[item.icon ? item.icon : 'X'];
-      return /*#__PURE__*/React__default.createElement("li", {
-        className: classnames('suggestion-item', {
-          active: filteredData.indexOf(item) === activeSuggestion
-        }),
-        key: i,
-        onClick: function onClick(e) {
-          return onSuggestionItemClick(item, e);
-        },
-        onMouseEnter: function onMouseEnter() {
-          return onSuggestionItemHover(filteredData.indexOf(item));
-        }
-      }, /*#__PURE__*/React__default.createElement("div", {
-        className: "d-flex align-items-center"
-      }, /*#__PURE__*/React__default.createElement(IconTag, {
-        size: 17
-      }), /*#__PURE__*/React__default.createElement("div", {
-        className: "ml-2"
-      }, item.name)));
-    },
-    onSuggestionsShown: function onSuggestionsShown(userInput) {
-      if (navbarSearch) {
-        props.handleAppOverlay(userInput);
-      }
-    }
-  }), /*#__PURE__*/React__default.createElement("div", {
-    className: "search-input-close"
-  }, /*#__PURE__*/React__default.createElement(Icon.X, {
-    size: 24,
-    onClick: function onClick(e) {
-      e.stopPropagation();
-      setNavbarSearch(false);
-      props.handleAppOverlay('');
-    }
-  })))), /*#__PURE__*/React__default.createElement(Bells, null), /*#__PURE__*/React__default.createElement(reactstrap.UncontrolledDropdown, {
+  }, /*#__PURE__*/React__default.createElement(reactstrap.UncontrolledDropdown, {
     tag: "li",
     className: "dropdown-user nav-item"
   }, /*#__PURE__*/React__default.createElement(reactstrap.DropdownToggle, {
@@ -3122,42 +3004,11 @@ var NavbarUser = function NavbarUser(props) {
   }))), /*#__PURE__*/React__default.createElement(UserDropdown, null))));
 };
 
+/* ThemeNavbar Component Đã Chỉnh Sửa */
 var ThemeNavbar = function ThemeNavbar(props) {
   var colorsArr = ['primary', 'danger', 'success', 'info', 'warning', 'dark'];
   var navbarTypes = ['floating', 'static', 'sticky', 'hidden'];
   var history = reactRouterDom.useHistory();
-
-  var onClickRedirectToPage = function onClickRedirectToPage(item) {
-    switch (item) {
-      case "plane":
-        history.replace('/app/help-center');
-        break;
-
-      case "bus":
-        history.replace('/app/help-center');
-        break;
-
-      case "personal":
-        history.replace('/app/help-center');
-        break;
-
-      case "motor":
-        history.replace('/app/help-center');
-        break;
-
-      case "car":
-        history.replace('/app/help-center');
-        break;
-
-      case "help-center":
-        history.replace('/app/help-center');
-        break;
-
-      case "support 24/7":
-        history.replace('/app/support/create-request');
-        break;
-    }
-  };
 
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
     className: "content-overlay"
@@ -3199,24 +3050,7 @@ var ThemeNavbar = function ThemeNavbar(props) {
     onClick: props.sidebarVisibility
   }, /*#__PURE__*/React__default.createElement(Icon.Menu, {
     className: "ficon"
-  })))), /*#__PURE__*/React__default.createElement("ul", {
-    className: "nav navbar-nav d-none d-xl-flex bookmark-icons"
-  }, NAV_ICONS.map(function (item, index) {
-    return /*#__PURE__*/React__default.createElement(reactstrap.NavItem, {
-      key: index
-    }, /*#__PURE__*/React__default.createElement("img", {
-      onClick: function onClick() {
-        return onClickRedirectToPage(item);
-      },
-      style: {
-        width: '58px',
-        height: '58px'
-      },
-      className: "img-fluid cursor-pointer",
-      src: IMAGE["NAV_ICON_" + (index + 1)],
-      alt: ""
-    }));
-  })))), /*#__PURE__*/React__default.createElement(NavbarUser, {
+  })))))), /*#__PURE__*/React__default.createElement(NavbarUser, {
     handleAppOverlay: props.handleAppOverlay
   }))))));
 };
