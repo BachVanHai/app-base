@@ -1,4 +1,4 @@
-function _interopDefault(ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var reactIntl = require('react-intl');
 var React = require('react');
@@ -110,15 +110,15 @@ const _asyncIteratorSymbol = /*#__PURE__*/ typeof Symbol !== "undefined" ? (Symb
 
 // Asynchronously call a function and send errors to recovery continuation
 function _catch(body, recover) {
-  try {
-    var result = body();
-  } catch (e) {
-    return recover(e);
-  }
-  if (result && result.then) {
-    return result.then(void 0, recover);
-  }
-  return result;
+	try {
+		var result = body();
+	} catch(e) {
+		return recover(e);
+	}
+	if (result && result.then) {
+		return result.then(void 0, recover);
+	}
+	return result;
 }
 
 var AppId = {
@@ -408,7 +408,7 @@ var setBaseHistory = function setBaseHistory(appHistory) {
 var generateUUID = function generateUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0,
-      v = c == 'x' ? r : r & 0x3 | 0x8;
+        v = c == 'x' ? r : r & 0x3 | 0x8;
     return v.toString(16);
   });
 };
@@ -614,7 +614,7 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
   });
 };
 
-var AuthService = function AuthService() { };
+var AuthService = function AuthService() {};
 
 AuthService.login = function (user) {
   return HttpClient.post(API_LOGIN_URL, user);
@@ -802,7 +802,7 @@ var getNativgationConfig = function getNativgationConfig(navConfigs) {
   });
 };
 
-var NavBarService = function NavBarService() { };
+var NavBarService = function NavBarService() {};
 
 NavBarService.getNativagtion = function () {
   return HttpClient.get(API_GET_NAV_CONFIGS, {
@@ -843,7 +843,7 @@ var loadNavigation = function loadNavigation() {
           }
         });
       });
-    }, function () { }));
+    }, function () {}));
   };
 };
 var loadUserRoles = function loadUserRoles() {
@@ -874,7 +874,7 @@ var goBackHomePage = function goBackHomePage() {
       var _getState, _getState$auth;
 
       var _ref = ((_getState = getState()) === null || _getState === void 0 ? void 0 : (_getState$auth = _getState.auth) === null || _getState$auth === void 0 ? void 0 : _getState$auth.guest) || {},
-        authToken = _ref.authToken;
+          authToken = _ref.authToken;
 
       if (authToken) {
         history.push('/home');
@@ -912,7 +912,7 @@ var checkLoginStatus = function checkLoginStatus(authToken, redirectUrl) {
           var appId = getState().customizer.appId;
 
           var _ref = appId === AppId.ELITE_APP ? getState().auth.guest.user : getState().auth.user,
-            username = _ref.username;
+              username = _ref.username;
 
           var _temp = function () {
             if (response.status === API_R_200 && username) {
@@ -941,7 +941,7 @@ var checkLoginStatus = function checkLoginStatus(authToken, redirectUrl) {
             }
           }();
 
-          if (_temp && _temp.then) return _temp.then(function () { });
+          if (_temp && _temp.then) return _temp.then(function () {});
         });
       }, function () {
         dispatch({
@@ -950,7 +950,7 @@ var checkLoginStatus = function checkLoginStatus(authToken, redirectUrl) {
         history.push('/login');
       });
 
-      return Promise.resolve(_temp3 && _temp3.then ? _temp3.then(function () { }) : void 0);
+      return Promise.resolve(_temp3 && _temp3.then ? _temp3.then(function () {}) : void 0);
     } catch (e) {
       return Promise.reject(e);
     }
@@ -976,8 +976,8 @@ var loginAction = function loginAction(user) {
               }
 
               var _response$data = response.data,
-                userSettings = _response$data.userSettings,
-                groupId = _response$data.groupId;
+                  userSettings = _response$data.userSettings,
+                  groupId = _response$data.groupId;
 
               if (userSettings) {
                 localStorage.setItem('language', userSettings.language.toLowerCase());
@@ -1197,9 +1197,9 @@ var createPassword = function createPassword(password) {
             history.push('/complete-information');
           }
         });
-      }, function () { });
+      }, function () {});
 
-      return Promise.resolve(_temp5 && _temp5.then ? _temp5.then(function () { }) : void 0);
+      return Promise.resolve(_temp5 && _temp5.then ? _temp5.then(function () {}) : void 0);
     } catch (e) {
       return Promise.reject(e);
     }
@@ -1217,9 +1217,9 @@ var register = function register(values, isGuest) {
             history.push('/login');
           }
         });
-      }, function () { });
+      }, function () {});
 
-      return Promise.resolve(_temp7 && _temp7.then ? _temp7.then(function () { }) : void 0);
+      return Promise.resolve(_temp7 && _temp7.then ? _temp7.then(function () {}) : void 0);
     } catch (e) {
       return Promise.reject(e);
     }
@@ -1242,7 +1242,7 @@ var compeleteInfo = function compeleteInfo(user) {
         console.log(error);
       });
 
-      return Promise.resolve(_temp9 && _temp9.then ? _temp9.then(function () { }) : void 0);
+      return Promise.resolve(_temp9 && _temp9.then ? _temp9.then(function () {}) : void 0);
     } catch (e) {
       return Promise.reject(e);
     }
@@ -1279,7 +1279,7 @@ var saveResetPasswordToken = function saveResetPasswordToken(token) {
 };
 var forgotPassword = function forgotPassword(_ref2) {
   var username = _ref2.username,
-    email = _ref2.email;
+      email = _ref2.email;
   return function (dispatch, getState) {
     try {
       var _temp11 = _catch(function () {
@@ -1295,9 +1295,9 @@ var forgotPassword = function forgotPassword(_ref2) {
             history.push('/login');
           }
         });
-      }, function () { });
+      }, function () {});
 
-      return Promise.resolve(_temp11 && _temp11.then ? _temp11.then(function () { }) : void 0);
+      return Promise.resolve(_temp11 && _temp11.then ? _temp11.then(function () {}) : void 0);
     } catch (e) {
       return Promise.reject(e);
     }
@@ -1319,9 +1319,9 @@ var resetPassword = function resetPassword(password) {
             history.push('/login');
           }
         });
-      }, function () { });
+      }, function () {});
 
-      return Promise.resolve(_temp13 && _temp13.then ? _temp13.then(function () { }) : void 0);
+      return Promise.resolve(_temp13 && _temp13.then ? _temp13.then(function () {}) : void 0);
     } catch (e) {
       return Promise.reject(e);
     }
@@ -1376,7 +1376,7 @@ var updateUserInfo = function updateUserInfo(user, avatarImage) {
 };
 var changePassword = function changePassword(_ref3) {
   var oldPassword = _ref3.oldPassword,
-    newPassword = _ref3.newPassword;
+      newPassword = _ref3.newPassword;
   return function (dispatch) {
     try {
       return Promise.resolve(AuthService.changePassword({
@@ -1401,8 +1401,8 @@ var changeLanguageSetting = function changeLanguageSetting(lang, callBack) {
       var appId = getState().customizer.appId;
 
       var _ref4 = appId === AppId.ELITE_APP ? getState().auth.guest.user : getState().auth.user,
-        _ref4$userSettings = _ref4.userSettings,
-        userSettings = _ref4$userSettings === void 0 ? {} : _ref4$userSettings;
+          _ref4$userSettings = _ref4.userSettings,
+          userSettings = _ref4$userSettings === void 0 ? {} : _ref4$userSettings;
 
       var value = _extends({}, userSettings, {
         language: lang.toUpperCase()
@@ -1777,8 +1777,8 @@ var DEFAULT_CONFIRM_ALERT = {
   title: '',
   isShow: false,
   content: '',
-  onConfirm: function onConfirm() { },
-  onCancel: function onCancel() { }
+  onConfirm: function onConfirm() {},
+  onCancel: function onCancel() {}
 };
 var initialState$1 = {
   loading: new Set(),
@@ -1830,7 +1830,7 @@ var uiReducer = function uiReducer(state, action) {
   }
 };
 
-var NotificationService = function NotificationService() { };
+var NotificationService = function NotificationService() {};
 
 NotificationService.getMyNotifications = function () {
   return HttpClient.get(API_GET_NOTIFICATION_FROM_ESPUBLIC, {
@@ -2056,9 +2056,9 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
 
     _this.onKeyDown = function (e) {
       var _this$state = _this.state,
-        activeSuggestion = _this$state.activeSuggestion,
-        showSuggestions = _this$state.showSuggestions,
-        userInput = _this$state.userInput;
+          activeSuggestion = _this$state.activeSuggestion,
+          showSuggestions = _this$state.showSuggestions,
+          userInput = _this$state.userInput;
       var filterKey = _this.props.filterKey;
       var suggestionList = ReactDOM.findDOMNode(_this.suggestionList);
 
@@ -2071,28 +2071,28 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
           suggestionList.scrollTop = 0;
         }
       } else if (e.keyCode === 40 && activeSuggestion < _this.filteredData.length - 1) {
-        _this.setState({
-          activeSuggestion: activeSuggestion + 1
-        });
+          _this.setState({
+            activeSuggestion: activeSuggestion + 1
+          });
 
-        if (e.target.value.length > -1 && suggestionList !== null && activeSuggestion >= _this.filteredData.length / 2) {
-          suggestionList.scrollTop = suggestionList.scrollHeight;
-        }
-      } else if (e.keyCode === 27) {
-        _this.setState({
-          showSuggestions: false,
-          userInput: ''
-        });
-      } else if (e.keyCode === 13 && showSuggestions) {
-        _this.onSuggestionItemClick(_this.filteredData[activeSuggestion], e);
+          if (e.target.value.length > -1 && suggestionList !== null && activeSuggestion >= _this.filteredData.length / 2) {
+            suggestionList.scrollTop = suggestionList.scrollHeight;
+          }
+        } else if (e.keyCode === 27) {
+            _this.setState({
+              showSuggestions: false,
+              userInput: ''
+            });
+          } else if (e.keyCode === 13 && showSuggestions) {
+              _this.onSuggestionItemClick(_this.filteredData[activeSuggestion], e);
 
-        _this.setState({
-          userInput: _this.filteredData[activeSuggestion][filterKey],
-          showSuggestions: false
-        });
-      } else {
-        return;
-      }
+              _this.setState({
+                userInput: _this.filteredData[activeSuggestion][filterKey],
+                showSuggestions: false
+              });
+            } else {
+              return;
+            }
 
       if (_this.props.onKeyDown !== undefined && _this.props.onKeyDown !== null && _this.props.onKeyDown) {
         _this.props.onKeyDown(e, userInput);
@@ -2101,15 +2101,15 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
 
     _this.renderGroupedSuggestion = function (arr) {
       var _this$props = _this.props,
-        filterKey = _this$props.filterKey,
-        customRender = _this$props.customRender;
+          filterKey = _this$props.filterKey,
+          customRender = _this$props.customRender;
 
       var _assertThisInitialize = _assertThisInitialized(_this),
-        onSuggestionItemClick = _assertThisInitialize.onSuggestionItemClick,
-        onSuggestionItemHover = _assertThisInitialize.onSuggestionItemHover,
-        _assertThisInitialize2 = _assertThisInitialize.state,
-        activeSuggestion = _assertThisInitialize2.activeSuggestion,
-        userInput = _assertThisInitialize2.userInput;
+          onSuggestionItemClick = _assertThisInitialize.onSuggestionItemClick,
+          onSuggestionItemHover = _assertThisInitialize.onSuggestionItemHover,
+          _assertThisInitialize2 = _assertThisInitialize.state,
+          activeSuggestion = _assertThisInitialize2.activeSuggestion,
+          userInput = _assertThisInitialize2.userInput;
 
       var renderSuggestion = function renderSuggestion(item, i) {
         if (!customRender) {
@@ -2141,22 +2141,22 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
       var _this$filteredData;
 
       var _this$props2 = _this.props,
-        filterKey = _this$props2.filterKey,
-        suggestions = _this$props2.suggestions,
-        customRender = _this$props2.customRender,
-        suggestionLimit = _this$props2.suggestionLimit;
+          filterKey = _this$props2.filterKey,
+          suggestions = _this$props2.suggestions,
+          customRender = _this$props2.customRender,
+          suggestionLimit = _this$props2.suggestionLimit;
 
       var _assertThisInitialize3 = _assertThisInitialized(_this),
-        onSuggestionItemClick = _assertThisInitialize3.onSuggestionItemClick,
-        onSuggestionItemHover = _assertThisInitialize3.onSuggestionItemHover,
-        _assertThisInitialize4 = _assertThisInitialize3.state,
-        activeSuggestion = _assertThisInitialize4.activeSuggestion,
-        userInput = _assertThisInitialize4.userInput;
+          onSuggestionItemClick = _assertThisInitialize3.onSuggestionItemClick,
+          onSuggestionItemHover = _assertThisInitialize3.onSuggestionItemHover,
+          _assertThisInitialize4 = _assertThisInitialize3.state,
+          activeSuggestion = _assertThisInitialize4.activeSuggestion,
+          userInput = _assertThisInitialize4.userInput;
 
       _this.filteredData = [];
       var sortSingleData = suggestions.filter(function (i) {
         var startCondition = i[filterKey].toLowerCase().startsWith(userInput.toLowerCase()),
-          includeCondition = i[filterKey].toLowerCase().includes(userInput.toLowerCase());
+            includeCondition = i[filterKey].toLowerCase().includes(userInput.toLowerCase());
 
         if (startCondition) {
           return startCondition;
@@ -2201,14 +2201,14 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
 
     _this.renderSuggestions = function () {
       var _this$props3 = _this.props,
-        filterKey = _this$props3.filterKey,
-        grouped = _this$props3.grouped,
-        filterHeaderKey = _this$props3.filterHeaderKey,
-        suggestions = _this$props3.suggestions;
+          filterKey = _this$props3.filterKey,
+          grouped = _this$props3.grouped,
+          filterHeaderKey = _this$props3.filterHeaderKey,
+          suggestions = _this$props3.suggestions;
 
       var _assertThisInitialize5 = _assertThisInitialized(_this),
-        renderUngroupedSuggestions = _assertThisInitialize5.renderUngroupedSuggestions,
-        userInput = _assertThisInitialize5.state.userInput;
+          renderUngroupedSuggestions = _assertThisInitialize5.renderUngroupedSuggestions,
+          userInput = _assertThisInitialize5.state.userInput;
 
       if (grouped === undefined || grouped === null || !grouped) {
         return renderUngroupedSuggestions();
@@ -2219,7 +2219,7 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
 
           var sortData = suggestion.data.filter(function (i) {
             var startCondition = i[filterKey].toLowerCase().startsWith(userInput.toLowerCase()),
-              includeCondition = i[filterKey].toLowerCase().includes(userInput.toLowerCase());
+                includeCondition = i[filterKey].toLowerCase().includes(userInput.toLowerCase());
 
             if (startCondition) {
               return startCondition;
@@ -2285,9 +2285,9 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
   _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
     var textInput = ReactDOM.findDOMNode(this.input);
     var _this$props4 = this.props,
-      autoFocus = _this$props4.autoFocus,
-      onSuggestionsShown = _this$props4.onSuggestionsShown,
-      clearInput = _this$props4.clearInput;
+        autoFocus = _this$props4.autoFocus,
+        onSuggestionsShown = _this$props4.onSuggestionsShown,
+        clearInput = _this$props4.clearInput;
 
     if (textInput !== null && autoFocus) {
       textInput.focus();
@@ -2332,11 +2332,11 @@ var Autocomplete = /*#__PURE__*/function (_React$Component) {
     var _this2 = this;
 
     var _onChange = this.onChange,
-      _onKeyDown = this.onKeyDown,
-      _this$state2 = this.state,
-      showSuggestions = _this$state2.showSuggestions,
-      userInput = _this$state2.userInput,
-      openUp = _this$state2.openUp;
+        _onKeyDown = this.onKeyDown,
+        _this$state2 = this.state,
+        showSuggestions = _this$state2.showSuggestions,
+        userInput = _this$state2.userInput,
+        openUp = _this$state2.openUp;
     var suggestionsListComponent;
 
     if (showSuggestions) {
@@ -2634,9 +2634,9 @@ var CustomDropdown = styled.div(_templateObject3());
 
 var Notifications = function Notifications(_ref) {
   var notifications = _ref.notifications,
-    openModal = _ref.openModal,
-    openDeleteAllModal = _ref.openDeleteAllModal,
-    onClickUpdateAllNotifications = _ref.onClickUpdateAllNotifications;
+      openModal = _ref.openModal,
+      openDeleteAllModal = _ref.openDeleteAllModal,
+      onClickUpdateAllNotifications = _ref.onClickUpdateAllNotifications;
   var dispatch = reactRedux.useDispatch();
 
   var onClickOpenNotification = function onClickOpenNotification(notification) {
@@ -2804,27 +2804,27 @@ var Bells = function Bells() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.notifications;
   }),
-    notifications = _useSelector.notifications;
+      notifications = _useSelector.notifications;
 
   var _useState = React.useState(false),
-    dropdownOpen = _useState[0],
-    setDropdownOpen = _useState[1];
+      dropdownOpen = _useState[0],
+      setDropdownOpen = _useState[1];
 
   var _useState2 = React.useState(false),
-    notificationModal = _useState2[0],
-    setNotificationModal = _useState2[1];
+      notificationModal = _useState2[0],
+      setNotificationModal = _useState2[1];
 
   var _useState3 = React.useState(0),
-    numberNewNotification = _useState3[0],
-    setNumberNewNotification = _useState3[1];
+      numberNewNotification = _useState3[0],
+      setNumberNewNotification = _useState3[1];
 
   var _useState4 = React.useState(null),
-    notification = _useState4[0],
-    setNotification = _useState4[1];
+      notification = _useState4[0],
+      setNotification = _useState4[1];
 
   var _useState5 = React.useState(false),
-    centeredModal = _useState5[0],
-    setCenteredModal = _useState5[1];
+      centeredModal = _useState5[0],
+      setCenteredModal = _useState5[1];
 
   React.useEffect(function () {
     dispatch(getMyNotifications());
@@ -2971,7 +2971,6 @@ var Bells = function Bells() {
   })))));
 };
 
-/* NavbarUser Component Đã Chỉnh Sửa */
 var NavbarUser = function NavbarUser(props) {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth.user;
@@ -3004,7 +3003,6 @@ var NavbarUser = function NavbarUser(props) {
   }))), /*#__PURE__*/React__default.createElement(UserDropdown, null))));
 };
 
-/* ThemeNavbar Component Đã Chỉnh Sửa */
 var ThemeNavbar = function ThemeNavbar(props) {
   var colorsArr = ['primary', 'danger', 'success', 'info', 'warning', 'dark'];
   var navbarTypes = ['floating', 'static', 'sticky', 'hidden'];
@@ -3070,8 +3068,8 @@ var Navbar = reactRedux.connect(mapStateToProps, {
 
 function getWindowDimensions() {
   var _window = window,
-    width = _window.innerWidth,
-    height = _window.innerHeight;
+      width = _window.innerWidth,
+      height = _window.innerHeight;
   return {
     width: width,
     height: height
@@ -3080,8 +3078,8 @@ function getWindowDimensions() {
 
 function useWindowDimensions() {
   var _useState = React.useState(getWindowDimensions()),
-    windowDimensions = _useState[0],
-    setWindowDimensions = _useState[1];
+      windowDimensions = _useState[0],
+      setWindowDimensions = _useState[1];
 
   React.useEffect(function () {
     function handleResize() {
@@ -3098,14 +3096,14 @@ function useWindowDimensions() {
 
 var Footer = function Footer(props) {
   var _useState = React.useState(false),
-    footerHide = _useState[0],
-    setfooterHide = _useState[1];
+      footerHide = _useState[0],
+      setfooterHide = _useState[1];
 
   var _useState2 = React.useState(window.innerHeight),
-    currentHeight = _useState2[0];
+      currentHeight = _useState2[0];
 
   var _useWindowDimensions = useWindowDimensions(),
-    width = _useWindowDimensions.width;
+      width = _useWindowDimensions.width;
 
   var history = reactRouterDom.useHistory();
   var dispatch = reactRedux.useDispatch();
@@ -3301,11 +3299,11 @@ var hideScrollToTop = function hideScrollToTop(value) {
 
 var SidebarHeader = function SidebarHeader(props) {
   var toggleSidebarMenu = props.toggleSidebarMenu,
-    activeTheme = props.activeTheme,
-    collapsed = props.collapsed,
-    toggle = props.toggle,
-    sidebarVisibility = props.sidebarVisibility,
-    menuShadow = props.menuShadow;
+      activeTheme = props.activeTheme,
+      collapsed = props.collapsed,
+      toggle = props.toggle,
+      sidebarVisibility = props.sidebarVisibility,
+      menuShadow = props.menuShadow;
   var dispatch = reactRedux.useDispatch();
 
   var onClickHome = function onClickHome() {
@@ -3867,26 +3865,26 @@ var Sidebar = /*#__PURE__*/function (_Component) {
     var _this2 = this;
 
     var _this$props = this.props,
-      toggleSidebarMenu = _this$props.toggleSidebarMenu,
-      visibilityState = _this$props.visibilityState,
-      sidebarHover = _this$props.sidebarHover,
-      toggle = _this$props.toggle,
-      color = _this$props.color,
-      sidebarVisibility = _this$props.sidebarVisibility,
-      activeTheme = _this$props.activeTheme,
-      collapsed = _this$props.collapsed,
-      activePath = _this$props.activePath,
-      sidebarState = _this$props.sidebarState,
-      currentLang = _this$props.currentLang,
-      permission = _this$props.permission,
-      currentUser = _this$props.currentUser,
-      collapsedMenuPaths = _this$props.collapsedMenuPaths;
+        toggleSidebarMenu = _this$props.toggleSidebarMenu,
+        visibilityState = _this$props.visibilityState,
+        sidebarHover = _this$props.sidebarHover,
+        toggle = _this$props.toggle,
+        color = _this$props.color,
+        sidebarVisibility = _this$props.sidebarVisibility,
+        activeTheme = _this$props.activeTheme,
+        collapsed = _this$props.collapsed,
+        activePath = _this$props.activePath,
+        sidebarState = _this$props.sidebarState,
+        currentLang = _this$props.currentLang,
+        permission = _this$props.permission,
+        currentUser = _this$props.currentUser,
+        collapsedMenuPaths = _this$props.collapsedMenuPaths;
     var _this$state = this.state,
-      menuShadow = _this$state.menuShadow,
-      activeIndex = _this$state.activeIndex,
-      hoveredMenuItem = _this$state.hoveredMenuItem,
-      activeItem = _this$state.activeItem,
-      ScrollbarTag = _this$state.ScrollbarTag;
+        menuShadow = _this$state.menuShadow,
+        activeIndex = _this$state.activeIndex,
+        hoveredMenuItem = _this$state.hoveredMenuItem,
+        activeItem = _this$state.activeItem,
+        ScrollbarTag = _this$state.ScrollbarTag;
 
     var scrollShadow = function scrollShadow(container, dir) {
       if (container && dir === "up" && container.scrollTop >= 100) {
@@ -4100,10 +4098,10 @@ var Layout = /*#__PURE__*/function (_PureComponent) {
   _proto.componentDidMount = function componentDidMount() {
     this.mounted = true;
     var _this$props = this.props,
-      pathname = _this$props.location.pathname,
-      _this$props$customize = _this$props.customizer,
-      theme = _this$props$customize.theme,
-      direction = _this$props$customize.direction;
+        pathname = _this$props.location.pathname,
+        _this$props$customize = _this$props.customizer,
+        theme = _this$props$customize.theme,
+        direction = _this$props$customize.direction;
 
     if (this.mounted) {
       if (window !== 'undefined') {
@@ -4116,17 +4114,17 @@ var Layout = /*#__PURE__*/function (_PureComponent) {
 
       var layout = theme;
       var dir = direction;
-      if (dir === 'rtl') document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl'); else document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
+      if (dir === 'rtl') document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');else document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
       return layout === 'dark' ? document.body.classList.add('dark-layout') : layout === 'semi-dark' ? document.body.classList.add('semi-dark-layout') : null;
     }
   };
 
   _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
     var _this$props2 = this.props,
-      pathname = _this$props2.location.pathname,
-      _this$props2$customiz = _this$props2.customizer,
-      theme = _this$props2$customiz.theme,
-      sidebarCollapsed = _this$props2$customiz.sidebarCollapsed;
+        pathname = _this$props2.location.pathname,
+        _this$props2$customiz = _this$props2.customizer,
+        theme = _this$props2$customiz.theme,
+        sidebarCollapsed = _this$props2$customiz.sidebarCollapsed;
     var layout = theme;
 
     if (this.mounted) {
@@ -4269,8 +4267,8 @@ var IntlProviderWrapper = /*#__PURE__*/function (_React$Component) {
 
     var children = this.props.children;
     var _this$state = this.state,
-      locale = _this$state.locale,
-      messages = _this$state.messages;
+        locale = _this$state.locale,
+        messages = _this$state.messages;
     return /*#__PURE__*/React__default.createElement(Context.Provider, {
       value: {
         state: this.state,
@@ -4299,418 +4297,418 @@ var register$1 = "Register";
 var forgotPassword$1 = "Forgot password";
 var setting = "Setting";
 var messages_en = {
-  "commom.error.requireField": "You must enter {fieldName}",
-  "common.gender.male": "Male",
-  "common.gender.female": "Female",
-  "common.gender.other": "Other",
-  "common.icType.personalID": "Identity Card",
-  "common.icType.citizenIdentify": "Identification",
-  "common.icType.passport": "Passport",
-  "common.icType.CMND": "Identity Card",
-  "common.icType.CCCD": "Identification",
-  "common.icType.HC": "Passport",
-  "common.home": "Home",
-  "common.backHome.confirmMessage": "Do you want to go back to home page?",
-  "common.saveChanges": "Save Changes",
-  "common.saveChanges.confirmMessage": "Do you want to save the changes?",
-  "common.cancel": "Cancel",
-  "common.ok": "Ok",
-  "common.noResults": "No results",
-  "common.sessionExpired": "Your session has expired, please relogin!",
-  "common.error.500": "An error occurred, please try again!",
-  "common.table.previous": "Previous",
-  "common.table.next": "Next",
-  "common.table.page": "Page",
-  "common.table.of": "of",
-  "common.table.rows": "row",
-  "common.table.noData": "No results were found",
-  "common.back": "Quay lại",
-  "landingPage.copyRight": " 2020-{year}: BMK - Bảo hiểm không ngủ",
-  "landingPage.slogan": "The place that provides technology solutions in the insurance field",
-  "landingPage.welcomeText": "Welcome to BMK",
-  login: login,
-  "login.firstWelcome": "Welcome to BMK X!",
-  "login.logedWelcome": "Hi,",
-  "login.username": "Username *",
-  "login.username.required": "You must enter your username",
-  "login.username.invalid": "Username is invalid",
-  "login.password": "Password *",
-  "login.password.required": "You must enter your password",
-  "login.rememberMe": "Remember me",
-  "login.notMe": "Not me",
-  "login.fail": "Username or password was incorrect",
-  "login.sayHi": "Hi, {name}",
-  "login.registerPartner": "Partner Registration",
-  "login.needRegisterPartner": "Your account cannot use this function. Please register as a partner or log in as an individual customer.",
-  register: register$1,
-  "register.fullname": "Full name",
-  "register.fullname.required": "You must enter your full name",
-  "register.fullname.invalid": "Your full name can not enter special charater",
-  "register.email": "Email*",
-  "register.email.required": "You must enter your email address",
-  "register.email.invalid": "You must enter your valid email address",
-  "register.phoneNumber": "Phone number",
-  "register.phoneNumber.invalid": "You must enter your valid phone number",
-  "register.phoneNumber.required": "You must enter your phone number",
-  "register.refCode": "Referal code",
-  "register.refCode.invalid": "Referal code is invalid",
-  "register.mustAppcepted": "Your must accept our terms and conditions",
-  "register.registerSuccess": "Partner registration request is being processed. Please check email to complete.Thank you!",
-  "register.agreeWith": "I agree to",
-  "register.policyAndCondition": "Terms and Condition",
-  "register.useService": "use service",
-  forgotPassword: forgotPassword$1,
-  "forgotPassword.verify": "Verify",
-  "forgotPassword.username": "Username*",
-  "forgotPassword.username.required": "You must enter username",
-  "forgotPassword.email": "Email registration*",
-  "forgotPassword.email.required": "You must enter email registration",
-  "forgotPassword.successfull": "Your reset password link has sent to your email",
-  "forgotPassword.fail": "Your phone number or email is incorrect",
-  "forgotPassword.notFoundEmailSuggestion": "Not found any email with your username",
-  "forgotPassword.yourEmailIs": "Your email is",
-  "menu.home": "Home",
-  "menu.user": "User Management",
-  "menu.contract": "Contract",
-  "menu.buyInsurance": "Buy Insurance",
-  "menu.contractManagement": "Contract Management",
-  "menu.personalContracts": "Personal Contracts",
-  "menu.partnerContracts": "Parnter Contracts",
-  "menu.allContracts": "All Contracts",
-  "menu.account": "Account",
-  "menu.createAccount": "Create Account",
-  "menu.accountManagement": "Account Management",
-  "menu.createMultipleAccount": "Create Multiple Account",
-  "menu.insuranceFeeManagement": "Insurance Fee",
-  "menu.systemFee": "System Fee",
-  "menu.personalFee": "Personal Fee",
-  "menu.lxPartnerFee": "LX Partner Fee",
-  "menu.partnerFee": "Partner Fee",
-  "menu.customerFee": "Customer Fee",
-  "menu.allFee": "All Fee",
-  "menu.feeApproval": "Fee Approval",
-  "menu.bonusManagement": "Bonus Management",
-  "menu.systemBonus": "System Bonus",
-  "menu.personalBonus": "Personal Bonus",
-  "menu.partnerBonus": "Partner Bonus",
-  "menu.lxPartnerBonus": "LX Partner Bonus",
-  "menu.customerBonus": "Customer Bonus Point",
-  "menu.allBonus": "All Bonus",
-  "menu.bonusApproval": "Bonus Approval",
-  "menu.bonusClient": "Client Bonus",
-  "menu.insuranceCertificate": "Insurance Certification",
-  "menu.insuranceCertificate.newImport": "New Import",
-  "menu.insuranceCertificate.newExport": "New Export",
-  "menu.insuranceCertificate.wrongImport": "Wrong Import",
-  "menu.insuranceCertificate.wrongExport": "Wrong Export",
-  "menu.debt": "Debt",
-  "menu.createDebt": "Create Debt",
-  "menu.editDebt": "Edit Debt",
-  "menu.debtApproval": "Debt Approval",
-  "menu.debtManagement": "Debt Management",
-  "menu.personalDebt": "Personal Debt",
-  "menu.partnerDebt": "Partner Debt",
-  "menu.allDebt": "All Debt",
-  "menu.permissionGoup": "Permission Group",
-  "menu.creatPermissionGoup": "Create Permission Group",
-  "menu.permissionGoupManagement": "Permission Group Management",
-  "menu.insuranceMotobike": "Motobike Insurance",
-  "menu.insuranceCar": "Car Insurance",
-  "menu.approveOpenAccount": "Account Approval",
-  "menu.promotion": "Promotion",
-  "menu.helpCenter": "Help center",
-  "menu.createHelpCenter": "Create New",
-  "menu.helpCenterQuestion": "Frequently asked questions",
-  "menu.helpCenterUserManual": "User manual",
-  "menu.helpCenterProfessinalDocument": "Professional documents",
-  "menu.createPromotion": "Create Promotion",
-  "menu.promotionManagement": "Promotion Management",
-  "menu.personalBonusHistory": "Personal Bonus History",
-  "menu.partnerBonusHistory": "Partner Bonus History",
-  "menu.allBonusHistory": "All Bonus History",
-  "menu.notification": "Notification",
-  "menu.readAll": "Read All",
-  "menu.deleteAll": "Delete All",
-  "menu.confirmDeleteAll": "Do you want delete all notifications",
-  "menu.notificationManagement": "Notification Management",
-  "menu.createNotification": "Create Notification",
-  "menu.notificationApproval": "Notification Management",
-  "menu.support": "24/7 Support",
-  "menu.createSupportRequest": "Create New Request",
-  "menu.managementSupportRequest": "Manage support requests",
-  "menu.mySupportRequest": "Personal request",
-  "menu.permissionRequest": "Decentralization",
-  "menu.compensationManagement": "Compensation Management",
-  "menu.accountProduct": "Account Product",
-  "menu.accountProductManagement": "Account Product Management",
-  "menu.accountProductImport": "Account Product Import",
+	"commom.error.requireField": "You must enter {fieldName}",
+	"common.gender.male": "Male",
+	"common.gender.female": "Female",
+	"common.gender.other": "Other",
+	"common.icType.personalID": "Identity Card",
+	"common.icType.citizenIdentify": "Identification",
+	"common.icType.passport": "Passport",
+	"common.icType.CMND": "Identity Card",
+	"common.icType.CCCD": "Identification",
+	"common.icType.HC": "Passport",
+	"common.home": "Home",
+	"common.backHome.confirmMessage": "Do you want to go back to home page?",
+	"common.saveChanges": "Save Changes",
+	"common.saveChanges.confirmMessage": "Do you want to save the changes?",
+	"common.cancel": "Cancel",
+	"common.ok": "Ok",
+	"common.noResults": "No results",
+	"common.sessionExpired": "Your session has expired, please relogin!",
+	"common.error.500": "An error occurred, please try again!",
+	"common.table.previous": "Previous",
+	"common.table.next": "Next",
+	"common.table.page": "Page",
+	"common.table.of": "of",
+	"common.table.rows": "row",
+	"common.table.noData": "No results were found",
+	"common.back": "Quay lại",
+	"landingPage.copyRight": " 2020-{year}: BMK - Bảo hiểm không ngủ",
+	"landingPage.slogan": "The place that provides technology solutions in the insurance field",
+	"landingPage.welcomeText": "Welcome to BMK",
+	login: login,
+	"login.firstWelcome": "Welcome to BMK X!",
+	"login.logedWelcome": "Hi,",
+	"login.username": "Username *",
+	"login.username.required": "You must enter your username",
+	"login.username.invalid": "Username is invalid",
+	"login.password": "Password *",
+	"login.password.required": "You must enter your password",
+	"login.rememberMe": "Remember me",
+	"login.notMe": "Not me",
+	"login.fail": "Username or password was incorrect",
+	"login.sayHi": "Hi, {name}",
+	"login.registerPartner": "Partner Registration",
+	"login.needRegisterPartner": "Your account cannot use this function. Please register as a partner or log in as an individual customer.",
+	register: register$1,
+	"register.fullname": "Full name",
+	"register.fullname.required": "You must enter your full name",
+	"register.fullname.invalid": "Your full name can not enter special charater",
+	"register.email": "Email*",
+	"register.email.required": "You must enter your email address",
+	"register.email.invalid": "You must enter your valid email address",
+	"register.phoneNumber": "Phone number",
+	"register.phoneNumber.invalid": "You must enter your valid phone number",
+	"register.phoneNumber.required": "You must enter your phone number",
+	"register.refCode": "Referal code",
+	"register.refCode.invalid": "Referal code is invalid",
+	"register.mustAppcepted": "Your must accept our terms and conditions",
+	"register.registerSuccess": "Partner registration request is being processed. Please check email to complete.Thank you!",
+	"register.agreeWith": "I agree to",
+	"register.policyAndCondition": "Terms and Condition",
+	"register.useService": "use service",
+	forgotPassword: forgotPassword$1,
+	"forgotPassword.verify": "Verify",
+	"forgotPassword.username": "Username*",
+	"forgotPassword.username.required": "You must enter username",
+	"forgotPassword.email": "Email registration*",
+	"forgotPassword.email.required": "You must enter email registration",
+	"forgotPassword.successfull": "Your reset password link has sent to your email",
+	"forgotPassword.fail": "Your phone number or email is incorrect",
+	"forgotPassword.notFoundEmailSuggestion": "Not found any email with your username",
+	"forgotPassword.yourEmailIs": "Your email is",
+	"menu.home": "Home",
+	"menu.user": "User Management",
+	"menu.contract": "Contract",
+	"menu.buyInsurance": "Buy Insurance",
+	"menu.contractManagement": "Contract Management",
+	"menu.personalContracts": "Personal Contracts",
+	"menu.partnerContracts": "Parnter Contracts",
+	"menu.allContracts": "All Contracts",
+	"menu.account": "Account",
+	"menu.createAccount": "Create Account",
+	"menu.accountManagement": "Account Management",
+	"menu.createMultipleAccount": "Create Multiple Account",
+	"menu.insuranceFeeManagement": "Insurance Fee",
+	"menu.systemFee": "System Fee",
+	"menu.personalFee": "Personal Fee",
+	"menu.lxPartnerFee": "LX Partner Fee",
+	"menu.partnerFee": "Partner Fee",
+	"menu.customerFee": "Customer Fee",
+	"menu.allFee": "All Fee",
+	"menu.feeApproval": "Fee Approval",
+	"menu.bonusManagement": "Bonus Management",
+	"menu.systemBonus": "System Bonus",
+	"menu.personalBonus": "Personal Bonus",
+	"menu.partnerBonus": "Partner Bonus",
+	"menu.lxPartnerBonus": "LX Partner Bonus",
+	"menu.customerBonus": "Customer Bonus Point",
+	"menu.allBonus": "All Bonus",
+	"menu.bonusApproval": "Bonus Approval",
+	"menu.bonusClient": "Client Bonus",
+	"menu.insuranceCertificate": "Insurance Certification",
+	"menu.insuranceCertificate.newImport": "New Import",
+	"menu.insuranceCertificate.newExport": "New Export",
+	"menu.insuranceCertificate.wrongImport": "Wrong Import",
+	"menu.insuranceCertificate.wrongExport": "Wrong Export",
+	"menu.debt": "Debt",
+	"menu.createDebt": "Create Debt",
+	"menu.editDebt": "Edit Debt",
+	"menu.debtApproval": "Debt Approval",
+	"menu.debtManagement": "Debt Management",
+	"menu.personalDebt": "Personal Debt",
+	"menu.partnerDebt": "Partner Debt",
+	"menu.allDebt": "All Debt",
+	"menu.permissionGoup": "Permission Group",
+	"menu.creatPermissionGoup": "Create Permission Group",
+	"menu.permissionGoupManagement": "Permission Group Management",
+	"menu.insuranceMotobike": "Motobike Insurance",
+	"menu.insuranceCar": "Car Insurance",
+	"menu.approveOpenAccount": "Account Approval",
+	"menu.promotion": "Promotion",
+	"menu.helpCenter": "Help center",
+	"menu.createHelpCenter": "Create New",
+	"menu.helpCenterQuestion": "Frequently asked questions",
+	"menu.helpCenterUserManual": "User manual",
+	"menu.helpCenterProfessinalDocument": "Professional documents",
+	"menu.createPromotion": "Create Promotion",
+	"menu.promotionManagement": "Promotion Management",
+	"menu.personalBonusHistory": "Personal Bonus History",
+	"menu.partnerBonusHistory": "Partner Bonus History",
+	"menu.allBonusHistory": "All Bonus History",
+	"menu.notification": "Notification",
+	"menu.readAll": "Read All",
+	"menu.deleteAll": "Delete All",
+	"menu.confirmDeleteAll": "Do you want delete all notifications",
+	"menu.notificationManagement": "Notification Management",
+	"menu.createNotification": "Create Notification",
+	"menu.notificationApproval": "Notification Management",
+	"menu.support": "24/7 Support",
+	"menu.createSupportRequest": "Create New Request",
+	"menu.managementSupportRequest": "Manage support requests",
+	"menu.mySupportRequest": "Personal request",
+	"menu.permissionRequest": "Decentralization",
+	"menu.compensationManagement": "Compensation Management",
+	"menu.accountProduct": "Account Product",
+	"menu.accountProductManagement": "Account Product Management",
+	"menu.accountProductImport": "Account Product Import",
   "menu.vehicleManagement": "Mapping Insurance Company",
-  "navbar.language.vi": "Tiếng việt",
-  "navbar.language.en": "English",
-  "navbar.logout": "Logout",
-  "navbar.logout.confirmMessage": "Do you want to logout?",
-  "navbar.notifications.markAsRead": "Mark as read",
-  "navbar.notifications.markAsUnRead": "Mark as unread",
-  "navbar.notifications.delete": "Delete",
-  "navbar.notifications.newNotificationNotice": "You have a new notification",
-  "navbar.notifications.noNewNotifications": "You don't have a new notification",
-  "footer.copyRight": "©2020-{year}: BMK - All rights reserved",
-  "footer.companySlogan": "Leading insurance provider in Vietnam",
-  setting: setting,
-  "setting.accountInformation": "Account Information",
-  "setting.changePassword": "Change password",
-  "setting.change": "Change",
-  "setting.partnerCode": "Partner code",
-  "setting.referralCode": "Referal code",
-  "setting.accountCode": "Account code",
-  "setting.personalSetting": "Personal Settings",
-  "setting.generalInformation": "General Information",
-  "setting.notification": "Notification",
-  "setting.deviceManagement": "Device Management",
-  "setting.language": "Language",
-  "setting.helpCenter": "Help center",
-  "setting.connectSocial": "Connect with social network",
-  "setting.bonusPoint": "Your bonus points",
-  "setting.termAndCondition": "Terms & condition",
-  "setting.general": "General",
-  "setting.privacyPolicy": "Privacy Policy",
-  "setting.frequentlyAsked": "Frequently Asked",
-  "setting.contact": "Contact",
-  "setting.feedback": "Feedback",
-  "setting.share": "Share",
-  "setting.status.COMPLETE": "Your account had completed information",
-  "setting.status.UNCOMPLETE": "Account need additional information",
-  "setting.gender.M": "Male",
-  "setting.gender.F": "FeMale",
-  "setting.gender.O": "Others",
-  "setting.goToGuestApp": "Back to Guest app",
-  "setting.goToAgencyApp": "Back to Agency app",
-  "setting.call": "Call",
-  "setting.call.confirmMessage": "Would you like to call {phoneNumber}?",
-  "setting.sendEmail": "Send mail",
-  "setting.updateInfo.success": "Update account infomation successfully!",
-  "setting.updateInfo.confirmMessage": "Do you want to change account infomation?",
-  "setting.updateInfo.imageTypeInvalid": "Invalid file upload!",
-  "setting.updateInfo.imageExceedSize": "Uploaded file exceed the allowed size ({size}MB)!",
-  "setting.shareWithFriends": "Share With Friends",
-  "setting.copySuccess": "Copy Successfully!",
-  "changePassword.newPassword": "New Password",
-  "changePassword.newPassword.required": "You must enter new password",
-  "changePassword.newPassword.invalid": "New password is invalid",
-  "changePassword.oldPassword": "Old password",
-  "changePassword.oldPassword.required": "You must enter old password",
-  "changePassword.oldPassword.invalid": "Old password is invalid",
-  "changePassword.confirmPassword.required": "You must re-enter your new password",
-  "changePassword.passwordMustMatch": "Password must match",
-  "changePassword.confirmMessage": "Do you want to change your password?",
-  "changePassword.success": "Change password successfully!",
-  "generalInfo.changeLanguage.confirmMessage": "Do you want to change language?",
-  "generalInfo.changeLanguage.success": "Change language successfully!",
-  "generalInfo.policy.1": "1. CÁC LOẠI DỮ LIỆU CÁ NHÂN CHÚNG TÔI SẼ THU THẬP VÀ XỬ LÝ",
-  "generalInfo.policy.1.1": "1.1  Thông tin cá nhân và thông tin liên lạc chi tiết, ví dụ chức vụ, họ tên, thông tin liên lạc chi tiết và lịch sử liên lạc chi tiết; thông tin tài liệu du lịch; ngày sinh, giới tính và/hoặc tuổi của bạn; quốc tịch, bản sao giấy tờ nhận dạng bạn (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
-  "generalInfo.policy.1.2": "1.2  Thông tin chi tiết về người thụ hưởng, ví dụ chủ hợp đồng bảo hiểm và người thụ hưởng của các sản phẩm hoặc dịch vụ của chúng tôi;",
-  "generalInfo.policy.1.3": "1.3  Các thành viên trong gia đình (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
-  "generalInfo.policy.1.4": "1.4  Hồ sơ liên lạc của bạn với chúng tôi, chẳng hạn như lịch sử các cuộc gọi của bạn đến số điện thoại của trung tâm dịch vụ khách hàng của chúng tôi và, nếu bạn liên lạc với chúng tôi bằng các dịch vụ trực tuyến hoặc qua ứng dụng điện thoại thông minh của chúng tôi, các chi tiết như dữ liệu vị trí điện thoại di động, địa chỉ IP và địa chỉ MAC;",
-  "generalInfo.policy.1.5": "1.5  Sản phẩm và dịch vụ, bạn đã mua từ chúng tôi, cũng như những sản phẩm bạn quan tâm và đã nắm giữ và các phương thức thanh toán liên quan được bạn sử dụng;",
-  "generalInfo.policy.1.6": "1.6  Việc sử dụng các sản phẩm và dịch vụ của chúng tôi, các yêu cầu bồi thường bảo hiểm và tình trạng thanh toán các yêu cầu bồi thường này (và các chi tiết khác liên quan đến vấn đề này);",
-  "generalInfo.policy.1.7": "1.7  Phân tích dữ liệu tiếp thị sản phẩm hoặc dịch vụ được thực hiện riêng cho bạn, bao gồm lịch sử liên lạc và thông tin về việc bạn có mở các tài liệu này hay nhấp vào đường link liên kết;",
-  "generalInfo.policy.2": "2. CÁCH THỨC CHÚNG TÔI THU THẬP DỮ LIỆU CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.2.1": "2.1  Trực tiếp từ bạn và bất kỳ thông tin nào từ các thành viên gia đình, cộng sự hoặc người thụ hưởng sản phẩm và dịch vụ;",
-  "generalInfo.policy.2.2": "2.2  Thông tin về bạn được tạo ra khi bạn sử dụng các sản phẩm và dịch vụ của chúng tôi;",
-  "generalInfo.policy.2.3": "2.3  Từ một nhà môi giới hoặc một bên trung gian khác (ví dụ: đại lý, nhà phân phối, đối tác kinh doanh), các bên mà chúng tôi có hợp tác để cung cấp sản phẩm hoặc dịch vụ hoặc cung cấp báo giá cho bạn;",
-  "generalInfo.policy.2.4": "2.4  Các công ty đối tác liên kết với BMK, nếu bạn đã từng đăng ký mua hoặc đã mua sản phẩm từ các công ty này;",
-  "generalInfo.policy.2.5": "2.5  Cookie, dịch vụ định vị, địa chỉ IP khi bạn truy cập trang mạng hoặc ứng dụng di động của chúng tôi hoặc khi bạn điền vào biểu mẫu Liên hệ với chúng tôi trong trang mạng hoặc ứng dụng của chúng tôi;",
-  "generalInfo.policy.2.6": "2.6  Các bên thứ ba như công ty bảo hiểm, đại lý, nhà cung cấp, tổ chức tài chính, cá nhân y tế, tòa án hoặc hồ sơ thông tin đã được công bố công khai;",
-  "generalInfo.policy.2.7": "2.7  Bảng câu hỏi và thông tin liên lạc chi tiết khi bạn tham gia khảo sát, hội nghị nhà đầu tư, các buổi hội thảo hoặc khi bạn cập nhật thông tin liên lạc của bạn với chúng tôi trên trang mạng của chúng tôi;",
-  "generalInfo.policy.2.8": "2.8  Từ các nguồn khác như Cơ quan phòng chống gian lận, tổ chức tham chiếu tín dụng, người cho vay khác và các thông tin đã được công bố công khai (ví dụ: danh bạ điện thoại, phương tiện truyền thông xã hội, các trang mạng, các bài báo), các tổ chức thu hồi nợ, các tổ chức khác để hỗ trợ phòng ngừa và phát hiện tội phạm, cảnh sát và các cơ quan thực thi pháp luật;",
-  "generalInfo.policy.2.9": "2.9  Chúng tôi mua thông tin về bạn hoặc khách hàng nói chung từ các bên thứ ba bao gồm thông tin nhân khẩu học, chi tiết các phương tiện đi lại, lịch sử yêu cầu bồi thường, thông tin về gian lận, danh sách quảng cáo tiếp thị, thông tin đã được công bố công khai và thông tin khác để giúp cải thiện sản phẩm và dịch vụ của chúng tôi.",
-  "generalInfo.policy.3": "3. CHÍNH SÁCH COOKIE",
-  "generalInfo.policy.3.1": "3.1   Trang mạng của chúng tôi sử dụng cookie để phân biệt bạn với những người dùng khác. Điều này giúp chúng tôi cung cấp cho bạn trải nghiệm tốt khi bạn sử dụng trang mạng và cũng cho phép chúng tôi cải thiện trang mạng của mình. Cookie là một tệp nhỏ gồm các chữ cái và số mà chúng tôi lưu trữ trên trình duyệt hoặc ổ cứng máy tính của bạn. Cookie chứa thông tin được lưu trữ trên ổ cứng máy tính của bạn. Bạn có khả năng chấp nhận hoặc từ chối cookie bằng cách sửa đổi cài đặt trong trình duyệt của bạn. Nếu bạn muốn làm điều này, xin vui lòng xem mục trợ giúp trong trình duyệt của bạn.",
-  "generalInfo.policy.3.2": "3.2   Chúng tôi sử dụng các loại cookie sau:",
-  "generalInfo.policy.3.2.1": "3.2.1    Cookie cần thiết cho trang mạng, đây là các cookie cần phải có để phục vụ hoạt động của trang  mạng của chúng tôi. Ví dụ, các cookie cho phép bạn đăng nhập vào trang mạng của chúng tôi một cách an toàn;",
-  "generalInfo.policy.3.2.2": "3.2.2    Cookie phân tích/quản lý hoạt động: các cookie này cho phép chúng tôi nhận ra và đếm số lượng người dùng truy cập vào trang mạng của chúng tôi và theo dõi cách người dùng truy cập di huyển xung quanh trang mạng của chúng tôi khi họ đang sử dụng nó. Điều này giúp chúng tôi cải thiện cách thức hoạt động của trang mạng, ví dụ, cải tiến để giúp người dùng tìm kiếm những thứ họ cần một cách dễ dàng;",
-  "generalInfo.policy.3.2.3": "3.2.3    Cookie chức năng: chúng được sử dụng để nhận ra bạn khi bạn quay lại trang mạng của chúng tôi. Điều này cho phép chúng tôi cá nhân hóa nội dung của chúng tôi cho bạn, chào bạn bằng tên và ghi nhớ sở thích của bạn (ví dụ: lựa chọn ngôn ngữ hoặc khu vực của bạn).",
-  "generalInfo.policy.3.3": "3.3   Bằng cách tiếp tục sử dụng trang mạng của chúng tôi, bạn chấp nhận chúng tôi sử dụng các loại cookie như đã nêu ở trên.",
-  "generalInfo.policy.4": "4. CÁCH THỨC VÀ LÝ DO CHÚNG TÔI SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.4.1": "4.1  Chúng tôi, BMK và các đối tác kinh doanh sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, cho các mục đích sau:",
-  "generalInfo.policy.4.1.1": "<table class='table table-bordered info-item-table'><thead><tr><td>Mục đích</td><td>Cơ sở pháp lý</td></tr></thead><tbody><tr><td>Quản lý các sản phẩm và dịch vụ của chúng tôi, bao gồm cho phép chúng tôi thực hiện nghĩa vụ của chúng tôi với bạn và cung cấp mọi dịch vụ liên quan như đã thảo luận với bạn trước khi bạn mua sản phẩm hoặc dịch vụ.</td><td rowspan='2'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn hoặc để thực hiện các bước trước khi ký hợp đồng với bạn.&nbsp;</td></tr><tr><td>Thực hiện kiểm tra bằng cách thông qua các tổ chức như tổ chức tín dụng, công ty hỗ trợ tìm kiếm hoặc thông tin đã được công bố công khai (xem thêm nội dung trình bày trong Phần “Kiểm tra tham khảo”).</td></tr><tr><td>Cung cấp dịch vụ khách hàng – như trả lời thắc mắc của bạn hoặc thông báo cho bạn biết các thay đổi.</td><td rowspan='3'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn. Sau khi hợp đồng chúng tôi ký với bạn hoàn tất, đây là lợi ích hợp pháp của chúng tôi trong việc duy trì và phát triển mối quan hệ của chúng tôi với bạn.</td></tr><tr><td>Tự động ra quyết định hoặc tạo hồ sơ cá nhân của bạn (xem thêm nội dung trình bày trong Phần “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”).</td></tr><tr><td>Lưu giữ thông tin của bạn và thực hiện các công việc quản lý nội bộ khác.</td></tr><tr><td>Tuân thủ với các yêu cầu pháp quy hoặc pháp lý khác.</td><td>Tuân thủ với các nghĩa vụ pháp lý của chúng tôi.</td></tr><tr><td>Thiết kế và cung cấp cho bạn các sản phẩm và dịch vụ bảo hiểm và tài chính liên quan.</td><td rowspan='2'>Lợi ích chính đáng của chúng tôi trong việc thiết kế và cải tiến sản phẩm, cung cấp dịch vụ giá trị gia tăng, phát triển kinh doanh và hiểu rõ hơn về cách sử dụng sản phẩm của chúng tôi.&nbsp;</td></tr><tr><td>Tiến hành nghiên cứu và phân tích thống kê (bao gồm cả việc sử dụng các công nghệ mới).</td></tr></tbody></table>",
-  "generalInfo.policy.4.2": "4.2  Ngoài ra, chúng tôi, <b>BMK</b> và các đối tác kinh doanh của chúng tôi, sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, để gửi cho bạn các ưu đãi tiếp thị trực tiếp bằng phương tiện điện tử và phi điện tử bao gồm qua đường bưu điện, cũng như gửi cho bạn thông tin giới thiệu các sản phẩm và dịch vụ từ các bên thứ ba đã được chọn lọc kỹ lưỡng. Cơ sở pháp lý chúng tôi trình bày bên trên được xây dựng dựa trên sự đồng thuận với bạn.",
-  "generalInfo.policy.4.3": "4.3  Chúng tôi chia sẽ dữ liệu cá nhân của bạn với ai và tại sao:",
-  "generalInfo.policy.4.3.1": "4.3.1  Chúng tôi sẽ chia sẻ thông tin cá nhân và sức khỏe của bạn trong nội bộ <b>BMK</b> và với các đối tác kinh doanh tài chính/sức khỏe và các bên thứ ba cung cấp dịch vụ cho chúng tôi (bao gồm nhưng không giới hạn các công ty bảo hiểm, luật sư, ngân hàng, kế toán, tổ chức tài chính, bên ủy thác và các nhà cung cấp dịch vụ là bên thứ ba khác cung cấp dịch vụ quản lý, viễn thông, máy tính, thanh toán, in ấn, mua lại hoặc các dịch vụ khác để cho phép chúng tôi thực hiện hoạt động kinh doanh), các công ty thẩm định hóa đơn y tế, các công ty thẩm định yêu cầu bồi thường, hiệp hội và hiệp đoàn trong cùng ngành, các bên đồng sở hữu hợp đồng bảo hiểm hoặc khoản đầu tư, cố vấn chuyên nghiệp, nhà nghiên cứu, tổ chức tham chiếu tín dụng, tổ chức thu hồi nợ, tổ chức tài chính/y tế và các bên đối tác để thực hiện các mục đích được nêu trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của ban”. Nếu bạn có chung hợp đồng bảo hiểm với người khác, thì người đó cũng có thể nhận được dữ liệu cá nhân của bạn. Nếu được yêu cầu, chúng tôi cũng có thể chuyển dữ liệu cá nhân của bạn cho các cơ quan phòng chống tội phạm tài chính, bất kỳ cơ quan lập pháp, tư pháp hoặc hành pháp nào khác.",
-  "generalInfo.policy.4.3.2": "4.3.2  Chúng tôi có thể xử lý dữ liệu cá nhân của bạn ở một quốc gia khác ngoài quốc gia mà bạn cư trú. Trong phạm vi chúng tôi chuyển dữ liệu cá nhân của bạn, chúng tôi sẽ sử dụng các biện pháp bảo vệ phù hợp và tuân thủ luật pháp của quốc gia nơi dữ liệu cá nhân của bạn được chuyển đến. Khi bạn yêu cầu, chúng tôi sẽ cung cấp cho bạn chi tiết các biện pháp bảo vệ dữ liệu mà chúng tôi đang sử dụng.",
-  "generalInfo.policy.4.4": "4.4  Chúng tôi lưu trữ dữ liệu cá nhân của bạn trong một khoảng thời gian nhất định",
-  "generalInfo.policy.4.4.1": "4.4.1   Dữ liệu cá nhân của bạn sẽ được lưu trữ khi bạn (hoặc đồng sở hữu hợp đồng bảo hiểm với bạn) là khách hàng của chúng tôi và trong khoảng thời gian sáu năm sau khi kết thúc mối quan hệ khách hàng hoặc lâu hơn nếu pháp luật yêu cầu. Có thể có những trường hợp cụ thể khi chúng tôi cần lưu giữ dữ liệu cá nhân của bạn lâu hơn (chẳng hạn như khi có tranh chấp xảy ra).",
-  "generalInfo.policy.5": "5. KIỂM TRA THAM KHẢO",
-  "generalInfo.policy.5.1": "5.1  Đối với một số sản phẩm nhất định, chúng tôi có thể sử dụng các tổ chức tham chiếu tín dụng, công ty  hỗ trợ tìm kiếm, cơ quan phòng chống tội phạm tài chính hoặc thông tin có sẵn công khai để giúp chúng tôi kiểm tra danh tính của bạn, cũng như để tránh gian lận và rửa tiền; điều này có thể bao gồm kiểm tra các địa chỉ hiện tại hoặc trước đây của bạn. Những kết quả này có thể được ghi lại để tham khảo trong tương lai.",
-  "generalInfo.policy.5.2": "5.1  Những kết quả kiểm tra này cũng có thể được sử dụng cho một nhà đầu tư, chủ sở hữu hợp đồng chung hoặc người mà bạn đồng ý cung cấp dữ liệu cá nhân của mình. Nếu chúng tôi mất liên lạc với bạn, chúng tôi có thể sử dụng các tổ chức này để xác minh địa chỉ của bạn nhằm giúp chúng tôi liên lạc với bạn.",
-  "generalInfo.policy.5.3": "5.3  Mọi việc chuyển dữ liệu cá nhân của bạn sẽ luôn được thực hiện an toàn.",
-  "generalInfo.policy.6": "6. CHÚNG TÔI CÓ THỂ SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN ĐỂ ĐƯA RA QUYẾT ĐỊNH TỰ ĐỘNG HOẶC TẠO HỒ SƠ CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.6.1": "6.1  Chúng tôi, BMK, Đối tác kinh doanh và Đối tác tiếp thị của chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động ảnh hưởng đến bạn hoặc tạo hồ sơ cá nhân khác cho bạn (ví dụ: hồ sơ tiếp thị).",
-  "generalInfo.policy.7": "7. SỬ DỤNG DỮ LIỆU CÁ NHÂN NHẠY CẢM CỦA BẠN",
-  "generalInfo.policy.7.1": "7.1  Đối với một số sản phẩm hoặc dịch vụ nhất định, chúng tôi sẽ cần xử lý dữ liệu cá nhân nhạy cảm của bạn, chẳng hạn như thông tin liên quan đến sức khỏe, di truyền, định danh sinh trắc học và khuynh hướng giới tính. Trong phạm vi chúng tôi cần sự đồng ý rõ ràng của bạn để xử lý loại dữ liệu cá nhân này theo cách được mô tả trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của bạn” , “Kiểm tra tham khảo” và “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”, chúng tôi sẽ cung cấp chi tiết về điều này khi chúng tôi thu thập các thông tin này từ bạn và xin nhận được sự chấp thuận của bạn.",
-  "generalInfo.policy.8": "8. QUYỀN KIỂM SOÁT DỮ LIỆU CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.8.1": "8.1  Khi nói đến cách chúng tôi sử dụng dữ liệu cá nhân của bạn, bạn có quyền theo quy định của pháp luật Việt Nam.",
-  "generalInfo.policy.8.2": "8.2  Trong khi đó, nếu bạn hiện đang cư trú tại Châu Âu, các quyền bổ sung theo Quy định bảo vệ dữ liệu chung (GDPR) có thể được áp dụng. Như vậy, bạn có thể:",
-  "generalInfo.policy.8.2.1": "8.2.1  Yêu cầu một bản sao dữ liệu cá nhân của bạn miễn phí (chúng tôi có thể tính phí yêu cầu của bạn nếu không có cơ sở rõ ràng hoặc bị lạm dụng quá mức);",
-  "generalInfo.policy.8.2.2": "8.2.2  Trong một số trường hợp nhất định, chúng tôi sẽ chuyển dữ liệu cá nhân của bạn sang một tổ chức khác theo yêu cầu của bạn;",
-  "generalInfo.policy.8.2.3": "8.2.3  Yêu cầu chúng tôi điều chỉnh bất cứ dữ liệu cá nhân nào bị sai hoặc không đầy đủ;",
-  "generalInfo.policy.8.2.4": "8.2.4  Yêu cầu chúng tôi xóa dữ liệu cá nhân của bạn nếu không còn cần thiết cho các mục đích được nêu trong Phần “Các loại dữ liệu cá nhân chúng tôi sẽ thu thập và xử lý” hoặc nếu không có cơ sở pháp lý nào khác để xử lý dữ liệu;",
-  "generalInfo.policy.8.2.5": "8.2.5  Giới hạn cách chúng tôi sử dụng dữ liệu cá nhân của bạn hoặc rút lại sự đồng ý (bao gồm cả việc đồng ý cho phép đưa ra quyết định tự động dựa trên dữ liệu cá nhân) mà bạn đã chấp thuận cho phép chúng tôi xử lý dữ liệu cá nhân của bạn;",
-  "generalInfo.policy.8.2.6": "8.2.6  Phản đối chúng tôi sử dụng dữ liệu cá nhân của bạn để tiếp thị trực tiếp (bao gồm cả việc tạo lập hồ sơ cá nhân của bạn) hoặc xử lý dữ liệu khác dựa trên lợi ích hợp pháp;",
-  "generalInfo.policy.8.2.7": "8.2.7  Khiếu nại với cơ quan bảo vệ dữ liệu hoặc cơ quan quản lý độc lập khác về cách chúng tôi sử dụng dữ liệu cá nhân của bạn.",
-  "generalInfo.policy.8.3": "8.3  Nếu bạn muốn thực hiện các quyền của mình hoặc muốn giải thích về các quyền này, bạn có thể liên lạc với chúng tôi trong phần Liên hệ.",
-  "generalInfo.policy.8.4": "8.4  Nếu bạn cần nói chuyện với chúng tôi, chúng tôi sẽ chuyển yêu cầu của bạn cho Người Kiểm Soát Dữ Liệu (8.4.1)  cá nhân của bạn là BMK Chúng tôi có thể theo dõi hoặc ghi lại các cuộc gọi hoặc bất kỳ liên lạc nào khác mà chúng tôi có với bạn. Điều này có thể là để đào tạo, bảo mật hoặc để giúp chúng tôi kiểm tra chất lượng.",
-  "generalInfo.policy.8.4.1": "8.4.1  Người Kiểm Soát Dữ Liệu – Cá nhân, pháp nhân, cơ quan nhà nước, các cơ quan hoặc tổ chức khác, riêng rẻ hoặc cùng nhau, xác định mục đích và cách thức xử lý dữ liệu cá nhân.",
-  "generalInfo.policy.9": "9.  THAY MẶT NGƯỜI KHÁC CUNG CẤP DỮ LIỆU CÁ NHÂN CỦA HỌ",
-  "generalInfo.policy.9.1": "9.1  Khi bạn cung cấp cho chúng tôi dữ liệu cá nhân về người khác (hoặc nhiều người khác), bạn nên được chỉ định và ủy quyền bởi người đó để hành động thay họ. Điều này bao gồm cung cấp sự đồng ý để:",
-  "generalInfo.policy.9.1.1": "9.1.1  Chúng tôi xử lý dữ liệu cá nhân của họ và dữ liệu cá nhân nhạy cảm (như chúng tôi đã giải thích trong các Phần ở trên);",
-  "generalInfo.policy.9.1.2": "9.1.1  Bạn sẽ nhận được các thông báo bảo vệ thông tin thay mặt họ.",
-  "generalInfo.policy.9.2": "9.2  Nếu vì bất kỳ lý do nào bạn quan tâm đến việc liệu bạn có được phép cung cấp cho chúng tôi thông tin về người khác hay không, vui lòng liên hệ với chúng tôi theo địa chỉ thư điện tử bên dưới trước khi gửi cho chúng tôi bất cứ thông tin gì.",
-  "generalInfo.policy.10": "10. TIẾP THỊ TRỰC TIẾP",
-  "generalInfo.policy.10.1": "10.1  Chúng tôi, <b>BMK</b>, đối tác kinh doanh của chúng tôi, và đối tác tiếp thị vẫn sẽ gửi cho bạn thông tin qua hình thức các bài đăng về các sản phẩm và dịch vụ của BMK và các bên thứ ba được lựa chọn cẩn thận.",
-  "generalInfo.policy.10.2": "10.2  Ngoài ra, theo thời gian, chung tôi BMK mong muốn gởi thông tin chi tiết về sản phẩm, dịch vụ và các ưu đãi đặc biệt cho bạn qua các phương tiện điện tử. Chúng tôi sẽ chỉ làm điều này nếu bạn đồng ý cho chúng tôi liên lạc với bạn bằng phương tiện điện tử.",
-  "generalInfo.policy.10.3": "10.3  Và nếu bạn thay đổi ý định và/hoặc bạn muốn từ chối nhận tiếp thị trực tiếp phi điện tử, thì bạn cứ cho chúng tôi biết. Chỉ cần sử dụng một trong các tùy chọn trong mục Liên hệ với chúng tôi.",
-  "generalInfo.policy.11": "11. LIÊN HỆ VỚI CHÚNG TÔI",
-  "generalInfo.policy.11.1": "11.1  Nếu bạn muốn thực hiện các quyền của mình trong Phần “Quyền kiểm soát dữ liệu cá nhân của bạn” hoặc nếu bạn yêu cầu bất kỳ thông tin nào theo thông báo này, bạn có thể liên hệ với chúng tôi theo nhiều cách khác nhau.",
-  "generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0899.300.800</b>",
-  "generalInfo.policy.11.1.2": "11.1.2  Gửi thư điện tử cho chúng tôi theo địa chỉ: <b>lienhe@bmktech.vn</b>",
-  "generalInfo.policy.11.1.3": "11.1.3  Hoặc liên hệ trực tiếp với chúng tôi tại văn phòng: <b>Phòng 301A, Tòa nhà Thiên Bảo, số 47-49 Lê Văn Hưu, Phường Ngô Thì Nhậm, Quận Hai Bà Trưng, Thành phố Hà Nội.</b>",
-  "generalInfo.terms.1": "1. CÁC ĐIỀU KHOẢN VÀ ĐIỀU KIỆN SỬ DỤNG",
-  "generalInfo.terms.1.1": "1.1  Trang thông tin điện tử này <b>(www.bmktech.vn)</b> cùng các tên miền phụ (x.bmktech.vn,...) và ứng dụng di động <b>“BMK” (sau đây gọi tắt là “Hệ thống\nBMK”)</b> do <b>Công ty Cổ phần BMK (sau đây gọi tắt là “BMK”) - Đơn vị chủ quản của Hệ thống và Thương hiệu BMK<b/> toàn quyền sở hữu và điều\nhành.\n",
-  "generalInfo.terms.1.2": "1.2  Việc sử dụng <b>Hệ thống BMK</b> này phụ thuộc vào các điều khoản và điều kiện cụ thể sau: (A) các điều khoản và điều kiện được nêu dưới đây và (B) mọi điều khoản và điều kiện bổ sung cụ thể tùy từng thời điểm để điều chỉnh việc sử dụng, và truy cập vào một số mục của trang thông tin điện tử này (và các điều khoản bổ sung đó sẽ có hiệu lực ràng buộc khi chúng được đăng tải trên <b>Hệ thống BMK</b> này) <b>(\"Điều Khoản và Điều Kiện\")</b>.",
-  "generalInfo.terms.1.3": "1.3  Khi sử dụng trang thông tin điện tử này, bạn đã đồng ý với các Điều Khoản và Điều Kiện, và sự đồng ý của bạn cùng với các Điều Khoản và Điều Kiện sẽ cấu thành một hợp đồng có giá trị ràng buộc về pháp lý giữa bạn và <b>BMK</b>. Vì thế, bạn vui lòng đọc kỹ các Điều Khoản và Điều Kiện của trang thông tin điện tử này.",
-  "generalInfo.terms.2": "2. CÁC HẠN CHẾ VÀ SỬ DỤNG CÁC THÔNG TIN TÀI LIỆU",
-  "generalInfo.terms.2.1": "2.1  Trừ khi được <b>BMK</b> đồng ý bằng văn bản một cách khác đi, bạn sẽ không sao chép, sao lại, tái bản, đưa lên mạng, công bố, chuyển, tạo liên kết đến hoặc phân phối dưới bất cứ hình thức nào các thông tin và/hoặc tài liệu đã được đăng tải trên trang thông tin điện tử này.",
-  "generalInfo.terms.2.2": "2.2  Bạn có thể tải xuống các thông tin và/hoặc tài liệu được đăng tải trên trang thông tin điện tử này để bạn sử dụng, nhưng luôn luôn với điều kiện là bạn không dỡ bỏ các thông tin về bản quyền và/hoặc các quyền khác của <b>BMK</b> gắn với các thông tin và/hoặc tài liệu đó.",
-  "generalInfo.terms.2.3": "2.3  Bạn không được phát tán, sửa đổi, chuyển đi, sử dụng lại, công bố, tạo liên kết hoặc sử dụng các nội dung của trang thông tin điện tử này, bao gồm, nhưng không giới hạn bởi, cả các thông tin bằng chữ, các hình ảnh, các tập tin âm thanh và/hoặc các đoạn phim, cho các mục đích kinh doanh và/hoặc công cộng, khi chưa có sự cho phép bằng văn bản của BMK.",
-  "generalInfo.terms.3": "3. THỜI GIAN HOẠT ĐỘNG",
-  "generalInfo.terms.3.1": "3.1 Trang thông tin điện tử này hoạt động 24 giờ mỗi ngày và 7 ngày mỗi tuần. Tuy nhiên, <b>BMK</b> bảo lưu quyền ngắt hệ thống để bảo trì khi cần thiết. <b>BMK</b> sẽ cố gắng để lên kế hoạch và thông báo về việc hệ thống không thể sử dụng được bằng cách đưa một thông báo trên mạng trực tuyến. <b>BMK</b> không chịu trách nhiệm đối với bất cứ thiệt hại và/hoặc mất mát nào do việc hệ thống bị ngắt trong trường hợp này.",
-  "generalInfo.terms.4": "4. TÀI KHOẢN NGƯỜI SỬ DỤNG",
-  "generalInfo.terms.4.1": "4.1  Bạn sẽ đăng ký và được cung cấp một Tên Truy Cập Tài Khoản và Mật khẩu để có thể mua bảo hiểm trên trang thông tin điện tử này. Bạn sẽ giữ bí mật Tên Truy Cập Tài Khoản và Mật khẩu này vào mọi thời điểm, và sẽ bảo đảm rằng Tên Truy Cập Tài Khoản và Mật khẩu này của bạn sẽ không bị tiết lộ theo bất cứ cách thức nào cho bất kỳ ai.",
-  "generalInfo.terms.4.2": "4.2  <b>BMK</b> sẽ không chịu trách nhiệm về bất cứ giao dịch không được phép nào do việc Tên Truy Cập Tài Khoản và/hoặc Mật khẩu bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn phải lập tức thông báo cho <b>BMK</b> bất cứ trường hợp nào mà Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn chịu trách nhiệm hoàn toàn về việc bảo mật Tên Truy Cập Tài Khoản và Mật khẩu và đối với bất cứ việc truy cập nào sử dụng Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn.",
-  "generalInfo.terms.5": "5. BẢN QUYỀN VÀ NHÃN HIỆU",
-  "generalInfo.terms.5.1": "5.1  Mọi nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> và các đối tác khác (nếu có).",
-  "generalInfo.terms.5.2": "5.2  Không có điều gì trên trang thông tin điện tử này có thể được hiểu là, dù là ngầm định hay cách khác, cho phép sử dụng hoặc bất cứ quyền sử dụng nào liên quan đến bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này khi chưa có sự đồng ý bằng văn bản của <b>BMK</b> hoặc bên thứ ba sở hữu các nhãn hiệu hoặc tên thương mại đặt trên trang thông tin điện tử này.",
-  "generalInfo.terms.5.3": "5.3  Bạn hoàn toàn không được sử dụng bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này hoặc bất cứ nội dung nào khác có trên trang thông tin điện tử này, trừ các trường hợp được quy định trong các Điều Khoản và Điều Kiện.",
-  "generalInfo.terms.5.4": "5.4  Các hình ảnh đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> hoặc được <b>BMK</b> sử dụng theo sự đồng ý của chủ sở hữu.",
-  "generalInfo.terms.5.5": "5.5  Trừ khi được cho phép cụ thể, bạn không được sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này, bạn cũng không được ủy quyền cho bất cứ người nào sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này. Bất cứ việc sử dụng không được phép nào đối với các hình ảnh này có thể vi phạm luật tác quyền, luật nhãn hiệu, luật về quyền riêng tư và luật xuất bản, và các quy định về thông tin khác.",
-  "generalInfo.terms.6": "6. QUY ĐỊNH VỀ QUYỀN RIÊNG TƯ",
-  "generalInfo.terms.6.1": "6.1   Xin đọc kỹ CHÍNH SÁCH VỀ QUYỀN RIÊNG TƯ TRÊN INTERNET của chúng tôi. Chính sách này giải thích rõ những thông tin nào <b>BMK</b> có thể thu thập từ bạn trên trang thông tin điện tử của chúng tôi và cách thức chúng tôi sẽ sử dụng và bảo vệ các thông tin của bạn. Chúng tôi sẽ không thu thập bất cứ thông tin xác định danh tính cá nhân nào trên trang thông tin điện tử của chúng tôi trừ khi bạn cung cấp các thông tin đó cho chúng tôi.",
-  "generalInfo.terms.7": "7. LIÊN KẾT ĐẾN CÁC TRANG WEB KHÁC",
-  "generalInfo.terms.7.1": "7.1  Trang thông tin điện tử này liên kết đến các trang thông tin điện tử khác không do <b>BMK</b> quản lý hoặc điều khiển. <b>BMK</b> sẽ không chịu trách nhiệm về nội dung của các trang thông tin điện tử đó.",
-  "generalInfo.terms.7.2": "7.2  Việc liên kết đến bất cứ trang thông tin điện tử nào như thế không có nghĩa là <b>BMK</b> đã chấp thuận hoặc tán thành đối với các trang thông tin điện tử đó, hoặc với nội dung của các trang thông tin điện tử đó, hoặc các sản phẩm và dịch vụ trên các trang thông tin điện tử đó.",
-  "generalInfo.terms.8": "8. AN NINH CỦA TRANG WEB",
-  "generalInfo.terms.8.1": "8.1  Bạn sẽ không xâm phạm hoặc cố gắng xâm phạm an ninh của trang thông tin điện tử này, bao gồm, nhưng không giới hạn, các hành vi dưới đây:",
-  "generalInfo.terms.8.1.1": "8.1.1  Truy cập thông tin hoặc nối vào một máy chủ hoặc tài khoản mà bạn không được phép truy cập.",
-  "generalInfo.terms.8.1.2": "8.1.2  Cố gắng thăm dò, kiểm tra hoặc thử nghiệm điểm yếu của một hệ thống hoặc hệ thống mạng để vi phạm an ninh hoặc biện pháp nhận dạng mà không được <b>BMK</b> cho phép bằng văn bản.",
-  "generalInfo.terms.8.1.3": "8.1.3  Cố gắng can thiệp vào dịch vụ cung cấp cho bất cứ người sử dụng nào, máy chủ hoặc hệ thống mạng nào, bằng cách phát tán vi rút hoặc mã độc lên trang thông tin điện tử, làm quá tải hoặc gây ra hiện tượng thư rác (spamming) trên trang thông tin điện tử;",
-  "generalInfo.terms.8.1.4": "8.1.4  Thay đổi thông tin của phần tiêu đề (header) của bộ giao thức điều khiển truyền vận (TCP/IP) hoặc bất cứ phần thông tin nào của phần tiêu đề (header) trong bất cứ thư điện tử hay nhóm thông tin được đăng tải.",
-  "generalInfo.terms.8.2": "8.2  Bạn không sử dụng trang thông tin điện tử này cho bất cứ mục đích bất hợp pháp nào.",
-  "generalInfo.terms.8.3": "8.3  Bạn phải đảm bảo rằng tất cả các thông tin được đưa lên trang thông tin điện tử này là đầy đủ, chính xác, có thật, phù hợp và nhất quán với các tài liệu chứa đựng các thông tin này. Vi phạm điều này sẽ dẫn đến việc chậm trễ trong quy trình xử lý hoặc các thông tin điện tử được đưa lên bị loại bỏ. Bạn phải chịu trách nhiệm đối với toàn bộ chi phí phát sinh do việc đưa thông tin giả mạo hoặc sai.",
-  "generalInfo.terms.8.4": "8.4  Bạn sẽ không tấn công hoặc cố gắng tấn công hoặc làm hại trang thông tin điện tử này bằng bất cứ hình thức hay phương tiện nào như các công cụ tấn công, vi-rút và chương trình máy tính có chứa các mã có thể gây hỏng máy tính. Bất cứ cố gắng nào để thực hiện các hành vi như vậy đều khiến bạn phải chịu sự truy tố theo quy định của pháp luật hiện hành.",
-  "generalInfo.terms.9": "9. KHÔNG CHỊU TRÁCH NHIỆM",
-  "generalInfo.terms.9.1": "9.1  Mặc dù <b>BMK</b> thực hiện mọi sự cẩn trọng khi cung cấp dịch vụ tại trang thông tin điện tử, <b>BMK</b> không cam kết rằng trang thông tin điện tử này sẽ hoạt động không có lỗi hoặc hoàn toàn không có vi-rút, worms, Trojan horses hoặc các mã độc hại khác.",
-  "generalInfo.terms.9.2": "9.2  <b>BMK</b> không chấp nhận bất cứ trách nhiệm nào, và sẽ không chịu trách nhiệm về bất cứ thiệt hại nào xảy ra cho thiết bị máy tính hoặc các tài sản khác của bạn do việc bạn truy cập vào, sử dụng, hoặc xem lướt qua trang thông tin điện tử này hoặc việc bạn tải xuống bất cứ tài liệu, dữ liệu, các thông tin bằng chữ, các hình ảnh, các đoạn video, hoặc các tập tin âm thanh nào từ trang thông tin điện tử này hoặc phát sinh liên quan đến việc chậm thực hiện, lỗi, thiếu sót, bị gián đoạn, lỗi, vi-rút máy tính, chậm trễ trong hoạt động hoặc truyền dữ liệu, hoặc lỗi hệ thống hoặc đường truyền.",
-  "generalInfo.terms.9.3": "9.3  <b>BMK</b> cũng từ chối mọi trách nhiệm đối với:",
-  "generalInfo.terms.9.3.1": "9.3.1  Bất cứ tổn thất nào hoặc không có khả năng lấy lại các dữ liệu hoặc thông tin vì bất cứ lý do gì và bao gồm việc không chuyển được, việc sử dụng không đúng mục đích hoặc việc chuyển sai do kết quả của bất cứ sự gián đoạn, ngưng hoặc chấm dứt dịch vụ trên trang thông tin điện tử này; ",
-  "generalInfo.terms.9.3.2": "9.3.2  Bất cứ sự sai sót của các thông tin hoặc nguồn tài nguyên có sẵn, nhận được hoặc được chuyển thông qua trang thông tin điện tử;",
-  "generalInfo.terms.9.3.3": "9.3.3  Bất cứ trục trặc, khuyết điểm hoặc sai sót của trang thông tin điện tử này; ",
-  "generalInfo.terms.9.3.4": "9.3.4  Bất cứ sự chậm trễ hoặc không có khả năng trong việc cung cấp dịch vụ của <b>BMK</b> tại trang thông tin điện tử này theo các Điều Khoản và Điệu Kiện do bất cứ khuyết điểm hoặc hỏng hóc về điện tử, cơ khí, hệ thống, xử lý dữ liệu hoặc viễn thông, thiên tai, xáo trộn dân sự hoặc bất cứ sự kiện nào nằm ngoài sự kiểm soát của <b>BMK</b>.",
-  "generalInfo.terms.10": "10. MIỄN TRỪ TRÁCH NHIỆM",
-  "generalInfo.terms.10.1": "10.1  Trong bất cứ trường hợp nào, <b>BMK</b> cũng không chịu trách nhiệm về bất cứ thiệt hại, tổn thất hoặc chi phí, bao gồm nhưng không giới hạn, thiệt hại trực tiếp, đặc biệt hoặc do hệ quả của, hoặc tổn thất kinh tế phát sinh từ hoặc có liên quan hoặc có thể quy cho:",
-  "generalInfo.terms.10.1.1": "10.1.1  Bất cứ việc truy cập, sử dụng hoặc không thể truy cập hoặc sử dụng trang thông tin điện tử hoặc dịch vụ này, hoặc tin cậy vào những thông tin trên trang thông tin điện tử này.",
-  "generalInfo.terms.10.1.2": "10.1.2  Bất cứ sự hỏng hóc, sai sót, bỏ sót, gián đoạn hoặc chậm trễ trong việc truyền dữ liệu;",
-  "generalInfo.terms.10.1.3": "10.1.3  Bất cứ vi-rút máy tính hoặc hoặc các mã độc hại, hoặc các đoạn mã, chương trình hay một lệnh riêng lẻ bằng ngôn ngữ lập trình mà kết quả là một chuỗi lệnh bằng ngôn ngữ máy tính (macro) mang tính chất làm hỏng hoặc phá hủy khác có thể ảnh hưởng đến các thiết bị, chương trình máy tính hoặc các tài sản khác của bạn.",
-  "generalInfo.terms.11": "11. BỒI THƯỜNG",
-  "generalInfo.terms.11.1": "11.1 Bằng việc truy cập vào trang thông tin điện tử này, bạn đồng ý bồi thường cho <b>BMK</b>, giữ cho <b>BMK</b> khỏi mọi thiệt hại và bảo vệ <b>BMK</b> khỏi bất cứ khiếu nại, hành động hoặc đòi hỏi, bao gồm nhưng không giới hạn các chi phí pháp lý và kế toán hợp lý, được cho là hoặc là kết quả của việc bạn sử dụng trang thông tin điện tử này hoặc dịch vụ tại trang thông tin điện tử này, hoặc do việc bạn vi phạm các Điều Khoản và Điều Kiện.",
-  "generalInfo.terms.12": "12. CHẤM DỨT",
-  "generalInfo.terms.12.1": "12.1  <b>BMK</b> bảo lưu quyền, theo quyết định riêng của <b>BMK</b>, chấm dứt dịch vụ trên trang thông tin điện tử này vào bất cứ thời điểm nào, có hoặc không có lý do hoặc chấm dứt quyền truy cập vào trang thông tin điện tử này của bạn mà không cần báo trước và không cần lý do. Bằng việc truy cập vào trang thông tin điện tử này, bạn được coi là từ bỏ quyền được <b>BMK</b> thông báo về việc chấm dứt này, nếu có.",
-  "generalInfo.terms.12.2": "12.2  <b>BMK</b> không chịu trách nhiệm về bất cứ thiệt hại, mất mát hoặc chí phí phát sinh theo bất cứ cách thức nào, từ hoặc do việc chấm dứt dịch vụ trên trang thông tin điện tử này.",
-  "generalInfo.terms.13": "13. SỬA ĐỔI",
-  "generalInfo.terms.13.1": "13.1  <b>BMK</b> có thể thay đổi và thay thế nội dung các Điều Khoản và Điều Kiện này và/hoặc quy định thêm các điều kiện và điều khoản mới vào bất cứ thời điểm nào mà không cần báo trước cho bạn. Bằng việc sử dụng trang thông tin điện tử này, bạn được coi là từ bỏ quyền được thông báo hoặc chấp thuận bất cứ sửa đổi, thay đổi hoặc bổ sung nào với các Điều Khoản và Điều Kiện, nếu có.",
-  "generalInfo.terms.13.2": "13.2  Các thay đổi sẽ có hiệu lực vào ngày đầu tiên được đưa lên trang thông tin điện tử này. Nếu bạn tiếp tục sử dụng trang thông tin điện tử sau thời gian đó, bạn được xem là đã chấp nhận các thay đổi.",
-  "generalInfo.terms.14": "14. LUẬT ĐIỀU CHỈNH VÀ CƠ QUAN XỬ LÝ TRANH CHẤP",
-  "generalInfo.terms.14.1": "14.1  Sự thỏa thuận giữa bạn và <b>BMK</b> trong các Điều Khoản và Điều Kiện này được điều chỉnh và giải thích theo pháp luật Việt Nam.",
-  "generalInfo.terms.14.2": "14.2  Trong trường hợp có tranh chấp giữa bạn và <b>BMK</b> phát sinh từ hoặc có liên quan đến sự thỏa thuận này (“Tranh Chấp”), mỗi Bên nỗ lực tối đa để thảo luận các vấn đề với mục đích giải quyết Tranh Chấp thông qua biện pháp hòa giải.",
-  "generalInfo.terms.14.3": "14.3  Nếu Tranh Chấp không được giải quyết trong vòng ba mươi (30) ngày kể từ ngày Tranh Chấp phát sinh, Tranh Chấp đó sẽ được phân xử chung thẩm bởi Trung tâm Trọng tài Quốc tế Việt Nam (bên cạnh Phòng Thương Mại và Công Nghiệp Việt Nam) (“VIAC”) bởi một (01) trọng tài viên theo quy tắc tố tụng trọng tài của VIAC có hiệu lực tại thời điểm xảy ra Tranh Chấp và ngôn ngữ trọng tài được sử dụng là tiếng Việt.",
-  "createPassword.title": "Create Password",
-  "createPassword.password.required": "You must enter your password",
-  "createPassword.password.invalid": "You password is invalid",
-  "createPassword.enterThePassword": "Enter the password *",
-  "createPassword.passwordMustMatch": "Password must match",
-  "createPassword.condition.1": "- At least 8 characters long",
-  "createPassword.condition.2": "- Include upper and lower case characters",
-  "createPassword.condition.3": "- Include numeric and special characters",
-  "createPassword.continutes": "CONTINUTE",
-  "createPassword.done": "DONE",
-  "createPassword.resetSuccessFul": "Change password successful!",
-  "provideNewPassword.title": "PROVIDE A NEW PASSWORD",
-  "provideNewPassword.continutes": "DONE",
-  "provideNewPassword.password": "Enter your new password *",
-  "provideNewPassword.enterThePassword": "Enter a new password *",
-  "completeInformation.title": "Additional information",
-  "completeInformation.idType": "Type of identification",
-  "completeInformation.idType.required": "You must choose type of indentification",
-  "completeInformation.nbrPer": "Identification number",
-  "completeInformation.nbrPer.required": "You must enter infor number",
-  "completeInformation.nbrPer.invalid": "You Indenetication number is invalid",
-  "completeInformation.dateOfBirth": "Date of birth",
-  "completeInformation.dateOfBirth.required": "You must enter date of birth",
-  "completeInformation.address": "Address",
-  "completeInformation.address.required": "You must enter address",
-  "completeInformation.gif": "Referal code",
-  "completeInformation.branch": "Branch",
-  "completeInformation.branch.required": "You must enter branch",
-  "completeInformation.accountNbr": "Account number",
-  "completeInformation.accountNbr.required": "You must enter account number",
-  "completeInformation.personalInfo": "Passport*",
-  "completeInformation.gender": "Gender",
-  "completeInformation.province": "City",
-  "completeInformation.province.required": "You must select your city",
-  "completeInformation.district": "District",
-  "completeInformation.district.required": "You must select your district",
-  "completeInformation.ward": "Wards",
-  "completeInformation.ward.required": "You must select your ward",
-  "completeInformation.bank": "Bank",
-  "completeInformation.bank.required": "Bạn phải chọn Ngân hàng*",
-  "completeInformation.back": "BACK",
-  "completeInformation.done": "DONE",
-  "completeInformation.success": "Complete information successfully!",
-  "socialLogin.addInfo": "Additional Information",
-  "socialLogin.addInfo.info": "BMK needs you to add the following information to complete account registration.",
-  "socialLogin.agent": "Agent",
-  "socialLogin.personal": "Personal",
-  "socialLogin.loginWith": "Or login with",
-  "socialLogin.registerWith": "Or register with",
-  "socialLogin.youLoginAs": "You log in as,",
-  "socialLogin.youRegisterAs": "You register as,",
-  "socialLogin.requireConnectFB": "Please link your account with Facebook to use this feature",
-  "socialLogin.requireConnectGoogle": "Please link your account with Google to use this feature",
-  "verifyAccount.title": "Account verification",
-  "verifyAccount.success": "Successful account verification, please click below to create a password.",
-  "verifyAccount.fail": "Account verification failed!",
-  "verifyAccount.didNotReceiveCode": "Did not receive the code?",
-  "verifyAccount.tryAgain": "Try Again",
-  "verifyAccount.loading": "Processing...",
-  "verifyAccount.createPassword": "Create password",
-  "verifyAccount.phoneNumberVerification": "Phone number verification",
-  "verifyAccount.otp.info": "Please enter the OTP that has been sent to your phone number <b> {phoneNumber} </b>",
-  "verifyAccount.otp.verify": "Verify",
-  "verifyAccount.otp.getOtp": "Get OTP",
-  "verifyAccount.otp.registerSuccess": "Đăng ký thành công, liên kết tạo mật khẩu đã được gửi đến email của bạn!",
-  "connectWithSocial.connectAccount": "Connect account",
-  "connectWithSocial.connect": "Connection",
-  "connectWithSocial.success": "Successful connection",
-  "bonusPoint.history": "Bonus points calendar",
-  "bonusPoint.received": "Received",
-  "bonusPoint.used": "Used",
-  "bonusPoint.bonus": "BMK gives bonus points for completed contracts",
-  "bonusPoint.paymentContract": "Used BMK bonus points to pay the contract",
-  "bonusPoint.withDrawval": "Used BMK bonus points to withdraw money",
-  "bonusPoint.gift": "Used BMK reward points to redeem gifts",
-  "bonusPoint.yourBonusPoint": "You have {point} bonus points",
-  "bonusPoint.availablePoint": "Bonus points available",
-  "bonusPoint.uses": "Use bonus points to redeem gifts, withdraw money, pay contracts"
+	"navbar.language.vi": "Tiếng việt",
+	"navbar.language.en": "English",
+	"navbar.logout": "Logout",
+	"navbar.logout.confirmMessage": "Do you want to logout?",
+	"navbar.notifications.markAsRead": "Mark as read",
+	"navbar.notifications.markAsUnRead": "Mark as unread",
+	"navbar.notifications.delete": "Delete",
+	"navbar.notifications.newNotificationNotice": "You have a new notification",
+	"navbar.notifications.noNewNotifications": "You don't have a new notification",
+	"footer.copyRight": "©2020-{year}: BMK - All rights reserved",
+	"footer.companySlogan": "Leading insurance provider in Vietnam",
+	setting: setting,
+	"setting.accountInformation": "Account Information",
+	"setting.changePassword": "Change password",
+	"setting.change": "Change",
+	"setting.partnerCode": "Partner code",
+	"setting.referralCode": "Referal code",
+	"setting.accountCode": "Account code",
+	"setting.personalSetting": "Personal Settings",
+	"setting.generalInformation": "General Information",
+	"setting.notification": "Notification",
+	"setting.deviceManagement": "Device Management",
+	"setting.language": "Language",
+	"setting.helpCenter": "Help center",
+	"setting.connectSocial": "Connect with social network",
+	"setting.bonusPoint": "Your bonus points",
+	"setting.termAndCondition": "Terms & condition",
+	"setting.general": "General",
+	"setting.privacyPolicy": "Privacy Policy",
+	"setting.frequentlyAsked": "Frequently Asked",
+	"setting.contact": "Contact",
+	"setting.feedback": "Feedback",
+	"setting.share": "Share",
+	"setting.status.COMPLETE": "Your account had completed information",
+	"setting.status.UNCOMPLETE": "Account need additional information",
+	"setting.gender.M": "Male",
+	"setting.gender.F": "FeMale",
+	"setting.gender.O": "Others",
+	"setting.goToGuestApp": "Back to Guest app",
+	"setting.goToAgencyApp": "Back to Agency app",
+	"setting.call": "Call",
+	"setting.call.confirmMessage": "Would you like to call {phoneNumber}?",
+	"setting.sendEmail": "Send mail",
+	"setting.updateInfo.success": "Update account infomation successfully!",
+	"setting.updateInfo.confirmMessage": "Do you want to change account infomation?",
+	"setting.updateInfo.imageTypeInvalid": "Invalid file upload!",
+	"setting.updateInfo.imageExceedSize": "Uploaded file exceed the allowed size ({size}MB)!",
+	"setting.shareWithFriends": "Share With Friends",
+	"setting.copySuccess": "Copy Successfully!",
+	"changePassword.newPassword": "New Password",
+	"changePassword.newPassword.required": "You must enter new password",
+	"changePassword.newPassword.invalid": "New password is invalid",
+	"changePassword.oldPassword": "Old password",
+	"changePassword.oldPassword.required": "You must enter old password",
+	"changePassword.oldPassword.invalid": "Old password is invalid",
+	"changePassword.confirmPassword.required": "You must re-enter your new password",
+	"changePassword.passwordMustMatch": "Password must match",
+	"changePassword.confirmMessage": "Do you want to change your password?",
+	"changePassword.success": "Change password successfully!",
+	"generalInfo.changeLanguage.confirmMessage": "Do you want to change language?",
+	"generalInfo.changeLanguage.success": "Change language successfully!",
+	"generalInfo.policy.1": "1. CÁC LOẠI DỮ LIỆU CÁ NHÂN CHÚNG TÔI SẼ THU THẬP VÀ XỬ LÝ",
+	"generalInfo.policy.1.1": "1.1  Thông tin cá nhân và thông tin liên lạc chi tiết, ví dụ chức vụ, họ tên, thông tin liên lạc chi tiết và lịch sử liên lạc chi tiết; thông tin tài liệu du lịch; ngày sinh, giới tính và/hoặc tuổi của bạn; quốc tịch, bản sao giấy tờ nhận dạng bạn (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
+	"generalInfo.policy.1.2": "1.2  Thông tin chi tiết về người thụ hưởng, ví dụ chủ hợp đồng bảo hiểm và người thụ hưởng của các sản phẩm hoặc dịch vụ của chúng tôi;",
+	"generalInfo.policy.1.3": "1.3  Các thành viên trong gia đình (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
+	"generalInfo.policy.1.4": "1.4  Hồ sơ liên lạc của bạn với chúng tôi, chẳng hạn như lịch sử các cuộc gọi của bạn đến số điện thoại của trung tâm dịch vụ khách hàng của chúng tôi và, nếu bạn liên lạc với chúng tôi bằng các dịch vụ trực tuyến hoặc qua ứng dụng điện thoại thông minh của chúng tôi, các chi tiết như dữ liệu vị trí điện thoại di động, địa chỉ IP và địa chỉ MAC;",
+	"generalInfo.policy.1.5": "1.5  Sản phẩm và dịch vụ, bạn đã mua từ chúng tôi, cũng như những sản phẩm bạn quan tâm và đã nắm giữ và các phương thức thanh toán liên quan được bạn sử dụng;",
+	"generalInfo.policy.1.6": "1.6  Việc sử dụng các sản phẩm và dịch vụ của chúng tôi, các yêu cầu bồi thường bảo hiểm và tình trạng thanh toán các yêu cầu bồi thường này (và các chi tiết khác liên quan đến vấn đề này);",
+	"generalInfo.policy.1.7": "1.7  Phân tích dữ liệu tiếp thị sản phẩm hoặc dịch vụ được thực hiện riêng cho bạn, bao gồm lịch sử liên lạc và thông tin về việc bạn có mở các tài liệu này hay nhấp vào đường link liên kết;",
+	"generalInfo.policy.2": "2. CÁCH THỨC CHÚNG TÔI THU THẬP DỮ LIỆU CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.2.1": "2.1  Trực tiếp từ bạn và bất kỳ thông tin nào từ các thành viên gia đình, cộng sự hoặc người thụ hưởng sản phẩm và dịch vụ;",
+	"generalInfo.policy.2.2": "2.2  Thông tin về bạn được tạo ra khi bạn sử dụng các sản phẩm và dịch vụ của chúng tôi;",
+	"generalInfo.policy.2.3": "2.3  Từ một nhà môi giới hoặc một bên trung gian khác (ví dụ: đại lý, nhà phân phối, đối tác kinh doanh), các bên mà chúng tôi có hợp tác để cung cấp sản phẩm hoặc dịch vụ hoặc cung cấp báo giá cho bạn;",
+	"generalInfo.policy.2.4": "2.4  Các công ty đối tác liên kết với BMK, nếu bạn đã từng đăng ký mua hoặc đã mua sản phẩm từ các công ty này;",
+	"generalInfo.policy.2.5": "2.5  Cookie, dịch vụ định vị, địa chỉ IP khi bạn truy cập trang mạng hoặc ứng dụng di động của chúng tôi hoặc khi bạn điền vào biểu mẫu Liên hệ với chúng tôi trong trang mạng hoặc ứng dụng của chúng tôi;",
+	"generalInfo.policy.2.6": "2.6  Các bên thứ ba như công ty bảo hiểm, đại lý, nhà cung cấp, tổ chức tài chính, cá nhân y tế, tòa án hoặc hồ sơ thông tin đã được công bố công khai;",
+	"generalInfo.policy.2.7": "2.7  Bảng câu hỏi và thông tin liên lạc chi tiết khi bạn tham gia khảo sát, hội nghị nhà đầu tư, các buổi hội thảo hoặc khi bạn cập nhật thông tin liên lạc của bạn với chúng tôi trên trang mạng của chúng tôi;",
+	"generalInfo.policy.2.8": "2.8  Từ các nguồn khác như Cơ quan phòng chống gian lận, tổ chức tham chiếu tín dụng, người cho vay khác và các thông tin đã được công bố công khai (ví dụ: danh bạ điện thoại, phương tiện truyền thông xã hội, các trang mạng, các bài báo), các tổ chức thu hồi nợ, các tổ chức khác để hỗ trợ phòng ngừa và phát hiện tội phạm, cảnh sát và các cơ quan thực thi pháp luật;",
+	"generalInfo.policy.2.9": "2.9  Chúng tôi mua thông tin về bạn hoặc khách hàng nói chung từ các bên thứ ba bao gồm thông tin nhân khẩu học, chi tiết các phương tiện đi lại, lịch sử yêu cầu bồi thường, thông tin về gian lận, danh sách quảng cáo tiếp thị, thông tin đã được công bố công khai và thông tin khác để giúp cải thiện sản phẩm và dịch vụ của chúng tôi.",
+	"generalInfo.policy.3": "3. CHÍNH SÁCH COOKIE",
+	"generalInfo.policy.3.1": "3.1   Trang mạng của chúng tôi sử dụng cookie để phân biệt bạn với những người dùng khác. Điều này giúp chúng tôi cung cấp cho bạn trải nghiệm tốt khi bạn sử dụng trang mạng và cũng cho phép chúng tôi cải thiện trang mạng của mình. Cookie là một tệp nhỏ gồm các chữ cái và số mà chúng tôi lưu trữ trên trình duyệt hoặc ổ cứng máy tính của bạn. Cookie chứa thông tin được lưu trữ trên ổ cứng máy tính của bạn. Bạn có khả năng chấp nhận hoặc từ chối cookie bằng cách sửa đổi cài đặt trong trình duyệt của bạn. Nếu bạn muốn làm điều này, xin vui lòng xem mục trợ giúp trong trình duyệt của bạn.",
+	"generalInfo.policy.3.2": "3.2   Chúng tôi sử dụng các loại cookie sau:",
+	"generalInfo.policy.3.2.1": "3.2.1    Cookie cần thiết cho trang mạng, đây là các cookie cần phải có để phục vụ hoạt động của trang  mạng của chúng tôi. Ví dụ, các cookie cho phép bạn đăng nhập vào trang mạng của chúng tôi một cách an toàn;",
+	"generalInfo.policy.3.2.2": "3.2.2    Cookie phân tích/quản lý hoạt động: các cookie này cho phép chúng tôi nhận ra và đếm số lượng người dùng truy cập vào trang mạng của chúng tôi và theo dõi cách người dùng truy cập di huyển xung quanh trang mạng của chúng tôi khi họ đang sử dụng nó. Điều này giúp chúng tôi cải thiện cách thức hoạt động của trang mạng, ví dụ, cải tiến để giúp người dùng tìm kiếm những thứ họ cần một cách dễ dàng;",
+	"generalInfo.policy.3.2.3": "3.2.3    Cookie chức năng: chúng được sử dụng để nhận ra bạn khi bạn quay lại trang mạng của chúng tôi. Điều này cho phép chúng tôi cá nhân hóa nội dung của chúng tôi cho bạn, chào bạn bằng tên và ghi nhớ sở thích của bạn (ví dụ: lựa chọn ngôn ngữ hoặc khu vực của bạn).",
+	"generalInfo.policy.3.3": "3.3   Bằng cách tiếp tục sử dụng trang mạng của chúng tôi, bạn chấp nhận chúng tôi sử dụng các loại cookie như đã nêu ở trên.",
+	"generalInfo.policy.4": "4. CÁCH THỨC VÀ LÝ DO CHÚNG TÔI SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.4.1": "4.1  Chúng tôi, BMK và các đối tác kinh doanh sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, cho các mục đích sau:",
+	"generalInfo.policy.4.1.1": "<table class='table table-bordered info-item-table'><thead><tr><td>Mục đích</td><td>Cơ sở pháp lý</td></tr></thead><tbody><tr><td>Quản lý các sản phẩm và dịch vụ của chúng tôi, bao gồm cho phép chúng tôi thực hiện nghĩa vụ của chúng tôi với bạn và cung cấp mọi dịch vụ liên quan như đã thảo luận với bạn trước khi bạn mua sản phẩm hoặc dịch vụ.</td><td rowspan='2'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn hoặc để thực hiện các bước trước khi ký hợp đồng với bạn.&nbsp;</td></tr><tr><td>Thực hiện kiểm tra bằng cách thông qua các tổ chức như tổ chức tín dụng, công ty hỗ trợ tìm kiếm hoặc thông tin đã được công bố công khai (xem thêm nội dung trình bày trong Phần “Kiểm tra tham khảo”).</td></tr><tr><td>Cung cấp dịch vụ khách hàng – như trả lời thắc mắc của bạn hoặc thông báo cho bạn biết các thay đổi.</td><td rowspan='3'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn. Sau khi hợp đồng chúng tôi ký với bạn hoàn tất, đây là lợi ích hợp pháp của chúng tôi trong việc duy trì và phát triển mối quan hệ của chúng tôi với bạn.</td></tr><tr><td>Tự động ra quyết định hoặc tạo hồ sơ cá nhân của bạn (xem thêm nội dung trình bày trong Phần “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”).</td></tr><tr><td>Lưu giữ thông tin của bạn và thực hiện các công việc quản lý nội bộ khác.</td></tr><tr><td>Tuân thủ với các yêu cầu pháp quy hoặc pháp lý khác.</td><td>Tuân thủ với các nghĩa vụ pháp lý của chúng tôi.</td></tr><tr><td>Thiết kế và cung cấp cho bạn các sản phẩm và dịch vụ bảo hiểm và tài chính liên quan.</td><td rowspan='2'>Lợi ích chính đáng của chúng tôi trong việc thiết kế và cải tiến sản phẩm, cung cấp dịch vụ giá trị gia tăng, phát triển kinh doanh và hiểu rõ hơn về cách sử dụng sản phẩm của chúng tôi.&nbsp;</td></tr><tr><td>Tiến hành nghiên cứu và phân tích thống kê (bao gồm cả việc sử dụng các công nghệ mới).</td></tr></tbody></table>",
+	"generalInfo.policy.4.2": "4.2  Ngoài ra, chúng tôi, <b>BMK</b> và các đối tác kinh doanh của chúng tôi, sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, để gửi cho bạn các ưu đãi tiếp thị trực tiếp bằng phương tiện điện tử và phi điện tử bao gồm qua đường bưu điện, cũng như gửi cho bạn thông tin giới thiệu các sản phẩm và dịch vụ từ các bên thứ ba đã được chọn lọc kỹ lưỡng. Cơ sở pháp lý chúng tôi trình bày bên trên được xây dựng dựa trên sự đồng thuận với bạn.",
+	"generalInfo.policy.4.3": "4.3  Chúng tôi chia sẽ dữ liệu cá nhân của bạn với ai và tại sao:",
+	"generalInfo.policy.4.3.1": "4.3.1  Chúng tôi sẽ chia sẻ thông tin cá nhân và sức khỏe của bạn trong nội bộ <b>BMK</b> và với các đối tác kinh doanh tài chính/sức khỏe và các bên thứ ba cung cấp dịch vụ cho chúng tôi (bao gồm nhưng không giới hạn các công ty bảo hiểm, luật sư, ngân hàng, kế toán, tổ chức tài chính, bên ủy thác và các nhà cung cấp dịch vụ là bên thứ ba khác cung cấp dịch vụ quản lý, viễn thông, máy tính, thanh toán, in ấn, mua lại hoặc các dịch vụ khác để cho phép chúng tôi thực hiện hoạt động kinh doanh), các công ty thẩm định hóa đơn y tế, các công ty thẩm định yêu cầu bồi thường, hiệp hội và hiệp đoàn trong cùng ngành, các bên đồng sở hữu hợp đồng bảo hiểm hoặc khoản đầu tư, cố vấn chuyên nghiệp, nhà nghiên cứu, tổ chức tham chiếu tín dụng, tổ chức thu hồi nợ, tổ chức tài chính/y tế và các bên đối tác để thực hiện các mục đích được nêu trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của ban”. Nếu bạn có chung hợp đồng bảo hiểm với người khác, thì người đó cũng có thể nhận được dữ liệu cá nhân của bạn. Nếu được yêu cầu, chúng tôi cũng có thể chuyển dữ liệu cá nhân của bạn cho các cơ quan phòng chống tội phạm tài chính, bất kỳ cơ quan lập pháp, tư pháp hoặc hành pháp nào khác.",
+	"generalInfo.policy.4.3.2": "4.3.2  Chúng tôi có thể xử lý dữ liệu cá nhân của bạn ở một quốc gia khác ngoài quốc gia mà bạn cư trú. Trong phạm vi chúng tôi chuyển dữ liệu cá nhân của bạn, chúng tôi sẽ sử dụng các biện pháp bảo vệ phù hợp và tuân thủ luật pháp của quốc gia nơi dữ liệu cá nhân của bạn được chuyển đến. Khi bạn yêu cầu, chúng tôi sẽ cung cấp cho bạn chi tiết các biện pháp bảo vệ dữ liệu mà chúng tôi đang sử dụng.",
+	"generalInfo.policy.4.4": "4.4  Chúng tôi lưu trữ dữ liệu cá nhân của bạn trong một khoảng thời gian nhất định",
+	"generalInfo.policy.4.4.1": "4.4.1   Dữ liệu cá nhân của bạn sẽ được lưu trữ khi bạn (hoặc đồng sở hữu hợp đồng bảo hiểm với bạn) là khách hàng của chúng tôi và trong khoảng thời gian sáu năm sau khi kết thúc mối quan hệ khách hàng hoặc lâu hơn nếu pháp luật yêu cầu. Có thể có những trường hợp cụ thể khi chúng tôi cần lưu giữ dữ liệu cá nhân của bạn lâu hơn (chẳng hạn như khi có tranh chấp xảy ra).",
+	"generalInfo.policy.5": "5. KIỂM TRA THAM KHẢO",
+	"generalInfo.policy.5.1": "5.1  Đối với một số sản phẩm nhất định, chúng tôi có thể sử dụng các tổ chức tham chiếu tín dụng, công ty  hỗ trợ tìm kiếm, cơ quan phòng chống tội phạm tài chính hoặc thông tin có sẵn công khai để giúp chúng tôi kiểm tra danh tính của bạn, cũng như để tránh gian lận và rửa tiền; điều này có thể bao gồm kiểm tra các địa chỉ hiện tại hoặc trước đây của bạn. Những kết quả này có thể được ghi lại để tham khảo trong tương lai.",
+	"generalInfo.policy.5.2": "5.1  Những kết quả kiểm tra này cũng có thể được sử dụng cho một nhà đầu tư, chủ sở hữu hợp đồng chung hoặc người mà bạn đồng ý cung cấp dữ liệu cá nhân của mình. Nếu chúng tôi mất liên lạc với bạn, chúng tôi có thể sử dụng các tổ chức này để xác minh địa chỉ của bạn nhằm giúp chúng tôi liên lạc với bạn.",
+	"generalInfo.policy.5.3": "5.3  Mọi việc chuyển dữ liệu cá nhân của bạn sẽ luôn được thực hiện an toàn.",
+	"generalInfo.policy.6": "6. CHÚNG TÔI CÓ THỂ SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN ĐỂ ĐƯA RA QUYẾT ĐỊNH TỰ ĐỘNG HOẶC TẠO HỒ SƠ CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.6.1": "6.1  Chúng tôi, BMK, Đối tác kinh doanh và Đối tác tiếp thị của chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động ảnh hưởng đến bạn hoặc tạo hồ sơ cá nhân khác cho bạn (ví dụ: hồ sơ tiếp thị).",
+	"generalInfo.policy.7": "7. SỬ DỤNG DỮ LIỆU CÁ NHÂN NHẠY CẢM CỦA BẠN",
+	"generalInfo.policy.7.1": "7.1  Đối với một số sản phẩm hoặc dịch vụ nhất định, chúng tôi sẽ cần xử lý dữ liệu cá nhân nhạy cảm của bạn, chẳng hạn như thông tin liên quan đến sức khỏe, di truyền, định danh sinh trắc học và khuynh hướng giới tính. Trong phạm vi chúng tôi cần sự đồng ý rõ ràng của bạn để xử lý loại dữ liệu cá nhân này theo cách được mô tả trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của bạn” , “Kiểm tra tham khảo” và “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”, chúng tôi sẽ cung cấp chi tiết về điều này khi chúng tôi thu thập các thông tin này từ bạn và xin nhận được sự chấp thuận của bạn.",
+	"generalInfo.policy.8": "8. QUYỀN KIỂM SOÁT DỮ LIỆU CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.8.1": "8.1  Khi nói đến cách chúng tôi sử dụng dữ liệu cá nhân của bạn, bạn có quyền theo quy định của pháp luật Việt Nam.",
+	"generalInfo.policy.8.2": "8.2  Trong khi đó, nếu bạn hiện đang cư trú tại Châu Âu, các quyền bổ sung theo Quy định bảo vệ dữ liệu chung (GDPR) có thể được áp dụng. Như vậy, bạn có thể:",
+	"generalInfo.policy.8.2.1": "8.2.1  Yêu cầu một bản sao dữ liệu cá nhân của bạn miễn phí (chúng tôi có thể tính phí yêu cầu của bạn nếu không có cơ sở rõ ràng hoặc bị lạm dụng quá mức);",
+	"generalInfo.policy.8.2.2": "8.2.2  Trong một số trường hợp nhất định, chúng tôi sẽ chuyển dữ liệu cá nhân của bạn sang một tổ chức khác theo yêu cầu của bạn;",
+	"generalInfo.policy.8.2.3": "8.2.3  Yêu cầu chúng tôi điều chỉnh bất cứ dữ liệu cá nhân nào bị sai hoặc không đầy đủ;",
+	"generalInfo.policy.8.2.4": "8.2.4  Yêu cầu chúng tôi xóa dữ liệu cá nhân của bạn nếu không còn cần thiết cho các mục đích được nêu trong Phần “Các loại dữ liệu cá nhân chúng tôi sẽ thu thập và xử lý” hoặc nếu không có cơ sở pháp lý nào khác để xử lý dữ liệu;",
+	"generalInfo.policy.8.2.5": "8.2.5  Giới hạn cách chúng tôi sử dụng dữ liệu cá nhân của bạn hoặc rút lại sự đồng ý (bao gồm cả việc đồng ý cho phép đưa ra quyết định tự động dựa trên dữ liệu cá nhân) mà bạn đã chấp thuận cho phép chúng tôi xử lý dữ liệu cá nhân của bạn;",
+	"generalInfo.policy.8.2.6": "8.2.6  Phản đối chúng tôi sử dụng dữ liệu cá nhân của bạn để tiếp thị trực tiếp (bao gồm cả việc tạo lập hồ sơ cá nhân của bạn) hoặc xử lý dữ liệu khác dựa trên lợi ích hợp pháp;",
+	"generalInfo.policy.8.2.7": "8.2.7  Khiếu nại với cơ quan bảo vệ dữ liệu hoặc cơ quan quản lý độc lập khác về cách chúng tôi sử dụng dữ liệu cá nhân của bạn.",
+	"generalInfo.policy.8.3": "8.3  Nếu bạn muốn thực hiện các quyền của mình hoặc muốn giải thích về các quyền này, bạn có thể liên lạc với chúng tôi trong phần Liên hệ.",
+	"generalInfo.policy.8.4": "8.4  Nếu bạn cần nói chuyện với chúng tôi, chúng tôi sẽ chuyển yêu cầu của bạn cho Người Kiểm Soát Dữ Liệu (8.4.1)  cá nhân của bạn là BMK Chúng tôi có thể theo dõi hoặc ghi lại các cuộc gọi hoặc bất kỳ liên lạc nào khác mà chúng tôi có với bạn. Điều này có thể là để đào tạo, bảo mật hoặc để giúp chúng tôi kiểm tra chất lượng.",
+	"generalInfo.policy.8.4.1": "8.4.1  Người Kiểm Soát Dữ Liệu – Cá nhân, pháp nhân, cơ quan nhà nước, các cơ quan hoặc tổ chức khác, riêng rẻ hoặc cùng nhau, xác định mục đích và cách thức xử lý dữ liệu cá nhân.",
+	"generalInfo.policy.9": "9.  THAY MẶT NGƯỜI KHÁC CUNG CẤP DỮ LIỆU CÁ NHÂN CỦA HỌ",
+	"generalInfo.policy.9.1": "9.1  Khi bạn cung cấp cho chúng tôi dữ liệu cá nhân về người khác (hoặc nhiều người khác), bạn nên được chỉ định và ủy quyền bởi người đó để hành động thay họ. Điều này bao gồm cung cấp sự đồng ý để:",
+	"generalInfo.policy.9.1.1": "9.1.1  Chúng tôi xử lý dữ liệu cá nhân của họ và dữ liệu cá nhân nhạy cảm (như chúng tôi đã giải thích trong các Phần ở trên);",
+	"generalInfo.policy.9.1.2": "9.1.1  Bạn sẽ nhận được các thông báo bảo vệ thông tin thay mặt họ.",
+	"generalInfo.policy.9.2": "9.2  Nếu vì bất kỳ lý do nào bạn quan tâm đến việc liệu bạn có được phép cung cấp cho chúng tôi thông tin về người khác hay không, vui lòng liên hệ với chúng tôi theo địa chỉ thư điện tử bên dưới trước khi gửi cho chúng tôi bất cứ thông tin gì.",
+	"generalInfo.policy.10": "10. TIẾP THỊ TRỰC TIẾP",
+	"generalInfo.policy.10.1": "10.1  Chúng tôi, <b>BMK</b>, đối tác kinh doanh của chúng tôi, và đối tác tiếp thị vẫn sẽ gửi cho bạn thông tin qua hình thức các bài đăng về các sản phẩm và dịch vụ của BMK và các bên thứ ba được lựa chọn cẩn thận.",
+	"generalInfo.policy.10.2": "10.2  Ngoài ra, theo thời gian, chung tôi BMK mong muốn gởi thông tin chi tiết về sản phẩm, dịch vụ và các ưu đãi đặc biệt cho bạn qua các phương tiện điện tử. Chúng tôi sẽ chỉ làm điều này nếu bạn đồng ý cho chúng tôi liên lạc với bạn bằng phương tiện điện tử.",
+	"generalInfo.policy.10.3": "10.3  Và nếu bạn thay đổi ý định và/hoặc bạn muốn từ chối nhận tiếp thị trực tiếp phi điện tử, thì bạn cứ cho chúng tôi biết. Chỉ cần sử dụng một trong các tùy chọn trong mục Liên hệ với chúng tôi.",
+	"generalInfo.policy.11": "11. LIÊN HỆ VỚI CHÚNG TÔI",
+	"generalInfo.policy.11.1": "11.1  Nếu bạn muốn thực hiện các quyền của mình trong Phần “Quyền kiểm soát dữ liệu cá nhân của bạn” hoặc nếu bạn yêu cầu bất kỳ thông tin nào theo thông báo này, bạn có thể liên hệ với chúng tôi theo nhiều cách khác nhau.",
+	"generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0899.300.800</b>",
+	"generalInfo.policy.11.1.2": "11.1.2  Gửi thư điện tử cho chúng tôi theo địa chỉ: <b>lienhe@bmktech.vn</b>",
+	"generalInfo.policy.11.1.3": "11.1.3  Hoặc liên hệ trực tiếp với chúng tôi tại văn phòng: <b>Phòng 301A, Tòa nhà Thiên Bảo, số 47-49 Lê Văn Hưu, Phường Ngô Thì Nhậm, Quận Hai Bà Trưng, Thành phố Hà Nội.</b>",
+	"generalInfo.terms.1": "1. CÁC ĐIỀU KHOẢN VÀ ĐIỀU KIỆN SỬ DỤNG",
+	"generalInfo.terms.1.1": "1.1  Trang thông tin điện tử này <b>(www.bmktech.vn)</b> cùng các tên miền phụ (x.bmktech.vn,...) và ứng dụng di động <b>“BMK” (sau đây gọi tắt là “Hệ thống\nBMK”)</b> do <b>Công ty Cổ phần BMK (sau đây gọi tắt là “BMK”) - Đơn vị chủ quản của Hệ thống và Thương hiệu BMK<b/> toàn quyền sở hữu và điều\nhành.\n",
+	"generalInfo.terms.1.2": "1.2  Việc sử dụng <b>Hệ thống BMK</b> này phụ thuộc vào các điều khoản và điều kiện cụ thể sau: (A) các điều khoản và điều kiện được nêu dưới đây và (B) mọi điều khoản và điều kiện bổ sung cụ thể tùy từng thời điểm để điều chỉnh việc sử dụng, và truy cập vào một số mục của trang thông tin điện tử này (và các điều khoản bổ sung đó sẽ có hiệu lực ràng buộc khi chúng được đăng tải trên <b>Hệ thống BMK</b> này) <b>(\"Điều Khoản và Điều Kiện\")</b>.",
+	"generalInfo.terms.1.3": "1.3  Khi sử dụng trang thông tin điện tử này, bạn đã đồng ý với các Điều Khoản và Điều Kiện, và sự đồng ý của bạn cùng với các Điều Khoản và Điều Kiện sẽ cấu thành một hợp đồng có giá trị ràng buộc về pháp lý giữa bạn và <b>BMK</b>. Vì thế, bạn vui lòng đọc kỹ các Điều Khoản và Điều Kiện của trang thông tin điện tử này.",
+	"generalInfo.terms.2": "2. CÁC HẠN CHẾ VÀ SỬ DỤNG CÁC THÔNG TIN TÀI LIỆU",
+	"generalInfo.terms.2.1": "2.1  Trừ khi được <b>BMK</b> đồng ý bằng văn bản một cách khác đi, bạn sẽ không sao chép, sao lại, tái bản, đưa lên mạng, công bố, chuyển, tạo liên kết đến hoặc phân phối dưới bất cứ hình thức nào các thông tin và/hoặc tài liệu đã được đăng tải trên trang thông tin điện tử này.",
+	"generalInfo.terms.2.2": "2.2  Bạn có thể tải xuống các thông tin và/hoặc tài liệu được đăng tải trên trang thông tin điện tử này để bạn sử dụng, nhưng luôn luôn với điều kiện là bạn không dỡ bỏ các thông tin về bản quyền và/hoặc các quyền khác của <b>BMK</b> gắn với các thông tin và/hoặc tài liệu đó.",
+	"generalInfo.terms.2.3": "2.3  Bạn không được phát tán, sửa đổi, chuyển đi, sử dụng lại, công bố, tạo liên kết hoặc sử dụng các nội dung của trang thông tin điện tử này, bao gồm, nhưng không giới hạn bởi, cả các thông tin bằng chữ, các hình ảnh, các tập tin âm thanh và/hoặc các đoạn phim, cho các mục đích kinh doanh và/hoặc công cộng, khi chưa có sự cho phép bằng văn bản của BMK.",
+	"generalInfo.terms.3": "3. THỜI GIAN HOẠT ĐỘNG",
+	"generalInfo.terms.3.1": "3.1 Trang thông tin điện tử này hoạt động 24 giờ mỗi ngày và 7 ngày mỗi tuần. Tuy nhiên, <b>BMK</b> bảo lưu quyền ngắt hệ thống để bảo trì khi cần thiết. <b>BMK</b> sẽ cố gắng để lên kế hoạch và thông báo về việc hệ thống không thể sử dụng được bằng cách đưa một thông báo trên mạng trực tuyến. <b>BMK</b> không chịu trách nhiệm đối với bất cứ thiệt hại và/hoặc mất mát nào do việc hệ thống bị ngắt trong trường hợp này.",
+	"generalInfo.terms.4": "4. TÀI KHOẢN NGƯỜI SỬ DỤNG",
+	"generalInfo.terms.4.1": "4.1  Bạn sẽ đăng ký và được cung cấp một Tên Truy Cập Tài Khoản và Mật khẩu để có thể mua bảo hiểm trên trang thông tin điện tử này. Bạn sẽ giữ bí mật Tên Truy Cập Tài Khoản và Mật khẩu này vào mọi thời điểm, và sẽ bảo đảm rằng Tên Truy Cập Tài Khoản và Mật khẩu này của bạn sẽ không bị tiết lộ theo bất cứ cách thức nào cho bất kỳ ai.",
+	"generalInfo.terms.4.2": "4.2  <b>BMK</b> sẽ không chịu trách nhiệm về bất cứ giao dịch không được phép nào do việc Tên Truy Cập Tài Khoản và/hoặc Mật khẩu bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn phải lập tức thông báo cho <b>BMK</b> bất cứ trường hợp nào mà Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn chịu trách nhiệm hoàn toàn về việc bảo mật Tên Truy Cập Tài Khoản và Mật khẩu và đối với bất cứ việc truy cập nào sử dụng Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn.",
+	"generalInfo.terms.5": "5. BẢN QUYỀN VÀ NHÃN HIỆU",
+	"generalInfo.terms.5.1": "5.1  Mọi nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> và các đối tác khác (nếu có).",
+	"generalInfo.terms.5.2": "5.2  Không có điều gì trên trang thông tin điện tử này có thể được hiểu là, dù là ngầm định hay cách khác, cho phép sử dụng hoặc bất cứ quyền sử dụng nào liên quan đến bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này khi chưa có sự đồng ý bằng văn bản của <b>BMK</b> hoặc bên thứ ba sở hữu các nhãn hiệu hoặc tên thương mại đặt trên trang thông tin điện tử này.",
+	"generalInfo.terms.5.3": "5.3  Bạn hoàn toàn không được sử dụng bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này hoặc bất cứ nội dung nào khác có trên trang thông tin điện tử này, trừ các trường hợp được quy định trong các Điều Khoản và Điều Kiện.",
+	"generalInfo.terms.5.4": "5.4  Các hình ảnh đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> hoặc được <b>BMK</b> sử dụng theo sự đồng ý của chủ sở hữu.",
+	"generalInfo.terms.5.5": "5.5  Trừ khi được cho phép cụ thể, bạn không được sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này, bạn cũng không được ủy quyền cho bất cứ người nào sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này. Bất cứ việc sử dụng không được phép nào đối với các hình ảnh này có thể vi phạm luật tác quyền, luật nhãn hiệu, luật về quyền riêng tư và luật xuất bản, và các quy định về thông tin khác.",
+	"generalInfo.terms.6": "6. QUY ĐỊNH VỀ QUYỀN RIÊNG TƯ",
+	"generalInfo.terms.6.1": "6.1   Xin đọc kỹ CHÍNH SÁCH VỀ QUYỀN RIÊNG TƯ TRÊN INTERNET của chúng tôi. Chính sách này giải thích rõ những thông tin nào <b>BMK</b> có thể thu thập từ bạn trên trang thông tin điện tử của chúng tôi và cách thức chúng tôi sẽ sử dụng và bảo vệ các thông tin của bạn. Chúng tôi sẽ không thu thập bất cứ thông tin xác định danh tính cá nhân nào trên trang thông tin điện tử của chúng tôi trừ khi bạn cung cấp các thông tin đó cho chúng tôi.",
+	"generalInfo.terms.7": "7. LIÊN KẾT ĐẾN CÁC TRANG WEB KHÁC",
+	"generalInfo.terms.7.1": "7.1  Trang thông tin điện tử này liên kết đến các trang thông tin điện tử khác không do <b>BMK</b> quản lý hoặc điều khiển. <b>BMK</b> sẽ không chịu trách nhiệm về nội dung của các trang thông tin điện tử đó.",
+	"generalInfo.terms.7.2": "7.2  Việc liên kết đến bất cứ trang thông tin điện tử nào như thế không có nghĩa là <b>BMK</b> đã chấp thuận hoặc tán thành đối với các trang thông tin điện tử đó, hoặc với nội dung của các trang thông tin điện tử đó, hoặc các sản phẩm và dịch vụ trên các trang thông tin điện tử đó.",
+	"generalInfo.terms.8": "8. AN NINH CỦA TRANG WEB",
+	"generalInfo.terms.8.1": "8.1  Bạn sẽ không xâm phạm hoặc cố gắng xâm phạm an ninh của trang thông tin điện tử này, bao gồm, nhưng không giới hạn, các hành vi dưới đây:",
+	"generalInfo.terms.8.1.1": "8.1.1  Truy cập thông tin hoặc nối vào một máy chủ hoặc tài khoản mà bạn không được phép truy cập.",
+	"generalInfo.terms.8.1.2": "8.1.2  Cố gắng thăm dò, kiểm tra hoặc thử nghiệm điểm yếu của một hệ thống hoặc hệ thống mạng để vi phạm an ninh hoặc biện pháp nhận dạng mà không được <b>BMK</b> cho phép bằng văn bản.",
+	"generalInfo.terms.8.1.3": "8.1.3  Cố gắng can thiệp vào dịch vụ cung cấp cho bất cứ người sử dụng nào, máy chủ hoặc hệ thống mạng nào, bằng cách phát tán vi rút hoặc mã độc lên trang thông tin điện tử, làm quá tải hoặc gây ra hiện tượng thư rác (spamming) trên trang thông tin điện tử;",
+	"generalInfo.terms.8.1.4": "8.1.4  Thay đổi thông tin của phần tiêu đề (header) của bộ giao thức điều khiển truyền vận (TCP/IP) hoặc bất cứ phần thông tin nào của phần tiêu đề (header) trong bất cứ thư điện tử hay nhóm thông tin được đăng tải.",
+	"generalInfo.terms.8.2": "8.2  Bạn không sử dụng trang thông tin điện tử này cho bất cứ mục đích bất hợp pháp nào.",
+	"generalInfo.terms.8.3": "8.3  Bạn phải đảm bảo rằng tất cả các thông tin được đưa lên trang thông tin điện tử này là đầy đủ, chính xác, có thật, phù hợp và nhất quán với các tài liệu chứa đựng các thông tin này. Vi phạm điều này sẽ dẫn đến việc chậm trễ trong quy trình xử lý hoặc các thông tin điện tử được đưa lên bị loại bỏ. Bạn phải chịu trách nhiệm đối với toàn bộ chi phí phát sinh do việc đưa thông tin giả mạo hoặc sai.",
+	"generalInfo.terms.8.4": "8.4  Bạn sẽ không tấn công hoặc cố gắng tấn công hoặc làm hại trang thông tin điện tử này bằng bất cứ hình thức hay phương tiện nào như các công cụ tấn công, vi-rút và chương trình máy tính có chứa các mã có thể gây hỏng máy tính. Bất cứ cố gắng nào để thực hiện các hành vi như vậy đều khiến bạn phải chịu sự truy tố theo quy định của pháp luật hiện hành.",
+	"generalInfo.terms.9": "9. KHÔNG CHỊU TRÁCH NHIỆM",
+	"generalInfo.terms.9.1": "9.1  Mặc dù <b>BMK</b> thực hiện mọi sự cẩn trọng khi cung cấp dịch vụ tại trang thông tin điện tử, <b>BMK</b> không cam kết rằng trang thông tin điện tử này sẽ hoạt động không có lỗi hoặc hoàn toàn không có vi-rút, worms, Trojan horses hoặc các mã độc hại khác.",
+	"generalInfo.terms.9.2": "9.2  <b>BMK</b> không chấp nhận bất cứ trách nhiệm nào, và sẽ không chịu trách nhiệm về bất cứ thiệt hại nào xảy ra cho thiết bị máy tính hoặc các tài sản khác của bạn do việc bạn truy cập vào, sử dụng, hoặc xem lướt qua trang thông tin điện tử này hoặc việc bạn tải xuống bất cứ tài liệu, dữ liệu, các thông tin bằng chữ, các hình ảnh, các đoạn video, hoặc các tập tin âm thanh nào từ trang thông tin điện tử này hoặc phát sinh liên quan đến việc chậm thực hiện, lỗi, thiếu sót, bị gián đoạn, lỗi, vi-rút máy tính, chậm trễ trong hoạt động hoặc truyền dữ liệu, hoặc lỗi hệ thống hoặc đường truyền.",
+	"generalInfo.terms.9.3": "9.3  <b>BMK</b> cũng từ chối mọi trách nhiệm đối với:",
+	"generalInfo.terms.9.3.1": "9.3.1  Bất cứ tổn thất nào hoặc không có khả năng lấy lại các dữ liệu hoặc thông tin vì bất cứ lý do gì và bao gồm việc không chuyển được, việc sử dụng không đúng mục đích hoặc việc chuyển sai do kết quả của bất cứ sự gián đoạn, ngưng hoặc chấm dứt dịch vụ trên trang thông tin điện tử này; ",
+	"generalInfo.terms.9.3.2": "9.3.2  Bất cứ sự sai sót của các thông tin hoặc nguồn tài nguyên có sẵn, nhận được hoặc được chuyển thông qua trang thông tin điện tử;",
+	"generalInfo.terms.9.3.3": "9.3.3  Bất cứ trục trặc, khuyết điểm hoặc sai sót của trang thông tin điện tử này; ",
+	"generalInfo.terms.9.3.4": "9.3.4  Bất cứ sự chậm trễ hoặc không có khả năng trong việc cung cấp dịch vụ của <b>BMK</b> tại trang thông tin điện tử này theo các Điều Khoản và Điệu Kiện do bất cứ khuyết điểm hoặc hỏng hóc về điện tử, cơ khí, hệ thống, xử lý dữ liệu hoặc viễn thông, thiên tai, xáo trộn dân sự hoặc bất cứ sự kiện nào nằm ngoài sự kiểm soát của <b>BMK</b>.",
+	"generalInfo.terms.10": "10. MIỄN TRỪ TRÁCH NHIỆM",
+	"generalInfo.terms.10.1": "10.1  Trong bất cứ trường hợp nào, <b>BMK</b> cũng không chịu trách nhiệm về bất cứ thiệt hại, tổn thất hoặc chi phí, bao gồm nhưng không giới hạn, thiệt hại trực tiếp, đặc biệt hoặc do hệ quả của, hoặc tổn thất kinh tế phát sinh từ hoặc có liên quan hoặc có thể quy cho:",
+	"generalInfo.terms.10.1.1": "10.1.1  Bất cứ việc truy cập, sử dụng hoặc không thể truy cập hoặc sử dụng trang thông tin điện tử hoặc dịch vụ này, hoặc tin cậy vào những thông tin trên trang thông tin điện tử này.",
+	"generalInfo.terms.10.1.2": "10.1.2  Bất cứ sự hỏng hóc, sai sót, bỏ sót, gián đoạn hoặc chậm trễ trong việc truyền dữ liệu;",
+	"generalInfo.terms.10.1.3": "10.1.3  Bất cứ vi-rút máy tính hoặc hoặc các mã độc hại, hoặc các đoạn mã, chương trình hay một lệnh riêng lẻ bằng ngôn ngữ lập trình mà kết quả là một chuỗi lệnh bằng ngôn ngữ máy tính (macro) mang tính chất làm hỏng hoặc phá hủy khác có thể ảnh hưởng đến các thiết bị, chương trình máy tính hoặc các tài sản khác của bạn.",
+	"generalInfo.terms.11": "11. BỒI THƯỜNG",
+	"generalInfo.terms.11.1": "11.1 Bằng việc truy cập vào trang thông tin điện tử này, bạn đồng ý bồi thường cho <b>BMK</b>, giữ cho <b>BMK</b> khỏi mọi thiệt hại và bảo vệ <b>BMK</b> khỏi bất cứ khiếu nại, hành động hoặc đòi hỏi, bao gồm nhưng không giới hạn các chi phí pháp lý và kế toán hợp lý, được cho là hoặc là kết quả của việc bạn sử dụng trang thông tin điện tử này hoặc dịch vụ tại trang thông tin điện tử này, hoặc do việc bạn vi phạm các Điều Khoản và Điều Kiện.",
+	"generalInfo.terms.12": "12. CHẤM DỨT",
+	"generalInfo.terms.12.1": "12.1  <b>BMK</b> bảo lưu quyền, theo quyết định riêng của <b>BMK</b>, chấm dứt dịch vụ trên trang thông tin điện tử này vào bất cứ thời điểm nào, có hoặc không có lý do hoặc chấm dứt quyền truy cập vào trang thông tin điện tử này của bạn mà không cần báo trước và không cần lý do. Bằng việc truy cập vào trang thông tin điện tử này, bạn được coi là từ bỏ quyền được <b>BMK</b> thông báo về việc chấm dứt này, nếu có.",
+	"generalInfo.terms.12.2": "12.2  <b>BMK</b> không chịu trách nhiệm về bất cứ thiệt hại, mất mát hoặc chí phí phát sinh theo bất cứ cách thức nào, từ hoặc do việc chấm dứt dịch vụ trên trang thông tin điện tử này.",
+	"generalInfo.terms.13": "13. SỬA ĐỔI",
+	"generalInfo.terms.13.1": "13.1  <b>BMK</b> có thể thay đổi và thay thế nội dung các Điều Khoản và Điều Kiện này và/hoặc quy định thêm các điều kiện và điều khoản mới vào bất cứ thời điểm nào mà không cần báo trước cho bạn. Bằng việc sử dụng trang thông tin điện tử này, bạn được coi là từ bỏ quyền được thông báo hoặc chấp thuận bất cứ sửa đổi, thay đổi hoặc bổ sung nào với các Điều Khoản và Điều Kiện, nếu có.",
+	"generalInfo.terms.13.2": "13.2  Các thay đổi sẽ có hiệu lực vào ngày đầu tiên được đưa lên trang thông tin điện tử này. Nếu bạn tiếp tục sử dụng trang thông tin điện tử sau thời gian đó, bạn được xem là đã chấp nhận các thay đổi.",
+	"generalInfo.terms.14": "14. LUẬT ĐIỀU CHỈNH VÀ CƠ QUAN XỬ LÝ TRANH CHẤP",
+	"generalInfo.terms.14.1": "14.1  Sự thỏa thuận giữa bạn và <b>BMK</b> trong các Điều Khoản và Điều Kiện này được điều chỉnh và giải thích theo pháp luật Việt Nam.",
+	"generalInfo.terms.14.2": "14.2  Trong trường hợp có tranh chấp giữa bạn và <b>BMK</b> phát sinh từ hoặc có liên quan đến sự thỏa thuận này (“Tranh Chấp”), mỗi Bên nỗ lực tối đa để thảo luận các vấn đề với mục đích giải quyết Tranh Chấp thông qua biện pháp hòa giải.",
+	"generalInfo.terms.14.3": "14.3  Nếu Tranh Chấp không được giải quyết trong vòng ba mươi (30) ngày kể từ ngày Tranh Chấp phát sinh, Tranh Chấp đó sẽ được phân xử chung thẩm bởi Trung tâm Trọng tài Quốc tế Việt Nam (bên cạnh Phòng Thương Mại và Công Nghiệp Việt Nam) (“VIAC”) bởi một (01) trọng tài viên theo quy tắc tố tụng trọng tài của VIAC có hiệu lực tại thời điểm xảy ra Tranh Chấp và ngôn ngữ trọng tài được sử dụng là tiếng Việt.",
+	"createPassword.title": "Create Password",
+	"createPassword.password.required": "You must enter your password",
+	"createPassword.password.invalid": "You password is invalid",
+	"createPassword.enterThePassword": "Enter the password *",
+	"createPassword.passwordMustMatch": "Password must match",
+	"createPassword.condition.1": "- At least 8 characters long",
+	"createPassword.condition.2": "- Include upper and lower case characters",
+	"createPassword.condition.3": "- Include numeric and special characters",
+	"createPassword.continutes": "CONTINUTE",
+	"createPassword.done": "DONE",
+	"createPassword.resetSuccessFul": "Change password successful!",
+	"provideNewPassword.title": "PROVIDE A NEW PASSWORD",
+	"provideNewPassword.continutes": "DONE",
+	"provideNewPassword.password": "Enter your new password *",
+	"provideNewPassword.enterThePassword": "Enter a new password *",
+	"completeInformation.title": "Additional information",
+	"completeInformation.idType": "Type of identification",
+	"completeInformation.idType.required": "You must choose type of indentification",
+	"completeInformation.nbrPer": "Identification number",
+	"completeInformation.nbrPer.required": "You must enter infor number",
+	"completeInformation.nbrPer.invalid": "You Indenetication number is invalid",
+	"completeInformation.dateOfBirth": "Date of birth",
+	"completeInformation.dateOfBirth.required": "You must enter date of birth",
+	"completeInformation.address": "Address",
+	"completeInformation.address.required": "You must enter address",
+	"completeInformation.gif": "Referal code",
+	"completeInformation.branch": "Branch",
+	"completeInformation.branch.required": "You must enter branch",
+	"completeInformation.accountNbr": "Account number",
+	"completeInformation.accountNbr.required": "You must enter account number",
+	"completeInformation.personalInfo": "Passport*",
+	"completeInformation.gender": "Gender",
+	"completeInformation.province": "City",
+	"completeInformation.province.required": "You must select your city",
+	"completeInformation.district": "District",
+	"completeInformation.district.required": "You must select your district",
+	"completeInformation.ward": "Wards",
+	"completeInformation.ward.required": "You must select your ward",
+	"completeInformation.bank": "Bank",
+	"completeInformation.bank.required": "Bạn phải chọn Ngân hàng*",
+	"completeInformation.back": "BACK",
+	"completeInformation.done": "DONE",
+	"completeInformation.success": "Complete information successfully!",
+	"socialLogin.addInfo": "Additional Information",
+	"socialLogin.addInfo.info": "BMK needs you to add the following information to complete account registration.",
+	"socialLogin.agent": "Agent",
+	"socialLogin.personal": "Personal",
+	"socialLogin.loginWith": "Or login with",
+	"socialLogin.registerWith": "Or register with",
+	"socialLogin.youLoginAs": "You log in as,",
+	"socialLogin.youRegisterAs": "You register as,",
+	"socialLogin.requireConnectFB": "Please link your account with Facebook to use this feature",
+	"socialLogin.requireConnectGoogle": "Please link your account with Google to use this feature",
+	"verifyAccount.title": "Account verification",
+	"verifyAccount.success": "Successful account verification, please click below to create a password.",
+	"verifyAccount.fail": "Account verification failed!",
+	"verifyAccount.didNotReceiveCode": "Did not receive the code?",
+	"verifyAccount.tryAgain": "Try Again",
+	"verifyAccount.loading": "Processing...",
+	"verifyAccount.createPassword": "Create password",
+	"verifyAccount.phoneNumberVerification": "Phone number verification",
+	"verifyAccount.otp.info": "Please enter the OTP that has been sent to your phone number <b> {phoneNumber} </b>",
+	"verifyAccount.otp.verify": "Verify",
+	"verifyAccount.otp.getOtp": "Get OTP",
+	"verifyAccount.otp.registerSuccess": "Đăng ký thành công, liên kết tạo mật khẩu đã được gửi đến email của bạn!",
+	"connectWithSocial.connectAccount": "Connect account",
+	"connectWithSocial.connect": "Connection",
+	"connectWithSocial.success": "Successful connection",
+	"bonusPoint.history": "Bonus points calendar",
+	"bonusPoint.received": "Received",
+	"bonusPoint.used": "Used",
+	"bonusPoint.bonus": "BMK gives bonus points for completed contracts",
+	"bonusPoint.paymentContract": "Used BMK bonus points to pay the contract",
+	"bonusPoint.withDrawval": "Used BMK bonus points to withdraw money",
+	"bonusPoint.gift": "Used BMK reward points to redeem gifts",
+	"bonusPoint.yourBonusPoint": "You have {point} bonus points",
+	"bonusPoint.availablePoint": "Bonus points available",
+	"bonusPoint.uses": "Use bonus points to redeem gifts, withdraw money, pay contracts"
 };
 
 var login$1 = "Đăng nhập";
@@ -4718,446 +4716,446 @@ var register$2 = "Đăng ký";
 var forgotPassword$2 = "Quên mật khẩu";
 var setting$1 = "Cài đặt";
 var messages_vi = {
-  "commom.error.requireField": "Bạn phải nhập {fieldName}",
-  "common.gender.male": "Nam",
-  "common.gender.female": "Nữ",
-  "common.gender.other": "Khác",
-  "common.icType.personalID": "Chứng minh nhân dân",
-  "common.icType.citizenIdentify": "Căn cước công dân",
-  "common.icType.passport": "Hộ chiếu",
-  "common.icType.CMND": "Chứng minh nhân dân",
-  "common.icType.CCCD": "Căn cước công dân",
-  "common.icType.HC": "Hộ chiếu",
-  "common.home": "Trang chủ",
-  "common.backHome.confirmMessage": "Bạn có muốn quay lại trang chủ không?",
-  "common.saveChanges": "Lưu thay đổi",
-  "common.saveChanges.confirmMessage": "Bạn có muốn lưu thay đổi?",
-  "common.cancel": "Hủy",
-  "common.ok": "Đồng ý",
-  "common.noResults": "Không có kết quả",
-  "common.sessionExpired": "Phiên làm việc của bạn đã hết hạn, bạn vui lòng đăng nhập lại!",
-  "common.error.500": "Có lỗi xảy ra, xin vui lòng thử lại!",
-  "common.table.previous": "Trước",
-  "common.table.next": "Tiếp",
-  "common.table.page": "Trang",
-  "common.table.of": "của",
-  "common.table.rows": "dòng",
-  "common.table.noData": "Không tìm thấy kết quả",
-  "common.back": "Quay lại",
-  "landingPage.copyRight": "2020-{year}: BMK - Bảo hiểm không ngủ",
-  "landingPage.slogan": "Nơi cung cấp các giải pháp công nghệ trong lĩnh vực bảo hiểm",
-  "landingPage.welcomeText": "Chào mừng bạn đến với BMK",
-  login: login$1,
-  "login.firstWelcome": "Chào mừng bạn đến với BMK X!",
-  "login.logedWelcome": "Xin chào,",
-  "login.username": "Tên tài khoản *",
-  "login.username.required": "Bạn phải nhập tên tài khoản",
-  "login.username.invalid": "Tên tài khoản không hợp lệ",
-  "login.password": "Mật khẩu *",
-  "login.password.required": "Bạn phải nhập mật khẩu",
-  "login.rememberMe": "Ghi nhớ tôi",
-  "login.notMe": "Không phải tôi",
-  "login.fail": "Tài khoản hoặc mật khẩu của bạn không chính xác",
-  "login.sayHi": "Xin chào, {name}",
-  "login.registerPartner": "Đăng ký đối tác",
-  "login.needRegisterPartner": "Tài khoản của bạn không sử dụng được chức năng này. Vui lòng đăng ký đối tác hoặc đăng nhập với tư cách khách hàng cá nhân.",
-  register: register$2,
-  "register.fullname": "Họ và tên",
-  "register.email": "Email*",
-  "register.fullname.invalid": "Tên của bạn không thể chứa ký tự đặc biệt",
-  "register.fullname.required": "Bạn phải nhập họ và tên",
-  "register.email.required": "Bạn phải nhập địa chỉ email",
-  "register.email.invalid": "Địa chỉ email không hợp lệ",
-  "register.phoneNumber": "Số điện thoại",
-  "register.phoneNumber.required": "Bạn phải nhập số điện thoại",
-  "register.phoneNumber.invalid": "Số điện thoại không hợp lệ",
-  "register.refCode": "Mã giới thiệu",
-  "register.refCode.invalid": "Mã giới thiệu không hợp lệ",
-  "register.mustAppcepted": "Bạn phải đồng ý điều khoản và điều kiện của chúng tôi",
-  "register.registerSuccess": "Đề nghị đăng ký của đối tác đang được xử lý.Vui lòng kiểm tra email để hoàn thành.Xin cảm ơn!",
-  "register.agreeWith": "Tôi đồng ý với",
-  "register.policyAndCondition": "Điều khoản và Điều kiện",
-  "register.useService": "sử dụng dịch vụ.",
-  forgotPassword: forgotPassword$2,
-  "forgotPassword.verify": "Xác thực",
-  "forgotPassword.username": "Tên tài khoản *",
-  "forgotPassword.username.required": "Bạn phải nhập tên tài khoản",
-  "forgotPassword.email": "Email đăng ký *",
-  "forgotPassword.email.required": "Bạn phải nhập email đăng ký",
-  "forgotPassword.successfull": "Link thay đổi password đã được gửi đến email của bạn!",
-  "forgotPassword.fail": "Số điện thoại hoặc Email của bạn không chính xác",
-  "forgotPassword.notFoundEmailSuggestion": "Không tìm thấy email với tên đăng nhập của bạn",
-  "forgotPassword.yourEmailIs": "Email của bạn là",
-  "menu.home": "Trang chủ",
-  "menu.user": "Tài khoản",
-  "menu.contract": "Hợp đồng",
-  "menu.buyInsurance": "Mua bảo hiểm",
-  "menu.contractManagement": "Quản lý hợp đồng",
-  "menu.personalContracts": "Hợp đồng cá nhân",
-  "menu.partnerContracts": "Hợp đồng đối tác",
-  "menu.allContracts": "Tất cả hợp đồng",
-  "menu.account": "Tài khoản",
-  "menu.createAccount": "Tạo mới tài khoản",
-  "menu.accountManagement": "Quản lý tài khoản",
-  "menu.createMultipleAccount": "Tạo nhiều tài khoản",
-  "menu.insuranceFeeManagement": "Quản lý Tỷ lệ phí",
-  "menu.systemFee": "Phí của hệ thống",
-  "menu.personalFee": "Phí của cá nhân",
-  "menu.lxPartnerFee": "Phí của vãng lai",
-  "menu.partnerFee": "Phí của đối tác",
-  "menu.customerFee": "Phí của KH cá nhân",
-  "menu.allFee": "Phí của tất cả",
-  "menu.feeApproval": "Phê duyệt phí",
-  "menu.bonusManagement": "Quản lý điểm thưởng",
-  "menu.systemBonus": "Điểm thưởng hệ thống",
-  "menu.customerBonus": "Điểm thưởng KH cá nhân",
-  "menu.personalBonus": "Điểm thưởng cá nhân",
-  "menu.partnerBonus": "Điểm thưởng đối tác",
-  "menu.lxPartnerBonus": "Điểm thưởng vãng lai",
-  "menu.allBonus": "Điểm thưởng tất cả",
-  "menu.bonusApproval": "Phê duyệt điểm thưởng",
-  "menu.bonusClient": "Điểm thưởng KH cá nhân",
-  "menu.insuranceCertificate": "Giấy chứng nhận BH",
-  "menu.insuranceCertificate.newImport": "Nhập mới",
-  "menu.insuranceCertificate.newExport": "Xuất mới",
-  "menu.insuranceCertificate.wrongImport": "Nhập sai hỏng",
-  "menu.insuranceCertificate.wrongExport": "Xuất sai hỏng",
-  "menu.debt": "Công nợ",
-  "menu.createDebt": "Tạo mới công nợ",
-  "menu.editDebt": "Sửa công nợ",
-  "menu.debtApproval": "Duyệt công nợ",
-  "menu.debtManagement": "Quản lý công nợ",
-  "menu.partnerDebt": "Công nợ đối tác",
-  "menu.personalDebt": "Công nợ cá nhân",
-  "menu.allDebt": "Công nợ tất cả",
-  "menu.permissionGoup": "Nhóm quyền",
-  "menu.creatPermissionGoup": "Tạo mới nhóm quyền",
-  "menu.permissionGoupManagement": "Quản lý nhóm quyền",
-  "menu.insuranceMotobike": "Bảo hiểm xe máy",
-  "menu.insuranceCar": "Bảo hiểm ô tô",
-  "menu.approveOpenAccount": "Phê duyệt mở tài khoản",
-  "menu.promotion": "Khuyến mại",
-  "menu.helpCenter": "Trung tâm trợ giúp",
-  "menu.createHelpCenter": "Tạo mới",
-  "menu.helpCenterQuestion": "Câu hỏi thường gặp",
-  "menu.helpCenterUserManual": "Hướng dẫn sử dụng",
-  "menu.helpCenterProfessinalDocument": "Tài liệu nghiệp vụ",
-  "menu.createPromotion": "Tạo khuyến mại",
-  "menu.promotionManagement": "Quản lý khuyến mại",
-  "menu.personalBonusHistory": "Lịch sử điểm thưởng cá nhân",
-  "menu.partnerBonusHistory": "Lịch sử điểm thưởng đối tác",
-  "menu.allBonusHistory": "Lịch sử điểm thưởng tất cả",
-  "menu.notification": "Thông báo",
-  "menu.readAll": "Đọc tất cả",
-  "menu.deleteAll": "Xóa tất cả",
-  "menu.confirmDeleteAll": "Bạn có muốn xóa tất cả thông báo",
-  "menu.notificationManagement": "Quản lý thông báo",
-  "menu.createNotification": "Tạo mới thông báo",
-  "menu.notificationApproval": "Duyệt thông báo",
-  "menu.support": "Hỗ trợ 24/7",
-  "menu.createSupportRequest": "Tạo mới yêu cầu",
-  "menu.managementSupportRequest": "Quản lý yêu cầu hỗ trợ",
-  "menu.mySupportRequest": "Yêu cầu cá nhân",
-  "menu.permissionRequest": "Phân quyền",
-  "menu.compensationManagement": "Quản lý bồi thường",
-  "menu.accountProduct": "Sản phẩm Tài khoản",
-  "menu.accountProductManagement": "Quản lý",
-  "menu.accountProductImport": "Nhập dữ liệu",
-  "menu.exportAvailableContracts": "Xuất báo cáo",
-  "menu.transactionManage": "Quản lý giao dịch",
+	"commom.error.requireField": "Bạn phải nhập {fieldName}",
+	"common.gender.male": "Nam",
+	"common.gender.female": "Nữ",
+	"common.gender.other": "Khác",
+	"common.icType.personalID": "Chứng minh nhân dân",
+	"common.icType.citizenIdentify": "Căn cước công dân",
+	"common.icType.passport": "Hộ chiếu",
+	"common.icType.CMND": "Chứng minh nhân dân",
+	"common.icType.CCCD": "Căn cước công dân",
+	"common.icType.HC": "Hộ chiếu",
+	"common.home": "Trang chủ",
+	"common.backHome.confirmMessage": "Bạn có muốn quay lại trang chủ không?",
+	"common.saveChanges": "Lưu thay đổi",
+	"common.saveChanges.confirmMessage": "Bạn có muốn lưu thay đổi?",
+	"common.cancel": "Hủy",
+	"common.ok": "Đồng ý",
+	"common.noResults": "Không có kết quả",
+	"common.sessionExpired": "Phiên làm việc của bạn đã hết hạn, bạn vui lòng đăng nhập lại!",
+	"common.error.500": "Có lỗi xảy ra, xin vui lòng thử lại!",
+	"common.table.previous": "Trước",
+	"common.table.next": "Tiếp",
+	"common.table.page": "Trang",
+	"common.table.of": "của",
+	"common.table.rows": "dòng",
+	"common.table.noData": "Không tìm thấy kết quả",
+	"common.back": "Quay lại",
+	"landingPage.copyRight": "2020-{year}: BMK - Bảo hiểm không ngủ",
+	"landingPage.slogan": "Nơi cung cấp các giải pháp công nghệ trong lĩnh vực bảo hiểm",
+	"landingPage.welcomeText": "Chào mừng bạn đến với BMK",
+	login: login$1,
+	"login.firstWelcome": "Chào mừng bạn đến với BMK X!",
+	"login.logedWelcome": "Xin chào,",
+	"login.username": "Tên tài khoản *",
+	"login.username.required": "Bạn phải nhập tên tài khoản",
+	"login.username.invalid": "Tên tài khoản không hợp lệ",
+	"login.password": "Mật khẩu *",
+	"login.password.required": "Bạn phải nhập mật khẩu",
+	"login.rememberMe": "Ghi nhớ tôi",
+	"login.notMe": "Không phải tôi",
+	"login.fail": "Tài khoản hoặc mật khẩu của bạn không chính xác",
+	"login.sayHi": "Xin chào, {name}",
+	"login.registerPartner": "Đăng ký đối tác",
+	"login.needRegisterPartner": "Tài khoản của bạn không sử dụng được chức năng này. Vui lòng đăng ký đối tác hoặc đăng nhập với tư cách khách hàng cá nhân.",
+	register: register$2,
+	"register.fullname": "Họ và tên",
+	"register.email": "Email*",
+	"register.fullname.invalid": "Tên của bạn không thể chứa ký tự đặc biệt",
+	"register.fullname.required": "Bạn phải nhập họ và tên",
+	"register.email.required": "Bạn phải nhập địa chỉ email",
+	"register.email.invalid": "Địa chỉ email không hợp lệ",
+	"register.phoneNumber": "Số điện thoại",
+	"register.phoneNumber.required": "Bạn phải nhập số điện thoại",
+	"register.phoneNumber.invalid": "Số điện thoại không hợp lệ",
+	"register.refCode": "Mã giới thiệu",
+	"register.refCode.invalid": "Mã giới thiệu không hợp lệ",
+	"register.mustAppcepted": "Bạn phải đồng ý điều khoản và điều kiện của chúng tôi",
+	"register.registerSuccess": "Đề nghị đăng ký của đối tác đang được xử lý.Vui lòng kiểm tra email để hoàn thành.Xin cảm ơn!",
+	"register.agreeWith": "Tôi đồng ý với",
+	"register.policyAndCondition": "Điều khoản và Điều kiện",
+	"register.useService": "sử dụng dịch vụ.",
+	forgotPassword: forgotPassword$2,
+	"forgotPassword.verify": "Xác thực",
+	"forgotPassword.username": "Tên tài khoản *",
+	"forgotPassword.username.required": "Bạn phải nhập tên tài khoản",
+	"forgotPassword.email": "Email đăng ký *",
+	"forgotPassword.email.required": "Bạn phải nhập email đăng ký",
+	"forgotPassword.successfull": "Link thay đổi password đã được gửi đến email của bạn!",
+	"forgotPassword.fail": "Số điện thoại hoặc Email của bạn không chính xác",
+	"forgotPassword.notFoundEmailSuggestion": "Không tìm thấy email với tên đăng nhập của bạn",
+	"forgotPassword.yourEmailIs": "Email của bạn là",
+	"menu.home": "Trang chủ",
+	"menu.user": "Tài khoản",
+	"menu.contract": "Hợp đồng",
+	"menu.buyInsurance": "Mua bảo hiểm",
+	"menu.contractManagement": "Quản lý hợp đồng",
+	"menu.personalContracts": "Hợp đồng cá nhân",
+	"menu.partnerContracts": "Hợp đồng đối tác",
+	"menu.allContracts": "Tất cả hợp đồng",
+	"menu.account": "Tài khoản",
+	"menu.createAccount": "Tạo mới tài khoản",
+	"menu.accountManagement": "Quản lý tài khoản",
+	"menu.createMultipleAccount": "Tạo nhiều tài khoản",
+	"menu.insuranceFeeManagement": "Quản lý Tỷ lệ phí",
+	"menu.systemFee": "Phí của hệ thống",
+	"menu.personalFee": "Phí của cá nhân",
+	"menu.lxPartnerFee": "Phí của vãng lai",
+	"menu.partnerFee": "Phí của đối tác",
+	"menu.customerFee": "Phí của KH cá nhân",
+	"menu.allFee": "Phí của tất cả",
+	"menu.feeApproval": "Phê duyệt phí",
+	"menu.bonusManagement": "Quản lý điểm thưởng",
+	"menu.systemBonus": "Điểm thưởng hệ thống",
+	"menu.customerBonus": "Điểm thưởng KH cá nhân",
+	"menu.personalBonus": "Điểm thưởng cá nhân",
+	"menu.partnerBonus": "Điểm thưởng đối tác",
+	"menu.lxPartnerBonus": "Điểm thưởng vãng lai",
+	"menu.allBonus": "Điểm thưởng tất cả",
+	"menu.bonusApproval": "Phê duyệt điểm thưởng",
+	"menu.bonusClient": "Điểm thưởng KH cá nhân",
+	"menu.insuranceCertificate": "Giấy chứng nhận BH",
+	"menu.insuranceCertificate.newImport": "Nhập mới",
+	"menu.insuranceCertificate.newExport": "Xuất mới",
+	"menu.insuranceCertificate.wrongImport": "Nhập sai hỏng",
+	"menu.insuranceCertificate.wrongExport": "Xuất sai hỏng",
+	"menu.debt": "Công nợ",
+	"menu.createDebt": "Tạo mới công nợ",
+	"menu.editDebt": "Sửa công nợ",
+	"menu.debtApproval": "Duyệt công nợ",
+	"menu.debtManagement": "Quản lý công nợ",
+	"menu.partnerDebt": "Công nợ đối tác",
+	"menu.personalDebt": "Công nợ cá nhân",
+	"menu.allDebt": "Công nợ tất cả",
+	"menu.permissionGoup": "Nhóm quyền",
+	"menu.creatPermissionGoup": "Tạo mới nhóm quyền",
+	"menu.permissionGoupManagement": "Quản lý nhóm quyền",
+	"menu.insuranceMotobike": "Bảo hiểm xe máy",
+	"menu.insuranceCar": "Bảo hiểm ô tô",
+	"menu.approveOpenAccount": "Phê duyệt mở tài khoản",
+	"menu.promotion": "Khuyến mại",
+	"menu.helpCenter": "Trung tâm trợ giúp",
+	"menu.createHelpCenter": "Tạo mới",
+	"menu.helpCenterQuestion": "Câu hỏi thường gặp",
+	"menu.helpCenterUserManual": "Hướng dẫn sử dụng",
+	"menu.helpCenterProfessinalDocument": "Tài liệu nghiệp vụ",
+	"menu.createPromotion": "Tạo khuyến mại",
+	"menu.promotionManagement": "Quản lý khuyến mại",
+	"menu.personalBonusHistory": "Lịch sử điểm thưởng cá nhân",
+	"menu.partnerBonusHistory": "Lịch sử điểm thưởng đối tác",
+	"menu.allBonusHistory": "Lịch sử điểm thưởng tất cả",
+	"menu.notification": "Thông báo",
+	"menu.readAll": "Đọc tất cả",
+	"menu.deleteAll": "Xóa tất cả",
+	"menu.confirmDeleteAll": "Bạn có muốn xóa tất cả thông báo",
+	"menu.notificationManagement": "Quản lý thông báo",
+	"menu.createNotification": "Tạo mới thông báo",
+	"menu.notificationApproval": "Duyệt thông báo",
+	"menu.support": "Hỗ trợ 24/7",
+	"menu.createSupportRequest": "Tạo mới yêu cầu",
+	"menu.managementSupportRequest": "Quản lý yêu cầu hỗ trợ",
+	"menu.mySupportRequest": "Yêu cầu cá nhân",
+	"menu.permissionRequest": "Phân quyền",
+	"menu.compensationManagement": "Quản lý bồi thường",
+	"menu.accountProduct": "Sản phẩm Tài khoản",
+	"menu.accountProductManagement": "Quản lý",
+	"menu.accountProductImport": "Nhập dữ liệu",
+	"menu.exportAvailableContracts": "Xuất báo cáo",
+	"menu.transactionManage": "Quản lý giao dịch",
   "menu.vehicleManagement": "Quản lý phân giao mã xe",
-  "navbar.language.vi": "Tiếng Việt",
-  "navbar.language.en": "English",
-  "navbar.logout": "Đăng xuất",
-  "navbar.logout.confirmMessage": "Bạn có muốn đăng xuất tài khoản?",
-  "navbar.notifications.markAsRead": "Đánh dấu đã đọc",
-  "navbar.notifications.markAsUnRead": "Đánh dấu chưa đọc",
-  "navbar.notifications.delete": "Xóa",
-  "navbar.notifications.newNotificationNotice": "Bạn có một thông báo mới",
-  "navbar.notifications.noNewNotifications": "Bạn chưa có thông báo mới",
-  "footer.copyRight": "©2020-{year}: BMK - Đã đăng ký bản quyền",
-  "footer.companySlogan": "Nhà cung cấp bảo hiểm hàng đầu Việt Nam",
-  setting: setting$1,
-  "setting.accountInformation": "Thông tin tài khoản",
-  "setting.changePassword": "Thay đổi mật khẩu",
-  "setting.change": "Thay đổi",
-  "setting.partnerCode": "Mã đối tác",
-  "setting.accountCode": "Mã tài khoản",
-  "setting.referralCode": "Mã giới thiệu",
-  "setting.personalSetting": "Cài đặt Cá nhân",
-  "setting.generalInformation": "Thông tin chung",
-  "setting.notification": "Thông báo",
-  "setting.deviceManagement": "Quản lý thiết bị",
-  "setting.language": "Ngôn ngữ",
-  "setting.helpCenter": "Trung tâm trợ giúp",
-  "setting.connectSocial": "Liên kết mạng xã hội",
-  "setting.bonusPoint": "Điểm thưởng của bạn",
-  "setting.termAndCondition": "Điều khoản & Điều kiện",
-  "setting.general": "Chung",
-  "setting.privacyPolicy": "Chính sách bảo mật",
-  "setting.frequentlyAsked": "Câu hỏi thường gặp",
-  "setting.contact": "Liên hệ",
-  "setting.feedback": "Góp ý, báo lỗi",
-  "setting.share": "Chia sẻ",
-  "setting.status.COMPLETE": "Tài khoản đã hoàn thiện thông tin",
-  "setting.status.UNCOMPLE": "Tài khoản cần bổ sung thông tin",
-  "setting.gender.M": "Name",
-  "setting.gender.F": "Nữ",
-  "setting.gender.O": "Khác",
-  "setting.goToGuestApp": "Về trang KHCN",
-  "setting.goToAgencyApp": "Về trang đối tác",
-  "setting.call": "Gọi điện",
-  "setting.call.confirmMessage": "Bạn có muốn gọi đến số {phoneNumber}?",
-  "setting.sendEmail": "Gửi mail",
-  "setting.updateInfo.success": "Thay đổi thông tin thành công!",
-  "setting.updateInfo.confirmMessage": "Bạn có muốn thay đổi thông tin tài khoản?",
-  "setting.updateInfo.imageTypeInvalid": "File tải lên không hợp lệ!",
-  "setting.updateInfo.imageExceedSize": "File tải lên vượt quá dung lượng cho phép ({size}MB)!",
-  "setting.shareWithFriends": "Chia sẻ với bạn bè",
-  "setting.copySuccess": "Sao chép thành công!",
-  "changePassword.newPassword": "Mật khẩu mới",
-  "changePassword.newPassword.required": "Bạn phải nhập mật khẩu mới",
-  "changePassword.newPassword.invalid": "Mật khẩu mới không hợp lệ",
-  "changePassword.oldPassword": "Mật khẩu cũ",
-  "changePassword.oldPassword.required": "Bạn phải nhập mật khẩu cũ",
-  "changePassword.oldPassword.invalid": "Mật khẩu cũ không hợp lệ",
-  "changePassword.confirmPassword.required": "Bạn phải nhập lại mật khẩu mới",
-  "changePassword.passwordMustMatch": "Mật khẩu không trùng khớp",
-  "changePassword.confirmMessage": "Bạn có muốn thay đổi mật khẩu?",
-  "changePassword.success": "Thay đổi mật khẩu thành công!",
-  "generalInfo.changeLanguage.confirmMessage": "Bạn có muốn thay đổi ngôn ngữ?",
-  "generalInfo.changeLanguage.success": "Thay đổi ngôn ngữ thành công!",
-  "generalInfo.policy.1": "1. CÁC LOẠI DỮ LIỆU CÁ NHÂN CHÚNG TÔI SẼ THU THẬP VÀ XỬ LÝ",
-  "generalInfo.policy.1.1": "1.1  Thông tin cá nhân và thông tin liên lạc chi tiết, ví dụ chức vụ, họ tên, thông tin liên lạc chi tiết và lịch sử liên lạc chi tiết; thông tin tài liệu du lịch; ngày sinh, giới tính và/hoặc tuổi của bạn; quốc tịch, bản sao giấy tờ nhận dạng bạn (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
-  "generalInfo.policy.1.2": "1.2  Thông tin chi tiết về người thụ hưởng, ví dụ chủ hợp đồng bảo hiểm và người thụ hưởng của các sản phẩm hoặc dịch vụ của chúng tôi;",
-  "generalInfo.policy.1.3": "1.3  Các thành viên trong gia đình (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
-  "generalInfo.policy.1.4": "1.4  Hồ sơ liên lạc của bạn với chúng tôi, chẳng hạn như lịch sử các cuộc gọi của bạn đến số điện thoại của trung tâm dịch vụ khách hàng của chúng tôi và, nếu bạn liên lạc với chúng tôi bằng các dịch vụ trực tuyến hoặc qua ứng dụng điện thoại thông minh của chúng tôi, các chi tiết như dữ liệu vị trí điện thoại di động, địa chỉ IP và địa chỉ MAC;",
-  "generalInfo.policy.1.5": "1.5  Sản phẩm và dịch vụ, bạn đã mua từ chúng tôi, cũng như những sản phẩm bạn quan tâm và đã nắm giữ và các phương thức thanh toán liên quan được bạn sử dụng;",
-  "generalInfo.policy.1.6": "1.6  Việc sử dụng các sản phẩm và dịch vụ của chúng tôi, các yêu cầu bồi thường bảo hiểm và tình trạng thanh toán các yêu cầu bồi thường này (và các chi tiết khác liên quan đến vấn đề này);",
-  "generalInfo.policy.1.7": "1.7  Phân tích dữ liệu tiếp thị sản phẩm hoặc dịch vụ được thực hiện riêng cho bạn, bao gồm lịch sử liên lạc và thông tin về việc bạn có mở các tài liệu này hay nhấp vào đường link liên kết;",
-  "generalInfo.policy.2": "2. CÁCH THỨC CHÚNG TÔI THU THẬP DỮ LIỆU CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.2.1": "2.1  Trực tiếp từ bạn và bất kỳ thông tin nào từ các thành viên gia đình, cộng sự hoặc người thụ hưởng sản phẩm và dịch vụ;",
-  "generalInfo.policy.2.2": "2.2  Thông tin về bạn được tạo ra khi bạn sử dụng các sản phẩm và dịch vụ của chúng tôi;",
-  "generalInfo.policy.2.3": "2.3  Từ một nhà môi giới hoặc một bên trung gian khác (ví dụ: đại lý, nhà phân phối, đối tác kinh doanh), các bên mà chúng tôi có hợp tác để cung cấp sản phẩm hoặc dịch vụ hoặc cung cấp báo giá cho bạn;",
-  "generalInfo.policy.2.4": "2.4  Các công ty đối tác liên kết với BMK, nếu bạn đã từng đăng ký mua hoặc đã mua sản phẩm từ các công ty này;",
-  "generalInfo.policy.2.5": "2.5  Cookie, dịch vụ định vị, địa chỉ IP khi bạn truy cập trang mạng hoặc ứng dụng di động của chúng tôi hoặc khi bạn điền vào biểu mẫu Liên hệ với chúng tôi trong trang mạng hoặc ứng dụng của chúng tôi;",
-  "generalInfo.policy.2.6": "2.6  Các bên thứ ba như công ty bảo hiểm, đại lý, nhà cung cấp, tổ chức tài chính, cá nhân y tế, tòa án hoặc hồ sơ thông tin đã được công bố công khai;",
-  "generalInfo.policy.2.7": "2.7  Bảng câu hỏi và thông tin liên lạc chi tiết khi bạn tham gia khảo sát, hội nghị nhà đầu tư, các buổi hội thảo hoặc khi bạn cập nhật thông tin liên lạc của bạn với chúng tôi trên trang mạng của chúng tôi;",
-  "generalInfo.policy.2.8": "2.8  Từ các nguồn khác như Cơ quan phòng chống gian lận, tổ chức tham chiếu tín dụng, người cho vay khác và các thông tin đã được công bố công khai (ví dụ: danh bạ điện thoại, phương tiện truyền thông xã hội, các trang mạng, các bài báo), các tổ chức thu hồi nợ, các tổ chức khác để hỗ trợ phòng ngừa và phát hiện tội phạm, cảnh sát và các cơ quan thực thi pháp luật;",
-  "generalInfo.policy.2.9": "2.9  Chúng tôi mua thông tin về bạn hoặc khách hàng nói chung từ các bên thứ ba bao gồm thông tin nhân khẩu học, chi tiết các phương tiện đi lại, lịch sử yêu cầu bồi thường, thông tin về gian lận, danh sách quảng cáo tiếp thị, thông tin đã được công bố công khai và thông tin khác để giúp cải thiện sản phẩm và dịch vụ của chúng tôi.",
-  "generalInfo.policy.3": "3. CHÍNH SÁCH COOKIE",
-  "generalInfo.policy.3.1": "3.1   Trang mạng của chúng tôi sử dụng cookie để phân biệt bạn với những người dùng khác. Điều này giúp chúng tôi cung cấp cho bạn trải nghiệm tốt khi bạn sử dụng trang mạng và cũng cho phép chúng tôi cải thiện trang mạng của mình. Cookie là một tệp nhỏ gồm các chữ cái và số mà chúng tôi lưu trữ trên trình duyệt hoặc ổ cứng máy tính của bạn. Cookie chứa thông tin được lưu trữ trên ổ cứng máy tính của bạn. Bạn có khả năng chấp nhận hoặc từ chối cookie bằng cách sửa đổi cài đặt trong trình duyệt của bạn. Nếu bạn muốn làm điều này, xin vui lòng xem mục trợ giúp trong trình duyệt của bạn.",
-  "generalInfo.policy.3.2": "3.2   Chúng tôi sử dụng các loại cookie sau:",
-  "generalInfo.policy.3.2.1": "3.2.1    Cookie cần thiết cho trang mạng, đây là các cookie cần phải có để phục vụ hoạt động của trang  mạng của chúng tôi. Ví dụ, các cookie cho phép bạn đăng nhập vào trang mạng của chúng tôi một cách an toàn;",
-  "generalInfo.policy.3.2.2": "3.2.2    Cookie phân tích/quản lý hoạt động: các cookie này cho phép chúng tôi nhận ra và đếm số lượng người dùng truy cập vào trang mạng của chúng tôi và theo dõi cách người dùng truy cập di huyển xung quanh trang mạng của chúng tôi khi họ đang sử dụng nó. Điều này giúp chúng tôi cải thiện cách thức hoạt động của trang mạng, ví dụ, cải tiến để giúp người dùng tìm kiếm những thứ họ cần một cách dễ dàng;",
-  "generalInfo.policy.3.2.3": "3.2.3    Cookie chức năng: chúng được sử dụng để nhận ra bạn khi bạn quay lại trang mạng của chúng tôi. Điều này cho phép chúng tôi cá nhân hóa nội dung của chúng tôi cho bạn, chào bạn bằng tên và ghi nhớ sở thích của bạn (ví dụ: lựa chọn ngôn ngữ hoặc khu vực của bạn).",
-  "generalInfo.policy.3.3": "3.3   Bằng cách tiếp tục sử dụng trang mạng của chúng tôi, bạn chấp nhận chúng tôi sử dụng các loại cookie như đã nêu ở trên.",
-  "generalInfo.policy.4": "4. CÁCH THỨC VÀ LÝ DO CHÚNG TÔI SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.4.1": "4.1  Chúng tôi, <b>BMK</b> và các đối tác kinh doanh sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, cho các mục đích sau:",
-  "generalInfo.policy.4.1.1": "<table class='table table-bordered info-item-table'><thead><tr><td>Mục đích</td><td>Cơ sở pháp lý</td></tr></thead><tbody><tr><td>Quản lý các sản phẩm và dịch vụ của chúng tôi, bao gồm cho phép chúng tôi thực hiện nghĩa vụ của chúng tôi với bạn và cung cấp mọi dịch vụ liên quan như đã thảo luận với bạn trước khi bạn mua sản phẩm hoặc dịch vụ.</td><td rowspan='2'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn hoặc để thực hiện các bước trước khi ký hợp đồng với bạn.&nbsp;</td></tr><tr><td>Thực hiện kiểm tra bằng cách thông qua các tổ chức như tổ chức tín dụng, công ty hỗ trợ tìm kiếm hoặc thông tin đã được công bố công khai (xem thêm nội dung trình bày trong Phần “Kiểm tra tham khảo”).</td></tr><tr><td>Cung cấp dịch vụ khách hàng – như trả lời thắc mắc của bạn hoặc thông báo cho bạn biết các thay đổi.</td><td rowspan='3'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn. Sau khi hợp đồng chúng tôi ký với bạn hoàn tất, đây là lợi ích hợp pháp của chúng tôi trong việc duy trì và phát triển mối quan hệ của chúng tôi với bạn.</td></tr><tr><td>Tự động ra quyết định hoặc tạo hồ sơ cá nhân của bạn (xem thêm nội dung trình bày trong Phần “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”).</td></tr><tr><td>Lưu giữ thông tin của bạn và thực hiện các công việc quản lý nội bộ khác.</td></tr><tr><td>Tuân thủ với các yêu cầu pháp quy hoặc pháp lý khác.</td><td>Tuân thủ với các nghĩa vụ pháp lý của chúng tôi.</td></tr><tr><td>Thiết kế và cung cấp cho bạn các sản phẩm và dịch vụ bảo hiểm và tài chính liên quan.</td><td rowspan='2'>Lợi ích chính đáng của chúng tôi trong việc thiết kế và cải tiến sản phẩm, cung cấp dịch vụ giá trị gia tăng, phát triển kinh doanh và hiểu rõ hơn về cách sử dụng sản phẩm của chúng tôi.&nbsp;</td></tr><tr><td>Tiến hành nghiên cứu và phân tích thống kê (bao gồm cả việc sử dụng các công nghệ mới).</td></tr></tbody></table>",
-  "generalInfo.policy.4.2": "4.2  Ngoài ra, chúng tôi, <b>BMK</b> và các đối tác kinh doanh của chúng tôi, sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, để gửi cho bạn các ưu đãi tiếp thị trực tiếp bằng phương tiện điện tử và phi điện tử bao gồm qua đường bưu điện, cũng như gửi cho bạn thông tin giới thiệu các sản phẩm và dịch vụ từ các bên thứ ba đã được chọn lọc kỹ lưỡng. Cơ sở pháp lý chúng tôi trình bày bên trên được xây dựng dựa trên sự đồng thuận với bạn.",
-  "generalInfo.policy.4.3": "4.3  Chúng tôi chia sẽ dữ liệu cá nhân của bạn với ai và tại sao:",
-  "generalInfo.policy.4.3.1": "4.3.1  Chúng tôi sẽ chia sẻ thông tin cá nhân và sức khỏe của bạn trong nội bộ <b>BMK</b> và với các đối tác kinh doanh tài chính/sức khỏe và các bên thứ ba cung cấp dịch vụ cho chúng tôi (bao gồm nhưng không giới hạn các công ty bảo hiểm, luật sư, ngân hàng, kế toán, tổ chức tài chính, bên ủy thác và các nhà cung cấp dịch vụ là bên thứ ba khác cung cấp dịch vụ quản lý, viễn thông, máy tính, thanh toán, in ấn, mua lại hoặc các dịch vụ khác để cho phép chúng tôi thực hiện hoạt động kinh doanh), các công ty thẩm định hóa đơn y tế, các công ty thẩm định yêu cầu bồi thường, hiệp hội và hiệp đoàn trong cùng ngành, các bên đồng sở hữu hợp đồng bảo hiểm hoặc khoản đầu tư, cố vấn chuyên nghiệp, nhà nghiên cứu, tổ chức tham chiếu tín dụng, tổ chức thu hồi nợ, tổ chức tài chính/y tế và các bên đối tác để thực hiện các mục đích được nêu trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của ban”. Nếu bạn có chung hợp đồng bảo hiểm với người khác, thì người đó cũng có thể nhận được dữ liệu cá nhân của bạn. Nếu được yêu cầu, chúng tôi cũng có thể chuyển dữ liệu cá nhân của bạn cho các cơ quan phòng chống tội phạm tài chính, bất kỳ cơ quan lập pháp, tư pháp hoặc hành pháp nào khác.",
-  "generalInfo.policy.4.3.2": "4.3.2  Chúng tôi có thể xử lý dữ liệu cá nhân của bạn ở một quốc gia khác ngoài quốc gia mà bạn cư trú. Trong phạm vi chúng tôi chuyển dữ liệu cá nhân của bạn, chúng tôi sẽ sử dụng các biện pháp bảo vệ phù hợp và tuân thủ luật pháp của quốc gia nơi dữ liệu cá nhân của bạn được chuyển đến. Khi bạn yêu cầu, chúng tôi sẽ cung cấp cho bạn chi tiết các biện pháp bảo vệ dữ liệu mà chúng tôi đang sử dụng.",
-  "generalInfo.policy.4.4": "4.4  Chúng tôi lưu trữ dữ liệu cá nhân của bạn trong một khoảng thời gian nhất định",
-  "generalInfo.policy.4.4.1": "4.4.1   Dữ liệu cá nhân của bạn sẽ được lưu trữ khi bạn (hoặc đồng sở hữu hợp đồng bảo hiểm với bạn) là khách hàng của chúng tôi và trong khoảng thời gian sáu năm sau khi kết thúc mối quan hệ khách hàng hoặc lâu hơn nếu pháp luật yêu cầu. Có thể có những trường hợp cụ thể khi chúng tôi cần lưu giữ dữ liệu cá nhân của bạn lâu hơn (chẳng hạn như khi có tranh chấp xảy ra).",
-  "generalInfo.policy.5": "5. KIỂM TRA THAM KHẢO",
-  "generalInfo.policy.5.1": "5.1  Đối với một số sản phẩm nhất định, chúng tôi có thể sử dụng các tổ chức tham chiếu tín dụng, công ty  hỗ trợ tìm kiếm, cơ quan phòng chống tội phạm tài chính hoặc thông tin có sẵn công khai để giúp chúng tôi kiểm tra danh tính của bạn, cũng như để tránh gian lận và rửa tiền; điều này có thể bao gồm kiểm tra các địa chỉ hiện tại hoặc trước đây của bạn. Những kết quả này có thể được ghi lại để tham khảo trong tương lai.",
-  "generalInfo.policy.5.2": "5.1  Những kết quả kiểm tra này cũng có thể được sử dụng cho một nhà đầu tư, chủ sở hữu hợp đồng chung hoặc người mà bạn đồng ý cung cấp dữ liệu cá nhân của mình. Nếu chúng tôi mất liên lạc với bạn, chúng tôi có thể sử dụng các tổ chức này để xác minh địa chỉ của bạn nhằm giúp chúng tôi liên lạc với bạn.",
-  "generalInfo.policy.5.3": "5.3  Mọi việc chuyển dữ liệu cá nhân của bạn sẽ luôn được thực hiện an toàn.",
-  "generalInfo.policy.6": "6. CHÚNG TÔI CÓ THỂ SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN ĐỂ ĐƯA RA QUYẾT ĐỊNH TỰ ĐỘNG HOẶC TẠO HỒ SƠ CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.6.1": "6.1  Chúng tôi, <b>BMK</b>, Đối tác kinh doanh và Đối tác tiếp thị của chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động ảnh hưởng đến bạn hoặc tạo hồ sơ cá nhân khác cho bạn (ví dụ: hồ sơ tiếp thị).",
-  "generalInfo.policy.7": "7. SỬ DỤNG DỮ LIỆU CÁ NHÂN NHẠY CẢM CỦA BẠN",
-  "generalInfo.policy.7.1": "7.1  Đối với một số sản phẩm hoặc dịch vụ nhất định, chúng tôi sẽ cần xử lý dữ liệu cá nhân nhạy cảm của bạn, chẳng hạn như thông tin liên quan đến sức khỏe, di truyền, định danh sinh trắc học và khuynh hướng giới tính. Trong phạm vi chúng tôi cần sự đồng ý rõ ràng của bạn để xử lý loại dữ liệu cá nhân này theo cách được mô tả trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của bạn” , “Kiểm tra tham khảo” và “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”, chúng tôi sẽ cung cấp chi tiết về điều này khi chúng tôi thu thập các thông tin này từ bạn và xin nhận được sự chấp thuận của bạn.",
-  "generalInfo.policy.8": "8. QUYỀN KIỂM SOÁT DỮ LIỆU CÁ NHÂN CỦA BẠN",
-  "generalInfo.policy.8.1": "8.1  Khi nói đến cách chúng tôi sử dụng dữ liệu cá nhân của bạn, bạn có quyền theo quy định của pháp luật Việt Nam.",
-  "generalInfo.policy.8.2": "8.2  Trong khi đó, nếu bạn hiện đang cư trú tại Châu Âu, các quyền bổ sung theo Quy định bảo vệ dữ liệu chung (GDPR) có thể được áp dụng. Như vậy, bạn có thể:",
-  "generalInfo.policy.8.2.1": "8.2.1  Yêu cầu một bản sao dữ liệu cá nhân của bạn miễn phí (chúng tôi có thể tính phí yêu cầu của bạn nếu không có cơ sở rõ ràng hoặc bị lạm dụng quá mức);",
-  "generalInfo.policy.8.2.2": "8.2.2  Trong một số trường hợp nhất định, chúng tôi sẽ chuyển dữ liệu cá nhân của bạn sang một tổ chức khác theo yêu cầu của bạn;",
-  "generalInfo.policy.8.2.3": "8.2.3  Yêu cầu chúng tôi điều chỉnh bất cứ dữ liệu cá nhân nào bị sai hoặc không đầy đủ;",
-  "generalInfo.policy.8.2.4": "8.2.4  Yêu cầu chúng tôi xóa dữ liệu cá nhân của bạn nếu không còn cần thiết cho các mục đích được nêu trong Phần “Các loại dữ liệu cá nhân chúng tôi sẽ thu thập và xử lý” hoặc nếu không có cơ sở pháp lý nào khác để xử lý dữ liệu;",
-  "generalInfo.policy.8.2.5": "8.2.5  Giới hạn cách chúng tôi sử dụng dữ liệu cá nhân của bạn hoặc rút lại sự đồng ý (bao gồm cả việc đồng ý cho phép đưa ra quyết định tự động dựa trên dữ liệu cá nhân) mà bạn đã chấp thuận cho phép chúng tôi xử lý dữ liệu cá nhân của bạn;",
-  "generalInfo.policy.8.2.6": "8.2.6  Phản đối chúng tôi sử dụng dữ liệu cá nhân của bạn để tiếp thị trực tiếp (bao gồm cả việc tạo lập hồ sơ cá nhân của bạn) hoặc xử lý dữ liệu khác dựa trên lợi ích hợp pháp;",
-  "generalInfo.policy.8.2.7": "8.2.7  Khiếu nại với cơ quan bảo vệ dữ liệu hoặc cơ quan quản lý độc lập khác về cách chúng tôi sử dụng dữ liệu cá nhân của bạn.",
-  "generalInfo.policy.8.3": "8.3  Nếu bạn muốn thực hiện các quyền của mình hoặc muốn giải thích về các quyền này, bạn có thể liên lạc với chúng tôi trong phần Liên hệ.",
-  "generalInfo.policy.8.4": "8.4  Nếu bạn cần nói chuyện với chúng tôi, chúng tôi sẽ chuyển yêu cầu của bạn cho Người Kiểm Soát Dữ Liệu (8.4.1)  cá nhân của bạn là BMK Chúng tôi có thể theo dõi hoặc ghi lại các cuộc gọi hoặc bất kỳ liên lạc nào khác mà chúng tôi có với bạn. Điều này có thể là để đào tạo, bảo mật hoặc để giúp chúng tôi kiểm tra chất lượng.",
-  "generalInfo.policy.8.4.1": "8.4.1  Người Kiểm Soát Dữ Liệu – Cá nhân, pháp nhân, cơ quan nhà nước, các cơ quan hoặc tổ chức khác, riêng rẻ hoặc cùng nhau, xác định mục đích và cách thức xử lý dữ liệu cá nhân.",
-  "generalInfo.policy.9": "9.  THAY MẶT NGƯỜI KHÁC CUNG CẤP DỮ LIỆU CÁ NHÂN CỦA HỌ",
-  "generalInfo.policy.9.1": "9.1  Khi bạn cung cấp cho chúng tôi dữ liệu cá nhân về người khác (hoặc nhiều người khác), bạn nên được chỉ định và ủy quyền bởi người đó để hành động thay họ. Điều này bao gồm cung cấp sự đồng ý để:",
-  "generalInfo.policy.9.1.1": "9.1.1  Chúng tôi xử lý dữ liệu cá nhân của họ và dữ liệu cá nhân nhạy cảm (như chúng tôi đã giải thích trong các Phần ở trên);",
-  "generalInfo.policy.9.1.2": "9.1.1  Bạn sẽ nhận được các thông báo bảo vệ thông tin thay mặt họ.",
-  "generalInfo.policy.9.2": "9.2  Nếu vì bất kỳ lý do nào bạn quan tâm đến việc liệu bạn có được phép cung cấp cho chúng tôi thông tin về người khác hay không, vui lòng liên hệ với chúng tôi theo địa chỉ thư điện tử bên dưới trước khi gửi cho chúng tôi bất cứ thông tin gì.",
-  "generalInfo.policy.10": "10. TIẾP THỊ TRỰC TIẾP",
-  "generalInfo.policy.10.1": "10.1  Chúng tôi, <b>BMK</b>, đối tác kinh doanh của chúng tôi, và đối tác tiếp thị vẫn sẽ gửi cho bạn thông tin qua hình thức các bài đăng về các sản phẩm và dịch vụ của BMK và các bên thứ ba được lựa chọn cẩn thận.",
-  "generalInfo.policy.10.2": "10.2  Ngoài ra, theo thời gian, chung tôi <b>BMK</b> mong muốn gởi thông tin chi tiết về sản phẩm, dịch vụ và các ưu đãi đặc biệt cho bạn qua các phương tiện điện tử. Chúng tôi sẽ chỉ làm điều này nếu bạn đồng ý cho chúng tôi liên lạc với bạn bằng phương tiện điện tử.",
-  "generalInfo.policy.10.3": "10.3  Và nếu bạn thay đổi ý định và/hoặc bạn muốn từ chối nhận tiếp thị trực tiếp phi điện tử, thì bạn cứ cho chúng tôi biết. Chỉ cần sử dụng một trong các tùy chọn trong mục Liên hệ với chúng tôi.",
-  "generalInfo.policy.11": "11. LIÊN HỆ VỚI CHÚNG TÔI",
-  "generalInfo.policy.11.1": "11.1  Nếu bạn muốn thực hiện các quyền của mình trong Phần “Quyền kiểm soát dữ liệu cá nhân của bạn” hoặc nếu bạn yêu cầu bất kỳ thông tin nào theo thông báo này, bạn có thể liên hệ với chúng tôi theo nhiều cách khác nhau.",
-  "generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0899.300.800</b>",
-  "generalInfo.policy.11.1.2": "11.1.2  Gửi thư điện tử cho chúng tôi theo địa chỉ: <b>lienhe@bmktech.vn</b>",
-  "generalInfo.policy.11.1.3": "11.1.3  Hoặc liên hệ trực tiếp với chúng tôi tại văn phòng: <b>Phòng 301A, Tòa nhà Thiên Bảo, số 47-49 Lê Văn Hưu, Phường Ngô Thì Nhậm, Quận Hai Bà Trưng, Thành phố Hà Nội.</b>",
-  "generalInfo.terms.1": "1. CÁC ĐIỀU KHOẢN VÀ ĐIỀU KIỆN SỬ DỤNG",
-  "generalInfo.terms.1.1": "1.1  Trang thông tin điện tử này <b>(www.bmktech.vn)</b> cùng các tên miền phụ (x.bmktech.vn,...) và ứng dụng di động <b>“BMK” (sau đây gọi tắt là “Hệ thống\nBMK”)</b> do <b>Công ty Cổ phần BMK (sau đây gọi tắt là “BMK”) - Đơn vị chủ quản của Hệ thống và Thương hiệu BMK<b/> toàn quyền sở hữu và điều\nhành.\n",
-  "generalInfo.terms.1.2": "1.2  Việc sử dụng <b>Hệ thống BMK</b> này phụ thuộc vào các điều khoản và điều kiện cụ thể sau: (A) các điều khoản và điều kiện được nêu dưới đây và (B) mọi điều khoản và điều kiện bổ sung cụ thể tùy từng thời điểm để điều chỉnh việc sử dụng, và truy cập vào một số mục của trang thông tin điện tử này (và các điều khoản bổ sung đó sẽ có hiệu lực ràng buộc khi chúng được đăng tải trên <b>Hệ thống BMK</b> này) <b>(\"Điều Khoản và Điều Kiện\")</b>.",
-  "generalInfo.terms.1.3": "1.3  Khi sử dụng trang thông tin điện tử này, bạn đã đồng ý với các Điều Khoản và Điều Kiện, và sự đồng ý của bạn cùng với các Điều Khoản và Điều Kiện sẽ cấu thành một hợp đồng có giá trị ràng buộc về pháp lý giữa bạn và <b>BMK</b>. Vì thế, bạn vui lòng đọc kỹ các Điều Khoản và Điều Kiện của trang thông tin điện tử này.",
-  "generalInfo.terms.2": "2. CÁC HẠN CHẾ VÀ SỬ DỤNG CÁC THÔNG TIN TÀI LIỆU",
-  "generalInfo.terms.2.1": "2.1  Trừ khi được <b>BMK</b> đồng ý bằng văn bản một cách khác đi, bạn sẽ không sao chép, sao lại, tái bản, đưa lên mạng, công bố, chuyển, tạo liên kết đến hoặc phân phối dưới bất cứ hình thức nào các thông tin và/hoặc tài liệu đã được đăng tải trên trang thông tin điện tử này.",
-  "generalInfo.terms.2.2": "2.2  Bạn có thể tải xuống các thông tin và/hoặc tài liệu được đăng tải trên trang thông tin điện tử này để bạn sử dụng, nhưng luôn luôn với điều kiện là bạn không dỡ bỏ các thông tin về bản quyền và/hoặc các quyền khác của <b>BMK</b> gắn với các thông tin và/hoặc tài liệu đó.",
-  "generalInfo.terms.2.3": "2.3  Bạn không được phát tán, sửa đổi, chuyển đi, sử dụng lại, công bố, tạo liên kết hoặc sử dụng các nội dung của trang thông tin điện tử này, bao gồm, nhưng không giới hạn bởi, cả các thông tin bằng chữ, các hình ảnh, các tập tin âm thanh và/hoặc các đoạn phim, cho các mục đích kinh doanh và/hoặc công cộng, khi chưa có sự cho phép bằng văn bản của BMK.",
-  "generalInfo.terms.3": "3. THỜI GIAN HOẠT ĐỘNG",
-  "generalInfo.terms.3.1": "3.1 Trang thông tin điện tử này hoạt động 24 giờ mỗi ngày và 7 ngày mỗi tuần. Tuy nhiên, <b>BMK</b> bảo lưu quyền ngắt hệ thống để bảo trì khi cần thiết. <b>BMK</b> sẽ cố gắng để lên kế hoạch và thông báo về việc hệ thống không thể sử dụng được bằng cách đưa một thông báo trên mạng trực tuyến. <b>BMK</b> không chịu trách nhiệm đối với bất cứ thiệt hại và/hoặc mất mát nào do việc hệ thống bị ngắt trong trường hợp này.",
-  "generalInfo.terms.4": "4. TÀI KHOẢN NGƯỜI SỬ DỤNG",
-  "generalInfo.terms.4.1": "4.1  Bạn sẽ đăng ký và được cung cấp một Tên Truy Cập Tài Khoản và Mật khẩu để có thể mua bảo hiểm trên trang thông tin điện tử này. Bạn sẽ giữ bí mật Tên Truy Cập Tài Khoản và Mật khẩu này vào mọi thời điểm, và sẽ bảo đảm rằng Tên Truy Cập Tài Khoản và Mật khẩu này của bạn sẽ không bị tiết lộ theo bất cứ cách thức nào cho bất kỳ ai.",
-  "generalInfo.terms.4.2": "4.2  <b>BMK</b> sẽ không chịu trách nhiệm về bất cứ giao dịch không được phép nào do việc Tên Truy Cập Tài Khoản và/hoặc Mật khẩu bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn phải lập tức thông báo cho <b>BMK</b> bất cứ trường hợp nào mà Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn chịu trách nhiệm hoàn toàn về việc bảo mật Tên Truy Cập Tài Khoản và Mật khẩu và đối với bất cứ việc truy cập nào sử dụng Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn.",
-  "generalInfo.terms.5": "5. BẢN QUYỀN VÀ NHÃN HIỆU",
-  "generalInfo.terms.5.1": "5.1  Mọi nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> và các đối tác khác (nếu có).",
-  "generalInfo.terms.5.2": "5.2  Không có điều gì trên trang thông tin điện tử này có thể được hiểu là, dù là ngầm định hay cách khác, cho phép sử dụng hoặc bất cứ quyền sử dụng nào liên quan đến bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này khi chưa có sự đồng ý bằng văn bản của <b>BMK</b> hoặc bên thứ ba sở hữu các nhãn hiệu hoặc tên thương mại đặt trên trang thông tin điện tử này.",
-  "generalInfo.terms.5.3": "5.3  Bạn hoàn toàn không được sử dụng bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này hoặc bất cứ nội dung nào khác có trên trang thông tin điện tử này, trừ các trường hợp được quy định trong các Điều Khoản và Điều Kiện.",
-  "generalInfo.terms.5.4": "5.4  Các hình ảnh đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> hoặc được <b>BMK</b> sử dụng theo sự đồng ý của chủ sở hữu.",
-  "generalInfo.terms.5.5": "5.5  Trừ khi được cho phép cụ thể, bạn không được sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này, bạn cũng không được ủy quyền cho bất cứ người nào sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này. Bất cứ việc sử dụng không được phép nào đối với các hình ảnh này có thể vi phạm luật tác quyền, luật nhãn hiệu, luật về quyền riêng tư và luật xuất bản, và các quy định về thông tin khác.",
-  "generalInfo.terms.6": "6. QUY ĐỊNH VỀ QUYỀN RIÊNG TƯ",
-  "generalInfo.terms.6.1": "6.1   Xin đọc kỹ CHÍNH SÁCH VỀ QUYỀN RIÊNG TƯ TRÊN INTERNET của chúng tôi. Chính sách này giải thích rõ những thông tin nào <b>BMK</b> có thể thu thập từ bạn trên trang thông tin điện tử của chúng tôi và cách thức chúng tôi sẽ sử dụng và bảo vệ các thông tin của bạn. Chúng tôi sẽ không thu thập bất cứ thông tin xác định danh tính cá nhân nào trên trang thông tin điện tử của chúng tôi trừ khi bạn cung cấp các thông tin đó cho chúng tôi.",
-  "generalInfo.terms.7": "7. LIÊN KẾT ĐẾN CÁC TRANG WEB KHÁC",
-  "generalInfo.terms.7.1": "7.1  Trang thông tin điện tử này liên kết đến các trang thông tin điện tử khác không do <b>BMK</b> quản lý hoặc điều khiển. <b>BMK</b> sẽ không chịu trách nhiệm về nội dung của các trang thông tin điện tử đó.",
-  "generalInfo.terms.7.2": "7.2  Việc liên kết đến bất cứ trang thông tin điện tử nào như thế không có nghĩa là <b>BMK</b> đã chấp thuận hoặc tán thành đối với các trang thông tin điện tử đó, hoặc với nội dung của các trang thông tin điện tử đó, hoặc các sản phẩm và dịch vụ trên các trang thông tin điện tử đó.",
-  "generalInfo.terms.8": "8. AN NINH CỦA TRANG WEB",
-  "generalInfo.terms.8.1": "8.1  Bạn sẽ không xâm phạm hoặc cố gắng xâm phạm an ninh của trang thông tin điện tử này, bao gồm, nhưng không giới hạn, các hành vi dưới đây:",
-  "generalInfo.terms.8.1.1": "8.1.1  Truy cập thông tin hoặc nối vào một máy chủ hoặc tài khoản mà bạn không được phép truy cập.",
-  "generalInfo.terms.8.1.2": "8.1.2  Cố gắng thăm dò, kiểm tra hoặc thử nghiệm điểm yếu của một hệ thống hoặc hệ thống mạng để vi phạm an ninh hoặc biện pháp nhận dạng mà không được <b>BMK</b> cho phép bằng văn bản.",
-  "generalInfo.terms.8.1.3": "8.1.3  Cố gắng can thiệp vào dịch vụ cung cấp cho bất cứ người sử dụng nào, máy chủ hoặc hệ thống mạng nào, bằng cách phát tán vi rút hoặc mã độc lên trang thông tin điện tử, làm quá tải hoặc gây ra hiện tượng thư rác (spamming) trên trang thông tin điện tử;",
-  "generalInfo.terms.8.1.4": "8.1.4  Thay đổi thông tin của phần tiêu đề (header) của bộ giao thức điều khiển truyền vận (TCP/IP) hoặc bất cứ phần thông tin nào của phần tiêu đề (header) trong bất cứ thư điện tử hay nhóm thông tin được đăng tải.",
-  "generalInfo.terms.8.2": "8.2  Bạn không sử dụng trang thông tin điện tử này cho bất cứ mục đích bất hợp pháp nào.",
-  "generalInfo.terms.8.3": "8.3  Bạn phải đảm bảo rằng tất cả các thông tin được đưa lên trang thông tin điện tử này là đầy đủ, chính xác, có thật, phù hợp và nhất quán với các tài liệu chứa đựng các thông tin này. Vi phạm điều này sẽ dẫn đến việc chậm trễ trong quy trình xử lý hoặc các thông tin điện tử được đưa lên bị loại bỏ. Bạn phải chịu trách nhiệm đối với toàn bộ chi phí phát sinh do việc đưa thông tin giả mạo hoặc sai.",
-  "generalInfo.terms.8.4": "8.4  Bạn sẽ không tấn công hoặc cố gắng tấn công hoặc làm hại trang thông tin điện tử này bằng bất cứ hình thức hay phương tiện nào như các công cụ tấn công, vi-rút và chương trình máy tính có chứa các mã có thể gây hỏng máy tính. Bất cứ cố gắng nào để thực hiện các hành vi như vậy đều khiến bạn phải chịu sự truy tố theo quy định của pháp luật hiện hành.",
-  "generalInfo.terms.9": "9. KHÔNG CHỊU TRÁCH NHIỆM",
-  "generalInfo.terms.9.1": "9.1  Mặc dù <b>BMK</b> thực hiện mọi sự cẩn trọng khi cung cấp dịch vụ tại trang thông tin điện tử, <b>BMK</b> không cam kết rằng trang thông tin điện tử này sẽ hoạt động không có lỗi hoặc hoàn toàn không có vi-rút, worms, Trojan horses hoặc các mã độc hại khác.",
-  "generalInfo.terms.9.2": "9.2  <b>BMK</b> không chấp nhận bất cứ trách nhiệm nào, và sẽ không chịu trách nhiệm về bất cứ thiệt hại nào xảy ra cho thiết bị máy tính hoặc các tài sản khác của bạn do việc bạn truy cập vào, sử dụng, hoặc xem lướt qua trang thông tin điện tử này hoặc việc bạn tải xuống bất cứ tài liệu, dữ liệu, các thông tin bằng chữ, các hình ảnh, các đoạn video, hoặc các tập tin âm thanh nào từ trang thông tin điện tử này hoặc phát sinh liên quan đến việc chậm thực hiện, lỗi, thiếu sót, bị gián đoạn, lỗi, vi-rút máy tính, chậm trễ trong hoạt động hoặc truyền dữ liệu, hoặc lỗi hệ thống hoặc đường truyền.",
-  "generalInfo.terms.9.3": "9.3  <b>BMK</b> cũng từ chối mọi trách nhiệm đối với:",
-  "generalInfo.terms.9.3.1": "9.3.1  Bất cứ tổn thất nào hoặc không có khả năng lấy lại các dữ liệu hoặc thông tin vì bất cứ lý do gì và bao gồm việc không chuyển được, việc sử dụng không đúng mục đích hoặc việc chuyển sai do kết quả của bất cứ sự gián đoạn, ngưng hoặc chấm dứt dịch vụ trên trang thông tin điện tử này; ",
-  "generalInfo.terms.9.3.2": "9.3.2  Bất cứ sự sai sót của các thông tin hoặc nguồn tài nguyên có sẵn, nhận được hoặc được chuyển thông qua trang thông tin điện tử;",
-  "generalInfo.terms.9.3.3": "9.3.3  Bất cứ trục trặc, khuyết điểm hoặc sai sót của trang thông tin điện tử này; ",
-  "generalInfo.terms.9.3.4": "9.3.4  Bất cứ sự chậm trễ hoặc không có khả năng trong việc cung cấp dịch vụ của <b>BMK</b> tại trang thông tin điện tử này theo các Điều Khoản và Điệu Kiện do bất cứ khuyết điểm hoặc hỏng hóc về điện tử, cơ khí, hệ thống, xử lý dữ liệu hoặc viễn thông, thiên tai, xáo trộn dân sự hoặc bất cứ sự kiện nào nằm ngoài sự kiểm soát của <b>BMK</b>.",
-  "generalInfo.terms.10": "10. MIỄN TRỪ TRÁCH NHIỆM",
-  "generalInfo.terms.10.1": "10.1  Trong bất cứ trường hợp nào, <b>BMK</b> cũng không chịu trách nhiệm về bất cứ thiệt hại, tổn thất hoặc chi phí, bao gồm nhưng không giới hạn, thiệt hại trực tiếp, đặc biệt hoặc do hệ quả của, hoặc tổn thất kinh tế phát sinh từ hoặc có liên quan hoặc có thể quy cho:",
-  "generalInfo.terms.10.1.1": "10.1.1  Bất cứ việc truy cập, sử dụng hoặc không thể truy cập hoặc sử dụng trang thông tin điện tử hoặc dịch vụ này, hoặc tin cậy vào những thông tin trên trang thông tin điện tử này.",
-  "generalInfo.terms.10.1.2": "10.1.2  Bất cứ sự hỏng hóc, sai sót, bỏ sót, gián đoạn hoặc chậm trễ trong việc truyền dữ liệu;",
-  "generalInfo.terms.10.1.3": "10.1.3  Bất cứ vi-rút máy tính hoặc hoặc các mã độc hại, hoặc các đoạn mã, chương trình hay một lệnh riêng lẻ bằng ngôn ngữ lập trình mà kết quả là một chuỗi lệnh bằng ngôn ngữ máy tính (macro) mang tính chất làm hỏng hoặc phá hủy khác có thể ảnh hưởng đến các thiết bị, chương trình máy tính hoặc các tài sản khác của bạn.",
-  "generalInfo.terms.11": "11. BỒI THƯỜNG",
-  "generalInfo.terms.11.1": "11.1 Bằng việc truy cập vào trang thông tin điện tử này, bạn đồng ý bồi thường cho <b>BMK</b>, giữ cho <b>BMK</b> khỏi mọi thiệt hại và bảo vệ <b>BMK</b> khỏi bất cứ khiếu nại, hành động hoặc đòi hỏi, bao gồm nhưng không giới hạn các chi phí pháp lý và kế toán hợp lý, được cho là hoặc là kết quả của việc bạn sử dụng trang thông tin điện tử này hoặc dịch vụ tại trang thông tin điện tử này, hoặc do việc bạn vi phạm các Điều Khoản và Điều Kiện.",
-  "generalInfo.terms.12": "12. CHẤM DỨT",
-  "generalInfo.terms.12.1": "12.1  <b></b> bảo lưu quyền, theo quyết định riêng của <b>BMK</b>, chấm dứt dịch vụ trên trang thông tin điện tử này vào bất cứ thời điểm nào, có hoặc không có lý do hoặc chấm dứt quyền truy cập vào trang thông tin điện tử này của bạn mà không cần báo trước và không cần lý do. Bằng việc truy cập vào trang thông tin điện tử này, bạn được coi là từ bỏ quyền được <b>BMK</b> thông báo về việc chấm dứt này, nếu có.",
-  "generalInfo.terms.12.2": "12.2  <b></b> không chịu trách nhiệm về bất cứ thiệt hại, mất mát hoặc chí phí phát sinh theo bất cứ cách thức nào, từ hoặc do việc chấm dứt dịch vụ trên trang thông tin điện tử này.",
-  "generalInfo.terms.13": "13. SỬA ĐỔI",
-  "generalInfo.terms.13.1": "13.1  <b></b> có thể thay đổi và thay thế nội dung các Điều Khoản và Điều Kiện này và/hoặc quy định thêm các điều kiện và điều khoản mới vào bất cứ thời điểm nào mà không cần báo trước cho bạn. Bằng việc sử dụng trang thông tin điện tử này, bạn được coi là từ bỏ quyền được thông báo hoặc chấp thuận bất cứ sửa đổi, thay đổi hoặc bổ sung nào với các Điều Khoản và Điều Kiện, nếu có.",
-  "generalInfo.terms.13.2": "13.2  Các thay đổi sẽ có hiệu lực vào ngày đầu tiên được đưa lên trang thông tin điện tử này. Nếu bạn tiếp tục sử dụng trang thông tin điện tử sau thời gian đó, bạn được xem là đã chấp nhận các thay đổi.",
-  "generalInfo.terms.14": "14. LUẬT ĐIỀU CHỈNH VÀ CƠ QUAN XỬ LÝ TRANH CHẤP",
-  "generalInfo.terms.14.1": "14.1  Sự thỏa thuận giữa bạn và <b></b> trong các Điều Khoản và Điều Kiện này được điều chỉnh và giải thích theo pháp luật Việt Nam.",
-  "generalInfo.terms.14.2": "14.2  Trong trường hợp có tranh chấp giữa bạn và <b></b> phát sinh từ hoặc có liên quan đến sự thỏa thuận này (“Tranh Chấp”), mỗi Bên nỗ lực tối đa để thảo luận các vấn đề với mục đích giải quyết Tranh Chấp thông qua biện pháp hòa giải.",
-  "generalInfo.terms.14.3": "14.3  Nếu Tranh Chấp không được giải quyết trong vòng ba mươi (30) ngày kể từ ngày Tranh Chấp phát sinh, Tranh Chấp đó sẽ được phân xử chung thẩm bởi Trung tâm Trọng tài Quốc tế Việt Nam (bên cạnh Phòng Thương Mại và Công Nghiệp Việt Nam) (“VIAC”) bởi một (01) trọng tài viên theo quy tắc tố tụng trọng tài của VIAC có hiệu lực tại thời điểm xảy ra Tranh Chấp và ngôn ngữ trọng tài được sử dụng là tiếng Việt.",
-  "createPassword.title": "Tạo mật khẩu",
-  "createPassword.password.required": "Bạn phải nhập mật khẩu",
-  "createPassword.password.invalid": "Mật khẩu của bạn không hợp lệ",
-  "createPassword.enterThePassword": "Nhập lại mật khẩu *",
-  "createPassword.passwordMustMatch": "Mật khẩu phải trùng khớp",
-  "createPassword.condition.1": "- Dài ít nhất 8 ký tự",
-  "createPassword.condition.2": "- Bao gồm ký tự viết hoa và viết thường",
-  "createPassword.condition.3": "- Bao gồm ký tự số và ký tự đặc biệt",
-  "createPassword.continutes": "TIẾP TỤC",
-  "createPassword.done": "HOÀN THÀNH",
-  "createPassword.resetSuccessFul": "Thay đổi mật khẩu thành công!",
-  "provideNewPassword.title": "CẤP MẬT KHẨU MỚI",
-  "provideNewPassword.continutes": "THỰC HIỆN",
-  "provideNewPassword.password": "Nhập mật khẩu mới *",
-  "provideNewPassword.enterThePassword": "Nhập lại mật khẩu mới *",
-  "createPassword.enterThePassword.required": "Bạn phải nhập mật khẩu mới",
-  "completeInformation.title": "Bổ sung thông tin",
-  "completeInformation.idType": "Loại giấy tờ tùy thân",
-  "completeInformation.idType.required": "Bạn phải chọn loại giấy tờ tùy thân",
-  "completeInformation.nbrPer": "Số giấy tờ tuỳ thân",
-  "completeInformation.nbrPer.required": "Bạn phải nhập số giấy tờ tuỳ thân",
-  "completeInformation.nbrPer.invalid": "Số giấy tờ tùy thân không hợp lệ",
-  "completeInformation.dateOfBirth": "Ngày sinh",
-  "completeInformation.dateOfBirth.required": "Bạn phải nhập ngày sinh",
-  "completeInformation.address": "Địa chỉ",
-  "completeInformation.address.required": "Bạn phải nhập địa chỉ",
-  "completeInformation.gif": "Mã giới thiệu",
-  "completeInformation.branch": "Chi nhánh",
-  "completeInformation.branch.required": "Bạn phải nhập chi nhánh",
-  "completeInformation.accountNbr": "Số tài khoản",
-  "completeInformation.accountNbr.required": "Bạn phải nhập số tài khoản",
-  "completeInformation.personalInfo": "Hộ chiếu*",
-  "completeInformation.gender": "Giới tính",
-  "completeInformation.province": "Tỉnh/Thành Phố",
-  "completeInformation.province.required": "Bạn phải chọn Tỉnh/Thành Phố",
-  "completeInformation.district": "Quận/Huyện",
-  "completeInformation.district.required": "Bạn phải chọn Quận/Huyện",
-  "completeInformation.ward": "Phường/Xã",
-  "completeInformation.ward.required": "Bạn phải chọn Phường/Xã",
-  "completeInformation.bank": "Ngân hàng",
-  "completeInformation.bank.required": "Bạn phải chọn Ngân hàng",
-  "completeInformation.back": "Quay lại",
-  "completeInformation.done": "Hoàn thành",
-  "completeInformation.success": "Hoàn tất đăng ký thành công!",
-  "socialLogin.addInfo": "Bổ sung thông tin",
-  "socialLogin.addInfo.info": " cần bạn bổ sung các thông tin bên dưới để hoàn tất đăng ký tài khoản.",
-  "socialLogin.agent": "Đối tác",
-  "socialLogin.personal": "Cá nhân",
-  "socialLogin.loginWith": "Hoặc đăng nhập với",
-  "socialLogin.registerWith": "Hoặc đăng ký với",
-  "socialLogin.youLoginAs": "Bạn đăng nhập với,",
-  "socialLogin.youRegisterAs": "Bạn đăng ký với,",
-  "socialLogin.requireConnectFB": "Vui lòng liên kết tài khoản của bạn với Facebook để sử dụng tính năng này",
-  "socialLogin.requireConnectGoogle": "Vui lòng liên kết tài khoản của bạn với Google để sử dụng tính năng này",
-  "verifyAccount.title": "Xác thực tài khoản",
-  "verifyAccount.success": "Xác thực tài khoản thành công, bạn vui lòng nhấn vào bên dưới để tạo mật khẩu.",
-  "verifyAccount.fail": "Xác thực tài khoản thất bại!",
-  "verifyAccount.didNotReceiveCode": "Không nhận được mã code?",
-  "verifyAccount.tryAgain": "Thử lại",
-  "verifyAccount.loading": "Đang xử lý...",
-  "verifyAccount.createPassword": "Tạo mật khẩu",
-  "verifyAccount.phoneNumberVerification": "Xác thực số điện thoại",
-  "verifyAccount.otp.info": "Bạn vui lòng nhập mã OTP đã được gửi về số điện thoại <b>{phoneNumber}</b>",
-  "verifyAccount.otp.verify": "Xác nhận",
-  "verifyAccount.otp.getOtp": "Lấy lại mã OTP",
-  "verifyAccount.otp.registerSuccess": "Đăng ký thành công, link tạo mật khẩu đã được gửi đến email của ban!",
-  "connectWithSocial.connectAccount": "Kết nối tài khoản",
-  "connectWithSocial.connect": "Kết nối",
-  "connectWithSocial.success": "Kết nối thành công",
-  "bonusPoint.history": "Lịch sử điểm thưởng",
-  "bonusPoint.received": "Đã nhận",
-  "bonusPoint.used": "Đã dùng",
-  "bonusPoint.bonus": " tặng điểm thưởng cho hợp đồng hoàn thành",
-  "bonusPoint.paymentContract": "Đã dùng điểm thưởng  để thanh toán hợp đồng",
-  "bonusPoint.withDrawval": "Đã dùng điểm thưởng  để rút tiền",
-  "bonusPoint.gift": "Đã dùng điểm thưởng  để đổi quà",
-  "bonusPoint.yourBonusPoint": "Bạn đang có {point} điểm thưởng",
-  "bonusPoint.availablePoint": "Điểm thưởng hiện có",
-  "bonusPoint.uses": "Sử dụng điểm thưởng để đổi quà, rút tiền, thanh toán hợp đồng"
+	"navbar.language.vi": "Tiếng Việt",
+	"navbar.language.en": "English",
+	"navbar.logout": "Đăng xuất",
+	"navbar.logout.confirmMessage": "Bạn có muốn đăng xuất tài khoản?",
+	"navbar.notifications.markAsRead": "Đánh dấu đã đọc",
+	"navbar.notifications.markAsUnRead": "Đánh dấu chưa đọc",
+	"navbar.notifications.delete": "Xóa",
+	"navbar.notifications.newNotificationNotice": "Bạn có một thông báo mới",
+	"navbar.notifications.noNewNotifications": "Bạn chưa có thông báo mới",
+	"footer.copyRight": "©2020-{year}: BMK - Đã đăng ký bản quyền",
+	"footer.companySlogan": "Nhà cung cấp bảo hiểm hàng đầu Việt Nam",
+	setting: setting$1,
+	"setting.accountInformation": "Thông tin tài khoản",
+	"setting.changePassword": "Thay đổi mật khẩu",
+	"setting.change": "Thay đổi",
+	"setting.partnerCode": "Mã đối tác",
+	"setting.accountCode": "Mã tài khoản",
+	"setting.referralCode": "Mã giới thiệu",
+	"setting.personalSetting": "Cài đặt Cá nhân",
+	"setting.generalInformation": "Thông tin chung",
+	"setting.notification": "Thông báo",
+	"setting.deviceManagement": "Quản lý thiết bị",
+	"setting.language": "Ngôn ngữ",
+	"setting.helpCenter": "Trung tâm trợ giúp",
+	"setting.connectSocial": "Liên kết mạng xã hội",
+	"setting.bonusPoint": "Điểm thưởng của bạn",
+	"setting.termAndCondition": "Điều khoản & Điều kiện",
+	"setting.general": "Chung",
+	"setting.privacyPolicy": "Chính sách bảo mật",
+	"setting.frequentlyAsked": "Câu hỏi thường gặp",
+	"setting.contact": "Liên hệ",
+	"setting.feedback": "Góp ý, báo lỗi",
+	"setting.share": "Chia sẻ",
+	"setting.status.COMPLETE": "Tài khoản đã hoàn thiện thông tin",
+	"setting.status.UNCOMPLE": "Tài khoản cần bổ sung thông tin",
+	"setting.gender.M": "Name",
+	"setting.gender.F": "Nữ",
+	"setting.gender.O": "Khác",
+	"setting.goToGuestApp": "Về trang KHCN",
+	"setting.goToAgencyApp": "Về trang đối tác",
+	"setting.call": "Gọi điện",
+	"setting.call.confirmMessage": "Bạn có muốn gọi đến số {phoneNumber}?",
+	"setting.sendEmail": "Gửi mail",
+	"setting.updateInfo.success": "Thay đổi thông tin thành công!",
+	"setting.updateInfo.confirmMessage": "Bạn có muốn thay đổi thông tin tài khoản?",
+	"setting.updateInfo.imageTypeInvalid": "File tải lên không hợp lệ!",
+	"setting.updateInfo.imageExceedSize": "File tải lên vượt quá dung lượng cho phép ({size}MB)!",
+	"setting.shareWithFriends": "Chia sẻ với bạn bè",
+	"setting.copySuccess": "Sao chép thành công!",
+	"changePassword.newPassword": "Mật khẩu mới",
+	"changePassword.newPassword.required": "Bạn phải nhập mật khẩu mới",
+	"changePassword.newPassword.invalid": "Mật khẩu mới không hợp lệ",
+	"changePassword.oldPassword": "Mật khẩu cũ",
+	"changePassword.oldPassword.required": "Bạn phải nhập mật khẩu cũ",
+	"changePassword.oldPassword.invalid": "Mật khẩu cũ không hợp lệ",
+	"changePassword.confirmPassword.required": "Bạn phải nhập lại mật khẩu mới",
+	"changePassword.passwordMustMatch": "Mật khẩu không trùng khớp",
+	"changePassword.confirmMessage": "Bạn có muốn thay đổi mật khẩu?",
+	"changePassword.success": "Thay đổi mật khẩu thành công!",
+	"generalInfo.changeLanguage.confirmMessage": "Bạn có muốn thay đổi ngôn ngữ?",
+	"generalInfo.changeLanguage.success": "Thay đổi ngôn ngữ thành công!",
+	"generalInfo.policy.1": "1. CÁC LOẠI DỮ LIỆU CÁ NHÂN CHÚNG TÔI SẼ THU THẬP VÀ XỬ LÝ",
+	"generalInfo.policy.1.1": "1.1  Thông tin cá nhân và thông tin liên lạc chi tiết, ví dụ chức vụ, họ tên, thông tin liên lạc chi tiết và lịch sử liên lạc chi tiết; thông tin tài liệu du lịch; ngày sinh, giới tính và/hoặc tuổi của bạn; quốc tịch, bản sao giấy tờ nhận dạng bạn (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
+	"generalInfo.policy.1.2": "1.2  Thông tin chi tiết về người thụ hưởng, ví dụ chủ hợp đồng bảo hiểm và người thụ hưởng của các sản phẩm hoặc dịch vụ của chúng tôi;",
+	"generalInfo.policy.1.3": "1.3  Các thành viên trong gia đình (nếu có liên quan đến sản phẩm hoặc dịch vụ);",
+	"generalInfo.policy.1.4": "1.4  Hồ sơ liên lạc của bạn với chúng tôi, chẳng hạn như lịch sử các cuộc gọi của bạn đến số điện thoại của trung tâm dịch vụ khách hàng của chúng tôi và, nếu bạn liên lạc với chúng tôi bằng các dịch vụ trực tuyến hoặc qua ứng dụng điện thoại thông minh của chúng tôi, các chi tiết như dữ liệu vị trí điện thoại di động, địa chỉ IP và địa chỉ MAC;",
+	"generalInfo.policy.1.5": "1.5  Sản phẩm và dịch vụ, bạn đã mua từ chúng tôi, cũng như những sản phẩm bạn quan tâm và đã nắm giữ và các phương thức thanh toán liên quan được bạn sử dụng;",
+	"generalInfo.policy.1.6": "1.6  Việc sử dụng các sản phẩm và dịch vụ của chúng tôi, các yêu cầu bồi thường bảo hiểm và tình trạng thanh toán các yêu cầu bồi thường này (và các chi tiết khác liên quan đến vấn đề này);",
+	"generalInfo.policy.1.7": "1.7  Phân tích dữ liệu tiếp thị sản phẩm hoặc dịch vụ được thực hiện riêng cho bạn, bao gồm lịch sử liên lạc và thông tin về việc bạn có mở các tài liệu này hay nhấp vào đường link liên kết;",
+	"generalInfo.policy.2": "2. CÁCH THỨC CHÚNG TÔI THU THẬP DỮ LIỆU CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.2.1": "2.1  Trực tiếp từ bạn và bất kỳ thông tin nào từ các thành viên gia đình, cộng sự hoặc người thụ hưởng sản phẩm và dịch vụ;",
+	"generalInfo.policy.2.2": "2.2  Thông tin về bạn được tạo ra khi bạn sử dụng các sản phẩm và dịch vụ của chúng tôi;",
+	"generalInfo.policy.2.3": "2.3  Từ một nhà môi giới hoặc một bên trung gian khác (ví dụ: đại lý, nhà phân phối, đối tác kinh doanh), các bên mà chúng tôi có hợp tác để cung cấp sản phẩm hoặc dịch vụ hoặc cung cấp báo giá cho bạn;",
+	"generalInfo.policy.2.4": "2.4  Các công ty đối tác liên kết với BMK, nếu bạn đã từng đăng ký mua hoặc đã mua sản phẩm từ các công ty này;",
+	"generalInfo.policy.2.5": "2.5  Cookie, dịch vụ định vị, địa chỉ IP khi bạn truy cập trang mạng hoặc ứng dụng di động của chúng tôi hoặc khi bạn điền vào biểu mẫu Liên hệ với chúng tôi trong trang mạng hoặc ứng dụng của chúng tôi;",
+	"generalInfo.policy.2.6": "2.6  Các bên thứ ba như công ty bảo hiểm, đại lý, nhà cung cấp, tổ chức tài chính, cá nhân y tế, tòa án hoặc hồ sơ thông tin đã được công bố công khai;",
+	"generalInfo.policy.2.7": "2.7  Bảng câu hỏi và thông tin liên lạc chi tiết khi bạn tham gia khảo sát, hội nghị nhà đầu tư, các buổi hội thảo hoặc khi bạn cập nhật thông tin liên lạc của bạn với chúng tôi trên trang mạng của chúng tôi;",
+	"generalInfo.policy.2.8": "2.8  Từ các nguồn khác như Cơ quan phòng chống gian lận, tổ chức tham chiếu tín dụng, người cho vay khác và các thông tin đã được công bố công khai (ví dụ: danh bạ điện thoại, phương tiện truyền thông xã hội, các trang mạng, các bài báo), các tổ chức thu hồi nợ, các tổ chức khác để hỗ trợ phòng ngừa và phát hiện tội phạm, cảnh sát và các cơ quan thực thi pháp luật;",
+	"generalInfo.policy.2.9": "2.9  Chúng tôi mua thông tin về bạn hoặc khách hàng nói chung từ các bên thứ ba bao gồm thông tin nhân khẩu học, chi tiết các phương tiện đi lại, lịch sử yêu cầu bồi thường, thông tin về gian lận, danh sách quảng cáo tiếp thị, thông tin đã được công bố công khai và thông tin khác để giúp cải thiện sản phẩm và dịch vụ của chúng tôi.",
+	"generalInfo.policy.3": "3. CHÍNH SÁCH COOKIE",
+	"generalInfo.policy.3.1": "3.1   Trang mạng của chúng tôi sử dụng cookie để phân biệt bạn với những người dùng khác. Điều này giúp chúng tôi cung cấp cho bạn trải nghiệm tốt khi bạn sử dụng trang mạng và cũng cho phép chúng tôi cải thiện trang mạng của mình. Cookie là một tệp nhỏ gồm các chữ cái và số mà chúng tôi lưu trữ trên trình duyệt hoặc ổ cứng máy tính của bạn. Cookie chứa thông tin được lưu trữ trên ổ cứng máy tính của bạn. Bạn có khả năng chấp nhận hoặc từ chối cookie bằng cách sửa đổi cài đặt trong trình duyệt của bạn. Nếu bạn muốn làm điều này, xin vui lòng xem mục trợ giúp trong trình duyệt của bạn.",
+	"generalInfo.policy.3.2": "3.2   Chúng tôi sử dụng các loại cookie sau:",
+	"generalInfo.policy.3.2.1": "3.2.1    Cookie cần thiết cho trang mạng, đây là các cookie cần phải có để phục vụ hoạt động của trang  mạng của chúng tôi. Ví dụ, các cookie cho phép bạn đăng nhập vào trang mạng của chúng tôi một cách an toàn;",
+	"generalInfo.policy.3.2.2": "3.2.2    Cookie phân tích/quản lý hoạt động: các cookie này cho phép chúng tôi nhận ra và đếm số lượng người dùng truy cập vào trang mạng của chúng tôi và theo dõi cách người dùng truy cập di huyển xung quanh trang mạng của chúng tôi khi họ đang sử dụng nó. Điều này giúp chúng tôi cải thiện cách thức hoạt động của trang mạng, ví dụ, cải tiến để giúp người dùng tìm kiếm những thứ họ cần một cách dễ dàng;",
+	"generalInfo.policy.3.2.3": "3.2.3    Cookie chức năng: chúng được sử dụng để nhận ra bạn khi bạn quay lại trang mạng của chúng tôi. Điều này cho phép chúng tôi cá nhân hóa nội dung của chúng tôi cho bạn, chào bạn bằng tên và ghi nhớ sở thích của bạn (ví dụ: lựa chọn ngôn ngữ hoặc khu vực của bạn).",
+	"generalInfo.policy.3.3": "3.3   Bằng cách tiếp tục sử dụng trang mạng của chúng tôi, bạn chấp nhận chúng tôi sử dụng các loại cookie như đã nêu ở trên.",
+	"generalInfo.policy.4": "4. CÁCH THỨC VÀ LÝ DO CHÚNG TÔI SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.4.1": "4.1  Chúng tôi, <b>BMK</b> và các đối tác kinh doanh sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, cho các mục đích sau:",
+	"generalInfo.policy.4.1.1": "<table class='table table-bordered info-item-table'><thead><tr><td>Mục đích</td><td>Cơ sở pháp lý</td></tr></thead><tbody><tr><td>Quản lý các sản phẩm và dịch vụ của chúng tôi, bao gồm cho phép chúng tôi thực hiện nghĩa vụ của chúng tôi với bạn và cung cấp mọi dịch vụ liên quan như đã thảo luận với bạn trước khi bạn mua sản phẩm hoặc dịch vụ.</td><td rowspan='2'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn hoặc để thực hiện các bước trước khi ký hợp đồng với bạn.&nbsp;</td></tr><tr><td>Thực hiện kiểm tra bằng cách thông qua các tổ chức như tổ chức tín dụng, công ty hỗ trợ tìm kiếm hoặc thông tin đã được công bố công khai (xem thêm nội dung trình bày trong Phần “Kiểm tra tham khảo”).</td></tr><tr><td>Cung cấp dịch vụ khách hàng – như trả lời thắc mắc của bạn hoặc thông báo cho bạn biết các thay đổi.</td><td rowspan='3'>Cần thiết cho việc thực hiện hợp đồng của chúng tôi với bạn. Sau khi hợp đồng chúng tôi ký với bạn hoàn tất, đây là lợi ích hợp pháp của chúng tôi trong việc duy trì và phát triển mối quan hệ của chúng tôi với bạn.</td></tr><tr><td>Tự động ra quyết định hoặc tạo hồ sơ cá nhân của bạn (xem thêm nội dung trình bày trong Phần “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”).</td></tr><tr><td>Lưu giữ thông tin của bạn và thực hiện các công việc quản lý nội bộ khác.</td></tr><tr><td>Tuân thủ với các yêu cầu pháp quy hoặc pháp lý khác.</td><td>Tuân thủ với các nghĩa vụ pháp lý của chúng tôi.</td></tr><tr><td>Thiết kế và cung cấp cho bạn các sản phẩm và dịch vụ bảo hiểm và tài chính liên quan.</td><td rowspan='2'>Lợi ích chính đáng của chúng tôi trong việc thiết kế và cải tiến sản phẩm, cung cấp dịch vụ giá trị gia tăng, phát triển kinh doanh và hiểu rõ hơn về cách sử dụng sản phẩm của chúng tôi.&nbsp;</td></tr><tr><td>Tiến hành nghiên cứu và phân tích thống kê (bao gồm cả việc sử dụng các công nghệ mới).</td></tr></tbody></table>",
+	"generalInfo.policy.4.2": "4.2  Ngoài ra, chúng tôi, <b>BMK</b> và các đối tác kinh doanh của chúng tôi, sẽ sử dụng dữ liệu cá nhân bạn cung cấp cho chúng tôi, cùng với các thông tin khác, để gửi cho bạn các ưu đãi tiếp thị trực tiếp bằng phương tiện điện tử và phi điện tử bao gồm qua đường bưu điện, cũng như gửi cho bạn thông tin giới thiệu các sản phẩm và dịch vụ từ các bên thứ ba đã được chọn lọc kỹ lưỡng. Cơ sở pháp lý chúng tôi trình bày bên trên được xây dựng dựa trên sự đồng thuận với bạn.",
+	"generalInfo.policy.4.3": "4.3  Chúng tôi chia sẽ dữ liệu cá nhân của bạn với ai và tại sao:",
+	"generalInfo.policy.4.3.1": "4.3.1  Chúng tôi sẽ chia sẻ thông tin cá nhân và sức khỏe của bạn trong nội bộ <b>BMK</b> và với các đối tác kinh doanh tài chính/sức khỏe và các bên thứ ba cung cấp dịch vụ cho chúng tôi (bao gồm nhưng không giới hạn các công ty bảo hiểm, luật sư, ngân hàng, kế toán, tổ chức tài chính, bên ủy thác và các nhà cung cấp dịch vụ là bên thứ ba khác cung cấp dịch vụ quản lý, viễn thông, máy tính, thanh toán, in ấn, mua lại hoặc các dịch vụ khác để cho phép chúng tôi thực hiện hoạt động kinh doanh), các công ty thẩm định hóa đơn y tế, các công ty thẩm định yêu cầu bồi thường, hiệp hội và hiệp đoàn trong cùng ngành, các bên đồng sở hữu hợp đồng bảo hiểm hoặc khoản đầu tư, cố vấn chuyên nghiệp, nhà nghiên cứu, tổ chức tham chiếu tín dụng, tổ chức thu hồi nợ, tổ chức tài chính/y tế và các bên đối tác để thực hiện các mục đích được nêu trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của ban”. Nếu bạn có chung hợp đồng bảo hiểm với người khác, thì người đó cũng có thể nhận được dữ liệu cá nhân của bạn. Nếu được yêu cầu, chúng tôi cũng có thể chuyển dữ liệu cá nhân của bạn cho các cơ quan phòng chống tội phạm tài chính, bất kỳ cơ quan lập pháp, tư pháp hoặc hành pháp nào khác.",
+	"generalInfo.policy.4.3.2": "4.3.2  Chúng tôi có thể xử lý dữ liệu cá nhân của bạn ở một quốc gia khác ngoài quốc gia mà bạn cư trú. Trong phạm vi chúng tôi chuyển dữ liệu cá nhân của bạn, chúng tôi sẽ sử dụng các biện pháp bảo vệ phù hợp và tuân thủ luật pháp của quốc gia nơi dữ liệu cá nhân của bạn được chuyển đến. Khi bạn yêu cầu, chúng tôi sẽ cung cấp cho bạn chi tiết các biện pháp bảo vệ dữ liệu mà chúng tôi đang sử dụng.",
+	"generalInfo.policy.4.4": "4.4  Chúng tôi lưu trữ dữ liệu cá nhân của bạn trong một khoảng thời gian nhất định",
+	"generalInfo.policy.4.4.1": "4.4.1   Dữ liệu cá nhân của bạn sẽ được lưu trữ khi bạn (hoặc đồng sở hữu hợp đồng bảo hiểm với bạn) là khách hàng của chúng tôi và trong khoảng thời gian sáu năm sau khi kết thúc mối quan hệ khách hàng hoặc lâu hơn nếu pháp luật yêu cầu. Có thể có những trường hợp cụ thể khi chúng tôi cần lưu giữ dữ liệu cá nhân của bạn lâu hơn (chẳng hạn như khi có tranh chấp xảy ra).",
+	"generalInfo.policy.5": "5. KIỂM TRA THAM KHẢO",
+	"generalInfo.policy.5.1": "5.1  Đối với một số sản phẩm nhất định, chúng tôi có thể sử dụng các tổ chức tham chiếu tín dụng, công ty  hỗ trợ tìm kiếm, cơ quan phòng chống tội phạm tài chính hoặc thông tin có sẵn công khai để giúp chúng tôi kiểm tra danh tính của bạn, cũng như để tránh gian lận và rửa tiền; điều này có thể bao gồm kiểm tra các địa chỉ hiện tại hoặc trước đây của bạn. Những kết quả này có thể được ghi lại để tham khảo trong tương lai.",
+	"generalInfo.policy.5.2": "5.1  Những kết quả kiểm tra này cũng có thể được sử dụng cho một nhà đầu tư, chủ sở hữu hợp đồng chung hoặc người mà bạn đồng ý cung cấp dữ liệu cá nhân của mình. Nếu chúng tôi mất liên lạc với bạn, chúng tôi có thể sử dụng các tổ chức này để xác minh địa chỉ của bạn nhằm giúp chúng tôi liên lạc với bạn.",
+	"generalInfo.policy.5.3": "5.3  Mọi việc chuyển dữ liệu cá nhân của bạn sẽ luôn được thực hiện an toàn.",
+	"generalInfo.policy.6": "6. CHÚNG TÔI CÓ THỂ SỬ DỤNG DỮ LIỆU CÁ NHÂN CỦA BẠN ĐỂ ĐƯA RA QUYẾT ĐỊNH TỰ ĐỘNG HOẶC TẠO HỒ SƠ CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.6.1": "6.1  Chúng tôi, <b>BMK</b>, Đối tác kinh doanh và Đối tác tiếp thị của chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động ảnh hưởng đến bạn hoặc tạo hồ sơ cá nhân khác cho bạn (ví dụ: hồ sơ tiếp thị).",
+	"generalInfo.policy.7": "7. SỬ DỤNG DỮ LIỆU CÁ NHÂN NHẠY CẢM CỦA BẠN",
+	"generalInfo.policy.7.1": "7.1  Đối với một số sản phẩm hoặc dịch vụ nhất định, chúng tôi sẽ cần xử lý dữ liệu cá nhân nhạy cảm của bạn, chẳng hạn như thông tin liên quan đến sức khỏe, di truyền, định danh sinh trắc học và khuynh hướng giới tính. Trong phạm vi chúng tôi cần sự đồng ý rõ ràng của bạn để xử lý loại dữ liệu cá nhân này theo cách được mô tả trong Phần “Cách thức và lý do chúng tôi sử dụng dữ liệu cá nhân của bạn” , “Kiểm tra tham khảo” và “Chúng tôi có thể sử dụng dữ liệu cá nhân của bạn để đưa ra quyết định tự động hoặc tạo hồ sơ cá nhân của bạn”, chúng tôi sẽ cung cấp chi tiết về điều này khi chúng tôi thu thập các thông tin này từ bạn và xin nhận được sự chấp thuận của bạn.",
+	"generalInfo.policy.8": "8. QUYỀN KIỂM SOÁT DỮ LIỆU CÁ NHÂN CỦA BẠN",
+	"generalInfo.policy.8.1": "8.1  Khi nói đến cách chúng tôi sử dụng dữ liệu cá nhân của bạn, bạn có quyền theo quy định của pháp luật Việt Nam.",
+	"generalInfo.policy.8.2": "8.2  Trong khi đó, nếu bạn hiện đang cư trú tại Châu Âu, các quyền bổ sung theo Quy định bảo vệ dữ liệu chung (GDPR) có thể được áp dụng. Như vậy, bạn có thể:",
+	"generalInfo.policy.8.2.1": "8.2.1  Yêu cầu một bản sao dữ liệu cá nhân của bạn miễn phí (chúng tôi có thể tính phí yêu cầu của bạn nếu không có cơ sở rõ ràng hoặc bị lạm dụng quá mức);",
+	"generalInfo.policy.8.2.2": "8.2.2  Trong một số trường hợp nhất định, chúng tôi sẽ chuyển dữ liệu cá nhân của bạn sang một tổ chức khác theo yêu cầu của bạn;",
+	"generalInfo.policy.8.2.3": "8.2.3  Yêu cầu chúng tôi điều chỉnh bất cứ dữ liệu cá nhân nào bị sai hoặc không đầy đủ;",
+	"generalInfo.policy.8.2.4": "8.2.4  Yêu cầu chúng tôi xóa dữ liệu cá nhân của bạn nếu không còn cần thiết cho các mục đích được nêu trong Phần “Các loại dữ liệu cá nhân chúng tôi sẽ thu thập và xử lý” hoặc nếu không có cơ sở pháp lý nào khác để xử lý dữ liệu;",
+	"generalInfo.policy.8.2.5": "8.2.5  Giới hạn cách chúng tôi sử dụng dữ liệu cá nhân của bạn hoặc rút lại sự đồng ý (bao gồm cả việc đồng ý cho phép đưa ra quyết định tự động dựa trên dữ liệu cá nhân) mà bạn đã chấp thuận cho phép chúng tôi xử lý dữ liệu cá nhân của bạn;",
+	"generalInfo.policy.8.2.6": "8.2.6  Phản đối chúng tôi sử dụng dữ liệu cá nhân của bạn để tiếp thị trực tiếp (bao gồm cả việc tạo lập hồ sơ cá nhân của bạn) hoặc xử lý dữ liệu khác dựa trên lợi ích hợp pháp;",
+	"generalInfo.policy.8.2.7": "8.2.7  Khiếu nại với cơ quan bảo vệ dữ liệu hoặc cơ quan quản lý độc lập khác về cách chúng tôi sử dụng dữ liệu cá nhân của bạn.",
+	"generalInfo.policy.8.3": "8.3  Nếu bạn muốn thực hiện các quyền của mình hoặc muốn giải thích về các quyền này, bạn có thể liên lạc với chúng tôi trong phần Liên hệ.",
+	"generalInfo.policy.8.4": "8.4  Nếu bạn cần nói chuyện với chúng tôi, chúng tôi sẽ chuyển yêu cầu của bạn cho Người Kiểm Soát Dữ Liệu (8.4.1)  cá nhân của bạn là BMK Chúng tôi có thể theo dõi hoặc ghi lại các cuộc gọi hoặc bất kỳ liên lạc nào khác mà chúng tôi có với bạn. Điều này có thể là để đào tạo, bảo mật hoặc để giúp chúng tôi kiểm tra chất lượng.",
+	"generalInfo.policy.8.4.1": "8.4.1  Người Kiểm Soát Dữ Liệu – Cá nhân, pháp nhân, cơ quan nhà nước, các cơ quan hoặc tổ chức khác, riêng rẻ hoặc cùng nhau, xác định mục đích và cách thức xử lý dữ liệu cá nhân.",
+	"generalInfo.policy.9": "9.  THAY MẶT NGƯỜI KHÁC CUNG CẤP DỮ LIỆU CÁ NHÂN CỦA HỌ",
+	"generalInfo.policy.9.1": "9.1  Khi bạn cung cấp cho chúng tôi dữ liệu cá nhân về người khác (hoặc nhiều người khác), bạn nên được chỉ định và ủy quyền bởi người đó để hành động thay họ. Điều này bao gồm cung cấp sự đồng ý để:",
+	"generalInfo.policy.9.1.1": "9.1.1  Chúng tôi xử lý dữ liệu cá nhân của họ và dữ liệu cá nhân nhạy cảm (như chúng tôi đã giải thích trong các Phần ở trên);",
+	"generalInfo.policy.9.1.2": "9.1.1  Bạn sẽ nhận được các thông báo bảo vệ thông tin thay mặt họ.",
+	"generalInfo.policy.9.2": "9.2  Nếu vì bất kỳ lý do nào bạn quan tâm đến việc liệu bạn có được phép cung cấp cho chúng tôi thông tin về người khác hay không, vui lòng liên hệ với chúng tôi theo địa chỉ thư điện tử bên dưới trước khi gửi cho chúng tôi bất cứ thông tin gì.",
+	"generalInfo.policy.10": "10. TIẾP THỊ TRỰC TIẾP",
+	"generalInfo.policy.10.1": "10.1  Chúng tôi, <b>BMK</b>, đối tác kinh doanh của chúng tôi, và đối tác tiếp thị vẫn sẽ gửi cho bạn thông tin qua hình thức các bài đăng về các sản phẩm và dịch vụ của BMK và các bên thứ ba được lựa chọn cẩn thận.",
+	"generalInfo.policy.10.2": "10.2  Ngoài ra, theo thời gian, chung tôi <b>BMK</b> mong muốn gởi thông tin chi tiết về sản phẩm, dịch vụ và các ưu đãi đặc biệt cho bạn qua các phương tiện điện tử. Chúng tôi sẽ chỉ làm điều này nếu bạn đồng ý cho chúng tôi liên lạc với bạn bằng phương tiện điện tử.",
+	"generalInfo.policy.10.3": "10.3  Và nếu bạn thay đổi ý định và/hoặc bạn muốn từ chối nhận tiếp thị trực tiếp phi điện tử, thì bạn cứ cho chúng tôi biết. Chỉ cần sử dụng một trong các tùy chọn trong mục Liên hệ với chúng tôi.",
+	"generalInfo.policy.11": "11. LIÊN HỆ VỚI CHÚNG TÔI",
+	"generalInfo.policy.11.1": "11.1  Nếu bạn muốn thực hiện các quyền của mình trong Phần “Quyền kiểm soát dữ liệu cá nhân của bạn” hoặc nếu bạn yêu cầu bất kỳ thông tin nào theo thông báo này, bạn có thể liên hệ với chúng tôi theo nhiều cách khác nhau.",
+	"generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0899.300.800</b>",
+	"generalInfo.policy.11.1.2": "11.1.2  Gửi thư điện tử cho chúng tôi theo địa chỉ: <b>lienhe@bmktech.vn</b>",
+	"generalInfo.policy.11.1.3": "11.1.3  Hoặc liên hệ trực tiếp với chúng tôi tại văn phòng: <b>Phòng 301A, Tòa nhà Thiên Bảo, số 47-49 Lê Văn Hưu, Phường Ngô Thì Nhậm, Quận Hai Bà Trưng, Thành phố Hà Nội.</b>",
+	"generalInfo.terms.1": "1. CÁC ĐIỀU KHOẢN VÀ ĐIỀU KIỆN SỬ DỤNG",
+	"generalInfo.terms.1.1": "1.1  Trang thông tin điện tử này <b>(www.bmktech.vn)</b> cùng các tên miền phụ (x.bmktech.vn,...) và ứng dụng di động <b>“BMK” (sau đây gọi tắt là “Hệ thống\nBMK”)</b> do <b>Công ty Cổ phần BMK (sau đây gọi tắt là “BMK”) - Đơn vị chủ quản của Hệ thống và Thương hiệu BMK<b/> toàn quyền sở hữu và điều\nhành.\n",
+	"generalInfo.terms.1.2": "1.2  Việc sử dụng <b>Hệ thống BMK</b> này phụ thuộc vào các điều khoản và điều kiện cụ thể sau: (A) các điều khoản và điều kiện được nêu dưới đây và (B) mọi điều khoản và điều kiện bổ sung cụ thể tùy từng thời điểm để điều chỉnh việc sử dụng, và truy cập vào một số mục của trang thông tin điện tử này (và các điều khoản bổ sung đó sẽ có hiệu lực ràng buộc khi chúng được đăng tải trên <b>Hệ thống BMK</b> này) <b>(\"Điều Khoản và Điều Kiện\")</b>.",
+	"generalInfo.terms.1.3": "1.3  Khi sử dụng trang thông tin điện tử này, bạn đã đồng ý với các Điều Khoản và Điều Kiện, và sự đồng ý của bạn cùng với các Điều Khoản và Điều Kiện sẽ cấu thành một hợp đồng có giá trị ràng buộc về pháp lý giữa bạn và <b>BMK</b>. Vì thế, bạn vui lòng đọc kỹ các Điều Khoản và Điều Kiện của trang thông tin điện tử này.",
+	"generalInfo.terms.2": "2. CÁC HẠN CHẾ VÀ SỬ DỤNG CÁC THÔNG TIN TÀI LIỆU",
+	"generalInfo.terms.2.1": "2.1  Trừ khi được <b>BMK</b> đồng ý bằng văn bản một cách khác đi, bạn sẽ không sao chép, sao lại, tái bản, đưa lên mạng, công bố, chuyển, tạo liên kết đến hoặc phân phối dưới bất cứ hình thức nào các thông tin và/hoặc tài liệu đã được đăng tải trên trang thông tin điện tử này.",
+	"generalInfo.terms.2.2": "2.2  Bạn có thể tải xuống các thông tin và/hoặc tài liệu được đăng tải trên trang thông tin điện tử này để bạn sử dụng, nhưng luôn luôn với điều kiện là bạn không dỡ bỏ các thông tin về bản quyền và/hoặc các quyền khác của <b>BMK</b> gắn với các thông tin và/hoặc tài liệu đó.",
+	"generalInfo.terms.2.3": "2.3  Bạn không được phát tán, sửa đổi, chuyển đi, sử dụng lại, công bố, tạo liên kết hoặc sử dụng các nội dung của trang thông tin điện tử này, bao gồm, nhưng không giới hạn bởi, cả các thông tin bằng chữ, các hình ảnh, các tập tin âm thanh và/hoặc các đoạn phim, cho các mục đích kinh doanh và/hoặc công cộng, khi chưa có sự cho phép bằng văn bản của BMK.",
+	"generalInfo.terms.3": "3. THỜI GIAN HOẠT ĐỘNG",
+	"generalInfo.terms.3.1": "3.1 Trang thông tin điện tử này hoạt động 24 giờ mỗi ngày và 7 ngày mỗi tuần. Tuy nhiên, <b>BMK</b> bảo lưu quyền ngắt hệ thống để bảo trì khi cần thiết. <b>BMK</b> sẽ cố gắng để lên kế hoạch và thông báo về việc hệ thống không thể sử dụng được bằng cách đưa một thông báo trên mạng trực tuyến. <b>BMK</b> không chịu trách nhiệm đối với bất cứ thiệt hại và/hoặc mất mát nào do việc hệ thống bị ngắt trong trường hợp này.",
+	"generalInfo.terms.4": "4. TÀI KHOẢN NGƯỜI SỬ DỤNG",
+	"generalInfo.terms.4.1": "4.1  Bạn sẽ đăng ký và được cung cấp một Tên Truy Cập Tài Khoản và Mật khẩu để có thể mua bảo hiểm trên trang thông tin điện tử này. Bạn sẽ giữ bí mật Tên Truy Cập Tài Khoản và Mật khẩu này vào mọi thời điểm, và sẽ bảo đảm rằng Tên Truy Cập Tài Khoản và Mật khẩu này của bạn sẽ không bị tiết lộ theo bất cứ cách thức nào cho bất kỳ ai.",
+	"generalInfo.terms.4.2": "4.2  <b>BMK</b> sẽ không chịu trách nhiệm về bất cứ giao dịch không được phép nào do việc Tên Truy Cập Tài Khoản và/hoặc Mật khẩu bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn phải lập tức thông báo cho <b>BMK</b> bất cứ trường hợp nào mà Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn bị sử dụng sai và/hoặc sử dụng mà không được phép. Bạn chịu trách nhiệm hoàn toàn về việc bảo mật Tên Truy Cập Tài Khoản và Mật khẩu và đối với bất cứ việc truy cập nào sử dụng Tên Truy Cập Tài Khoản và/hoặc Mật khẩu của bạn.",
+	"generalInfo.terms.5": "5. BẢN QUYỀN VÀ NHÃN HIỆU",
+	"generalInfo.terms.5.1": "5.1  Mọi nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> và các đối tác khác (nếu có).",
+	"generalInfo.terms.5.2": "5.2  Không có điều gì trên trang thông tin điện tử này có thể được hiểu là, dù là ngầm định hay cách khác, cho phép sử dụng hoặc bất cứ quyền sử dụng nào liên quan đến bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này khi chưa có sự đồng ý bằng văn bản của <b>BMK</b> hoặc bên thứ ba sở hữu các nhãn hiệu hoặc tên thương mại đặt trên trang thông tin điện tử này.",
+	"generalInfo.terms.5.3": "5.3  Bạn hoàn toàn không được sử dụng bất cứ nhãn hiệu hàng hóa, nhãn hiệu dịch vụ, tên thương mại, lô-gô, biểu tượng và tên miền đặt trên trang thông tin điện tử này hoặc bất cứ nội dung nào khác có trên trang thông tin điện tử này, trừ các trường hợp được quy định trong các Điều Khoản và Điều Kiện.",
+	"generalInfo.terms.5.4": "5.4  Các hình ảnh đặt trên trang thông tin điện tử này là tài sản của <b>BMK</b> hoặc được <b>BMK</b> sử dụng theo sự đồng ý của chủ sở hữu.",
+	"generalInfo.terms.5.5": "5.5  Trừ khi được cho phép cụ thể, bạn không được sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này, bạn cũng không được ủy quyền cho bất cứ người nào sử dụng bất cứ hình ảnh nào đặt trên trang thông tin điện tử này. Bất cứ việc sử dụng không được phép nào đối với các hình ảnh này có thể vi phạm luật tác quyền, luật nhãn hiệu, luật về quyền riêng tư và luật xuất bản, và các quy định về thông tin khác.",
+	"generalInfo.terms.6": "6. QUY ĐỊNH VỀ QUYỀN RIÊNG TƯ",
+	"generalInfo.terms.6.1": "6.1   Xin đọc kỹ CHÍNH SÁCH VỀ QUYỀN RIÊNG TƯ TRÊN INTERNET của chúng tôi. Chính sách này giải thích rõ những thông tin nào <b>BMK</b> có thể thu thập từ bạn trên trang thông tin điện tử của chúng tôi và cách thức chúng tôi sẽ sử dụng và bảo vệ các thông tin của bạn. Chúng tôi sẽ không thu thập bất cứ thông tin xác định danh tính cá nhân nào trên trang thông tin điện tử của chúng tôi trừ khi bạn cung cấp các thông tin đó cho chúng tôi.",
+	"generalInfo.terms.7": "7. LIÊN KẾT ĐẾN CÁC TRANG WEB KHÁC",
+	"generalInfo.terms.7.1": "7.1  Trang thông tin điện tử này liên kết đến các trang thông tin điện tử khác không do <b>BMK</b> quản lý hoặc điều khiển. <b>BMK</b> sẽ không chịu trách nhiệm về nội dung của các trang thông tin điện tử đó.",
+	"generalInfo.terms.7.2": "7.2  Việc liên kết đến bất cứ trang thông tin điện tử nào như thế không có nghĩa là <b>BMK</b> đã chấp thuận hoặc tán thành đối với các trang thông tin điện tử đó, hoặc với nội dung của các trang thông tin điện tử đó, hoặc các sản phẩm và dịch vụ trên các trang thông tin điện tử đó.",
+	"generalInfo.terms.8": "8. AN NINH CỦA TRANG WEB",
+	"generalInfo.terms.8.1": "8.1  Bạn sẽ không xâm phạm hoặc cố gắng xâm phạm an ninh của trang thông tin điện tử này, bao gồm, nhưng không giới hạn, các hành vi dưới đây:",
+	"generalInfo.terms.8.1.1": "8.1.1  Truy cập thông tin hoặc nối vào một máy chủ hoặc tài khoản mà bạn không được phép truy cập.",
+	"generalInfo.terms.8.1.2": "8.1.2  Cố gắng thăm dò, kiểm tra hoặc thử nghiệm điểm yếu của một hệ thống hoặc hệ thống mạng để vi phạm an ninh hoặc biện pháp nhận dạng mà không được <b>BMK</b> cho phép bằng văn bản.",
+	"generalInfo.terms.8.1.3": "8.1.3  Cố gắng can thiệp vào dịch vụ cung cấp cho bất cứ người sử dụng nào, máy chủ hoặc hệ thống mạng nào, bằng cách phát tán vi rút hoặc mã độc lên trang thông tin điện tử, làm quá tải hoặc gây ra hiện tượng thư rác (spamming) trên trang thông tin điện tử;",
+	"generalInfo.terms.8.1.4": "8.1.4  Thay đổi thông tin của phần tiêu đề (header) của bộ giao thức điều khiển truyền vận (TCP/IP) hoặc bất cứ phần thông tin nào của phần tiêu đề (header) trong bất cứ thư điện tử hay nhóm thông tin được đăng tải.",
+	"generalInfo.terms.8.2": "8.2  Bạn không sử dụng trang thông tin điện tử này cho bất cứ mục đích bất hợp pháp nào.",
+	"generalInfo.terms.8.3": "8.3  Bạn phải đảm bảo rằng tất cả các thông tin được đưa lên trang thông tin điện tử này là đầy đủ, chính xác, có thật, phù hợp và nhất quán với các tài liệu chứa đựng các thông tin này. Vi phạm điều này sẽ dẫn đến việc chậm trễ trong quy trình xử lý hoặc các thông tin điện tử được đưa lên bị loại bỏ. Bạn phải chịu trách nhiệm đối với toàn bộ chi phí phát sinh do việc đưa thông tin giả mạo hoặc sai.",
+	"generalInfo.terms.8.4": "8.4  Bạn sẽ không tấn công hoặc cố gắng tấn công hoặc làm hại trang thông tin điện tử này bằng bất cứ hình thức hay phương tiện nào như các công cụ tấn công, vi-rút và chương trình máy tính có chứa các mã có thể gây hỏng máy tính. Bất cứ cố gắng nào để thực hiện các hành vi như vậy đều khiến bạn phải chịu sự truy tố theo quy định của pháp luật hiện hành.",
+	"generalInfo.terms.9": "9. KHÔNG CHỊU TRÁCH NHIỆM",
+	"generalInfo.terms.9.1": "9.1  Mặc dù <b>BMK</b> thực hiện mọi sự cẩn trọng khi cung cấp dịch vụ tại trang thông tin điện tử, <b>BMK</b> không cam kết rằng trang thông tin điện tử này sẽ hoạt động không có lỗi hoặc hoàn toàn không có vi-rút, worms, Trojan horses hoặc các mã độc hại khác.",
+	"generalInfo.terms.9.2": "9.2  <b>BMK</b> không chấp nhận bất cứ trách nhiệm nào, và sẽ không chịu trách nhiệm về bất cứ thiệt hại nào xảy ra cho thiết bị máy tính hoặc các tài sản khác của bạn do việc bạn truy cập vào, sử dụng, hoặc xem lướt qua trang thông tin điện tử này hoặc việc bạn tải xuống bất cứ tài liệu, dữ liệu, các thông tin bằng chữ, các hình ảnh, các đoạn video, hoặc các tập tin âm thanh nào từ trang thông tin điện tử này hoặc phát sinh liên quan đến việc chậm thực hiện, lỗi, thiếu sót, bị gián đoạn, lỗi, vi-rút máy tính, chậm trễ trong hoạt động hoặc truyền dữ liệu, hoặc lỗi hệ thống hoặc đường truyền.",
+	"generalInfo.terms.9.3": "9.3  <b>BMK</b> cũng từ chối mọi trách nhiệm đối với:",
+	"generalInfo.terms.9.3.1": "9.3.1  Bất cứ tổn thất nào hoặc không có khả năng lấy lại các dữ liệu hoặc thông tin vì bất cứ lý do gì và bao gồm việc không chuyển được, việc sử dụng không đúng mục đích hoặc việc chuyển sai do kết quả của bất cứ sự gián đoạn, ngưng hoặc chấm dứt dịch vụ trên trang thông tin điện tử này; ",
+	"generalInfo.terms.9.3.2": "9.3.2  Bất cứ sự sai sót của các thông tin hoặc nguồn tài nguyên có sẵn, nhận được hoặc được chuyển thông qua trang thông tin điện tử;",
+	"generalInfo.terms.9.3.3": "9.3.3  Bất cứ trục trặc, khuyết điểm hoặc sai sót của trang thông tin điện tử này; ",
+	"generalInfo.terms.9.3.4": "9.3.4  Bất cứ sự chậm trễ hoặc không có khả năng trong việc cung cấp dịch vụ của <b>BMK</b> tại trang thông tin điện tử này theo các Điều Khoản và Điệu Kiện do bất cứ khuyết điểm hoặc hỏng hóc về điện tử, cơ khí, hệ thống, xử lý dữ liệu hoặc viễn thông, thiên tai, xáo trộn dân sự hoặc bất cứ sự kiện nào nằm ngoài sự kiểm soát của <b>BMK</b>.",
+	"generalInfo.terms.10": "10. MIỄN TRỪ TRÁCH NHIỆM",
+	"generalInfo.terms.10.1": "10.1  Trong bất cứ trường hợp nào, <b>BMK</b> cũng không chịu trách nhiệm về bất cứ thiệt hại, tổn thất hoặc chi phí, bao gồm nhưng không giới hạn, thiệt hại trực tiếp, đặc biệt hoặc do hệ quả của, hoặc tổn thất kinh tế phát sinh từ hoặc có liên quan hoặc có thể quy cho:",
+	"generalInfo.terms.10.1.1": "10.1.1  Bất cứ việc truy cập, sử dụng hoặc không thể truy cập hoặc sử dụng trang thông tin điện tử hoặc dịch vụ này, hoặc tin cậy vào những thông tin trên trang thông tin điện tử này.",
+	"generalInfo.terms.10.1.2": "10.1.2  Bất cứ sự hỏng hóc, sai sót, bỏ sót, gián đoạn hoặc chậm trễ trong việc truyền dữ liệu;",
+	"generalInfo.terms.10.1.3": "10.1.3  Bất cứ vi-rút máy tính hoặc hoặc các mã độc hại, hoặc các đoạn mã, chương trình hay một lệnh riêng lẻ bằng ngôn ngữ lập trình mà kết quả là một chuỗi lệnh bằng ngôn ngữ máy tính (macro) mang tính chất làm hỏng hoặc phá hủy khác có thể ảnh hưởng đến các thiết bị, chương trình máy tính hoặc các tài sản khác của bạn.",
+	"generalInfo.terms.11": "11. BỒI THƯỜNG",
+	"generalInfo.terms.11.1": "11.1 Bằng việc truy cập vào trang thông tin điện tử này, bạn đồng ý bồi thường cho <b>BMK</b>, giữ cho <b>BMK</b> khỏi mọi thiệt hại và bảo vệ <b>BMK</b> khỏi bất cứ khiếu nại, hành động hoặc đòi hỏi, bao gồm nhưng không giới hạn các chi phí pháp lý và kế toán hợp lý, được cho là hoặc là kết quả của việc bạn sử dụng trang thông tin điện tử này hoặc dịch vụ tại trang thông tin điện tử này, hoặc do việc bạn vi phạm các Điều Khoản và Điều Kiện.",
+	"generalInfo.terms.12": "12. CHẤM DỨT",
+	"generalInfo.terms.12.1": "12.1  <b></b> bảo lưu quyền, theo quyết định riêng của <b>BMK</b>, chấm dứt dịch vụ trên trang thông tin điện tử này vào bất cứ thời điểm nào, có hoặc không có lý do hoặc chấm dứt quyền truy cập vào trang thông tin điện tử này của bạn mà không cần báo trước và không cần lý do. Bằng việc truy cập vào trang thông tin điện tử này, bạn được coi là từ bỏ quyền được <b>BMK</b> thông báo về việc chấm dứt này, nếu có.",
+	"generalInfo.terms.12.2": "12.2  <b></b> không chịu trách nhiệm về bất cứ thiệt hại, mất mát hoặc chí phí phát sinh theo bất cứ cách thức nào, từ hoặc do việc chấm dứt dịch vụ trên trang thông tin điện tử này.",
+	"generalInfo.terms.13": "13. SỬA ĐỔI",
+	"generalInfo.terms.13.1": "13.1  <b></b> có thể thay đổi và thay thế nội dung các Điều Khoản và Điều Kiện này và/hoặc quy định thêm các điều kiện và điều khoản mới vào bất cứ thời điểm nào mà không cần báo trước cho bạn. Bằng việc sử dụng trang thông tin điện tử này, bạn được coi là từ bỏ quyền được thông báo hoặc chấp thuận bất cứ sửa đổi, thay đổi hoặc bổ sung nào với các Điều Khoản và Điều Kiện, nếu có.",
+	"generalInfo.terms.13.2": "13.2  Các thay đổi sẽ có hiệu lực vào ngày đầu tiên được đưa lên trang thông tin điện tử này. Nếu bạn tiếp tục sử dụng trang thông tin điện tử sau thời gian đó, bạn được xem là đã chấp nhận các thay đổi.",
+	"generalInfo.terms.14": "14. LUẬT ĐIỀU CHỈNH VÀ CƠ QUAN XỬ LÝ TRANH CHẤP",
+	"generalInfo.terms.14.1": "14.1  Sự thỏa thuận giữa bạn và <b></b> trong các Điều Khoản và Điều Kiện này được điều chỉnh và giải thích theo pháp luật Việt Nam.",
+	"generalInfo.terms.14.2": "14.2  Trong trường hợp có tranh chấp giữa bạn và <b></b> phát sinh từ hoặc có liên quan đến sự thỏa thuận này (“Tranh Chấp”), mỗi Bên nỗ lực tối đa để thảo luận các vấn đề với mục đích giải quyết Tranh Chấp thông qua biện pháp hòa giải.",
+	"generalInfo.terms.14.3": "14.3  Nếu Tranh Chấp không được giải quyết trong vòng ba mươi (30) ngày kể từ ngày Tranh Chấp phát sinh, Tranh Chấp đó sẽ được phân xử chung thẩm bởi Trung tâm Trọng tài Quốc tế Việt Nam (bên cạnh Phòng Thương Mại và Công Nghiệp Việt Nam) (“VIAC”) bởi một (01) trọng tài viên theo quy tắc tố tụng trọng tài của VIAC có hiệu lực tại thời điểm xảy ra Tranh Chấp và ngôn ngữ trọng tài được sử dụng là tiếng Việt.",
+	"createPassword.title": "Tạo mật khẩu",
+	"createPassword.password.required": "Bạn phải nhập mật khẩu",
+	"createPassword.password.invalid": "Mật khẩu của bạn không hợp lệ",
+	"createPassword.enterThePassword": "Nhập lại mật khẩu *",
+	"createPassword.passwordMustMatch": "Mật khẩu phải trùng khớp",
+	"createPassword.condition.1": "- Dài ít nhất 8 ký tự",
+	"createPassword.condition.2": "- Bao gồm ký tự viết hoa và viết thường",
+	"createPassword.condition.3": "- Bao gồm ký tự số và ký tự đặc biệt",
+	"createPassword.continutes": "TIẾP TỤC",
+	"createPassword.done": "HOÀN THÀNH",
+	"createPassword.resetSuccessFul": "Thay đổi mật khẩu thành công!",
+	"provideNewPassword.title": "CẤP MẬT KHẨU MỚI",
+	"provideNewPassword.continutes": "THỰC HIỆN",
+	"provideNewPassword.password": "Nhập mật khẩu mới *",
+	"provideNewPassword.enterThePassword": "Nhập lại mật khẩu mới *",
+	"createPassword.enterThePassword.required": "Bạn phải nhập mật khẩu mới",
+	"completeInformation.title": "Bổ sung thông tin",
+	"completeInformation.idType": "Loại giấy tờ tùy thân",
+	"completeInformation.idType.required": "Bạn phải chọn loại giấy tờ tùy thân",
+	"completeInformation.nbrPer": "Số giấy tờ tuỳ thân",
+	"completeInformation.nbrPer.required": "Bạn phải nhập số giấy tờ tuỳ thân",
+	"completeInformation.nbrPer.invalid": "Số giấy tờ tùy thân không hợp lệ",
+	"completeInformation.dateOfBirth": "Ngày sinh",
+	"completeInformation.dateOfBirth.required": "Bạn phải nhập ngày sinh",
+	"completeInformation.address": "Địa chỉ",
+	"completeInformation.address.required": "Bạn phải nhập địa chỉ",
+	"completeInformation.gif": "Mã giới thiệu",
+	"completeInformation.branch": "Chi nhánh",
+	"completeInformation.branch.required": "Bạn phải nhập chi nhánh",
+	"completeInformation.accountNbr": "Số tài khoản",
+	"completeInformation.accountNbr.required": "Bạn phải nhập số tài khoản",
+	"completeInformation.personalInfo": "Hộ chiếu*",
+	"completeInformation.gender": "Giới tính",
+	"completeInformation.province": "Tỉnh/Thành Phố",
+	"completeInformation.province.required": "Bạn phải chọn Tỉnh/Thành Phố",
+	"completeInformation.district": "Quận/Huyện",
+	"completeInformation.district.required": "Bạn phải chọn Quận/Huyện",
+	"completeInformation.ward": "Phường/Xã",
+	"completeInformation.ward.required": "Bạn phải chọn Phường/Xã",
+	"completeInformation.bank": "Ngân hàng",
+	"completeInformation.bank.required": "Bạn phải chọn Ngân hàng",
+	"completeInformation.back": "Quay lại",
+	"completeInformation.done": "Hoàn thành",
+	"completeInformation.success": "Hoàn tất đăng ký thành công!",
+	"socialLogin.addInfo": "Bổ sung thông tin",
+	"socialLogin.addInfo.info": " cần bạn bổ sung các thông tin bên dưới để hoàn tất đăng ký tài khoản.",
+	"socialLogin.agent": "Đối tác",
+	"socialLogin.personal": "Cá nhân",
+	"socialLogin.loginWith": "Hoặc đăng nhập với",
+	"socialLogin.registerWith": "Hoặc đăng ký với",
+	"socialLogin.youLoginAs": "Bạn đăng nhập với,",
+	"socialLogin.youRegisterAs": "Bạn đăng ký với,",
+	"socialLogin.requireConnectFB": "Vui lòng liên kết tài khoản của bạn với Facebook để sử dụng tính năng này",
+	"socialLogin.requireConnectGoogle": "Vui lòng liên kết tài khoản của bạn với Google để sử dụng tính năng này",
+	"verifyAccount.title": "Xác thực tài khoản",
+	"verifyAccount.success": "Xác thực tài khoản thành công, bạn vui lòng nhấn vào bên dưới để tạo mật khẩu.",
+	"verifyAccount.fail": "Xác thực tài khoản thất bại!",
+	"verifyAccount.didNotReceiveCode": "Không nhận được mã code?",
+	"verifyAccount.tryAgain": "Thử lại",
+	"verifyAccount.loading": "Đang xử lý...",
+	"verifyAccount.createPassword": "Tạo mật khẩu",
+	"verifyAccount.phoneNumberVerification": "Xác thực số điện thoại",
+	"verifyAccount.otp.info": "Bạn vui lòng nhập mã OTP đã được gửi về số điện thoại <b>{phoneNumber}</b>",
+	"verifyAccount.otp.verify": "Xác nhận",
+	"verifyAccount.otp.getOtp": "Lấy lại mã OTP",
+	"verifyAccount.otp.registerSuccess": "Đăng ký thành công, link tạo mật khẩu đã được gửi đến email của ban!",
+	"connectWithSocial.connectAccount": "Kết nối tài khoản",
+	"connectWithSocial.connect": "Kết nối",
+	"connectWithSocial.success": "Kết nối thành công",
+	"bonusPoint.history": "Lịch sử điểm thưởng",
+	"bonusPoint.received": "Đã nhận",
+	"bonusPoint.used": "Đã dùng",
+	"bonusPoint.bonus": " tặng điểm thưởng cho hợp đồng hoàn thành",
+	"bonusPoint.paymentContract": "Đã dùng điểm thưởng  để thanh toán hợp đồng",
+	"bonusPoint.withDrawval": "Đã dùng điểm thưởng  để rút tiền",
+	"bonusPoint.gift": "Đã dùng điểm thưởng  để đổi quà",
+	"bonusPoint.yourBonusPoint": "Bạn đang có {point} điểm thưởng",
+	"bonusPoint.availablePoint": "Điểm thưởng hiện có",
+	"bonusPoint.uses": "Sử dụng điểm thưởng để đổi quà, rút tiền, thanh toán hợp đồng"
 };
 
 var BaseFormGroup = function BaseFormGroup(_ref) {
   var fieldName = _ref.fieldName,
-    errors = _ref.errors,
-    touched = _ref.touched,
-    messageId = _ref.messageId,
-    type = _ref.type,
-    className = _ref.className,
-    maxLength = _ref.maxLength,
-    disabled = _ref.disabled,
-    onChange = _ref.onChange,
-    onBlur = _ref.onBlur,
-    _ref$isShowErrorMessa = _ref.isShowErrorMessage,
-    isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
-    _ref$isRequired = _ref.isRequired,
-    isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
+      errors = _ref.errors,
+      touched = _ref.touched,
+      messageId = _ref.messageId,
+      type = _ref.type,
+      className = _ref.className,
+      maxLength = _ref.maxLength,
+      disabled = _ref.disabled,
+      onChange = _ref.onChange,
+      onBlur = _ref.onBlur,
+      _ref$isShowErrorMessa = _ref.isShowErrorMessage,
+      isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
+      _ref$isRequired = _ref.isRequired,
+      isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
 
   var _onBlur = function onBlur(e, form) {
     form.handleBlur(e);
     var value = e.target.value;
     value = value.trim();
     form.setFieldValue(fieldName, value);
-    if (onBlur) {
-      onBlur(e, form);
+    if(onBlur){
+      onBlur(e,form);
     }
   };
 
@@ -5178,7 +5176,7 @@ var BaseFormGroup = function BaseFormGroup(_ref) {
       name: fieldName
     }, function (_ref2) {
       var field = _ref2.field,
-        form = _ref2.form;
+          form = _ref2.form;
       return /*#__PURE__*/React__default.createElement(reactstrap.Input, _extends({
         className: "form-control " + (isRequired && getPropObject(form.errors, fieldName) && getPropObject(form.touched, fieldName) && 'is-invalid')
       }, field, {
@@ -5202,19 +5200,19 @@ var BaseFormGroup = function BaseFormGroup(_ref) {
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-function unwrapExports(x) {
-  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
 function createCommonjsModule(fn, module) {
-  return module = { exports: {} }, fn(module, module.exports), module.exports;
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
 var flatpickr = createCommonjsModule(function (module, exports) {
-  /* flatpickr v4.6.6, @license MIT */
-  (function (global, factory) {
-    module.exports = factory();
-  }(commonjsGlobal, (function () {
+/* flatpickr v4.6.6, @license MIT */
+(function (global, factory) {
+     module.exports = factory() ;
+}(commonjsGlobal, (function () {
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -5230,2710 +5228,2708 @@ var flatpickr = createCommonjsModule(function (module, exports) {
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
 
-    var __assign = function () {
-      __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i];
-          for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-      };
-      return __assign.apply(this, arguments);
+    var __assign = function() {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
     };
 
     function __spreadArrays() {
-      for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-      for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-          r[k] = a[j];
-      return r;
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
     }
 
     var HOOKS = [
-      "onChange",
-      "onClose",
-      "onDayCreate",
-      "onDestroy",
-      "onKeyDown",
-      "onMonthChange",
-      "onOpen",
-      "onParseConfig",
-      "onReady",
-      "onValueUpdate",
-      "onYearChange",
-      "onPreCalendarPosition",
+        "onChange",
+        "onClose",
+        "onDayCreate",
+        "onDestroy",
+        "onKeyDown",
+        "onMonthChange",
+        "onOpen",
+        "onParseConfig",
+        "onReady",
+        "onValueUpdate",
+        "onYearChange",
+        "onPreCalendarPosition",
     ];
     var defaults = {
-      _disable: [],
-      _enable: [],
-      allowInput: false,
-      allowInvalidPreload: false,
-      altFormat: "F j, Y",
-      altInput: false,
-      altInputClass: "form-control input",
-      animate: typeof window === "object" &&
-        window.navigator.userAgent.indexOf("MSIE") === -1,
-      ariaDateFormat: "F j, Y",
-      autoFillDefaultTime: true,
-      clickOpens: true,
-      closeOnSelect: true,
-      conjunction: ", ",
-      dateFormat: "Y-m-d",
-      defaultHour: 12,
-      defaultMinute: 0,
-      defaultSeconds: 0,
-      disable: [],
-      disableMobile: false,
-      enable: [],
-      enableSeconds: false,
-      enableTime: false,
-      errorHandler: function (err) {
-        return typeof console !== "undefined" && console.warn(err);
-      },
-      getWeek: function (givenDate) {
-        var date = new Date(givenDate.getTime());
-        date.setHours(0, 0, 0, 0);
-        // Thursday in current week decides the year.
-        date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
-        // January 4 is always in week 1.
-        var week1 = new Date(date.getFullYear(), 0, 4);
-        // Adjust to Thursday in week 1 and count number of weeks from date to week1.
-        return (1 +
-          Math.round(((date.getTime() - week1.getTime()) / 86400000 -
-            3 +
-            ((week1.getDay() + 6) % 7)) /
-            7));
-      },
-      hourIncrement: 1,
-      ignoredFocusElements: [],
-      inline: false,
-      locale: "default",
-      minuteIncrement: 5,
-      mode: "single",
-      monthSelectorType: "dropdown",
-      nextArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z' /></svg>",
-      noCalendar: false,
-      now: new Date(),
-      onChange: [],
-      onClose: [],
-      onDayCreate: [],
-      onDestroy: [],
-      onKeyDown: [],
-      onMonthChange: [],
-      onOpen: [],
-      onParseConfig: [],
-      onReady: [],
-      onValueUpdate: [],
-      onYearChange: [],
-      onPreCalendarPosition: [],
-      plugins: [],
-      position: "auto",
-      positionElement: undefined,
-      prevArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z' /></svg>",
-      shorthandCurrentMonth: false,
-      showMonths: 1,
-      static: false,
-      time_24hr: false,
-      weekNumbers: false,
-      wrap: false,
+        _disable: [],
+        _enable: [],
+        allowInput: false,
+        allowInvalidPreload: false,
+        altFormat: "F j, Y",
+        altInput: false,
+        altInputClass: "form-control input",
+        animate: typeof window === "object" &&
+            window.navigator.userAgent.indexOf("MSIE") === -1,
+        ariaDateFormat: "F j, Y",
+        autoFillDefaultTime: true,
+        clickOpens: true,
+        closeOnSelect: true,
+        conjunction: ", ",
+        dateFormat: "Y-m-d",
+        defaultHour: 12,
+        defaultMinute: 0,
+        defaultSeconds: 0,
+        disable: [],
+        disableMobile: false,
+        enable: [],
+        enableSeconds: false,
+        enableTime: false,
+        errorHandler: function (err) {
+            return typeof console !== "undefined" && console.warn(err);
+        },
+        getWeek: function (givenDate) {
+            var date = new Date(givenDate.getTime());
+            date.setHours(0, 0, 0, 0);
+            // Thursday in current week decides the year.
+            date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
+            // January 4 is always in week 1.
+            var week1 = new Date(date.getFullYear(), 0, 4);
+            // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+            return (1 +
+                Math.round(((date.getTime() - week1.getTime()) / 86400000 -
+                    3 +
+                    ((week1.getDay() + 6) % 7)) /
+                    7));
+        },
+        hourIncrement: 1,
+        ignoredFocusElements: [],
+        inline: false,
+        locale: "default",
+        minuteIncrement: 5,
+        mode: "single",
+        monthSelectorType: "dropdown",
+        nextArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z' /></svg>",
+        noCalendar: false,
+        now: new Date(),
+        onChange: [],
+        onClose: [],
+        onDayCreate: [],
+        onDestroy: [],
+        onKeyDown: [],
+        onMonthChange: [],
+        onOpen: [],
+        onParseConfig: [],
+        onReady: [],
+        onValueUpdate: [],
+        onYearChange: [],
+        onPreCalendarPosition: [],
+        plugins: [],
+        position: "auto",
+        positionElement: undefined,
+        prevArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z' /></svg>",
+        shorthandCurrentMonth: false,
+        showMonths: 1,
+        static: false,
+        time_24hr: false,
+        weekNumbers: false,
+        wrap: false,
     };
 
     var english = {
-      weekdays: {
-        shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        longhand: [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-        ],
-      },
-      months: {
-        shorthand: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
-        longhand: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ],
-      },
-      daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-      firstDayOfWeek: 0,
-      ordinal: function (nth) {
-        var s = nth % 100;
-        if (s > 3 && s < 21)
-          return "th";
-        switch (s % 10) {
-          case 1:
-            return "st";
-          case 2:
-            return "nd";
-          case 3:
-            return "rd";
-          default:
-            return "th";
-        }
-      },
-      rangeSeparator: " to ",
-      weekAbbreviation: "Wk",
-      scrollTitle: "Scroll to increment",
-      toggleTitle: "Click to toggle",
-      amPM: ["AM", "PM"],
-      yearAriaLabel: "Year",
-      monthAriaLabel: "Month",
-      hourAriaLabel: "Hour",
-      minuteAriaLabel: "Minute",
-      time_24hr: false,
+        weekdays: {
+            shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            longhand: [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+            ],
+        },
+        months: {
+            shorthand: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ],
+            longhand: [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ],
+        },
+        daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+        firstDayOfWeek: 0,
+        ordinal: function (nth) {
+            var s = nth % 100;
+            if (s > 3 && s < 21)
+                return "th";
+            switch (s % 10) {
+                case 1:
+                    return "st";
+                case 2:
+                    return "nd";
+                case 3:
+                    return "rd";
+                default:
+                    return "th";
+            }
+        },
+        rangeSeparator: " to ",
+        weekAbbreviation: "Wk",
+        scrollTitle: "Scroll to increment",
+        toggleTitle: "Click to toggle",
+        amPM: ["AM", "PM"],
+        yearAriaLabel: "Year",
+        monthAriaLabel: "Month",
+        hourAriaLabel: "Hour",
+        minuteAriaLabel: "Minute",
+        time_24hr: false,
     };
 
     var pad = function (number, length) {
-      if (length === void 0) { length = 2; }
-      return ("000" + number).slice(length * -1);
+        if (length === void 0) { length = 2; }
+        return ("000" + number).slice(length * -1);
     };
     var int = function (bool) { return (bool === true ? 1 : 0); };
     /* istanbul ignore next */
     function debounce(func, wait, immediate) {
-      if (immediate === void 0) { immediate = false; }
-      var timeout;
-      return function () {
-        var context = this, args = arguments;
-        timeout !== null && clearTimeout(timeout);
-        timeout = window.setTimeout(function () {
-          timeout = null;
-          if (!immediate)
-            func.apply(context, args);
-        }, wait);
-        if (immediate && !timeout)
-          func.apply(context, args);
-      };
+        if (immediate === void 0) { immediate = false; }
+        var timeout;
+        return function () {
+            var context = this, args = arguments;
+            timeout !== null && clearTimeout(timeout);
+            timeout = window.setTimeout(function () {
+                timeout = null;
+                if (!immediate)
+                    func.apply(context, args);
+            }, wait);
+            if (immediate && !timeout)
+                func.apply(context, args);
+        };
     }
     var arrayify = function (obj) {
-      return obj instanceof Array ? obj : [obj];
+        return obj instanceof Array ? obj : [obj];
     };
 
     function toggleClass(elem, className, bool) {
-      if (bool === true)
-        return elem.classList.add(className);
-      elem.classList.remove(className);
+        if (bool === true)
+            return elem.classList.add(className);
+        elem.classList.remove(className);
     }
     function createElement(tag, className, content) {
-      var e = window.document.createElement(tag);
-      className = className || "";
-      content = content || "";
-      e.className = className;
-      if (content !== undefined)
-        e.textContent = content;
-      return e;
+        var e = window.document.createElement(tag);
+        className = className || "";
+        content = content || "";
+        e.className = className;
+        if (content !== undefined)
+            e.textContent = content;
+        return e;
     }
     function clearNode(node) {
-      while (node.firstChild)
-        node.removeChild(node.firstChild);
+        while (node.firstChild)
+            node.removeChild(node.firstChild);
     }
     function findParent(node, condition) {
-      if (condition(node))
-        return node;
-      else if (node.parentNode)
-        return findParent(node.parentNode, condition);
-      return undefined; // nothing found
+        if (condition(node))
+            return node;
+        else if (node.parentNode)
+            return findParent(node.parentNode, condition);
+        return undefined; // nothing found
     }
     function createNumberInput(inputClassName, opts) {
-      var wrapper = createElement("div", "numInputWrapper"), numInput = createElement("input", "numInput " + inputClassName), arrowUp = createElement("span", "arrowUp"), arrowDown = createElement("span", "arrowDown");
-      if (navigator.userAgent.indexOf("MSIE 9.0") === -1) {
-        numInput.type = "number";
-      }
-      else {
-        numInput.type = "text";
-        numInput.pattern = "\\d*";
-      }
-      if (opts !== undefined)
-        for (var key in opts)
-          numInput.setAttribute(key, opts[key]);
-      wrapper.appendChild(numInput);
-      wrapper.appendChild(arrowUp);
-      wrapper.appendChild(arrowDown);
-      return wrapper;
+        var wrapper = createElement("div", "numInputWrapper"), numInput = createElement("input", "numInput " + inputClassName), arrowUp = createElement("span", "arrowUp"), arrowDown = createElement("span", "arrowDown");
+        if (navigator.userAgent.indexOf("MSIE 9.0") === -1) {
+            numInput.type = "number";
+        }
+        else {
+            numInput.type = "text";
+            numInput.pattern = "\\d*";
+        }
+        if (opts !== undefined)
+            for (var key in opts)
+                numInput.setAttribute(key, opts[key]);
+        wrapper.appendChild(numInput);
+        wrapper.appendChild(arrowUp);
+        wrapper.appendChild(arrowDown);
+        return wrapper;
     }
     function getEventTarget(event) {
-      try {
-        if (typeof event.composedPath === "function") {
-          var path = event.composedPath();
-          return path[0];
+        try {
+            if (typeof event.composedPath === "function") {
+                var path = event.composedPath();
+                return path[0];
+            }
+            return event.target;
         }
-        return event.target;
-      }
-      catch (error) {
-        return event.target;
-      }
+        catch (error) {
+            return event.target;
+        }
     }
 
     var doNothing = function () { return undefined; };
     var monthToStr = function (monthNumber, shorthand, locale) { return locale.months[shorthand ? "shorthand" : "longhand"][monthNumber]; };
     var revFormat = {
-      D: doNothing,
-      F: function (dateObj, monthName, locale) {
-        dateObj.setMonth(locale.months.longhand.indexOf(monthName));
-      },
-      G: function (dateObj, hour) {
-        dateObj.setHours(parseFloat(hour));
-      },
-      H: function (dateObj, hour) {
-        dateObj.setHours(parseFloat(hour));
-      },
-      J: function (dateObj, day) {
-        dateObj.setDate(parseFloat(day));
-      },
-      K: function (dateObj, amPM, locale) {
-        dateObj.setHours((dateObj.getHours() % 12) +
-          12 * int(new RegExp(locale.amPM[1], "i").test(amPM)));
-      },
-      M: function (dateObj, shortMonth, locale) {
-        dateObj.setMonth(locale.months.shorthand.indexOf(shortMonth));
-      },
-      S: function (dateObj, seconds) {
-        dateObj.setSeconds(parseFloat(seconds));
-      },
-      U: function (_, unixSeconds) { return new Date(parseFloat(unixSeconds) * 1000); },
-      W: function (dateObj, weekNum, locale) {
-        var weekNumber = parseInt(weekNum);
-        var date = new Date(dateObj.getFullYear(), 0, 2 + (weekNumber - 1) * 7, 0, 0, 0, 0);
-        date.setDate(date.getDate() - date.getDay() + locale.firstDayOfWeek);
-        return date;
-      },
-      Y: function (dateObj, year) {
-        dateObj.setFullYear(parseFloat(year));
-      },
-      Z: function (_, ISODate) { return new Date(ISODate); },
-      d: function (dateObj, day) {
-        dateObj.setDate(parseFloat(day));
-      },
-      h: function (dateObj, hour) {
-        dateObj.setHours(parseFloat(hour));
-      },
-      i: function (dateObj, minutes) {
-        dateObj.setMinutes(parseFloat(minutes));
-      },
-      j: function (dateObj, day) {
-        dateObj.setDate(parseFloat(day));
-      },
-      l: doNothing,
-      m: function (dateObj, month) {
-        dateObj.setMonth(parseFloat(month) - 1);
-      },
-      n: function (dateObj, month) {
-        dateObj.setMonth(parseFloat(month) - 1);
-      },
-      s: function (dateObj, seconds) {
-        dateObj.setSeconds(parseFloat(seconds));
-      },
-      u: function (_, unixMillSeconds) {
-        return new Date(parseFloat(unixMillSeconds));
-      },
-      w: doNothing,
-      y: function (dateObj, year) {
-        dateObj.setFullYear(2000 + parseFloat(year));
-      },
+        D: doNothing,
+        F: function (dateObj, monthName, locale) {
+            dateObj.setMonth(locale.months.longhand.indexOf(monthName));
+        },
+        G: function (dateObj, hour) {
+            dateObj.setHours(parseFloat(hour));
+        },
+        H: function (dateObj, hour) {
+            dateObj.setHours(parseFloat(hour));
+        },
+        J: function (dateObj, day) {
+            dateObj.setDate(parseFloat(day));
+        },
+        K: function (dateObj, amPM, locale) {
+            dateObj.setHours((dateObj.getHours() % 12) +
+                12 * int(new RegExp(locale.amPM[1], "i").test(amPM)));
+        },
+        M: function (dateObj, shortMonth, locale) {
+            dateObj.setMonth(locale.months.shorthand.indexOf(shortMonth));
+        },
+        S: function (dateObj, seconds) {
+            dateObj.setSeconds(parseFloat(seconds));
+        },
+        U: function (_, unixSeconds) { return new Date(parseFloat(unixSeconds) * 1000); },
+        W: function (dateObj, weekNum, locale) {
+            var weekNumber = parseInt(weekNum);
+            var date = new Date(dateObj.getFullYear(), 0, 2 + (weekNumber - 1) * 7, 0, 0, 0, 0);
+            date.setDate(date.getDate() - date.getDay() + locale.firstDayOfWeek);
+            return date;
+        },
+        Y: function (dateObj, year) {
+            dateObj.setFullYear(parseFloat(year));
+        },
+        Z: function (_, ISODate) { return new Date(ISODate); },
+        d: function (dateObj, day) {
+            dateObj.setDate(parseFloat(day));
+        },
+        h: function (dateObj, hour) {
+            dateObj.setHours(parseFloat(hour));
+        },
+        i: function (dateObj, minutes) {
+            dateObj.setMinutes(parseFloat(minutes));
+        },
+        j: function (dateObj, day) {
+            dateObj.setDate(parseFloat(day));
+        },
+        l: doNothing,
+        m: function (dateObj, month) {
+            dateObj.setMonth(parseFloat(month) - 1);
+        },
+        n: function (dateObj, month) {
+            dateObj.setMonth(parseFloat(month) - 1);
+        },
+        s: function (dateObj, seconds) {
+            dateObj.setSeconds(parseFloat(seconds));
+        },
+        u: function (_, unixMillSeconds) {
+            return new Date(parseFloat(unixMillSeconds));
+        },
+        w: doNothing,
+        y: function (dateObj, year) {
+            dateObj.setFullYear(2000 + parseFloat(year));
+        },
     };
     var tokenRegex = {
-      D: "(\\w+)",
-      F: "(\\w+)",
-      G: "(\\d\\d|\\d)",
-      H: "(\\d\\d|\\d)",
-      J: "(\\d\\d|\\d)\\w+",
-      K: "",
-      M: "(\\w+)",
-      S: "(\\d\\d|\\d)",
-      U: "(.+)",
-      W: "(\\d\\d|\\d)",
-      Y: "(\\d{4})",
-      Z: "(.+)",
-      d: "(\\d\\d|\\d)",
-      h: "(\\d\\d|\\d)",
-      i: "(\\d\\d|\\d)",
-      j: "(\\d\\d|\\d)",
-      l: "(\\w+)",
-      m: "(\\d\\d|\\d)",
-      n: "(\\d\\d|\\d)",
-      s: "(\\d\\d|\\d)",
-      u: "(.+)",
-      w: "(\\d\\d|\\d)",
-      y: "(\\d{2})",
+        D: "(\\w+)",
+        F: "(\\w+)",
+        G: "(\\d\\d|\\d)",
+        H: "(\\d\\d|\\d)",
+        J: "(\\d\\d|\\d)\\w+",
+        K: "",
+        M: "(\\w+)",
+        S: "(\\d\\d|\\d)",
+        U: "(.+)",
+        W: "(\\d\\d|\\d)",
+        Y: "(\\d{4})",
+        Z: "(.+)",
+        d: "(\\d\\d|\\d)",
+        h: "(\\d\\d|\\d)",
+        i: "(\\d\\d|\\d)",
+        j: "(\\d\\d|\\d)",
+        l: "(\\w+)",
+        m: "(\\d\\d|\\d)",
+        n: "(\\d\\d|\\d)",
+        s: "(\\d\\d|\\d)",
+        u: "(.+)",
+        w: "(\\d\\d|\\d)",
+        y: "(\\d{2})",
     };
     var formats = {
-      // get the date in UTC
-      Z: function (date) { return date.toISOString(); },
-      // weekday name, short, e.g. Thu
-      D: function (date, locale, options) {
-        return locale.weekdays.shorthand[formats.w(date, locale, options)];
-      },
-      // full month name e.g. January
-      F: function (date, locale, options) {
-        return monthToStr(formats.n(date, locale, options) - 1, false, locale);
-      },
-      // padded hour 1-12
-      G: function (date, locale, options) {
-        return pad(formats.h(date, locale, options));
-      },
-      // hours with leading zero e.g. 03
-      H: function (date) { return pad(date.getHours()); },
-      // day (1-30) with ordinal suffix e.g. 1st, 2nd
-      J: function (date, locale) {
-        return locale.ordinal !== undefined
-          ? date.getDate() + locale.ordinal(date.getDate())
-          : date.getDate();
-      },
-      // AM/PM
-      K: function (date, locale) { return locale.amPM[int(date.getHours() > 11)]; },
-      // shorthand month e.g. Jan, Sep, Oct, etc
-      M: function (date, locale) {
-        return monthToStr(date.getMonth(), true, locale);
-      },
-      // seconds 00-59
-      S: function (date) { return pad(date.getSeconds()); },
-      // unix timestamp
-      U: function (date) { return date.getTime() / 1000; },
-      W: function (date, _, options) {
-        return options.getWeek(date);
-      },
-      // full year e.g. 2016, padded (0001-9999)
-      Y: function (date) { return pad(date.getFullYear(), 4); },
-      // day in month, padded (01-30)
-      d: function (date) { return pad(date.getDate()); },
-      // hour from 1-12 (am/pm)
-      h: function (date) { return (date.getHours() % 12 ? date.getHours() % 12 : 12); },
-      // minutes, padded with leading zero e.g. 09
-      i: function (date) { return pad(date.getMinutes()); },
-      // day in month (1-30)
-      j: function (date) { return date.getDate(); },
-      // weekday name, full, e.g. Thursday
-      l: function (date, locale) {
-        return locale.weekdays.longhand[date.getDay()];
-      },
-      // padded month number (01-12)
-      m: function (date) { return pad(date.getMonth() + 1); },
-      // the month number (1-12)
-      n: function (date) { return date.getMonth() + 1; },
-      // seconds 0-59
-      s: function (date) { return date.getSeconds(); },
-      // Unix Milliseconds
-      u: function (date) { return date.getTime(); },
-      // number of the day of the week
-      w: function (date) { return date.getDay(); },
-      // last two digits of year e.g. 16 for 2016
-      y: function (date) { return String(date.getFullYear()).substring(2); },
+        // get the date in UTC
+        Z: function (date) { return date.toISOString(); },
+        // weekday name, short, e.g. Thu
+        D: function (date, locale, options) {
+            return locale.weekdays.shorthand[formats.w(date, locale, options)];
+        },
+        // full month name e.g. January
+        F: function (date, locale, options) {
+            return monthToStr(formats.n(date, locale, options) - 1, false, locale);
+        },
+        // padded hour 1-12
+        G: function (date, locale, options) {
+            return pad(formats.h(date, locale, options));
+        },
+        // hours with leading zero e.g. 03
+        H: function (date) { return pad(date.getHours()); },
+        // day (1-30) with ordinal suffix e.g. 1st, 2nd
+        J: function (date, locale) {
+            return locale.ordinal !== undefined
+                ? date.getDate() + locale.ordinal(date.getDate())
+                : date.getDate();
+        },
+        // AM/PM
+        K: function (date, locale) { return locale.amPM[int(date.getHours() > 11)]; },
+        // shorthand month e.g. Jan, Sep, Oct, etc
+        M: function (date, locale) {
+            return monthToStr(date.getMonth(), true, locale);
+        },
+        // seconds 00-59
+        S: function (date) { return pad(date.getSeconds()); },
+        // unix timestamp
+        U: function (date) { return date.getTime() / 1000; },
+        W: function (date, _, options) {
+            return options.getWeek(date);
+        },
+        // full year e.g. 2016, padded (0001-9999)
+        Y: function (date) { return pad(date.getFullYear(), 4); },
+        // day in month, padded (01-30)
+        d: function (date) { return pad(date.getDate()); },
+        // hour from 1-12 (am/pm)
+        h: function (date) { return (date.getHours() % 12 ? date.getHours() % 12 : 12); },
+        // minutes, padded with leading zero e.g. 09
+        i: function (date) { return pad(date.getMinutes()); },
+        // day in month (1-30)
+        j: function (date) { return date.getDate(); },
+        // weekday name, full, e.g. Thursday
+        l: function (date, locale) {
+            return locale.weekdays.longhand[date.getDay()];
+        },
+        // padded month number (01-12)
+        m: function (date) { return pad(date.getMonth() + 1); },
+        // the month number (1-12)
+        n: function (date) { return date.getMonth() + 1; },
+        // seconds 0-59
+        s: function (date) { return date.getSeconds(); },
+        // Unix Milliseconds
+        u: function (date) { return date.getTime(); },
+        // number of the day of the week
+        w: function (date) { return date.getDay(); },
+        // last two digits of year e.g. 16 for 2016
+        y: function (date) { return String(date.getFullYear()).substring(2); },
     };
 
     var createDateFormatter = function (_a) {
-      var _b = _a.config, config = _b === void 0 ? defaults : _b, _c = _a.l10n, l10n = _c === void 0 ? english : _c, _d = _a.isMobile, isMobile = _d === void 0 ? false : _d;
-      return function (dateObj, frmt, overrideLocale) {
-        var locale = overrideLocale || l10n;
-        if (config.formatDate !== undefined && !isMobile) {
-          return config.formatDate(dateObj, frmt, locale);
-        }
-        return frmt
-          .split("")
-          .map(function (c, i, arr) {
-            return formats[c] && arr[i - 1] !== "\\"
-              ? formats[c](dateObj, locale, config)
-              : c !== "\\"
-                ? c
-                : "";
-          })
-          .join("");
-      };
+        var _b = _a.config, config = _b === void 0 ? defaults : _b, _c = _a.l10n, l10n = _c === void 0 ? english : _c, _d = _a.isMobile, isMobile = _d === void 0 ? false : _d;
+        return function (dateObj, frmt, overrideLocale) {
+            var locale = overrideLocale || l10n;
+            if (config.formatDate !== undefined && !isMobile) {
+                return config.formatDate(dateObj, frmt, locale);
+            }
+            return frmt
+                .split("")
+                .map(function (c, i, arr) {
+                return formats[c] && arr[i - 1] !== "\\"
+                    ? formats[c](dateObj, locale, config)
+                    : c !== "\\"
+                        ? c
+                        : "";
+            })
+                .join("");
+        };
     };
     var createDateParser = function (_a) {
-      var _b = _a.config, config = _b === void 0 ? defaults : _b, _c = _a.l10n, l10n = _c === void 0 ? english : _c;
-      return function (date, givenFormat, timeless, customLocale) {
-        if (date !== 0 && !date)
-          return undefined;
-        var locale = customLocale || l10n;
-        var parsedDate;
-        var dateOrig = date;
-        if (date instanceof Date)
-          parsedDate = new Date(date.getTime());
-        else if (typeof date !== "string" &&
-          date.toFixed !== undefined // timestamp
-        )
-          // create a copy
-          parsedDate = new Date(date);
-        else if (typeof date === "string") {
-          // date string
-          var format = givenFormat || (config || defaults).dateFormat;
-          var datestr = String(date).trim();
-          if (datestr === "today") {
-            parsedDate = new Date();
-            timeless = true;
-          }
-          else if (/Z$/.test(datestr) ||
-            /GMT$/.test(datestr) // datestrings w/ timezone
-          )
-            parsedDate = new Date(date);
-          else if (config && config.parseDate)
-            parsedDate = config.parseDate(date, format);
-          else {
-            parsedDate =
-              !config || !config.noCalendar
-                ? new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0)
-                : new Date(new Date().setHours(0, 0, 0, 0));
-            var matched = void 0, ops = [];
-            for (var i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
-              var token_1 = format[i];
-              var isBackSlash = token_1 === "\\";
-              var escaped = format[i - 1] === "\\" || isBackSlash;
-              if (tokenRegex[token_1] && !escaped) {
-                regexStr += tokenRegex[token_1];
-                var match = new RegExp(regexStr).exec(date);
-                if (match && (matched = true)) {
-                  ops[token_1 !== "Y" ? "push" : "unshift"]({
-                    fn: revFormat[token_1],
-                    val: match[++matchIndex],
-                  });
+        var _b = _a.config, config = _b === void 0 ? defaults : _b, _c = _a.l10n, l10n = _c === void 0 ? english : _c;
+        return function (date, givenFormat, timeless, customLocale) {
+            if (date !== 0 && !date)
+                return undefined;
+            var locale = customLocale || l10n;
+            var parsedDate;
+            var dateOrig = date;
+            if (date instanceof Date)
+                parsedDate = new Date(date.getTime());
+            else if (typeof date !== "string" &&
+                date.toFixed !== undefined // timestamp
+            )
+                // create a copy
+                parsedDate = new Date(date);
+            else if (typeof date === "string") {
+                // date string
+                var format = givenFormat || (config || defaults).dateFormat;
+                var datestr = String(date).trim();
+                if (datestr === "today") {
+                    parsedDate = new Date();
+                    timeless = true;
                 }
-              }
-              else if (!isBackSlash)
-                regexStr += "."; // don't really care
-              ops.forEach(function (_a) {
-                var fn = _a.fn, val = _a.val;
-                return (parsedDate = fn(parsedDate, val, locale) || parsedDate);
-              });
+                else if (/Z$/.test(datestr) ||
+                    /GMT$/.test(datestr) // datestrings w/ timezone
+                )
+                    parsedDate = new Date(date);
+                else if (config && config.parseDate)
+                    parsedDate = config.parseDate(date, format);
+                else {
+                    parsedDate =
+                        !config || !config.noCalendar
+                            ? new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0)
+                            : new Date(new Date().setHours(0, 0, 0, 0));
+                    var matched = void 0, ops = [];
+                    for (var i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
+                        var token_1 = format[i];
+                        var isBackSlash = token_1 === "\\";
+                        var escaped = format[i - 1] === "\\" || isBackSlash;
+                        if (tokenRegex[token_1] && !escaped) {
+                            regexStr += tokenRegex[token_1];
+                            var match = new RegExp(regexStr).exec(date);
+                            if (match && (matched = true)) {
+                                ops[token_1 !== "Y" ? "push" : "unshift"]({
+                                    fn: revFormat[token_1],
+                                    val: match[++matchIndex],
+                                });
+                            }
+                        }
+                        else if (!isBackSlash)
+                            regexStr += "."; // don't really care
+                        ops.forEach(function (_a) {
+                            var fn = _a.fn, val = _a.val;
+                            return (parsedDate = fn(parsedDate, val, locale) || parsedDate);
+                        });
+                    }
+                    parsedDate = matched ? parsedDate : undefined;
+                }
             }
-            parsedDate = matched ? parsedDate : undefined;
-          }
-        }
-        /* istanbul ignore next */
-        if (!(parsedDate instanceof Date && !isNaN(parsedDate.getTime()))) {
-          config.errorHandler(new Error("Invalid date provided: " + dateOrig));
-          return undefined;
-        }
-        if (timeless === true)
-          parsedDate.setHours(0, 0, 0, 0);
-        return parsedDate;
-      };
+            /* istanbul ignore next */
+            if (!(parsedDate instanceof Date && !isNaN(parsedDate.getTime()))) {
+                config.errorHandler(new Error("Invalid date provided: " + dateOrig));
+                return undefined;
+            }
+            if (timeless === true)
+                parsedDate.setHours(0, 0, 0, 0);
+            return parsedDate;
+        };
     };
     /**
      * Compute the difference in dates, measured in ms
      */
     function compareDates(date1, date2, timeless) {
-      if (timeless === void 0) { timeless = true; }
-      if (timeless !== false) {
-        return (new Date(date1.getTime()).setHours(0, 0, 0, 0) -
-          new Date(date2.getTime()).setHours(0, 0, 0, 0));
-      }
-      return date1.getTime() - date2.getTime();
+        if (timeless === void 0) { timeless = true; }
+        if (timeless !== false) {
+            return (new Date(date1.getTime()).setHours(0, 0, 0, 0) -
+                new Date(date2.getTime()).setHours(0, 0, 0, 0));
+        }
+        return date1.getTime() - date2.getTime();
     }
     var isBetween = function (ts, ts1, ts2) {
-      return ts > Math.min(ts1, ts2) && ts < Math.max(ts1, ts2);
+        return ts > Math.min(ts1, ts2) && ts < Math.max(ts1, ts2);
     };
     var duration = {
-      DAY: 86400000,
+        DAY: 86400000,
     };
 
     if (typeof Object.assign !== "function") {
-      Object.assign = function (target) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-          args[_i - 1] = arguments[_i];
-        }
-        if (!target) {
-          throw TypeError("Cannot convert undefined or null to object");
-        }
-        var _loop_1 = function (source) {
-          if (source) {
-            Object.keys(source).forEach(function (key) { return (target[key] = source[key]); });
-          }
+        Object.assign = function (target) {
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            if (!target) {
+                throw TypeError("Cannot convert undefined or null to object");
+            }
+            var _loop_1 = function (source) {
+                if (source) {
+                    Object.keys(source).forEach(function (key) { return (target[key] = source[key]); });
+                }
+            };
+            for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
+                var source = args_1[_a];
+                _loop_1(source);
+            }
+            return target;
         };
-        for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
-          var source = args_1[_a];
-          _loop_1(source);
-        }
-        return target;
-      };
     }
 
     var DEBOUNCED_CHANGE_MS = 300;
     function FlatpickrInstance(element, instanceConfig) {
-      var self = {
-        config: __assign(__assign({}, defaults), flatpickr.defaultConfig),
-        l10n: english,
-      };
-      self.parseDate = createDateParser({ config: self.config, l10n: self.l10n });
-      self._handlers = [];
-      self.pluginElements = [];
-      self.loadedPlugins = [];
-      self._bind = bind;
-      self._setHoursFromDate = setHoursFromDate;
-      self._positionCalendar = positionCalendar;
-      self.changeMonth = changeMonth;
-      self.changeYear = changeYear;
-      self.clear = clear;
-      self.close = close;
-      self._createElement = createElement;
-      self.destroy = destroy;
-      self.isEnabled = isEnabled;
-      self.jumpToDate = jumpToDate;
-      self.open = open;
-      self.redraw = redraw;
-      self.set = set;
-      self.setDate = setDate;
-      self.toggle = toggle;
-      function setupHelperFunctions() {
-        self.utils = {
-          getDaysInMonth: function (month, yr) {
-            if (month === void 0) { month = self.currentMonth; }
-            if (yr === void 0) { yr = self.currentYear; }
-            if (month === 1 && ((yr % 4 === 0 && yr % 100 !== 0) || yr % 400 === 0))
-              return 29;
-            return self.l10n.daysInMonth[month];
-          },
+        var self = {
+            config: __assign(__assign({}, defaults), flatpickr.defaultConfig),
+            l10n: english,
         };
-      }
-      function init() {
-        self.element = self.input = element;
-        self.isOpen = false;
-        parseConfig();
-        setupLocale();
-        setupInputs();
-        setupDates();
-        setupHelperFunctions();
-        if (!self.isMobile)
-          build();
-        bindEvents();
-        if (self.selectedDates.length || self.config.noCalendar) {
-          if (self.config.enableTime) {
-            setHoursFromDate(self.config.noCalendar
-              ? self.latestSelectedDateObj || self.config.minDate
-              : undefined);
-          }
-          updateValue(false);
+        self.parseDate = createDateParser({ config: self.config, l10n: self.l10n });
+        self._handlers = [];
+        self.pluginElements = [];
+        self.loadedPlugins = [];
+        self._bind = bind;
+        self._setHoursFromDate = setHoursFromDate;
+        self._positionCalendar = positionCalendar;
+        self.changeMonth = changeMonth;
+        self.changeYear = changeYear;
+        self.clear = clear;
+        self.close = close;
+        self._createElement = createElement;
+        self.destroy = destroy;
+        self.isEnabled = isEnabled;
+        self.jumpToDate = jumpToDate;
+        self.open = open;
+        self.redraw = redraw;
+        self.set = set;
+        self.setDate = setDate;
+        self.toggle = toggle;
+        function setupHelperFunctions() {
+            self.utils = {
+                getDaysInMonth: function (month, yr) {
+                    if (month === void 0) { month = self.currentMonth; }
+                    if (yr === void 0) { yr = self.currentYear; }
+                    if (month === 1 && ((yr % 4 === 0 && yr % 100 !== 0) || yr % 400 === 0))
+                        return 29;
+                    return self.l10n.daysInMonth[month];
+                },
+            };
         }
-        setCalendarWidth();
-        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        /* TODO: investigate this further
-    
-          Currently, there is weird positioning behavior in safari causing pages
-          to scroll up. https://github.com/chmln/flatpickr/issues/563
-    
-          However, most browsers are not Safari and positioning is expensive when used
-          in scale. https://github.com/chmln/flatpickr/issues/1096
-        */
-        if (!self.isMobile && isSafari) {
-          positionCalendar();
+        function init() {
+            self.element = self.input = element;
+            self.isOpen = false;
+            parseConfig();
+            setupLocale();
+            setupInputs();
+            setupDates();
+            setupHelperFunctions();
+            if (!self.isMobile)
+                build();
+            bindEvents();
+            if (self.selectedDates.length || self.config.noCalendar) {
+                if (self.config.enableTime) {
+                    setHoursFromDate(self.config.noCalendar
+                        ? self.latestSelectedDateObj || self.config.minDate
+                        : undefined);
+                }
+                updateValue(false);
+            }
+            setCalendarWidth();
+            var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            /* TODO: investigate this further
+        
+              Currently, there is weird positioning behavior in safari causing pages
+              to scroll up. https://github.com/chmln/flatpickr/issues/563
+        
+              However, most browsers are not Safari and positioning is expensive when used
+              in scale. https://github.com/chmln/flatpickr/issues/1096
+            */
+            if (!self.isMobile && isSafari) {
+                positionCalendar();
+            }
+            triggerEvent("onReady");
         }
-        triggerEvent("onReady");
-      }
-      function bindToInstance(fn) {
-        return fn.bind(self);
-      }
-      function setCalendarWidth() {
-        var config = self.config;
-        if (config.weekNumbers === false && config.showMonths === 1) {
-          return;
+        function bindToInstance(fn) {
+            return fn.bind(self);
         }
-        else if (config.noCalendar !== true) {
-          window.requestAnimationFrame(function () {
-            if (self.calendarContainer !== undefined) {
-              self.calendarContainer.style.visibility = "hidden";
-              self.calendarContainer.style.display = "block";
+        function setCalendarWidth() {
+            var config = self.config;
+            if (config.weekNumbers === false && config.showMonths === 1) {
+                return;
+            }
+            else if (config.noCalendar !== true) {
+                window.requestAnimationFrame(function () {
+                    if (self.calendarContainer !== undefined) {
+                        self.calendarContainer.style.visibility = "hidden";
+                        self.calendarContainer.style.display = "block";
+                    }
+                    if (self.daysContainer !== undefined) {
+                        var daysWidth = (self.days.offsetWidth + 1) * config.showMonths;
+                        self.daysContainer.style.width = daysWidth + "px";
+                        self.calendarContainer.style.width =
+                            daysWidth +
+                                (self.weekWrapper !== undefined
+                                    ? self.weekWrapper.offsetWidth
+                                    : 0) +
+                                "px";
+                        self.calendarContainer.style.removeProperty("visibility");
+                        self.calendarContainer.style.removeProperty("display");
+                    }
+                });
+            }
+        }
+        /**
+         * The handler for all events targeting the time inputs
+         */
+        function updateTime(e) {
+            if (self.selectedDates.length === 0) {
+                var defaultDate = self.config.minDate !== undefined
+                    ? new Date(self.config.minDate.getTime())
+                    : new Date();
+                var _a = getDefaultHours(), hours = _a.hours, minutes = _a.minutes, seconds = _a.seconds;
+                defaultDate.setHours(hours, minutes, seconds, 0);
+                self.setDate(defaultDate, false);
+            }
+            if (e !== undefined && e.type !== "blur") {
+                timeWrapper(e);
+            }
+            var prevValue = self._input.value;
+            setHoursFromInputs();
+            updateValue();
+            if (self._input.value !== prevValue) {
+                self._debouncedChange();
+            }
+        }
+        function ampm2military(hour, amPM) {
+            return (hour % 12) + 12 * int(amPM === self.l10n.amPM[1]);
+        }
+        function military2ampm(hour) {
+            switch (hour % 24) {
+                case 0:
+                case 12:
+                    return 12;
+                default:
+                    return hour % 12;
+            }
+        }
+        /**
+         * Syncs the selected date object time with user's time input
+         */
+        function setHoursFromInputs() {
+            if (self.hourElement === undefined || self.minuteElement === undefined)
+                return;
+            var hours = (parseInt(self.hourElement.value.slice(-2), 10) || 0) % 24, minutes = (parseInt(self.minuteElement.value, 10) || 0) % 60, seconds = self.secondElement !== undefined
+                ? (parseInt(self.secondElement.value, 10) || 0) % 60
+                : 0;
+            if (self.amPM !== undefined) {
+                hours = ampm2military(hours, self.amPM.textContent);
+            }
+            var limitMinHours = self.config.minTime !== undefined ||
+                (self.config.minDate &&
+                    self.minDateHasTime &&
+                    self.latestSelectedDateObj &&
+                    compareDates(self.latestSelectedDateObj, self.config.minDate, true) ===
+                        0);
+            var limitMaxHours = self.config.maxTime !== undefined ||
+                (self.config.maxDate &&
+                    self.maxDateHasTime &&
+                    self.latestSelectedDateObj &&
+                    compareDates(self.latestSelectedDateObj, self.config.maxDate, true) ===
+                        0);
+            if (limitMaxHours) {
+                var maxTime = self.config.maxTime !== undefined
+                    ? self.config.maxTime
+                    : self.config.maxDate;
+                hours = Math.min(hours, maxTime.getHours());
+                if (hours === maxTime.getHours())
+                    minutes = Math.min(minutes, maxTime.getMinutes());
+                if (minutes === maxTime.getMinutes())
+                    seconds = Math.min(seconds, maxTime.getSeconds());
+            }
+            if (limitMinHours) {
+                var minTime = self.config.minTime !== undefined
+                    ? self.config.minTime
+                    : self.config.minDate;
+                hours = Math.max(hours, minTime.getHours());
+                if (hours === minTime.getHours())
+                    minutes = Math.max(minutes, minTime.getMinutes());
+                if (minutes === minTime.getMinutes())
+                    seconds = Math.max(seconds, minTime.getSeconds());
+            }
+            setHours(hours, minutes, seconds);
+        }
+        /**
+         * Syncs time input values with a date
+         */
+        function setHoursFromDate(dateObj) {
+            var date = dateObj || self.latestSelectedDateObj;
+            if (date) {
+                setHours(date.getHours(), date.getMinutes(), date.getSeconds());
+            }
+        }
+        function getDefaultHours() {
+            var hours = self.config.defaultHour;
+            var minutes = self.config.defaultMinute;
+            var seconds = self.config.defaultSeconds;
+            if (self.config.minDate !== undefined) {
+                var minHr = self.config.minDate.getHours();
+                var minMinutes = self.config.minDate.getMinutes();
+                hours = Math.max(hours, minHr);
+                if (hours === minHr)
+                    minutes = Math.max(minMinutes, minutes);
+                if (hours === minHr && minutes === minMinutes)
+                    seconds = self.config.minDate.getSeconds();
+            }
+            if (self.config.maxDate !== undefined) {
+                var maxHr = self.config.maxDate.getHours();
+                var maxMinutes = self.config.maxDate.getMinutes();
+                hours = Math.min(hours, maxHr);
+                if (hours === maxHr)
+                    minutes = Math.min(maxMinutes, minutes);
+                if (hours === maxHr && minutes === maxMinutes)
+                    seconds = self.config.maxDate.getSeconds();
+            }
+            return { hours: hours, minutes: minutes, seconds: seconds };
+        }
+        /**
+         * Sets the hours, minutes, and optionally seconds
+         * of the latest selected date object and the
+         * corresponding time inputs
+         * @param {Number} hours the hour. whether its military
+         *                 or am-pm gets inferred from config
+         * @param {Number} minutes the minutes
+         * @param {Number} seconds the seconds (optional)
+         */
+        function setHours(hours, minutes, seconds) {
+            if (self.latestSelectedDateObj !== undefined) {
+                self.latestSelectedDateObj.setHours(hours % 24, minutes, seconds || 0, 0);
+            }
+            if (!self.hourElement || !self.minuteElement || self.isMobile)
+                return;
+            self.hourElement.value = pad(!self.config.time_24hr
+                ? ((12 + hours) % 12) + 12 * int(hours % 12 === 0)
+                : hours);
+            self.minuteElement.value = pad(minutes);
+            if (self.amPM !== undefined)
+                self.amPM.textContent = self.l10n.amPM[int(hours >= 12)];
+            if (self.secondElement !== undefined)
+                self.secondElement.value = pad(seconds);
+        }
+        /**
+         * Handles the year input and incrementing events
+         * @param {Event} event the keyup or increment event
+         */
+        function onYearInput(event) {
+            var eventTarget = getEventTarget(event);
+            var year = parseInt(eventTarget.value) + (event.delta || 0);
+            if (year / 1000 > 1 ||
+                (event.key === "Enter" && !/[^\d]/.test(year.toString()))) {
+                changeYear(year);
+            }
+        }
+        /**
+         * Essentially addEventListener + tracking
+         * @param {Element} element the element to addEventListener to
+         * @param {String} event the event name
+         * @param {Function} handler the event handler
+         */
+        function bind(element, event, handler, options) {
+            if (event instanceof Array)
+                return event.forEach(function (ev) { return bind(element, ev, handler, options); });
+            if (element instanceof Array)
+                return element.forEach(function (el) { return bind(el, event, handler, options); });
+            element.addEventListener(event, handler, options);
+            self._handlers.push({
+                element: element,
+                event: event,
+                handler: handler,
+                options: options,
+            });
+        }
+        function triggerChange() {
+            triggerEvent("onChange");
+        }
+        /**
+         * Adds all the necessary event listeners
+         */
+        function bindEvents() {
+            if (self.config.wrap) {
+                ["open", "close", "toggle", "clear"].forEach(function (evt) {
+                    Array.prototype.forEach.call(self.element.querySelectorAll("[data-" + evt + "]"), function (el) {
+                        return bind(el, "click", self[evt]);
+                    });
+                });
+            }
+            if (self.isMobile) {
+                setupMobile();
+                return;
+            }
+            var debouncedResize = debounce(onResize, 50);
+            self._debouncedChange = debounce(triggerChange, DEBOUNCED_CHANGE_MS);
+            if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent))
+                bind(self.daysContainer, "mouseover", function (e) {
+                    if (self.config.mode === "range")
+                        onMouseOver(getEventTarget(e));
+                });
+            bind(window.document.body, "keydown", onKeyDown);
+            if (!self.config.inline && !self.config.static)
+                bind(window, "resize", debouncedResize);
+            if (window.ontouchstart !== undefined)
+                bind(window.document, "touchstart", documentClick);
+            else
+                bind(window.document, "click", documentClick);
+            bind(window.document, "focus", documentClick, { capture: true });
+            if (self.config.clickOpens === true) {
+                bind(self._input, "focus", self.open);
+                bind(self._input, "click", self.open);
             }
             if (self.daysContainer !== undefined) {
-              var daysWidth = (self.days.offsetWidth + 1) * config.showMonths;
-              self.daysContainer.style.width = daysWidth + "px";
-              self.calendarContainer.style.width =
-                daysWidth +
-                (self.weekWrapper !== undefined
-                  ? self.weekWrapper.offsetWidth
-                  : 0) +
-                "px";
-              self.calendarContainer.style.removeProperty("visibility");
-              self.calendarContainer.style.removeProperty("display");
+                bind(self.monthNav, "click", onMonthNavClick);
+                bind(self.monthNav, ["keyup", "increment"], onYearInput);
+                bind(self.daysContainer, "click", selectDate);
             }
-          });
-        }
-      }
-      /**
-       * The handler for all events targeting the time inputs
-       */
-      function updateTime(e) {
-        if (self.selectedDates.length === 0) {
-          var defaultDate = self.config.minDate !== undefined
-            ? new Date(self.config.minDate.getTime())
-            : new Date();
-          var _a = getDefaultHours(), hours = _a.hours, minutes = _a.minutes, seconds = _a.seconds;
-          defaultDate.setHours(hours, minutes, seconds, 0);
-          self.setDate(defaultDate, false);
-        }
-        if (e !== undefined && e.type !== "blur") {
-          timeWrapper(e);
-        }
-        var prevValue = self._input.value;
-        setHoursFromInputs();
-        updateValue();
-        if (self._input.value !== prevValue) {
-          self._debouncedChange();
-        }
-      }
-      function ampm2military(hour, amPM) {
-        return (hour % 12) + 12 * int(amPM === self.l10n.amPM[1]);
-      }
-      function military2ampm(hour) {
-        switch (hour % 24) {
-          case 0:
-          case 12:
-            return 12;
-          default:
-            return hour % 12;
-        }
-      }
-      /**
-       * Syncs the selected date object time with user's time input
-       */
-      function setHoursFromInputs() {
-        if (self.hourElement === undefined || self.minuteElement === undefined)
-          return;
-        var hours = (parseInt(self.hourElement.value.slice(-2), 10) || 0) % 24, minutes = (parseInt(self.minuteElement.value, 10) || 0) % 60, seconds = self.secondElement !== undefined
-          ? (parseInt(self.secondElement.value, 10) || 0) % 60
-          : 0;
-        if (self.amPM !== undefined) {
-          hours = ampm2military(hours, self.amPM.textContent);
-        }
-        var limitMinHours = self.config.minTime !== undefined ||
-          (self.config.minDate &&
-            self.minDateHasTime &&
-            self.latestSelectedDateObj &&
-            compareDates(self.latestSelectedDateObj, self.config.minDate, true) ===
-            0);
-        var limitMaxHours = self.config.maxTime !== undefined ||
-          (self.config.maxDate &&
-            self.maxDateHasTime &&
-            self.latestSelectedDateObj &&
-            compareDates(self.latestSelectedDateObj, self.config.maxDate, true) ===
-            0);
-        if (limitMaxHours) {
-          var maxTime = self.config.maxTime !== undefined
-            ? self.config.maxTime
-            : self.config.maxDate;
-          hours = Math.min(hours, maxTime.getHours());
-          if (hours === maxTime.getHours())
-            minutes = Math.min(minutes, maxTime.getMinutes());
-          if (minutes === maxTime.getMinutes())
-            seconds = Math.min(seconds, maxTime.getSeconds());
-        }
-        if (limitMinHours) {
-          var minTime = self.config.minTime !== undefined
-            ? self.config.minTime
-            : self.config.minDate;
-          hours = Math.max(hours, minTime.getHours());
-          if (hours === minTime.getHours())
-            minutes = Math.max(minutes, minTime.getMinutes());
-          if (minutes === minTime.getMinutes())
-            seconds = Math.max(seconds, minTime.getSeconds());
-        }
-        setHours(hours, minutes, seconds);
-      }
-      /**
-       * Syncs time input values with a date
-       */
-      function setHoursFromDate(dateObj) {
-        var date = dateObj || self.latestSelectedDateObj;
-        if (date) {
-          setHours(date.getHours(), date.getMinutes(), date.getSeconds());
-        }
-      }
-      function getDefaultHours() {
-        var hours = self.config.defaultHour;
-        var minutes = self.config.defaultMinute;
-        var seconds = self.config.defaultSeconds;
-        if (self.config.minDate !== undefined) {
-          var minHr = self.config.minDate.getHours();
-          var minMinutes = self.config.minDate.getMinutes();
-          hours = Math.max(hours, minHr);
-          if (hours === minHr)
-            minutes = Math.max(minMinutes, minutes);
-          if (hours === minHr && minutes === minMinutes)
-            seconds = self.config.minDate.getSeconds();
-        }
-        if (self.config.maxDate !== undefined) {
-          var maxHr = self.config.maxDate.getHours();
-          var maxMinutes = self.config.maxDate.getMinutes();
-          hours = Math.min(hours, maxHr);
-          if (hours === maxHr)
-            minutes = Math.min(maxMinutes, minutes);
-          if (hours === maxHr && minutes === maxMinutes)
-            seconds = self.config.maxDate.getSeconds();
-        }
-        return { hours: hours, minutes: minutes, seconds: seconds };
-      }
-      /**
-       * Sets the hours, minutes, and optionally seconds
-       * of the latest selected date object and the
-       * corresponding time inputs
-       * @param {Number} hours the hour. whether its military
-       *                 or am-pm gets inferred from config
-       * @param {Number} minutes the minutes
-       * @param {Number} seconds the seconds (optional)
-       */
-      function setHours(hours, minutes, seconds) {
-        if (self.latestSelectedDateObj !== undefined) {
-          self.latestSelectedDateObj.setHours(hours % 24, minutes, seconds || 0, 0);
-        }
-        if (!self.hourElement || !self.minuteElement || self.isMobile)
-          return;
-        self.hourElement.value = pad(!self.config.time_24hr
-          ? ((12 + hours) % 12) + 12 * int(hours % 12 === 0)
-          : hours);
-        self.minuteElement.value = pad(minutes);
-        if (self.amPM !== undefined)
-          self.amPM.textContent = self.l10n.amPM[int(hours >= 12)];
-        if (self.secondElement !== undefined)
-          self.secondElement.value = pad(seconds);
-      }
-      /**
-       * Handles the year input and incrementing events
-       * @param {Event} event the keyup or increment event
-       */
-      function onYearInput(event) {
-        var eventTarget = getEventTarget(event);
-        var year = parseInt(eventTarget.value) + (event.delta || 0);
-        if (year / 1000 > 1 ||
-          (event.key === "Enter" && !/[^\d]/.test(year.toString()))) {
-          changeYear(year);
-        }
-      }
-      /**
-       * Essentially addEventListener + tracking
-       * @param {Element} element the element to addEventListener to
-       * @param {String} event the event name
-       * @param {Function} handler the event handler
-       */
-      function bind(element, event, handler, options) {
-        if (event instanceof Array)
-          return event.forEach(function (ev) { return bind(element, ev, handler, options); });
-        if (element instanceof Array)
-          return element.forEach(function (el) { return bind(el, event, handler, options); });
-        element.addEventListener(event, handler, options);
-        self._handlers.push({
-          element: element,
-          event: event,
-          handler: handler,
-          options: options,
-        });
-      }
-      function triggerChange() {
-        triggerEvent("onChange");
-      }
-      /**
-       * Adds all the necessary event listeners
-       */
-      function bindEvents() {
-        if (self.config.wrap) {
-          ["open", "close", "toggle", "clear"].forEach(function (evt) {
-            Array.prototype.forEach.call(self.element.querySelectorAll("[data-" + evt + "]"), function (el) {
-              return bind(el, "click", self[evt]);
-            });
-          });
-        }
-        if (self.isMobile) {
-          setupMobile();
-          return;
-        }
-        var debouncedResize = debounce(onResize, 50);
-        self._debouncedChange = debounce(triggerChange, DEBOUNCED_CHANGE_MS);
-        if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent))
-          bind(self.daysContainer, "mouseover", function (e) {
-            if (self.config.mode === "range")
-              onMouseOver(getEventTarget(e));
-          });
-        bind(window.document.body, "keydown", onKeyDown);
-        if (!self.config.inline && !self.config.static)
-          bind(window, "resize", debouncedResize);
-        if (window.ontouchstart !== undefined)
-          bind(window.document, "touchstart", documentClick);
-        else
-          bind(window.document, "click", documentClick);
-        bind(window.document, "focus", documentClick, { capture: true });
-        if (self.config.clickOpens === true) {
-          bind(self._input, "focus", self.open);
-          bind(self._input, "click", self.open);
-        }
-        if (self.daysContainer !== undefined) {
-          bind(self.monthNav, "click", onMonthNavClick);
-          bind(self.monthNav, ["keyup", "increment"], onYearInput);
-          bind(self.daysContainer, "click", selectDate);
-        }
-        if (self.timeContainer !== undefined &&
-          self.minuteElement !== undefined &&
-          self.hourElement !== undefined) {
-          var selText = function (e) {
-            return getEventTarget(e).select();
-          };
-          bind(self.timeContainer, ["increment"], updateTime);
-          bind(self.timeContainer, "blur", updateTime, { capture: true });
-          bind(self.timeContainer, "click", timeIncrement);
-          bind([self.hourElement, self.minuteElement], ["focus", "click"], selText);
-          if (self.secondElement !== undefined)
-            bind(self.secondElement, "focus", function () { return self.secondElement && self.secondElement.select(); });
-          if (self.amPM !== undefined) {
-            bind(self.amPM, "click", function (e) {
-              updateTime(e);
-              triggerChange();
-            });
-          }
-        }
-        if (self.config.allowInput)
-          bind(self._input, "blur", onBlur);
-      }
-      /**
-       * Set the calendar view to a particular date.
-       * @param {Date} jumpDate the date to set the view to
-       * @param {boolean} triggerChange if change events should be triggered
-       */
-      function jumpToDate(jumpDate, triggerChange) {
-        var jumpTo = jumpDate !== undefined
-          ? self.parseDate(jumpDate)
-          : self.latestSelectedDateObj ||
-          (self.config.minDate && self.config.minDate > self.now
-            ? self.config.minDate
-            : self.config.maxDate && self.config.maxDate < self.now
-              ? self.config.maxDate
-              : self.now);
-        var oldYear = self.currentYear;
-        var oldMonth = self.currentMonth;
-        try {
-          if (jumpTo !== undefined) {
-            self.currentYear = jumpTo.getFullYear();
-            self.currentMonth = jumpTo.getMonth();
-          }
-        }
-        catch (e) {
-          /* istanbul ignore next */
-          e.message = "Invalid date supplied: " + jumpTo;
-          self.config.errorHandler(e);
-        }
-        if (triggerChange && self.currentYear !== oldYear) {
-          triggerEvent("onYearChange");
-          buildMonthSwitch();
-        }
-        if (triggerChange &&
-          (self.currentYear !== oldYear || self.currentMonth !== oldMonth)) {
-          triggerEvent("onMonthChange");
-        }
-        self.redraw();
-      }
-      /**
-       * The up/down arrow handler for time inputs
-       * @param {Event} e the click event
-       */
-      function timeIncrement(e) {
-        var eventTarget = getEventTarget(e);
-        if (~eventTarget.className.indexOf("arrow"))
-          incrementNumInput(e, eventTarget.classList.contains("arrowUp") ? 1 : -1);
-      }
-      /**
-       * Increments/decrements the value of input associ-
-       * ated with the up/down arrow by dispatching an
-       * "increment" event on the input.
-       *
-       * @param {Event} e the click event
-       * @param {Number} delta the diff (usually 1 or -1)
-       * @param {Element} inputElem the input element
-       */
-      function incrementNumInput(e, delta, inputElem) {
-        var target = e && getEventTarget(e);
-        var input = inputElem ||
-          (target && target.parentNode && target.parentNode.firstChild);
-        var event = createEvent("increment");
-        event.delta = delta;
-        input && input.dispatchEvent(event);
-      }
-      function build() {
-        var fragment = window.document.createDocumentFragment();
-        self.calendarContainer = createElement("div", "flatpickr-calendar");
-        self.calendarContainer.tabIndex = -1;
-        if (!self.config.noCalendar) {
-          fragment.appendChild(buildMonthNav());
-          self.innerContainer = createElement("div", "flatpickr-innerContainer");
-          if (self.config.weekNumbers) {
-            var _a = buildWeeks(), weekWrapper = _a.weekWrapper, weekNumbers = _a.weekNumbers;
-            self.innerContainer.appendChild(weekWrapper);
-            self.weekNumbers = weekNumbers;
-            self.weekWrapper = weekWrapper;
-          }
-          self.rContainer = createElement("div", "flatpickr-rContainer");
-          self.rContainer.appendChild(buildWeekdays());
-          if (!self.daysContainer) {
-            self.daysContainer = createElement("div", "flatpickr-days");
-            self.daysContainer.tabIndex = -1;
-          }
-          buildDays();
-          self.rContainer.appendChild(self.daysContainer);
-          self.innerContainer.appendChild(self.rContainer);
-          fragment.appendChild(self.innerContainer);
-        }
-        if (self.config.enableTime) {
-          fragment.appendChild(buildTime());
-        }
-        toggleClass(self.calendarContainer, "rangeMode", self.config.mode === "range");
-        toggleClass(self.calendarContainer, "animate", self.config.animate === true);
-        toggleClass(self.calendarContainer, "multiMonth", self.config.showMonths > 1);
-        self.calendarContainer.appendChild(fragment);
-        var customAppend = self.config.appendTo !== undefined &&
-          self.config.appendTo.nodeType !== undefined;
-        if (self.config.inline || self.config.static) {
-          self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
-          if (self.config.inline) {
-            if (!customAppend && self.element.parentNode)
-              self.element.parentNode.insertBefore(self.calendarContainer, self._input.nextSibling);
-            else if (self.config.appendTo !== undefined)
-              self.config.appendTo.appendChild(self.calendarContainer);
-          }
-          if (self.config.static) {
-            var wrapper = createElement("div", "flatpickr-wrapper");
-            if (self.element.parentNode)
-              self.element.parentNode.insertBefore(wrapper, self.element);
-            wrapper.appendChild(self.element);
-            if (self.altInput)
-              wrapper.appendChild(self.altInput);
-            wrapper.appendChild(self.calendarContainer);
-          }
-        }
-        if (!self.config.static && !self.config.inline)
-          (self.config.appendTo !== undefined
-            ? self.config.appendTo
-            : window.document.body).appendChild(self.calendarContainer);
-      }
-      function createDay(className, date, dayNumber, i) {
-        var dateIsEnabled = isEnabled(date, true), dayElement = createElement("span", "flatpickr-day " + className, date.getDate().toString());
-        dayElement.dateObj = date;
-        dayElement.$i = i;
-        dayElement.setAttribute("aria-label", self.formatDate(date, self.config.ariaDateFormat));
-        if (className.indexOf("hidden") === -1 &&
-          compareDates(date, self.now) === 0) {
-          self.todayDateElem = dayElement;
-          dayElement.classList.add("today");
-          dayElement.setAttribute("aria-current", "date");
-        }
-        if (dateIsEnabled) {
-          dayElement.tabIndex = -1;
-          if (isDateSelected(date)) {
-            dayElement.classList.add("selected");
-            self.selectedDateElem = dayElement;
-            if (self.config.mode === "range") {
-              toggleClass(dayElement, "startRange", self.selectedDates[0] &&
-                compareDates(date, self.selectedDates[0], true) === 0);
-              toggleClass(dayElement, "endRange", self.selectedDates[1] &&
-                compareDates(date, self.selectedDates[1], true) === 0);
-              if (className === "nextMonthDay")
-                dayElement.classList.add("inRange");
-            }
-          }
-        }
-        else {
-          dayElement.classList.add("flatpickr-disabled");
-        }
-        if (self.config.mode === "range") {
-          if (isDateInRange(date) && !isDateSelected(date))
-            dayElement.classList.add("inRange");
-        }
-        if (self.weekNumbers &&
-          self.config.showMonths === 1 &&
-          className !== "prevMonthDay" &&
-          dayNumber % 7 === 1) {
-          self.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + self.config.getWeek(date) + "</span>");
-        }
-        triggerEvent("onDayCreate", dayElement);
-        return dayElement;
-      }
-      function focusOnDayElem(targetNode) {
-        targetNode.focus();
-        if (self.config.mode === "range")
-          onMouseOver(targetNode);
-      }
-      function getFirstAvailableDay(delta) {
-        var startMonth = delta > 0 ? 0 : self.config.showMonths - 1;
-        var endMonth = delta > 0 ? self.config.showMonths : -1;
-        for (var m = startMonth; m != endMonth; m += delta) {
-          var month = self.daysContainer.children[m];
-          var startIndex = delta > 0 ? 0 : month.children.length - 1;
-          var endIndex = delta > 0 ? month.children.length : -1;
-          for (var i = startIndex; i != endIndex; i += delta) {
-            var c = month.children[i];
-            if (c.className.indexOf("hidden") === -1 && isEnabled(c.dateObj))
-              return c;
-          }
-        }
-        return undefined;
-      }
-      function getNextAvailableDay(current, delta) {
-        var givenMonth = current.className.indexOf("Month") === -1
-          ? current.dateObj.getMonth()
-          : self.currentMonth;
-        var endMonth = delta > 0 ? self.config.showMonths : -1;
-        var loopDelta = delta > 0 ? 1 : -1;
-        for (var m = givenMonth - self.currentMonth; m != endMonth; m += loopDelta) {
-          var month = self.daysContainer.children[m];
-          var startIndex = givenMonth - self.currentMonth === m
-            ? current.$i + delta
-            : delta < 0
-              ? month.children.length - 1
-              : 0;
-          var numMonthDays = month.children.length;
-          for (var i = startIndex; i >= 0 && i < numMonthDays && i != (delta > 0 ? numMonthDays : -1); i += loopDelta) {
-            var c = month.children[i];
-            if (c.className.indexOf("hidden") === -1 &&
-              isEnabled(c.dateObj) &&
-              Math.abs(current.$i - i) >= Math.abs(delta))
-              return focusOnDayElem(c);
-          }
-        }
-        self.changeMonth(loopDelta);
-        focusOnDay(getFirstAvailableDay(loopDelta), 0);
-        return undefined;
-      }
-      function focusOnDay(current, offset) {
-        var dayFocused = isInView(document.activeElement || document.body);
-        var startElem = current !== undefined
-          ? current
-          : dayFocused
-            ? document.activeElement
-            : self.selectedDateElem !== undefined && isInView(self.selectedDateElem)
-              ? self.selectedDateElem
-              : self.todayDateElem !== undefined && isInView(self.todayDateElem)
-                ? self.todayDateElem
-                : getFirstAvailableDay(offset > 0 ? 1 : -1);
-        if (startElem === undefined) {
-          self._input.focus();
-        }
-        else if (!dayFocused) {
-          focusOnDayElem(startElem);
-        }
-        else {
-          getNextAvailableDay(startElem, offset);
-        }
-      }
-      function buildMonthDays(year, month) {
-        var firstOfMonth = (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
-        var prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12, year);
-        var daysInMonth = self.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
-        var dayNumber = prevMonthDays + 1 - firstOfMonth, dayIndex = 0;
-        // prepend days from the ending of previous month
-        for (; dayNumber <= prevMonthDays; dayNumber++, dayIndex++) {
-          days.appendChild(createDay(prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
-        }
-        // Start at 1 since there is no 0th day
-        for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
-          days.appendChild(createDay("", new Date(year, month, dayNumber), dayNumber, dayIndex));
-        }
-        // append days from the next month
-        for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth &&
-          (self.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
-          days.appendChild(createDay(nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
-        }
-        //updateNavigationCurrentMonth();
-        var dayContainer = createElement("div", "dayContainer");
-        dayContainer.appendChild(days);
-        return dayContainer;
-      }
-      function buildDays() {
-        if (self.daysContainer === undefined) {
-          return;
-        }
-        clearNode(self.daysContainer);
-        // TODO: week numbers for each month
-        if (self.weekNumbers)
-          clearNode(self.weekNumbers);
-        var frag = document.createDocumentFragment();
-        for (var i = 0; i < self.config.showMonths; i++) {
-          var d = new Date(self.currentYear, self.currentMonth, 1);
-          d.setMonth(self.currentMonth + i);
-          frag.appendChild(buildMonthDays(d.getFullYear(), d.getMonth()));
-        }
-        self.daysContainer.appendChild(frag);
-        self.days = self.daysContainer.firstChild;
-        if (self.config.mode === "range" && self.selectedDates.length === 1) {
-          onMouseOver();
-        }
-      }
-      function buildMonthSwitch() {
-        if (self.config.showMonths > 1 ||
-          self.config.monthSelectorType !== "dropdown")
-          return;
-        var shouldBuildMonth = function (month) {
-          if (self.config.minDate !== undefined &&
-            self.currentYear === self.config.minDate.getFullYear() &&
-            month < self.config.minDate.getMonth()) {
-            return false;
-          }
-          return !(self.config.maxDate !== undefined &&
-            self.currentYear === self.config.maxDate.getFullYear() &&
-            month > self.config.maxDate.getMonth());
-        };
-        self.monthsDropdownContainer.tabIndex = -1;
-        self.monthsDropdownContainer.innerHTML = "";
-        for (var i = 0; i < 12; i++) {
-          if (!shouldBuildMonth(i))
-            continue;
-          var month = createElement("option", "flatpickr-monthDropdown-month");
-          month.value = new Date(self.currentYear, i).getMonth().toString();
-          month.textContent = monthToStr(i, self.config.shorthandCurrentMonth, self.l10n);
-          month.tabIndex = -1;
-          if (self.currentMonth === i) {
-            month.selected = true;
-          }
-          self.monthsDropdownContainer.appendChild(month);
-        }
-      }
-      function buildMonth() {
-        var container = createElement("div", "flatpickr-month");
-        var monthNavFragment = window.document.createDocumentFragment();
-        var monthElement;
-        if (self.config.showMonths > 1 ||
-          self.config.monthSelectorType === "static") {
-          monthElement = createElement("span", "cur-month");
-        }
-        else {
-          self.monthsDropdownContainer = createElement("select", "flatpickr-monthDropdown-months");
-          self.monthsDropdownContainer.setAttribute("aria-label", self.l10n.monthAriaLabel);
-          bind(self.monthsDropdownContainer, "change", function (e) {
-            var target = getEventTarget(e);
-            var selectedMonth = parseInt(target.value, 10);
-            self.changeMonth(selectedMonth - self.currentMonth);
-            triggerEvent("onMonthChange");
-          });
-          buildMonthSwitch();
-          monthElement = self.monthsDropdownContainer;
-        }
-        var yearInput = createNumberInput("cur-year", { tabindex: "-1" });
-        var yearElement = yearInput.getElementsByTagName("input")[0];
-        yearElement.setAttribute("aria-label", self.l10n.yearAriaLabel);
-        if (self.config.minDate) {
-          yearElement.setAttribute("min", self.config.minDate.getFullYear().toString());
-        }
-        if (self.config.maxDate) {
-          yearElement.setAttribute("max", self.config.maxDate.getFullYear().toString());
-          yearElement.disabled =
-            !!self.config.minDate &&
-            self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
-        }
-        var currentMonth = createElement("div", "flatpickr-current-month");
-        currentMonth.appendChild(monthElement);
-        currentMonth.appendChild(yearInput);
-        monthNavFragment.appendChild(currentMonth);
-        container.appendChild(monthNavFragment);
-        return {
-          container: container,
-          yearElement: yearElement,
-          monthElement: monthElement,
-        };
-      }
-      function buildMonths() {
-        clearNode(self.monthNav);
-        self.monthNav.appendChild(self.prevMonthNav);
-        if (self.config.showMonths) {
-          self.yearElements = [];
-          self.monthElements = [];
-        }
-        for (var m = self.config.showMonths; m--;) {
-          var month = buildMonth();
-          self.yearElements.push(month.yearElement);
-          self.monthElements.push(month.monthElement);
-          self.monthNav.appendChild(month.container);
-        }
-        self.monthNav.appendChild(self.nextMonthNav);
-      }
-      function buildMonthNav() {
-        self.monthNav = createElement("div", "flatpickr-months");
-        self.yearElements = [];
-        self.monthElements = [];
-        self.prevMonthNav = createElement("span", "flatpickr-prev-month");
-        self.prevMonthNav.innerHTML = self.config.prevArrow;
-        self.nextMonthNav = createElement("span", "flatpickr-next-month");
-        self.nextMonthNav.innerHTML = self.config.nextArrow;
-        buildMonths();
-        Object.defineProperty(self, "_hidePrevMonthArrow", {
-          get: function () { return self.__hidePrevMonthArrow; },
-          set: function (bool) {
-            if (self.__hidePrevMonthArrow !== bool) {
-              toggleClass(self.prevMonthNav, "flatpickr-disabled", bool);
-              self.__hidePrevMonthArrow = bool;
-            }
-          },
-        });
-        Object.defineProperty(self, "_hideNextMonthArrow", {
-          get: function () { return self.__hideNextMonthArrow; },
-          set: function (bool) {
-            if (self.__hideNextMonthArrow !== bool) {
-              toggleClass(self.nextMonthNav, "flatpickr-disabled", bool);
-              self.__hideNextMonthArrow = bool;
-            }
-          },
-        });
-        self.currentYearElement = self.yearElements[0];
-        updateNavigationCurrentMonth();
-        return self.monthNav;
-      }
-      function buildTime() {
-        self.calendarContainer.classList.add("hasTime");
-        if (self.config.noCalendar)
-          self.calendarContainer.classList.add("noCalendar");
-        self.timeContainer = createElement("div", "flatpickr-time");
-        self.timeContainer.tabIndex = -1;
-        var separator = createElement("span", "flatpickr-time-separator", ":");
-        var hourInput = createNumberInput("flatpickr-hour", {
-          "aria-label": self.l10n.hourAriaLabel,
-        });
-        self.hourElement = hourInput.getElementsByTagName("input")[0];
-        var minuteInput = createNumberInput("flatpickr-minute", {
-          "aria-label": self.l10n.minuteAriaLabel,
-        });
-        self.minuteElement = minuteInput.getElementsByTagName("input")[0];
-        self.hourElement.tabIndex = self.minuteElement.tabIndex = -1;
-        self.hourElement.value = pad(self.latestSelectedDateObj
-          ? self.latestSelectedDateObj.getHours()
-          : self.config.time_24hr
-            ? self.config.defaultHour
-            : military2ampm(self.config.defaultHour));
-        self.minuteElement.value = pad(self.latestSelectedDateObj
-          ? self.latestSelectedDateObj.getMinutes()
-          : self.config.defaultMinute);
-        self.hourElement.setAttribute("step", self.config.hourIncrement.toString());
-        self.minuteElement.setAttribute("step", self.config.minuteIncrement.toString());
-        self.hourElement.setAttribute("min", self.config.time_24hr ? "0" : "1");
-        self.hourElement.setAttribute("max", self.config.time_24hr ? "23" : "12");
-        self.minuteElement.setAttribute("min", "0");
-        self.minuteElement.setAttribute("max", "59");
-        self.timeContainer.appendChild(hourInput);
-        self.timeContainer.appendChild(separator);
-        self.timeContainer.appendChild(minuteInput);
-        if (self.config.time_24hr)
-          self.timeContainer.classList.add("time24hr");
-        if (self.config.enableSeconds) {
-          self.timeContainer.classList.add("hasSeconds");
-          var secondInput = createNumberInput("flatpickr-second");
-          self.secondElement = secondInput.getElementsByTagName("input")[0];
-          self.secondElement.value = pad(self.latestSelectedDateObj
-            ? self.latestSelectedDateObj.getSeconds()
-            : self.config.defaultSeconds);
-          self.secondElement.setAttribute("step", self.minuteElement.getAttribute("step"));
-          self.secondElement.setAttribute("min", "0");
-          self.secondElement.setAttribute("max", "59");
-          self.timeContainer.appendChild(createElement("span", "flatpickr-time-separator", ":"));
-          self.timeContainer.appendChild(secondInput);
-        }
-        if (!self.config.time_24hr) {
-          // add self.amPM if appropriate
-          self.amPM = createElement("span", "flatpickr-am-pm", self.l10n.amPM[int((self.latestSelectedDateObj
-            ? self.hourElement.value
-            : self.config.defaultHour) > 11)]);
-          self.amPM.title = self.l10n.toggleTitle;
-          self.amPM.tabIndex = -1;
-          self.timeContainer.appendChild(self.amPM);
-        }
-        return self.timeContainer;
-      }
-      function buildWeekdays() {
-        if (!self.weekdayContainer)
-          self.weekdayContainer = createElement("div", "flatpickr-weekdays");
-        else
-          clearNode(self.weekdayContainer);
-        for (var i = self.config.showMonths; i--;) {
-          var container = createElement("div", "flatpickr-weekdaycontainer");
-          self.weekdayContainer.appendChild(container);
-        }
-        updateWeekdays();
-        return self.weekdayContainer;
-      }
-      function updateWeekdays() {
-        if (!self.weekdayContainer) {
-          return;
-        }
-        var firstDayOfWeek = self.l10n.firstDayOfWeek;
-        var weekdays = __spreadArrays(self.l10n.weekdays.shorthand);
-        if (firstDayOfWeek > 0 && firstDayOfWeek < weekdays.length) {
-          weekdays = __spreadArrays(weekdays.splice(firstDayOfWeek, weekdays.length), weekdays.splice(0, firstDayOfWeek));
-        }
-        for (var i = self.config.showMonths; i--;) {
-          self.weekdayContainer.children[i].innerHTML = "\n      <span class='flatpickr-weekday'>\n        " + weekdays.join("</span><span class='flatpickr-weekday'>") + "\n      </span>\n      ";
-        }
-      }
-      /* istanbul ignore next */
-      function buildWeeks() {
-        self.calendarContainer.classList.add("hasWeeks");
-        var weekWrapper = createElement("div", "flatpickr-weekwrapper");
-        weekWrapper.appendChild(createElement("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
-        var weekNumbers = createElement("div", "flatpickr-weeks");
-        weekWrapper.appendChild(weekNumbers);
-        return {
-          weekWrapper: weekWrapper,
-          weekNumbers: weekNumbers,
-        };
-      }
-      function changeMonth(value, isOffset) {
-        if (isOffset === void 0) { isOffset = true; }
-        var delta = isOffset ? value : value - self.currentMonth;
-        if ((delta < 0 && self._hidePrevMonthArrow === true) ||
-          (delta > 0 && self._hideNextMonthArrow === true))
-          return;
-        self.currentMonth += delta;
-        if (self.currentMonth < 0 || self.currentMonth > 11) {
-          self.currentYear += self.currentMonth > 11 ? 1 : -1;
-          self.currentMonth = (self.currentMonth + 12) % 12;
-          triggerEvent("onYearChange");
-          buildMonthSwitch();
-        }
-        buildDays();
-        triggerEvent("onMonthChange");
-        updateNavigationCurrentMonth();
-      }
-      function clear(triggerChangeEvent, toInitial) {
-        if (triggerChangeEvent === void 0) { triggerChangeEvent = true; }
-        if (toInitial === void 0) { toInitial = true; }
-        self.input.value = "";
-        if (self.altInput !== undefined)
-          self.altInput.value = "";
-        if (self.mobileInput !== undefined)
-          self.mobileInput.value = "";
-        self.selectedDates = [];
-        self.latestSelectedDateObj = undefined;
-        if (toInitial === true) {
-          self.currentYear = self._initialDate.getFullYear();
-          self.currentMonth = self._initialDate.getMonth();
-        }
-        if (self.config.enableTime === true) {
-          var _a = getDefaultHours(), hours = _a.hours, minutes = _a.minutes, seconds = _a.seconds;
-          setHours(hours, minutes, seconds);
-        }
-        self.redraw();
-        if (triggerChangeEvent)
-          // triggerChangeEvent is true (default) or an Event
-          triggerEvent("onChange");
-      }
-      function close() {
-        self.isOpen = false;
-        if (!self.isMobile) {
-          if (self.calendarContainer !== undefined) {
-            self.calendarContainer.classList.remove("open");
-          }
-          if (self._input !== undefined) {
-            self._input.classList.remove("active");
-          }
-        }
-        triggerEvent("onClose");
-      }
-      function destroy() {
-        if (self.config !== undefined)
-          triggerEvent("onDestroy");
-        for (var i = self._handlers.length; i--;) {
-          var h = self._handlers[i];
-          h.element.removeEventListener(h.event, h.handler, h.options);
-        }
-        self._handlers = [];
-        if (self.mobileInput) {
-          if (self.mobileInput.parentNode)
-            self.mobileInput.parentNode.removeChild(self.mobileInput);
-          self.mobileInput = undefined;
-        }
-        else if (self.calendarContainer && self.calendarContainer.parentNode) {
-          if (self.config.static && self.calendarContainer.parentNode) {
-            var wrapper = self.calendarContainer.parentNode;
-            wrapper.lastChild && wrapper.removeChild(wrapper.lastChild);
-            if (wrapper.parentNode) {
-              while (wrapper.firstChild)
-                wrapper.parentNode.insertBefore(wrapper.firstChild, wrapper);
-              wrapper.parentNode.removeChild(wrapper);
-            }
-          }
-          else
-            self.calendarContainer.parentNode.removeChild(self.calendarContainer);
-        }
-        if (self.altInput) {
-          self.input.type = "text";
-          if (self.altInput.parentNode)
-            self.altInput.parentNode.removeChild(self.altInput);
-          delete self.altInput;
-        }
-        if (self.input) {
-          self.input.type = self.input._type;
-          self.input.classList.remove("flatpickr-input");
-          self.input.removeAttribute("readonly");
-        }
-        [
-          "_showTimeInput",
-          "latestSelectedDateObj",
-          "_hideNextMonthArrow",
-          "_hidePrevMonthArrow",
-          "__hideNextMonthArrow",
-          "__hidePrevMonthArrow",
-          "isMobile",
-          "isOpen",
-          "selectedDateElem",
-          "minDateHasTime",
-          "maxDateHasTime",
-          "days",
-          "daysContainer",
-          "_input",
-          "_positionElement",
-          "innerContainer",
-          "rContainer",
-          "monthNav",
-          "todayDateElem",
-          "calendarContainer",
-          "weekdayContainer",
-          "prevMonthNav",
-          "nextMonthNav",
-          "monthsDropdownContainer",
-          "currentMonthElement",
-          "currentYearElement",
-          "navigationCurrentMonth",
-          "selectedDateElem",
-          "config",
-        ].forEach(function (k) {
-          try {
-            delete self[k];
-          }
-          catch (_) { }
-        });
-      }
-      function isCalendarElem(elem) {
-        if (self.config.appendTo && self.config.appendTo.contains(elem))
-          return true;
-        return self.calendarContainer.contains(elem);
-      }
-      function documentClick(e) {
-        if (self.isOpen && !self.config.inline) {
-          var eventTarget_1 = getEventTarget(e);
-          var isCalendarElement = isCalendarElem(eventTarget_1);
-          var isInput = eventTarget_1 === self.input ||
-            eventTarget_1 === self.altInput ||
-            self.element.contains(eventTarget_1) ||
-            // web components
-            // e.path is not present in all browsers. circumventing typechecks
-            (e.path &&
-              e.path.indexOf &&
-              (~e.path.indexOf(self.input) ||
-                ~e.path.indexOf(self.altInput)));
-          var lostFocus = e.type === "blur"
-            ? isInput &&
-            e.relatedTarget &&
-            !isCalendarElem(e.relatedTarget)
-            : !isInput &&
-            !isCalendarElement &&
-            !isCalendarElem(e.relatedTarget);
-          var isIgnored = !self.config.ignoredFocusElements.some(function (elem) {
-            return elem.contains(eventTarget_1);
-          });
-          if (lostFocus && isIgnored) {
             if (self.timeContainer !== undefined &&
-              self.minuteElement !== undefined &&
-              self.hourElement !== undefined &&
-              self.input.value !== "" &&
-              self.input.value !== undefined) {
-              updateTime();
-            }
-            self.close();
-            if (self.config &&
-              self.config.mode === "range" &&
-              self.selectedDates.length === 1) {
-              self.clear(false);
-              self.redraw();
-            }
-          }
-        }
-      }
-      function changeYear(newYear) {
-        if (!newYear ||
-          (self.config.minDate && newYear < self.config.minDate.getFullYear()) ||
-          (self.config.maxDate && newYear > self.config.maxDate.getFullYear()))
-          return;
-        var newYearNum = newYear, isNewYear = self.currentYear !== newYearNum;
-        self.currentYear = newYearNum || self.currentYear;
-        if (self.config.maxDate &&
-          self.currentYear === self.config.maxDate.getFullYear()) {
-          self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
-        }
-        else if (self.config.minDate &&
-          self.currentYear === self.config.minDate.getFullYear()) {
-          self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
-        }
-        if (isNewYear) {
-          self.redraw();
-          triggerEvent("onYearChange");
-          buildMonthSwitch();
-        }
-      }
-      function isEnabled(date, timeless) {
-        if (timeless === void 0) { timeless = true; }
-        var dateToCheck = self.parseDate(date, undefined, timeless); // timeless
-        if ((self.config.minDate &&
-          dateToCheck &&
-          compareDates(dateToCheck, self.config.minDate, timeless !== undefined ? timeless : !self.minDateHasTime) < 0) ||
-          (self.config.maxDate &&
-            dateToCheck &&
-            compareDates(dateToCheck, self.config.maxDate, timeless !== undefined ? timeless : !self.maxDateHasTime) > 0))
-          return false;
-        if (self.config.enable.length === 0 && self.config.disable.length === 0)
-          return true;
-        if (dateToCheck === undefined)
-          return false;
-        var bool = self.config.enable.length > 0, array = bool ? self.config.enable : self.config.disable;
-        for (var i = 0, d = void 0; i < array.length; i++) {
-          d = array[i];
-          if (typeof d === "function" &&
-            d(dateToCheck) // disabled by function
-          )
-            return bool;
-          else if (d instanceof Date &&
-            dateToCheck !== undefined &&
-            d.getTime() === dateToCheck.getTime())
-            // disabled by date
-            return bool;
-          else if (typeof d === "string" && dateToCheck !== undefined) {
-            // disabled by date string
-            var parsed = self.parseDate(d, undefined, true);
-            return parsed && parsed.getTime() === dateToCheck.getTime()
-              ? bool
-              : !bool;
-          }
-          else if (
-            // disabled by range
-            typeof d === "object" &&
-            dateToCheck !== undefined &&
-            d.from &&
-            d.to &&
-            dateToCheck.getTime() >= d.from.getTime() &&
-            dateToCheck.getTime() <= d.to.getTime())
-            return bool;
-        }
-        return !bool;
-      }
-      function isInView(elem) {
-        if (self.daysContainer !== undefined)
-          return (elem.className.indexOf("hidden") === -1 &&
-            elem.className.indexOf("flatpickr-disabled") === -1 &&
-            self.daysContainer.contains(elem));
-        return false;
-      }
-      function onBlur(e) {
-        var isInput = e.target === self._input;
-        if (isInput &&
-          !(e.relatedTarget && isCalendarElem(e.relatedTarget))) {
-          self.setDate(self._input.value, true, e.target === self.altInput
-            ? self.config.altFormat
-            : self.config.dateFormat);
-        }
-      }
-      function onKeyDown(e) {
-        // e.key                      e.keyCode
-        // "Backspace"                        8
-        // "Tab"                              9
-        // "Enter"                           13
-        // "Escape"     (IE "Esc")           27
-        // "ArrowLeft"  (IE "Left")          37
-        // "ArrowUp"    (IE "Up")            38
-        // "ArrowRight" (IE "Right")         39
-        // "ArrowDown"  (IE "Down")          40
-        // "Delete"     (IE "Del")           46
-        var eventTarget = getEventTarget(e);
-        var isInput = self.config.wrap
-          ? element.contains(eventTarget)
-          : eventTarget === self._input;
-        var allowInput = self.config.allowInput;
-        var allowKeydown = self.isOpen && (!allowInput || !isInput);
-        var allowInlineKeydown = self.config.inline && isInput && !allowInput;
-        if (e.keyCode === 13 && isInput) {
-          if (allowInput) {
-            self.setDate(self._input.value, true, eventTarget === self.altInput
-              ? self.config.altFormat
-              : self.config.dateFormat);
-            return eventTarget.blur();
-          }
-          else {
-            self.open();
-          }
-        }
-        else if (isCalendarElem(eventTarget) ||
-          allowKeydown ||
-          allowInlineKeydown) {
-          var isTimeObj = !!self.timeContainer &&
-            self.timeContainer.contains(eventTarget);
-          switch (e.keyCode) {
-            case 13:
-              if (isTimeObj) {
-                e.preventDefault();
-                updateTime();
-                focusAndClose();
-              }
-              else
-                selectDate(e);
-              break;
-            case 27: // escape
-              e.preventDefault();
-              focusAndClose();
-              break;
-            case 8:
-            case 46:
-              if (isInput && !self.config.allowInput) {
-                e.preventDefault();
-                self.clear();
-              }
-              break;
-            case 37:
-            case 39:
-              if (!isTimeObj && !isInput) {
-                e.preventDefault();
-                if (self.daysContainer !== undefined &&
-                  (allowInput === false ||
-                    (document.activeElement && isInView(document.activeElement)))) {
-                  var delta_1 = e.keyCode === 39 ? 1 : -1;
-                  if (!e.ctrlKey)
-                    focusOnDay(undefined, delta_1);
-                  else {
-                    e.stopPropagation();
-                    changeMonth(delta_1);
-                    focusOnDay(getFirstAvailableDay(1), 0);
-                  }
+                self.minuteElement !== undefined &&
+                self.hourElement !== undefined) {
+                var selText = function (e) {
+                    return getEventTarget(e).select();
+                };
+                bind(self.timeContainer, ["increment"], updateTime);
+                bind(self.timeContainer, "blur", updateTime, { capture: true });
+                bind(self.timeContainer, "click", timeIncrement);
+                bind([self.hourElement, self.minuteElement], ["focus", "click"], selText);
+                if (self.secondElement !== undefined)
+                    bind(self.secondElement, "focus", function () { return self.secondElement && self.secondElement.select(); });
+                if (self.amPM !== undefined) {
+                    bind(self.amPM, "click", function (e) {
+                        updateTime(e);
+                        triggerChange();
+                    });
                 }
-              }
-              else if (self.hourElement)
-                self.hourElement.focus();
-              break;
-            case 38:
-            case 40:
-              e.preventDefault();
-              var delta = e.keyCode === 40 ? 1 : -1;
-              if ((self.daysContainer &&
-                eventTarget.$i !== undefined) ||
-                eventTarget === self.input ||
-                eventTarget === self.altInput) {
-                if (e.ctrlKey) {
-                  e.stopPropagation();
-                  changeYear(self.currentYear - delta);
-                  focusOnDay(getFirstAvailableDay(1), 0);
-                }
-                else if (!isTimeObj)
-                  focusOnDay(undefined, delta * 7);
-              }
-              else if (eventTarget === self.currentYearElement) {
-                changeYear(self.currentYear - delta);
-              }
-              else if (self.config.enableTime) {
-                if (!isTimeObj && self.hourElement)
-                  self.hourElement.focus();
-                updateTime(e);
-                self._debouncedChange();
-              }
-              break;
-            case 9:
-              if (isTimeObj) {
-                var elems = [
-                  self.hourElement,
-                  self.minuteElement,
-                  self.secondElement,
-                  self.amPM,
-                ]
-                  .concat(self.pluginElements)
-                  .filter(function (x) { return x; });
-                var i = elems.indexOf(eventTarget);
-                if (i !== -1) {
-                  var target = elems[i + (e.shiftKey ? -1 : 1)];
-                  e.preventDefault();
-                  (target || self._input).focus();
-                }
-              }
-              else if (!self.config.noCalendar &&
-                self.daysContainer &&
-                self.daysContainer.contains(eventTarget) &&
-                e.shiftKey) {
-                e.preventDefault();
-                self._input.focus();
-              }
-              break;
-          }
-        }
-        if (self.amPM !== undefined && eventTarget === self.amPM) {
-          switch (e.key) {
-            case self.l10n.amPM[0].charAt(0):
-            case self.l10n.amPM[0].charAt(0).toLowerCase():
-              self.amPM.textContent = self.l10n.amPM[0];
-              setHoursFromInputs();
-              updateValue();
-              break;
-            case self.l10n.amPM[1].charAt(0):
-            case self.l10n.amPM[1].charAt(0).toLowerCase():
-              self.amPM.textContent = self.l10n.amPM[1];
-              setHoursFromInputs();
-              updateValue();
-              break;
-          }
-        }
-        if (isInput || isCalendarElem(eventTarget)) {
-          triggerEvent("onKeyDown", e);
-        }
-      }
-      function onMouseOver(elem) {
-        if (self.selectedDates.length !== 1 ||
-          (elem &&
-            (!elem.classList.contains("flatpickr-day") ||
-              elem.classList.contains("flatpickr-disabled"))))
-          return;
-        var hoverDate = elem
-          ? elem.dateObj.getTime()
-          : self.days.firstElementChild.dateObj.getTime(), initialDate = self.parseDate(self.selectedDates[0], undefined, true).getTime(), rangeStartDate = Math.min(hoverDate, self.selectedDates[0].getTime()), rangeEndDate = Math.max(hoverDate, self.selectedDates[0].getTime());
-        var containsDisabled = false;
-        var minRange = 0, maxRange = 0;
-        for (var t = rangeStartDate; t < rangeEndDate; t += duration.DAY) {
-          if (!isEnabled(new Date(t), true)) {
-            containsDisabled =
-              containsDisabled || (t > rangeStartDate && t < rangeEndDate);
-            if (t < initialDate && (!minRange || t > minRange))
-              minRange = t;
-            else if (t > initialDate && (!maxRange || t < maxRange))
-              maxRange = t;
-          }
-        }
-        for (var m = 0; m < self.config.showMonths; m++) {
-          var month = self.daysContainer.children[m];
-          var _loop_1 = function (i, l) {
-            var dayElem = month.children[i], date = dayElem.dateObj;
-            var timestamp = date.getTime();
-            var outOfRange = (minRange > 0 && timestamp < minRange) ||
-              (maxRange > 0 && timestamp > maxRange);
-            if (outOfRange) {
-              dayElem.classList.add("notAllowed");
-              ["inRange", "startRange", "endRange"].forEach(function (c) {
-                dayElem.classList.remove(c);
-              });
-              return "continue";
             }
-            else if (containsDisabled && !outOfRange)
-              return "continue";
-            ["startRange", "inRange", "endRange", "notAllowed"].forEach(function (c) {
-              dayElem.classList.remove(c);
-            });
-            if (elem !== undefined) {
-              elem.classList.add(hoverDate <= self.selectedDates[0].getTime()
-                ? "startRange"
-                : "endRange");
-              if (initialDate < hoverDate && timestamp === initialDate)
-                dayElem.classList.add("startRange");
-              else if (initialDate > hoverDate && timestamp === initialDate)
-                dayElem.classList.add("endRange");
-              if (timestamp >= minRange &&
-                (maxRange === 0 || timestamp <= maxRange) &&
-                isBetween(timestamp, initialDate, hoverDate))
-                dayElem.classList.add("inRange");
-            }
-          };
-          for (var i = 0, l = month.children.length; i < l; i++) {
-            _loop_1(i, l);
-          }
+            if (self.config.allowInput)
+                bind(self._input, "blur", onBlur);
         }
-      }
-      function onResize() {
-        if (self.isOpen && !self.config.static && !self.config.inline)
-          positionCalendar();
-      }
-      function open(e, positionElement) {
-        if (positionElement === void 0) { positionElement = self._positionElement; }
-        if (self.isMobile === true) {
-          if (e) {
-            e.preventDefault();
+        /**
+         * Set the calendar view to a particular date.
+         * @param {Date} jumpDate the date to set the view to
+         * @param {boolean} triggerChange if change events should be triggered
+         */
+        function jumpToDate(jumpDate, triggerChange) {
+            var jumpTo = jumpDate !== undefined
+                ? self.parseDate(jumpDate)
+                : self.latestSelectedDateObj ||
+                    (self.config.minDate && self.config.minDate > self.now
+                        ? self.config.minDate
+                        : self.config.maxDate && self.config.maxDate < self.now
+                            ? self.config.maxDate
+                            : self.now);
+            var oldYear = self.currentYear;
+            var oldMonth = self.currentMonth;
+            try {
+                if (jumpTo !== undefined) {
+                    self.currentYear = jumpTo.getFullYear();
+                    self.currentMonth = jumpTo.getMonth();
+                }
+            }
+            catch (e) {
+                /* istanbul ignore next */
+                e.message = "Invalid date supplied: " + jumpTo;
+                self.config.errorHandler(e);
+            }
+            if (triggerChange && self.currentYear !== oldYear) {
+                triggerEvent("onYearChange");
+                buildMonthSwitch();
+            }
+            if (triggerChange &&
+                (self.currentYear !== oldYear || self.currentMonth !== oldMonth)) {
+                triggerEvent("onMonthChange");
+            }
+            self.redraw();
+        }
+        /**
+         * The up/down arrow handler for time inputs
+         * @param {Event} e the click event
+         */
+        function timeIncrement(e) {
             var eventTarget = getEventTarget(e);
-            eventTarget && eventTarget.blur();
-          }
-          if (self.mobileInput !== undefined) {
-            self.mobileInput.focus();
-            self.mobileInput.click();
-          }
-          triggerEvent("onOpen");
-          return;
+            if (~eventTarget.className.indexOf("arrow"))
+                incrementNumInput(e, eventTarget.classList.contains("arrowUp") ? 1 : -1);
         }
-        if (self._input.disabled || self.config.inline)
-          return;
-        var wasOpen = self.isOpen;
-        self.isOpen = true;
-        if (!wasOpen) {
-          self.calendarContainer.classList.add("open");
-          self._input.classList.add("active");
-          triggerEvent("onOpen");
-          positionCalendar(positionElement);
+        /**
+         * Increments/decrements the value of input associ-
+         * ated with the up/down arrow by dispatching an
+         * "increment" event on the input.
+         *
+         * @param {Event} e the click event
+         * @param {Number} delta the diff (usually 1 or -1)
+         * @param {Element} inputElem the input element
+         */
+        function incrementNumInput(e, delta, inputElem) {
+            var target = e && getEventTarget(e);
+            var input = inputElem ||
+                (target && target.parentNode && target.parentNode.firstChild);
+            var event = createEvent("increment");
+            event.delta = delta;
+            input && input.dispatchEvent(event);
         }
-        if (self.config.enableTime === true && self.config.noCalendar === true) {
-          if (self.config.allowInput === false &&
-            (e === undefined ||
-              !self.timeContainer.contains(e.relatedTarget))) {
-            setTimeout(function () { return self.hourElement.select(); }, 50);
-          }
+        function build() {
+            var fragment = window.document.createDocumentFragment();
+            self.calendarContainer = createElement("div", "flatpickr-calendar");
+            self.calendarContainer.tabIndex = -1;
+            if (!self.config.noCalendar) {
+                fragment.appendChild(buildMonthNav());
+                self.innerContainer = createElement("div", "flatpickr-innerContainer");
+                if (self.config.weekNumbers) {
+                    var _a = buildWeeks(), weekWrapper = _a.weekWrapper, weekNumbers = _a.weekNumbers;
+                    self.innerContainer.appendChild(weekWrapper);
+                    self.weekNumbers = weekNumbers;
+                    self.weekWrapper = weekWrapper;
+                }
+                self.rContainer = createElement("div", "flatpickr-rContainer");
+                self.rContainer.appendChild(buildWeekdays());
+                if (!self.daysContainer) {
+                    self.daysContainer = createElement("div", "flatpickr-days");
+                    self.daysContainer.tabIndex = -1;
+                }
+                buildDays();
+                self.rContainer.appendChild(self.daysContainer);
+                self.innerContainer.appendChild(self.rContainer);
+                fragment.appendChild(self.innerContainer);
+            }
+            if (self.config.enableTime) {
+                fragment.appendChild(buildTime());
+            }
+            toggleClass(self.calendarContainer, "rangeMode", self.config.mode === "range");
+            toggleClass(self.calendarContainer, "animate", self.config.animate === true);
+            toggleClass(self.calendarContainer, "multiMonth", self.config.showMonths > 1);
+            self.calendarContainer.appendChild(fragment);
+            var customAppend = self.config.appendTo !== undefined &&
+                self.config.appendTo.nodeType !== undefined;
+            if (self.config.inline || self.config.static) {
+                self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
+                if (self.config.inline) {
+                    if (!customAppend && self.element.parentNode)
+                        self.element.parentNode.insertBefore(self.calendarContainer, self._input.nextSibling);
+                    else if (self.config.appendTo !== undefined)
+                        self.config.appendTo.appendChild(self.calendarContainer);
+                }
+                if (self.config.static) {
+                    var wrapper = createElement("div", "flatpickr-wrapper");
+                    if (self.element.parentNode)
+                        self.element.parentNode.insertBefore(wrapper, self.element);
+                    wrapper.appendChild(self.element);
+                    if (self.altInput)
+                        wrapper.appendChild(self.altInput);
+                    wrapper.appendChild(self.calendarContainer);
+                }
+            }
+            if (!self.config.static && !self.config.inline)
+                (self.config.appendTo !== undefined
+                    ? self.config.appendTo
+                    : window.document.body).appendChild(self.calendarContainer);
         }
-      }
-      function minMaxDateSetter(type) {
-        return function (date) {
-          var dateObj = (self.config["_" + type + "Date"] = self.parseDate(date, self.config.dateFormat));
-          var inverseDateObj = self.config["_" + (type === "min" ? "max" : "min") + "Date"];
-          if (dateObj !== undefined) {
-            self[type === "min" ? "minDateHasTime" : "maxDateHasTime"] =
-              dateObj.getHours() > 0 ||
-              dateObj.getMinutes() > 0 ||
-              dateObj.getSeconds() > 0;
-          }
-          if (self.selectedDates) {
-            self.selectedDates = self.selectedDates.filter(function (d) { return isEnabled(d); });
-            if (!self.selectedDates.length && type === "min")
-              setHoursFromDate(dateObj);
-            updateValue();
-          }
-          if (self.daysContainer) {
-            redraw();
-            if (dateObj !== undefined)
-              self.currentYearElement[type] = dateObj.getFullYear().toString();
+        function createDay(className, date, dayNumber, i) {
+            var dateIsEnabled = isEnabled(date, true), dayElement = createElement("span", "flatpickr-day " + className, date.getDate().toString());
+            dayElement.dateObj = date;
+            dayElement.$i = i;
+            dayElement.setAttribute("aria-label", self.formatDate(date, self.config.ariaDateFormat));
+            if (className.indexOf("hidden") === -1 &&
+                compareDates(date, self.now) === 0) {
+                self.todayDateElem = dayElement;
+                dayElement.classList.add("today");
+                dayElement.setAttribute("aria-current", "date");
+            }
+            if (dateIsEnabled) {
+                dayElement.tabIndex = -1;
+                if (isDateSelected(date)) {
+                    dayElement.classList.add("selected");
+                    self.selectedDateElem = dayElement;
+                    if (self.config.mode === "range") {
+                        toggleClass(dayElement, "startRange", self.selectedDates[0] &&
+                            compareDates(date, self.selectedDates[0], true) === 0);
+                        toggleClass(dayElement, "endRange", self.selectedDates[1] &&
+                            compareDates(date, self.selectedDates[1], true) === 0);
+                        if (className === "nextMonthDay")
+                            dayElement.classList.add("inRange");
+                    }
+                }
+            }
+            else {
+                dayElement.classList.add("flatpickr-disabled");
+            }
+            if (self.config.mode === "range") {
+                if (isDateInRange(date) && !isDateSelected(date))
+                    dayElement.classList.add("inRange");
+            }
+            if (self.weekNumbers &&
+                self.config.showMonths === 1 &&
+                className !== "prevMonthDay" &&
+                dayNumber % 7 === 1) {
+                self.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + self.config.getWeek(date) + "</span>");
+            }
+            triggerEvent("onDayCreate", dayElement);
+            return dayElement;
+        }
+        function focusOnDayElem(targetNode) {
+            targetNode.focus();
+            if (self.config.mode === "range")
+                onMouseOver(targetNode);
+        }
+        function getFirstAvailableDay(delta) {
+            var startMonth = delta > 0 ? 0 : self.config.showMonths - 1;
+            var endMonth = delta > 0 ? self.config.showMonths : -1;
+            for (var m = startMonth; m != endMonth; m += delta) {
+                var month = self.daysContainer.children[m];
+                var startIndex = delta > 0 ? 0 : month.children.length - 1;
+                var endIndex = delta > 0 ? month.children.length : -1;
+                for (var i = startIndex; i != endIndex; i += delta) {
+                    var c = month.children[i];
+                    if (c.className.indexOf("hidden") === -1 && isEnabled(c.dateObj))
+                        return c;
+                }
+            }
+            return undefined;
+        }
+        function getNextAvailableDay(current, delta) {
+            var givenMonth = current.className.indexOf("Month") === -1
+                ? current.dateObj.getMonth()
+                : self.currentMonth;
+            var endMonth = delta > 0 ? self.config.showMonths : -1;
+            var loopDelta = delta > 0 ? 1 : -1;
+            for (var m = givenMonth - self.currentMonth; m != endMonth; m += loopDelta) {
+                var month = self.daysContainer.children[m];
+                var startIndex = givenMonth - self.currentMonth === m
+                    ? current.$i + delta
+                    : delta < 0
+                        ? month.children.length - 1
+                        : 0;
+                var numMonthDays = month.children.length;
+                for (var i = startIndex; i >= 0 && i < numMonthDays && i != (delta > 0 ? numMonthDays : -1); i += loopDelta) {
+                    var c = month.children[i];
+                    if (c.className.indexOf("hidden") === -1 &&
+                        isEnabled(c.dateObj) &&
+                        Math.abs(current.$i - i) >= Math.abs(delta))
+                        return focusOnDayElem(c);
+                }
+            }
+            self.changeMonth(loopDelta);
+            focusOnDay(getFirstAvailableDay(loopDelta), 0);
+            return undefined;
+        }
+        function focusOnDay(current, offset) {
+            var dayFocused = isInView(document.activeElement || document.body);
+            var startElem = current !== undefined
+                ? current
+                : dayFocused
+                    ? document.activeElement
+                    : self.selectedDateElem !== undefined && isInView(self.selectedDateElem)
+                        ? self.selectedDateElem
+                        : self.todayDateElem !== undefined && isInView(self.todayDateElem)
+                            ? self.todayDateElem
+                            : getFirstAvailableDay(offset > 0 ? 1 : -1);
+            if (startElem === undefined) {
+                self._input.focus();
+            }
+            else if (!dayFocused) {
+                focusOnDayElem(startElem);
+            }
+            else {
+                getNextAvailableDay(startElem, offset);
+            }
+        }
+        function buildMonthDays(year, month) {
+            var firstOfMonth = (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
+            var prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12, year);
+            var daysInMonth = self.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
+            var dayNumber = prevMonthDays + 1 - firstOfMonth, dayIndex = 0;
+            // prepend days from the ending of previous month
+            for (; dayNumber <= prevMonthDays; dayNumber++, dayIndex++) {
+                days.appendChild(createDay(prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
+            }
+            // Start at 1 since there is no 0th day
+            for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
+                days.appendChild(createDay("", new Date(year, month, dayNumber), dayNumber, dayIndex));
+            }
+            // append days from the next month
+            for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth &&
+                (self.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
+                days.appendChild(createDay(nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
+            }
+            //updateNavigationCurrentMonth();
+            var dayContainer = createElement("div", "dayContainer");
+            dayContainer.appendChild(days);
+            return dayContainer;
+        }
+        function buildDays() {
+            if (self.daysContainer === undefined) {
+                return;
+            }
+            clearNode(self.daysContainer);
+            // TODO: week numbers for each month
+            if (self.weekNumbers)
+                clearNode(self.weekNumbers);
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < self.config.showMonths; i++) {
+                var d = new Date(self.currentYear, self.currentMonth, 1);
+                d.setMonth(self.currentMonth + i);
+                frag.appendChild(buildMonthDays(d.getFullYear(), d.getMonth()));
+            }
+            self.daysContainer.appendChild(frag);
+            self.days = self.daysContainer.firstChild;
+            if (self.config.mode === "range" && self.selectedDates.length === 1) {
+                onMouseOver();
+            }
+        }
+        function buildMonthSwitch() {
+            if (self.config.showMonths > 1 ||
+                self.config.monthSelectorType !== "dropdown")
+                return;
+            var shouldBuildMonth = function (month) {
+                if (self.config.minDate !== undefined &&
+                    self.currentYear === self.config.minDate.getFullYear() &&
+                    month < self.config.minDate.getMonth()) {
+                    return false;
+                }
+                return !(self.config.maxDate !== undefined &&
+                    self.currentYear === self.config.maxDate.getFullYear() &&
+                    month > self.config.maxDate.getMonth());
+            };
+            self.monthsDropdownContainer.tabIndex = -1;
+            self.monthsDropdownContainer.innerHTML = "";
+            for (var i = 0; i < 12; i++) {
+                if (!shouldBuildMonth(i))
+                    continue;
+                var month = createElement("option", "flatpickr-monthDropdown-month");
+                month.value = new Date(self.currentYear, i).getMonth().toString();
+                month.textContent = monthToStr(i, self.config.shorthandCurrentMonth, self.l10n);
+                month.tabIndex = -1;
+                if (self.currentMonth === i) {
+                    month.selected = true;
+                }
+                self.monthsDropdownContainer.appendChild(month);
+            }
+        }
+        function buildMonth() {
+            var container = createElement("div", "flatpickr-month");
+            var monthNavFragment = window.document.createDocumentFragment();
+            var monthElement;
+            if (self.config.showMonths > 1 ||
+                self.config.monthSelectorType === "static") {
+                monthElement = createElement("span", "cur-month");
+            }
+            else {
+                self.monthsDropdownContainer = createElement("select", "flatpickr-monthDropdown-months");
+                self.monthsDropdownContainer.setAttribute("aria-label", self.l10n.monthAriaLabel);
+                bind(self.monthsDropdownContainer, "change", function (e) {
+                    var target = getEventTarget(e);
+                    var selectedMonth = parseInt(target.value, 10);
+                    self.changeMonth(selectedMonth - self.currentMonth);
+                    triggerEvent("onMonthChange");
+                });
+                buildMonthSwitch();
+                monthElement = self.monthsDropdownContainer;
+            }
+            var yearInput = createNumberInput("cur-year", { tabindex: "-1" });
+            var yearElement = yearInput.getElementsByTagName("input")[0];
+            yearElement.setAttribute("aria-label", self.l10n.yearAriaLabel);
+            if (self.config.minDate) {
+                yearElement.setAttribute("min", self.config.minDate.getFullYear().toString());
+            }
+            if (self.config.maxDate) {
+                yearElement.setAttribute("max", self.config.maxDate.getFullYear().toString());
+                yearElement.disabled =
+                    !!self.config.minDate &&
+                        self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
+            }
+            var currentMonth = createElement("div", "flatpickr-current-month");
+            currentMonth.appendChild(monthElement);
+            currentMonth.appendChild(yearInput);
+            monthNavFragment.appendChild(currentMonth);
+            container.appendChild(monthNavFragment);
+            return {
+                container: container,
+                yearElement: yearElement,
+                monthElement: monthElement,
+            };
+        }
+        function buildMonths() {
+            clearNode(self.monthNav);
+            self.monthNav.appendChild(self.prevMonthNav);
+            if (self.config.showMonths) {
+                self.yearElements = [];
+                self.monthElements = [];
+            }
+            for (var m = self.config.showMonths; m--;) {
+                var month = buildMonth();
+                self.yearElements.push(month.yearElement);
+                self.monthElements.push(month.monthElement);
+                self.monthNav.appendChild(month.container);
+            }
+            self.monthNav.appendChild(self.nextMonthNav);
+        }
+        function buildMonthNav() {
+            self.monthNav = createElement("div", "flatpickr-months");
+            self.yearElements = [];
+            self.monthElements = [];
+            self.prevMonthNav = createElement("span", "flatpickr-prev-month");
+            self.prevMonthNav.innerHTML = self.config.prevArrow;
+            self.nextMonthNav = createElement("span", "flatpickr-next-month");
+            self.nextMonthNav.innerHTML = self.config.nextArrow;
+            buildMonths();
+            Object.defineProperty(self, "_hidePrevMonthArrow", {
+                get: function () { return self.__hidePrevMonthArrow; },
+                set: function (bool) {
+                    if (self.__hidePrevMonthArrow !== bool) {
+                        toggleClass(self.prevMonthNav, "flatpickr-disabled", bool);
+                        self.__hidePrevMonthArrow = bool;
+                    }
+                },
+            });
+            Object.defineProperty(self, "_hideNextMonthArrow", {
+                get: function () { return self.__hideNextMonthArrow; },
+                set: function (bool) {
+                    if (self.__hideNextMonthArrow !== bool) {
+                        toggleClass(self.nextMonthNav, "flatpickr-disabled", bool);
+                        self.__hideNextMonthArrow = bool;
+                    }
+                },
+            });
+            self.currentYearElement = self.yearElements[0];
+            updateNavigationCurrentMonth();
+            return self.monthNav;
+        }
+        function buildTime() {
+            self.calendarContainer.classList.add("hasTime");
+            if (self.config.noCalendar)
+                self.calendarContainer.classList.add("noCalendar");
+            self.timeContainer = createElement("div", "flatpickr-time");
+            self.timeContainer.tabIndex = -1;
+            var separator = createElement("span", "flatpickr-time-separator", ":");
+            var hourInput = createNumberInput("flatpickr-hour", {
+                "aria-label": self.l10n.hourAriaLabel,
+            });
+            self.hourElement = hourInput.getElementsByTagName("input")[0];
+            var minuteInput = createNumberInput("flatpickr-minute", {
+                "aria-label": self.l10n.minuteAriaLabel,
+            });
+            self.minuteElement = minuteInput.getElementsByTagName("input")[0];
+            self.hourElement.tabIndex = self.minuteElement.tabIndex = -1;
+            self.hourElement.value = pad(self.latestSelectedDateObj
+                ? self.latestSelectedDateObj.getHours()
+                : self.config.time_24hr
+                    ? self.config.defaultHour
+                    : military2ampm(self.config.defaultHour));
+            self.minuteElement.value = pad(self.latestSelectedDateObj
+                ? self.latestSelectedDateObj.getMinutes()
+                : self.config.defaultMinute);
+            self.hourElement.setAttribute("step", self.config.hourIncrement.toString());
+            self.minuteElement.setAttribute("step", self.config.minuteIncrement.toString());
+            self.hourElement.setAttribute("min", self.config.time_24hr ? "0" : "1");
+            self.hourElement.setAttribute("max", self.config.time_24hr ? "23" : "12");
+            self.minuteElement.setAttribute("min", "0");
+            self.minuteElement.setAttribute("max", "59");
+            self.timeContainer.appendChild(hourInput);
+            self.timeContainer.appendChild(separator);
+            self.timeContainer.appendChild(minuteInput);
+            if (self.config.time_24hr)
+                self.timeContainer.classList.add("time24hr");
+            if (self.config.enableSeconds) {
+                self.timeContainer.classList.add("hasSeconds");
+                var secondInput = createNumberInput("flatpickr-second");
+                self.secondElement = secondInput.getElementsByTagName("input")[0];
+                self.secondElement.value = pad(self.latestSelectedDateObj
+                    ? self.latestSelectedDateObj.getSeconds()
+                    : self.config.defaultSeconds);
+                self.secondElement.setAttribute("step", self.minuteElement.getAttribute("step"));
+                self.secondElement.setAttribute("min", "0");
+                self.secondElement.setAttribute("max", "59");
+                self.timeContainer.appendChild(createElement("span", "flatpickr-time-separator", ":"));
+                self.timeContainer.appendChild(secondInput);
+            }
+            if (!self.config.time_24hr) {
+                // add self.amPM if appropriate
+                self.amPM = createElement("span", "flatpickr-am-pm", self.l10n.amPM[int((self.latestSelectedDateObj
+                    ? self.hourElement.value
+                    : self.config.defaultHour) > 11)]);
+                self.amPM.title = self.l10n.toggleTitle;
+                self.amPM.tabIndex = -1;
+                self.timeContainer.appendChild(self.amPM);
+            }
+            return self.timeContainer;
+        }
+        function buildWeekdays() {
+            if (!self.weekdayContainer)
+                self.weekdayContainer = createElement("div", "flatpickr-weekdays");
             else
-              self.currentYearElement.removeAttribute(type);
-            self.currentYearElement.disabled =
-              !!inverseDateObj &&
-              dateObj !== undefined &&
-              inverseDateObj.getFullYear() === dateObj.getFullYear();
-          }
-        };
-      }
-      function parseConfig() {
-        var boolOpts = [
-          "wrap",
-          "weekNumbers",
-          "allowInput",
-          "allowInvalidPreload",
-          "clickOpens",
-          "time_24hr",
-          "enableTime",
-          "noCalendar",
-          "altInput",
-          "shorthandCurrentMonth",
-          "inline",
-          "static",
-          "enableSeconds",
-          "disableMobile",
-        ];
-        var userConfig = __assign(__assign({}, JSON.parse(JSON.stringify(element.dataset || {}))), instanceConfig);
-        var formats = {};
-        self.config.parseDate = userConfig.parseDate;
-        self.config.formatDate = userConfig.formatDate;
-        Object.defineProperty(self.config, "enable", {
-          get: function () { return self.config._enable; },
-          set: function (dates) {
-            self.config._enable = parseDateRules(dates);
-          },
-        });
-        Object.defineProperty(self.config, "disable", {
-          get: function () { return self.config._disable; },
-          set: function (dates) {
-            self.config._disable = parseDateRules(dates);
-          },
-        });
-        var timeMode = userConfig.mode === "time";
-        if (!userConfig.dateFormat && (userConfig.enableTime || timeMode)) {
-          var defaultDateFormat = flatpickr.defaultConfig.dateFormat || defaults.dateFormat;
-          formats.dateFormat =
-            userConfig.noCalendar || timeMode
-              ? "H:i" + (userConfig.enableSeconds ? ":S" : "")
-              : defaultDateFormat + " H:i" + (userConfig.enableSeconds ? ":S" : "");
-        }
-        if (userConfig.altInput &&
-          (userConfig.enableTime || timeMode) &&
-          !userConfig.altFormat) {
-          var defaultAltFormat = flatpickr.defaultConfig.altFormat || defaults.altFormat;
-          formats.altFormat =
-            userConfig.noCalendar || timeMode
-              ? "h:i" + (userConfig.enableSeconds ? ":S K" : " K")
-              : defaultAltFormat + (" h:i" + (userConfig.enableSeconds ? ":S" : "") + " K");
-        }
-        Object.defineProperty(self.config, "minDate", {
-          get: function () { return self.config._minDate; },
-          set: minMaxDateSetter("min"),
-        });
-        Object.defineProperty(self.config, "maxDate", {
-          get: function () { return self.config._maxDate; },
-          set: minMaxDateSetter("max"),
-        });
-        var minMaxTimeSetter = function (type) {
-          return function (val) {
-            self.config[type === "min" ? "_minTime" : "_maxTime"] = self.parseDate(val, "H:i:S");
-          };
-        };
-        Object.defineProperty(self.config, "minTime", {
-          get: function () { return self.config._minTime; },
-          set: minMaxTimeSetter("min"),
-        });
-        Object.defineProperty(self.config, "maxTime", {
-          get: function () { return self.config._maxTime; },
-          set: minMaxTimeSetter("max"),
-        });
-        if (userConfig.mode === "time") {
-          self.config.noCalendar = true;
-          self.config.enableTime = true;
-        }
-        Object.assign(self.config, formats, userConfig);
-        for (var i = 0; i < boolOpts.length; i++)
-          // https://github.com/microsoft/TypeScript/issues/31663
-          self.config[boolOpts[i]] =
-            self.config[boolOpts[i]] === true ||
-            self.config[boolOpts[i]] === "true";
-        HOOKS.filter(function (hook) { return self.config[hook] !== undefined; }).forEach(function (hook) {
-          self.config[hook] = arrayify(self.config[hook] || []).map(bindToInstance);
-        });
-        self.isMobile =
-          !self.config.disableMobile &&
-          !self.config.inline &&
-          self.config.mode === "single" &&
-          !self.config.disable.length &&
-          !self.config.enable.length &&
-          !self.config.weekNumbers &&
-          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        for (var i = 0; i < self.config.plugins.length; i++) {
-          var pluginConf = self.config.plugins[i](self) || {};
-          for (var key in pluginConf) {
-            if (HOOKS.indexOf(key) > -1) {
-              self.config[key] = arrayify(pluginConf[key])
-                .map(bindToInstance)
-                .concat(self.config[key]);
+                clearNode(self.weekdayContainer);
+            for (var i = self.config.showMonths; i--;) {
+                var container = createElement("div", "flatpickr-weekdaycontainer");
+                self.weekdayContainer.appendChild(container);
             }
-            else if (typeof userConfig[key] === "undefined")
-              self.config[key] = pluginConf[key];
-          }
+            updateWeekdays();
+            return self.weekdayContainer;
         }
-        if (!userConfig.altInputClass) {
-          self.config.altInputClass =
-            getInputElem().className + " " + self.config.altInputClass;
-        }
-        triggerEvent("onParseConfig");
-      }
-      function getInputElem() {
-        return self.config.wrap
-          ? element.querySelector("[data-input]")
-          : element;
-      }
-      function setupLocale() {
-        if (typeof self.config.locale !== "object" &&
-          typeof flatpickr.l10ns[self.config.locale] === "undefined")
-          self.config.errorHandler(new Error("flatpickr: invalid locale " + self.config.locale));
-        self.l10n = __assign(__assign({}, flatpickr.l10ns.default), (typeof self.config.locale === "object"
-          ? self.config.locale
-          : self.config.locale !== "default"
-            ? flatpickr.l10ns[self.config.locale]
-            : undefined));
-        tokenRegex.K = "(" + self.l10n.amPM[0] + "|" + self.l10n.amPM[1] + "|" + self.l10n.amPM[0].toLowerCase() + "|" + self.l10n.amPM[1].toLowerCase() + ")";
-        var userConfig = __assign(__assign({}, instanceConfig), JSON.parse(JSON.stringify(element.dataset || {})));
-        if (userConfig.time_24hr === undefined &&
-          flatpickr.defaultConfig.time_24hr === undefined) {
-          self.config.time_24hr = self.l10n.time_24hr;
-        }
-        self.formatDate = createDateFormatter(self);
-        self.parseDate = createDateParser({ config: self.config, l10n: self.l10n });
-      }
-      function positionCalendar(customPositionElement) {
-        if (self.calendarContainer === undefined)
-          return;
-        triggerEvent("onPreCalendarPosition");
-        var positionElement = customPositionElement || self._positionElement;
-        var calendarHeight = Array.prototype.reduce.call(self.calendarContainer.children, (function (acc, child) { return acc + child.offsetHeight; }), 0), calendarWidth = self.calendarContainer.offsetWidth, configPos = self.config.position.split(" "), configPosVertical = configPos[0], configPosHorizontal = configPos.length > 1 ? configPos[1] : null, inputBounds = positionElement.getBoundingClientRect(), distanceFromBottom = window.innerHeight - inputBounds.bottom, showOnTop = configPosVertical === "above" ||
-          (configPosVertical !== "below" &&
-            distanceFromBottom < calendarHeight &&
-            inputBounds.top > calendarHeight);
-        var top = window.pageYOffset +
-          inputBounds.top +
-          (!showOnTop ? positionElement.offsetHeight + 2 : -calendarHeight - 2);
-        toggleClass(self.calendarContainer, "arrowTop", !showOnTop);
-        toggleClass(self.calendarContainer, "arrowBottom", showOnTop);
-        if (self.config.inline)
-          return;
-        var left = window.pageXOffset + inputBounds.left;
-        var isCenter = false;
-        var isRight = false;
-        if (configPosHorizontal === "center") {
-          left -= (calendarWidth - inputBounds.width) / 2;
-          isCenter = true;
-        }
-        else if (configPosHorizontal === "right") {
-          left -= calendarWidth - inputBounds.width;
-          isRight = true;
-        }
-        toggleClass(self.calendarContainer, "arrowLeft", !isCenter && !isRight);
-        toggleClass(self.calendarContainer, "arrowCenter", isCenter);
-        toggleClass(self.calendarContainer, "arrowRight", isRight);
-        var right = window.document.body.offsetWidth -
-          (window.pageXOffset + inputBounds.right);
-        var rightMost = left + calendarWidth > window.document.body.offsetWidth;
-        var centerMost = right + calendarWidth > window.document.body.offsetWidth;
-        toggleClass(self.calendarContainer, "rightMost", rightMost);
-        if (self.config.static)
-          return;
-        self.calendarContainer.style.top = top + "px";
-        if (!rightMost) {
-          self.calendarContainer.style.left = left + "px";
-          self.calendarContainer.style.right = "auto";
-        }
-        else if (!centerMost) {
-          self.calendarContainer.style.left = "auto";
-          self.calendarContainer.style.right = right + "px";
-        }
-        else {
-          var doc = getDocumentStyleSheet();
-          // some testing environments don't have css support
-          if (doc === undefined)
-            return;
-          var bodyWidth = window.document.body.offsetWidth;
-          var centerLeft = Math.max(0, bodyWidth / 2 - calendarWidth / 2);
-          var centerBefore = ".flatpickr-calendar.centerMost:before";
-          var centerAfter = ".flatpickr-calendar.centerMost:after";
-          var centerIndex = doc.cssRules.length;
-          var centerStyle = "{left:" + inputBounds.left + "px;right:auto;}";
-          toggleClass(self.calendarContainer, "rightMost", false);
-          toggleClass(self.calendarContainer, "centerMost", true);
-          doc.insertRule(centerBefore + "," + centerAfter + centerStyle, centerIndex);
-          self.calendarContainer.style.left = centerLeft + "px";
-          self.calendarContainer.style.right = "auto";
-        }
-      }
-      function getDocumentStyleSheet() {
-        var editableSheet = null;
-        for (var i = 0; i < document.styleSheets.length; i++) {
-          var sheet = document.styleSheets[i];
-          try {
-            sheet.cssRules;
-          }
-          catch (err) {
-            continue;
-          }
-          editableSheet = sheet;
-          break;
-        }
-        return editableSheet != null ? editableSheet : createStyleSheet();
-      }
-      function createStyleSheet() {
-        var style = document.createElement("style");
-        document.head.appendChild(style);
-        return style.sheet;
-      }
-      function redraw() {
-        if (self.config.noCalendar || self.isMobile)
-          return;
-        buildMonthSwitch();
-        updateNavigationCurrentMonth();
-        buildDays();
-      }
-      function focusAndClose() {
-        self._input.focus();
-        if (window.navigator.userAgent.indexOf("MSIE") !== -1 ||
-          navigator.msMaxTouchPoints !== undefined) {
-          // hack - bugs in the way IE handles focus keeps the calendar open
-          setTimeout(self.close, 0);
-        }
-        else {
-          self.close();
-        }
-      }
-      function selectDate(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var isSelectable = function (day) {
-          return day.classList &&
-            day.classList.contains("flatpickr-day") &&
-            !day.classList.contains("flatpickr-disabled") &&
-            !day.classList.contains("notAllowed");
-        };
-        var t = findParent(getEventTarget(e), isSelectable);
-        if (t === undefined)
-          return;
-        var target = t;
-        var selectedDate = (self.latestSelectedDateObj = new Date(target.dateObj.getTime()));
-        var shouldChangeMonth = (selectedDate.getMonth() < self.currentMonth ||
-          selectedDate.getMonth() >
-          self.currentMonth + self.config.showMonths - 1) &&
-          self.config.mode !== "range";
-        self.selectedDateElem = target;
-        if (self.config.mode === "single")
-          self.selectedDates = [selectedDate];
-        else if (self.config.mode === "multiple") {
-          var selectedIndex = isDateSelected(selectedDate);
-          if (selectedIndex)
-            self.selectedDates.splice(parseInt(selectedIndex), 1);
-          else
-            self.selectedDates.push(selectedDate);
-        }
-        else if (self.config.mode === "range") {
-          if (self.selectedDates.length === 2) {
-            self.clear(false, false);
-          }
-          self.latestSelectedDateObj = selectedDate;
-          self.selectedDates.push(selectedDate);
-          // unless selecting same date twice, sort ascendingly
-          if (compareDates(selectedDate, self.selectedDates[0], true) !== 0)
-            self.selectedDates.sort(function (a, b) { return a.getTime() - b.getTime(); });
-        }
-        setHoursFromInputs();
-        if (shouldChangeMonth) {
-          var isNewYear = self.currentYear !== selectedDate.getFullYear();
-          self.currentYear = selectedDate.getFullYear();
-          self.currentMonth = selectedDate.getMonth();
-          if (isNewYear) {
-            triggerEvent("onYearChange");
-            buildMonthSwitch();
-          }
-          triggerEvent("onMonthChange");
-        }
-        updateNavigationCurrentMonth();
-        buildDays();
-        updateValue();
-        // maintain focus
-        if (!shouldChangeMonth &&
-          self.config.mode !== "range" &&
-          self.config.showMonths === 1)
-          focusOnDayElem(target);
-        else if (self.selectedDateElem !== undefined &&
-          self.hourElement === undefined) {
-          self.selectedDateElem && self.selectedDateElem.focus();
-        }
-        if (self.hourElement !== undefined)
-          self.hourElement !== undefined && self.hourElement.focus();
-        if (self.config.closeOnSelect) {
-          var single = self.config.mode === "single" && !self.config.enableTime;
-          var range = self.config.mode === "range" &&
-            self.selectedDates.length === 2 &&
-            !self.config.enableTime;
-          if (single || range) {
-            focusAndClose();
-          }
-        }
-        triggerChange();
-      }
-      var CALLBACKS = {
-        locale: [setupLocale, updateWeekdays],
-        showMonths: [buildMonths, setCalendarWidth, buildWeekdays],
-        minDate: [jumpToDate],
-        maxDate: [jumpToDate],
-      };
-      function set(option, value) {
-        if (option !== null && typeof option === "object") {
-          Object.assign(self.config, option);
-          for (var key in option) {
-            if (CALLBACKS[key] !== undefined)
-              CALLBACKS[key].forEach(function (x) { return x(); });
-          }
-        }
-        else {
-          self.config[option] = value;
-          if (CALLBACKS[option] !== undefined)
-            CALLBACKS[option].forEach(function (x) { return x(); });
-          else if (HOOKS.indexOf(option) > -1)
-            self.config[option] = arrayify(value);
-        }
-        self.redraw();
-        updateValue(true);
-      }
-      function setSelectedDate(inputDate, format) {
-        var dates = [];
-        if (inputDate instanceof Array)
-          dates = inputDate.map(function (d) { return self.parseDate(d, format); });
-        else if (inputDate instanceof Date || typeof inputDate === "number")
-          dates = [self.parseDate(inputDate, format)];
-        else if (typeof inputDate === "string") {
-          switch (self.config.mode) {
-            case "single":
-            case "time":
-              dates = [self.parseDate(inputDate, format)];
-              break;
-            case "multiple":
-              dates = inputDate
-                .split(self.config.conjunction)
-                .map(function (date) { return self.parseDate(date, format); });
-              break;
-            case "range":
-              dates = inputDate
-                .split(self.l10n.rangeSeparator)
-                .map(function (date) { return self.parseDate(date, format); });
-              break;
-          }
-        }
-        else
-          self.config.errorHandler(new Error("Invalid date supplied: " + JSON.stringify(inputDate)));
-        self.selectedDates = (self.config.allowInvalidPreload
-          ? dates
-          : dates.filter(function (d) { return d instanceof Date && isEnabled(d, false); }));
-        if (self.config.mode === "range")
-          self.selectedDates.sort(function (a, b) { return a.getTime() - b.getTime(); });
-      }
-      function setDate(date, triggerChange, format) {
-        if (triggerChange === void 0) { triggerChange = false; }
-        if (format === void 0) { format = self.config.dateFormat; }
-        if ((date !== 0 && !date) || (date instanceof Array && date.length === 0))
-          return self.clear(triggerChange);
-        setSelectedDate(date, format);
-        self.latestSelectedDateObj =
-          self.selectedDates[self.selectedDates.length - 1];
-        self.redraw();
-        jumpToDate(undefined, triggerChange);
-        setHoursFromDate();
-        if (self.selectedDates.length === 0) {
-          self.clear(false);
-        }
-        updateValue(triggerChange);
-        if (triggerChange)
-          triggerEvent("onChange");
-      }
-      function parseDateRules(arr) {
-        return arr
-          .slice()
-          .map(function (rule) {
-            if (typeof rule === "string" ||
-              typeof rule === "number" ||
-              rule instanceof Date) {
-              return self.parseDate(rule, undefined, true);
+        function updateWeekdays() {
+            if (!self.weekdayContainer) {
+                return;
             }
-            else if (rule &&
-              typeof rule === "object" &&
-              rule.from &&
-              rule.to)
-              return {
-                from: self.parseDate(rule.from, undefined),
-                to: self.parseDate(rule.to, undefined),
-              };
-            return rule;
-          })
-          .filter(function (x) { return x; }); // remove falsy values
-      }
-      function setupDates() {
-        self.selectedDates = [];
-        self.now = self.parseDate(self.config.now) || new Date();
-        // Workaround IE11 setting placeholder as the input's value
-        var preloadedDate = self.config.defaultDate ||
-          ((self.input.nodeName === "INPUT" ||
-            self.input.nodeName === "TEXTAREA") &&
-            self.input.placeholder &&
-            self.input.value === self.input.placeholder
-            ? null
-            : self.input.value);
-        if (preloadedDate)
-          setSelectedDate(preloadedDate, self.config.dateFormat);
-        self._initialDate =
-          self.selectedDates.length > 0
-            ? self.selectedDates[0]
-            : self.config.minDate &&
-              self.config.minDate.getTime() > self.now.getTime()
-              ? self.config.minDate
-              : self.config.maxDate &&
-                self.config.maxDate.getTime() < self.now.getTime()
-                ? self.config.maxDate
-                : self.now;
-        self.currentYear = self._initialDate.getFullYear();
-        self.currentMonth = self._initialDate.getMonth();
-        if (self.selectedDates.length > 0)
-          self.latestSelectedDateObj = self.selectedDates[0];
-        if (self.config.minTime !== undefined)
-          self.config.minTime = self.parseDate(self.config.minTime, "H:i");
-        if (self.config.maxTime !== undefined)
-          self.config.maxTime = self.parseDate(self.config.maxTime, "H:i");
-        self.minDateHasTime =
-          !!self.config.minDate &&
-          (self.config.minDate.getHours() > 0 ||
-            self.config.minDate.getMinutes() > 0 ||
-            self.config.minDate.getSeconds() > 0);
-        self.maxDateHasTime =
-          !!self.config.maxDate &&
-          (self.config.maxDate.getHours() > 0 ||
-            self.config.maxDate.getMinutes() > 0 ||
-            self.config.maxDate.getSeconds() > 0);
-      }
-      function setupInputs() {
-        self.input = getInputElem();
+            var firstDayOfWeek = self.l10n.firstDayOfWeek;
+            var weekdays = __spreadArrays(self.l10n.weekdays.shorthand);
+            if (firstDayOfWeek > 0 && firstDayOfWeek < weekdays.length) {
+                weekdays = __spreadArrays(weekdays.splice(firstDayOfWeek, weekdays.length), weekdays.splice(0, firstDayOfWeek));
+            }
+            for (var i = self.config.showMonths; i--;) {
+                self.weekdayContainer.children[i].innerHTML = "\n      <span class='flatpickr-weekday'>\n        " + weekdays.join("</span><span class='flatpickr-weekday'>") + "\n      </span>\n      ";
+            }
+        }
         /* istanbul ignore next */
-        if (!self.input) {
-          self.config.errorHandler(new Error("Invalid input element specified"));
-          return;
+        function buildWeeks() {
+            self.calendarContainer.classList.add("hasWeeks");
+            var weekWrapper = createElement("div", "flatpickr-weekwrapper");
+            weekWrapper.appendChild(createElement("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
+            var weekNumbers = createElement("div", "flatpickr-weeks");
+            weekWrapper.appendChild(weekNumbers);
+            return {
+                weekWrapper: weekWrapper,
+                weekNumbers: weekNumbers,
+            };
         }
-        // hack: store previous type to restore it after destroy()
-        self.input._type = self.input.type;
-        self.input.type = "text";
-        self.input.classList.add("flatpickr-input");
-        self._input = self.input;
-        if (self.config.altInput) {
-          // replicate self.element
-          self.altInput = createElement(self.input.nodeName, self.config.altInputClass);
-          self._input = self.altInput;
-          self.altInput.placeholder = self.input.placeholder;
-          self.altInput.disabled = self.input.disabled;
-          self.altInput.required = self.input.required;
-          self.altInput.tabIndex = self.input.tabIndex;
-          self.altInput.type = "text";
-          self.input.setAttribute("type", "hidden");
-          if (!self.config.static && self.input.parentNode)
-            self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
+        function changeMonth(value, isOffset) {
+            if (isOffset === void 0) { isOffset = true; }
+            var delta = isOffset ? value : value - self.currentMonth;
+            if ((delta < 0 && self._hidePrevMonthArrow === true) ||
+                (delta > 0 && self._hideNextMonthArrow === true))
+                return;
+            self.currentMonth += delta;
+            if (self.currentMonth < 0 || self.currentMonth > 11) {
+                self.currentYear += self.currentMonth > 11 ? 1 : -1;
+                self.currentMonth = (self.currentMonth + 12) % 12;
+                triggerEvent("onYearChange");
+                buildMonthSwitch();
+            }
+            buildDays();
+            triggerEvent("onMonthChange");
+            updateNavigationCurrentMonth();
         }
-        if (!self.config.allowInput)
-          self._input.setAttribute("readonly", "readonly");
-        self._positionElement = self.config.positionElement || self._input;
-      }
-      function setupMobile() {
-        var inputType = self.config.enableTime
-          ? self.config.noCalendar
-            ? "time"
-            : "datetime-local"
-          : "date";
-        self.mobileInput = createElement("input", self.input.className + " flatpickr-mobile");
-        self.mobileInput.tabIndex = 1;
-        self.mobileInput.type = inputType;
-        self.mobileInput.disabled = self.input.disabled;
-        self.mobileInput.required = self.input.required;
-        self.mobileInput.placeholder = self.input.placeholder;
-        self.mobileFormatStr =
-          inputType === "datetime-local"
-            ? "Y-m-d\\TH:i:S"
-            : inputType === "date"
-              ? "Y-m-d"
-              : "H:i:S";
-        if (self.selectedDates.length > 0) {
-          self.mobileInput.defaultValue = self.mobileInput.value = self.formatDate(self.selectedDates[0], self.mobileFormatStr);
+        function clear(triggerChangeEvent, toInitial) {
+            if (triggerChangeEvent === void 0) { triggerChangeEvent = true; }
+            if (toInitial === void 0) { toInitial = true; }
+            self.input.value = "";
+            if (self.altInput !== undefined)
+                self.altInput.value = "";
+            if (self.mobileInput !== undefined)
+                self.mobileInput.value = "";
+            self.selectedDates = [];
+            self.latestSelectedDateObj = undefined;
+            if (toInitial === true) {
+                self.currentYear = self._initialDate.getFullYear();
+                self.currentMonth = self._initialDate.getMonth();
+            }
+            if (self.config.enableTime === true) {
+                var _a = getDefaultHours(), hours = _a.hours, minutes = _a.minutes, seconds = _a.seconds;
+                setHours(hours, minutes, seconds);
+            }
+            self.redraw();
+            if (triggerChangeEvent)
+                // triggerChangeEvent is true (default) or an Event
+                triggerEvent("onChange");
         }
-        if (self.config.minDate)
-          self.mobileInput.min = self.formatDate(self.config.minDate, "Y-m-d");
-        if (self.config.maxDate)
-          self.mobileInput.max = self.formatDate(self.config.maxDate, "Y-m-d");
-        if (self.input.getAttribute("step"))
-          self.mobileInput.step = String(self.input.getAttribute("step"));
-        self.input.type = "hidden";
-        if (self.altInput !== undefined)
-          self.altInput.type = "hidden";
-        try {
-          if (self.input.parentNode)
-            self.input.parentNode.insertBefore(self.mobileInput, self.input.nextSibling);
+        function close() {
+            self.isOpen = false;
+            if (!self.isMobile) {
+                if (self.calendarContainer !== undefined) {
+                    self.calendarContainer.classList.remove("open");
+                }
+                if (self._input !== undefined) {
+                    self._input.classList.remove("active");
+                }
+            }
+            triggerEvent("onClose");
         }
-        catch (_a) { }
-        bind(self.mobileInput, "change", function (e) {
-          self.setDate(getEventTarget(e).value, false, self.mobileFormatStr);
-          triggerEvent("onChange");
-          triggerEvent("onClose");
-        });
-      }
-      function toggle(e) {
-        if (self.isOpen === true)
-          return self.close();
-        self.open(e);
-      }
-      function triggerEvent(event, data) {
-        // If the instance has been destroyed already, all hooks have been removed
-        if (self.config === undefined)
-          return;
-        var hooks = self.config[event];
-        if (hooks !== undefined && hooks.length > 0) {
-          for (var i = 0; hooks[i] && i < hooks.length; i++)
-            hooks[i](self.selectedDates, self.input.value, self, data);
+        function destroy() {
+            if (self.config !== undefined)
+                triggerEvent("onDestroy");
+            for (var i = self._handlers.length; i--;) {
+                var h = self._handlers[i];
+                h.element.removeEventListener(h.event, h.handler, h.options);
+            }
+            self._handlers = [];
+            if (self.mobileInput) {
+                if (self.mobileInput.parentNode)
+                    self.mobileInput.parentNode.removeChild(self.mobileInput);
+                self.mobileInput = undefined;
+            }
+            else if (self.calendarContainer && self.calendarContainer.parentNode) {
+                if (self.config.static && self.calendarContainer.parentNode) {
+                    var wrapper = self.calendarContainer.parentNode;
+                    wrapper.lastChild && wrapper.removeChild(wrapper.lastChild);
+                    if (wrapper.parentNode) {
+                        while (wrapper.firstChild)
+                            wrapper.parentNode.insertBefore(wrapper.firstChild, wrapper);
+                        wrapper.parentNode.removeChild(wrapper);
+                    }
+                }
+                else
+                    self.calendarContainer.parentNode.removeChild(self.calendarContainer);
+            }
+            if (self.altInput) {
+                self.input.type = "text";
+                if (self.altInput.parentNode)
+                    self.altInput.parentNode.removeChild(self.altInput);
+                delete self.altInput;
+            }
+            if (self.input) {
+                self.input.type = self.input._type;
+                self.input.classList.remove("flatpickr-input");
+                self.input.removeAttribute("readonly");
+            }
+            [
+                "_showTimeInput",
+                "latestSelectedDateObj",
+                "_hideNextMonthArrow",
+                "_hidePrevMonthArrow",
+                "__hideNextMonthArrow",
+                "__hidePrevMonthArrow",
+                "isMobile",
+                "isOpen",
+                "selectedDateElem",
+                "minDateHasTime",
+                "maxDateHasTime",
+                "days",
+                "daysContainer",
+                "_input",
+                "_positionElement",
+                "innerContainer",
+                "rContainer",
+                "monthNav",
+                "todayDateElem",
+                "calendarContainer",
+                "weekdayContainer",
+                "prevMonthNav",
+                "nextMonthNav",
+                "monthsDropdownContainer",
+                "currentMonthElement",
+                "currentYearElement",
+                "navigationCurrentMonth",
+                "selectedDateElem",
+                "config",
+            ].forEach(function (k) {
+                try {
+                    delete self[k];
+                }
+                catch (_) { }
+            });
         }
-        if (event === "onChange") {
-          self.input.dispatchEvent(createEvent("change"));
-          // many front-end frameworks bind to the input event
-          self.input.dispatchEvent(createEvent("input"));
+        function isCalendarElem(elem) {
+            if (self.config.appendTo && self.config.appendTo.contains(elem))
+                return true;
+            return self.calendarContainer.contains(elem);
         }
-      }
-      function createEvent(name) {
-        var e = document.createEvent("Event");
-        e.initEvent(name, true, true);
-        return e;
-      }
-      function isDateSelected(date) {
-        for (var i = 0; i < self.selectedDates.length; i++) {
-          if (compareDates(self.selectedDates[i], date) === 0)
-            return "" + i;
+        function documentClick(e) {
+            if (self.isOpen && !self.config.inline) {
+                var eventTarget_1 = getEventTarget(e);
+                var isCalendarElement = isCalendarElem(eventTarget_1);
+                var isInput = eventTarget_1 === self.input ||
+                    eventTarget_1 === self.altInput ||
+                    self.element.contains(eventTarget_1) ||
+                    // web components
+                    // e.path is not present in all browsers. circumventing typechecks
+                    (e.path &&
+                        e.path.indexOf &&
+                        (~e.path.indexOf(self.input) ||
+                            ~e.path.indexOf(self.altInput)));
+                var lostFocus = e.type === "blur"
+                    ? isInput &&
+                        e.relatedTarget &&
+                        !isCalendarElem(e.relatedTarget)
+                    : !isInput &&
+                        !isCalendarElement &&
+                        !isCalendarElem(e.relatedTarget);
+                var isIgnored = !self.config.ignoredFocusElements.some(function (elem) {
+                    return elem.contains(eventTarget_1);
+                });
+                if (lostFocus && isIgnored) {
+                    if (self.timeContainer !== undefined &&
+                        self.minuteElement !== undefined &&
+                        self.hourElement !== undefined &&
+                        self.input.value !== "" &&
+                        self.input.value !== undefined) {
+                        updateTime();
+                    }
+                    self.close();
+                    if (self.config &&
+                        self.config.mode === "range" &&
+                        self.selectedDates.length === 1) {
+                        self.clear(false);
+                        self.redraw();
+                    }
+                }
+            }
         }
-        return false;
-      }
-      function isDateInRange(date) {
-        if (self.config.mode !== "range" || self.selectedDates.length < 2)
-          return false;
-        return (compareDates(date, self.selectedDates[0]) >= 0 &&
-          compareDates(date, self.selectedDates[1]) <= 0);
-      }
-      function updateNavigationCurrentMonth() {
-        if (self.config.noCalendar || self.isMobile || !self.monthNav)
-          return;
-        self.yearElements.forEach(function (yearElement, i) {
-          var d = new Date(self.currentYear, self.currentMonth, 1);
-          d.setMonth(self.currentMonth + i);
-          if (self.config.showMonths > 1 ||
-            self.config.monthSelectorType === "static") {
-            self.monthElements[i].textContent =
-              monthToStr(d.getMonth(), self.config.shorthandCurrentMonth, self.l10n) + " ";
-          }
-          else {
-            self.monthsDropdownContainer.value = d.getMonth().toString();
-          }
-          yearElement.value = d.getFullYear().toString();
-        });
-        self._hidePrevMonthArrow =
-          self.config.minDate !== undefined &&
-          (self.currentYear === self.config.minDate.getFullYear()
-            ? self.currentMonth <= self.config.minDate.getMonth()
-            : self.currentYear < self.config.minDate.getFullYear());
-        self._hideNextMonthArrow =
-          self.config.maxDate !== undefined &&
-          (self.currentYear === self.config.maxDate.getFullYear()
-            ? self.currentMonth + 1 > self.config.maxDate.getMonth()
-            : self.currentYear > self.config.maxDate.getFullYear());
-      }
-      function getDateStr(format) {
-        return self.selectedDates
-          .map(function (dObj) { return self.formatDate(dObj, format); })
-          .filter(function (d, i, arr) {
-            return self.config.mode !== "range" ||
-              self.config.enableTime ||
-              arr.indexOf(d) === i;
-          })
-          .join(self.config.mode !== "range"
-            ? self.config.conjunction
-            : self.l10n.rangeSeparator);
-      }
-      /**
-       * Updates the values of inputs associated with the calendar
-       */
-      function updateValue(triggerChange) {
-        if (triggerChange === void 0) { triggerChange = true; }
-        if (self.mobileInput !== undefined && self.mobileFormatStr) {
-          self.mobileInput.value =
-            self.latestSelectedDateObj !== undefined
-              ? self.formatDate(self.latestSelectedDateObj, self.mobileFormatStr)
-              : "";
+        function changeYear(newYear) {
+            if (!newYear ||
+                (self.config.minDate && newYear < self.config.minDate.getFullYear()) ||
+                (self.config.maxDate && newYear > self.config.maxDate.getFullYear()))
+                return;
+            var newYearNum = newYear, isNewYear = self.currentYear !== newYearNum;
+            self.currentYear = newYearNum || self.currentYear;
+            if (self.config.maxDate &&
+                self.currentYear === self.config.maxDate.getFullYear()) {
+                self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
+            }
+            else if (self.config.minDate &&
+                self.currentYear === self.config.minDate.getFullYear()) {
+                self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
+            }
+            if (isNewYear) {
+                self.redraw();
+                triggerEvent("onYearChange");
+                buildMonthSwitch();
+            }
         }
-        self.input.value = getDateStr(self.config.dateFormat);
-        if (self.altInput !== undefined) {
-          self.altInput.value = getDateStr(self.config.altFormat);
+        function isEnabled(date, timeless) {
+            if (timeless === void 0) { timeless = true; }
+            var dateToCheck = self.parseDate(date, undefined, timeless); // timeless
+            if ((self.config.minDate &&
+                dateToCheck &&
+                compareDates(dateToCheck, self.config.minDate, timeless !== undefined ? timeless : !self.minDateHasTime) < 0) ||
+                (self.config.maxDate &&
+                    dateToCheck &&
+                    compareDates(dateToCheck, self.config.maxDate, timeless !== undefined ? timeless : !self.maxDateHasTime) > 0))
+                return false;
+            if (self.config.enable.length === 0 && self.config.disable.length === 0)
+                return true;
+            if (dateToCheck === undefined)
+                return false;
+            var bool = self.config.enable.length > 0, array = bool ? self.config.enable : self.config.disable;
+            for (var i = 0, d = void 0; i < array.length; i++) {
+                d = array[i];
+                if (typeof d === "function" &&
+                    d(dateToCheck) // disabled by function
+                )
+                    return bool;
+                else if (d instanceof Date &&
+                    dateToCheck !== undefined &&
+                    d.getTime() === dateToCheck.getTime())
+                    // disabled by date
+                    return bool;
+                else if (typeof d === "string" && dateToCheck !== undefined) {
+                    // disabled by date string
+                    var parsed = self.parseDate(d, undefined, true);
+                    return parsed && parsed.getTime() === dateToCheck.getTime()
+                        ? bool
+                        : !bool;
+                }
+                else if (
+                // disabled by range
+                typeof d === "object" &&
+                    dateToCheck !== undefined &&
+                    d.from &&
+                    d.to &&
+                    dateToCheck.getTime() >= d.from.getTime() &&
+                    dateToCheck.getTime() <= d.to.getTime())
+                    return bool;
+            }
+            return !bool;
         }
-        if (triggerChange !== false)
-          triggerEvent("onValueUpdate");
-      }
-      function onMonthNavClick(e) {
-        var eventTarget = getEventTarget(e);
-        var isPrevMonth = self.prevMonthNav.contains(eventTarget);
-        var isNextMonth = self.nextMonthNav.contains(eventTarget);
-        if (isPrevMonth || isNextMonth) {
-          changeMonth(isPrevMonth ? -1 : 1);
+        function isInView(elem) {
+            if (self.daysContainer !== undefined)
+                return (elem.className.indexOf("hidden") === -1 &&
+                    elem.className.indexOf("flatpickr-disabled") === -1 &&
+                    self.daysContainer.contains(elem));
+            return false;
         }
-        else if (self.yearElements.indexOf(eventTarget) >= 0) {
-          eventTarget.select();
+        function onBlur(e) {
+            var isInput = e.target === self._input;
+            if (isInput &&
+                !(e.relatedTarget && isCalendarElem(e.relatedTarget))) {
+                self.setDate(self._input.value, true, e.target === self.altInput
+                    ? self.config.altFormat
+                    : self.config.dateFormat);
+            }
         }
-        else if (eventTarget.classList.contains("arrowUp")) {
-          self.changeYear(self.currentYear + 1);
+        function onKeyDown(e) {
+            // e.key                      e.keyCode
+            // "Backspace"                        8
+            // "Tab"                              9
+            // "Enter"                           13
+            // "Escape"     (IE "Esc")           27
+            // "ArrowLeft"  (IE "Left")          37
+            // "ArrowUp"    (IE "Up")            38
+            // "ArrowRight" (IE "Right")         39
+            // "ArrowDown"  (IE "Down")          40
+            // "Delete"     (IE "Del")           46
+            var eventTarget = getEventTarget(e);
+            var isInput = self.config.wrap
+                ? element.contains(eventTarget)
+                : eventTarget === self._input;
+            var allowInput = self.config.allowInput;
+            var allowKeydown = self.isOpen && (!allowInput || !isInput);
+            var allowInlineKeydown = self.config.inline && isInput && !allowInput;
+            if (e.keyCode === 13 && isInput) {
+                if (allowInput) {
+                    self.setDate(self._input.value, true, eventTarget === self.altInput
+                        ? self.config.altFormat
+                        : self.config.dateFormat);
+                    return eventTarget.blur();
+                }
+                else {
+                    self.open();
+                }
+            }
+            else if (isCalendarElem(eventTarget) ||
+                allowKeydown ||
+                allowInlineKeydown) {
+                var isTimeObj = !!self.timeContainer &&
+                    self.timeContainer.contains(eventTarget);
+                switch (e.keyCode) {
+                    case 13:
+                        if (isTimeObj) {
+                            e.preventDefault();
+                            updateTime();
+                            focusAndClose();
+                        }
+                        else
+                            selectDate(e);
+                        break;
+                    case 27: // escape
+                        e.preventDefault();
+                        focusAndClose();
+                        break;
+                    case 8:
+                    case 46:
+                        if (isInput && !self.config.allowInput) {
+                            e.preventDefault();
+                            self.clear();
+                        }
+                        break;
+                    case 37:
+                    case 39:
+                        if (!isTimeObj && !isInput) {
+                            e.preventDefault();
+                            if (self.daysContainer !== undefined &&
+                                (allowInput === false ||
+                                    (document.activeElement && isInView(document.activeElement)))) {
+                                var delta_1 = e.keyCode === 39 ? 1 : -1;
+                                if (!e.ctrlKey)
+                                    focusOnDay(undefined, delta_1);
+                                else {
+                                    e.stopPropagation();
+                                    changeMonth(delta_1);
+                                    focusOnDay(getFirstAvailableDay(1), 0);
+                                }
+                            }
+                        }
+                        else if (self.hourElement)
+                            self.hourElement.focus();
+                        break;
+                    case 38:
+                    case 40:
+                        e.preventDefault();
+                        var delta = e.keyCode === 40 ? 1 : -1;
+                        if ((self.daysContainer &&
+                            eventTarget.$i !== undefined) ||
+                            eventTarget === self.input ||
+                            eventTarget === self.altInput) {
+                            if (e.ctrlKey) {
+                                e.stopPropagation();
+                                changeYear(self.currentYear - delta);
+                                focusOnDay(getFirstAvailableDay(1), 0);
+                            }
+                            else if (!isTimeObj)
+                                focusOnDay(undefined, delta * 7);
+                        }
+                        else if (eventTarget === self.currentYearElement) {
+                            changeYear(self.currentYear - delta);
+                        }
+                        else if (self.config.enableTime) {
+                            if (!isTimeObj && self.hourElement)
+                                self.hourElement.focus();
+                            updateTime(e);
+                            self._debouncedChange();
+                        }
+                        break;
+                    case 9:
+                        if (isTimeObj) {
+                            var elems = [
+                                self.hourElement,
+                                self.minuteElement,
+                                self.secondElement,
+                                self.amPM,
+                            ]
+                                .concat(self.pluginElements)
+                                .filter(function (x) { return x; });
+                            var i = elems.indexOf(eventTarget);
+                            if (i !== -1) {
+                                var target = elems[i + (e.shiftKey ? -1 : 1)];
+                                e.preventDefault();
+                                (target || self._input).focus();
+                            }
+                        }
+                        else if (!self.config.noCalendar &&
+                            self.daysContainer &&
+                            self.daysContainer.contains(eventTarget) &&
+                            e.shiftKey) {
+                            e.preventDefault();
+                            self._input.focus();
+                        }
+                        break;
+                }
+            }
+            if (self.amPM !== undefined && eventTarget === self.amPM) {
+                switch (e.key) {
+                    case self.l10n.amPM[0].charAt(0):
+                    case self.l10n.amPM[0].charAt(0).toLowerCase():
+                        self.amPM.textContent = self.l10n.amPM[0];
+                        setHoursFromInputs();
+                        updateValue();
+                        break;
+                    case self.l10n.amPM[1].charAt(0):
+                    case self.l10n.amPM[1].charAt(0).toLowerCase():
+                        self.amPM.textContent = self.l10n.amPM[1];
+                        setHoursFromInputs();
+                        updateValue();
+                        break;
+                }
+            }
+            if (isInput || isCalendarElem(eventTarget)) {
+                triggerEvent("onKeyDown", e);
+            }
         }
-        else if (eventTarget.classList.contains("arrowDown")) {
-          self.changeYear(self.currentYear - 1);
+        function onMouseOver(elem) {
+            if (self.selectedDates.length !== 1 ||
+                (elem &&
+                    (!elem.classList.contains("flatpickr-day") ||
+                        elem.classList.contains("flatpickr-disabled"))))
+                return;
+            var hoverDate = elem
+                ? elem.dateObj.getTime()
+                : self.days.firstElementChild.dateObj.getTime(), initialDate = self.parseDate(self.selectedDates[0], undefined, true).getTime(), rangeStartDate = Math.min(hoverDate, self.selectedDates[0].getTime()), rangeEndDate = Math.max(hoverDate, self.selectedDates[0].getTime());
+            var containsDisabled = false;
+            var minRange = 0, maxRange = 0;
+            for (var t = rangeStartDate; t < rangeEndDate; t += duration.DAY) {
+                if (!isEnabled(new Date(t), true)) {
+                    containsDisabled =
+                        containsDisabled || (t > rangeStartDate && t < rangeEndDate);
+                    if (t < initialDate && (!minRange || t > minRange))
+                        minRange = t;
+                    else if (t > initialDate && (!maxRange || t < maxRange))
+                        maxRange = t;
+                }
+            }
+            for (var m = 0; m < self.config.showMonths; m++) {
+                var month = self.daysContainer.children[m];
+                var _loop_1 = function (i, l) {
+                    var dayElem = month.children[i], date = dayElem.dateObj;
+                    var timestamp = date.getTime();
+                    var outOfRange = (minRange > 0 && timestamp < minRange) ||
+                        (maxRange > 0 && timestamp > maxRange);
+                    if (outOfRange) {
+                        dayElem.classList.add("notAllowed");
+                        ["inRange", "startRange", "endRange"].forEach(function (c) {
+                            dayElem.classList.remove(c);
+                        });
+                        return "continue";
+                    }
+                    else if (containsDisabled && !outOfRange)
+                        return "continue";
+                    ["startRange", "inRange", "endRange", "notAllowed"].forEach(function (c) {
+                        dayElem.classList.remove(c);
+                    });
+                    if (elem !== undefined) {
+                        elem.classList.add(hoverDate <= self.selectedDates[0].getTime()
+                            ? "startRange"
+                            : "endRange");
+                        if (initialDate < hoverDate && timestamp === initialDate)
+                            dayElem.classList.add("startRange");
+                        else if (initialDate > hoverDate && timestamp === initialDate)
+                            dayElem.classList.add("endRange");
+                        if (timestamp >= minRange &&
+                            (maxRange === 0 || timestamp <= maxRange) &&
+                            isBetween(timestamp, initialDate, hoverDate))
+                            dayElem.classList.add("inRange");
+                    }
+                };
+                for (var i = 0, l = month.children.length; i < l; i++) {
+                    _loop_1(i, l);
+                }
+            }
         }
-      }
-      function timeWrapper(e) {
-        e.preventDefault();
-        var isKeyDown = e.type === "keydown", eventTarget = getEventTarget(e), input = eventTarget;
-        if (self.amPM !== undefined && eventTarget === self.amPM) {
-          self.amPM.textContent =
-            self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
+        function onResize() {
+            if (self.isOpen && !self.config.static && !self.config.inline)
+                positionCalendar();
         }
-        var min = parseFloat(input.getAttribute("min")), max = parseFloat(input.getAttribute("max")), step = parseFloat(input.getAttribute("step")), curValue = parseInt(input.value, 10), delta = e.delta ||
-          (isKeyDown ? (e.which === 38 ? 1 : -1) : 0);
-        var newValue = curValue + step * delta;
-        if (typeof input.value !== "undefined" && input.value.length === 2) {
-          var isHourElem = input === self.hourElement, isMinuteElem = input === self.minuteElement;
-          if (newValue < min) {
-            newValue =
-              max +
-              newValue +
-              int(!isHourElem) +
-              (int(isHourElem) && int(!self.amPM));
-            if (isMinuteElem)
-              incrementNumInput(undefined, -1, self.hourElement);
-          }
-          else if (newValue > max) {
-            newValue =
-              input === self.hourElement ? newValue - max - int(!self.amPM) : min;
-            if (isMinuteElem)
-              incrementNumInput(undefined, 1, self.hourElement);
-          }
-          if (self.amPM &&
-            isHourElem &&
-            (step === 1
-              ? newValue + curValue === 23
-              : Math.abs(newValue - curValue) > step)) {
-            self.amPM.textContent =
-              self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
-          }
-          input.value = pad(newValue);
+        function open(e, positionElement) {
+            if (positionElement === void 0) { positionElement = self._positionElement; }
+            if (self.isMobile === true) {
+                if (e) {
+                    e.preventDefault();
+                    var eventTarget = getEventTarget(e);
+                    eventTarget && eventTarget.blur();
+                }
+                if (self.mobileInput !== undefined) {
+                    self.mobileInput.focus();
+                    self.mobileInput.click();
+                }
+                triggerEvent("onOpen");
+                return;
+            }
+            if (self._input.disabled || self.config.inline)
+                return;
+            var wasOpen = self.isOpen;
+            self.isOpen = true;
+            if (!wasOpen) {
+                self.calendarContainer.classList.add("open");
+                self._input.classList.add("active");
+                triggerEvent("onOpen");
+                positionCalendar(positionElement);
+            }
+            if (self.config.enableTime === true && self.config.noCalendar === true) {
+                if (self.config.allowInput === false &&
+                    (e === undefined ||
+                        !self.timeContainer.contains(e.relatedTarget))) {
+                    setTimeout(function () { return self.hourElement.select(); }, 50);
+                }
+            }
         }
-      }
-      init();
-      return self;
+        function minMaxDateSetter(type) {
+            return function (date) {
+                var dateObj = (self.config["_" + type + "Date"] = self.parseDate(date, self.config.dateFormat));
+                var inverseDateObj = self.config["_" + (type === "min" ? "max" : "min") + "Date"];
+                if (dateObj !== undefined) {
+                    self[type === "min" ? "minDateHasTime" : "maxDateHasTime"] =
+                        dateObj.getHours() > 0 ||
+                            dateObj.getMinutes() > 0 ||
+                            dateObj.getSeconds() > 0;
+                }
+                if (self.selectedDates) {
+                    self.selectedDates = self.selectedDates.filter(function (d) { return isEnabled(d); });
+                    if (!self.selectedDates.length && type === "min")
+                        setHoursFromDate(dateObj);
+                    updateValue();
+                }
+                if (self.daysContainer) {
+                    redraw();
+                    if (dateObj !== undefined)
+                        self.currentYearElement[type] = dateObj.getFullYear().toString();
+                    else
+                        self.currentYearElement.removeAttribute(type);
+                    self.currentYearElement.disabled =
+                        !!inverseDateObj &&
+                            dateObj !== undefined &&
+                            inverseDateObj.getFullYear() === dateObj.getFullYear();
+                }
+            };
+        }
+        function parseConfig() {
+            var boolOpts = [
+                "wrap",
+                "weekNumbers",
+                "allowInput",
+                "allowInvalidPreload",
+                "clickOpens",
+                "time_24hr",
+                "enableTime",
+                "noCalendar",
+                "altInput",
+                "shorthandCurrentMonth",
+                "inline",
+                "static",
+                "enableSeconds",
+                "disableMobile",
+            ];
+            var userConfig = __assign(__assign({}, JSON.parse(JSON.stringify(element.dataset || {}))), instanceConfig);
+            var formats = {};
+            self.config.parseDate = userConfig.parseDate;
+            self.config.formatDate = userConfig.formatDate;
+            Object.defineProperty(self.config, "enable", {
+                get: function () { return self.config._enable; },
+                set: function (dates) {
+                    self.config._enable = parseDateRules(dates);
+                },
+            });
+            Object.defineProperty(self.config, "disable", {
+                get: function () { return self.config._disable; },
+                set: function (dates) {
+                    self.config._disable = parseDateRules(dates);
+                },
+            });
+            var timeMode = userConfig.mode === "time";
+            if (!userConfig.dateFormat && (userConfig.enableTime || timeMode)) {
+                var defaultDateFormat = flatpickr.defaultConfig.dateFormat || defaults.dateFormat;
+                formats.dateFormat =
+                    userConfig.noCalendar || timeMode
+                        ? "H:i" + (userConfig.enableSeconds ? ":S" : "")
+                        : defaultDateFormat + " H:i" + (userConfig.enableSeconds ? ":S" : "");
+            }
+            if (userConfig.altInput &&
+                (userConfig.enableTime || timeMode) &&
+                !userConfig.altFormat) {
+                var defaultAltFormat = flatpickr.defaultConfig.altFormat || defaults.altFormat;
+                formats.altFormat =
+                    userConfig.noCalendar || timeMode
+                        ? "h:i" + (userConfig.enableSeconds ? ":S K" : " K")
+                        : defaultAltFormat + (" h:i" + (userConfig.enableSeconds ? ":S" : "") + " K");
+            }
+            Object.defineProperty(self.config, "minDate", {
+                get: function () { return self.config._minDate; },
+                set: minMaxDateSetter("min"),
+            });
+            Object.defineProperty(self.config, "maxDate", {
+                get: function () { return self.config._maxDate; },
+                set: minMaxDateSetter("max"),
+            });
+            var minMaxTimeSetter = function (type) { return function (val) {
+                self.config[type === "min" ? "_minTime" : "_maxTime"] = self.parseDate(val, "H:i:S");
+            }; };
+            Object.defineProperty(self.config, "minTime", {
+                get: function () { return self.config._minTime; },
+                set: minMaxTimeSetter("min"),
+            });
+            Object.defineProperty(self.config, "maxTime", {
+                get: function () { return self.config._maxTime; },
+                set: minMaxTimeSetter("max"),
+            });
+            if (userConfig.mode === "time") {
+                self.config.noCalendar = true;
+                self.config.enableTime = true;
+            }
+            Object.assign(self.config, formats, userConfig);
+            for (var i = 0; i < boolOpts.length; i++)
+                // https://github.com/microsoft/TypeScript/issues/31663
+                self.config[boolOpts[i]] =
+                    self.config[boolOpts[i]] === true ||
+                        self.config[boolOpts[i]] === "true";
+            HOOKS.filter(function (hook) { return self.config[hook] !== undefined; }).forEach(function (hook) {
+                self.config[hook] = arrayify(self.config[hook] || []).map(bindToInstance);
+            });
+            self.isMobile =
+                !self.config.disableMobile &&
+                    !self.config.inline &&
+                    self.config.mode === "single" &&
+                    !self.config.disable.length &&
+                    !self.config.enable.length &&
+                    !self.config.weekNumbers &&
+                    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            for (var i = 0; i < self.config.plugins.length; i++) {
+                var pluginConf = self.config.plugins[i](self) || {};
+                for (var key in pluginConf) {
+                    if (HOOKS.indexOf(key) > -1) {
+                        self.config[key] = arrayify(pluginConf[key])
+                            .map(bindToInstance)
+                            .concat(self.config[key]);
+                    }
+                    else if (typeof userConfig[key] === "undefined")
+                        self.config[key] = pluginConf[key];
+                }
+            }
+            if (!userConfig.altInputClass) {
+                self.config.altInputClass =
+                    getInputElem().className + " " + self.config.altInputClass;
+            }
+            triggerEvent("onParseConfig");
+        }
+        function getInputElem() {
+            return self.config.wrap
+                ? element.querySelector("[data-input]")
+                : element;
+        }
+        function setupLocale() {
+            if (typeof self.config.locale !== "object" &&
+                typeof flatpickr.l10ns[self.config.locale] === "undefined")
+                self.config.errorHandler(new Error("flatpickr: invalid locale " + self.config.locale));
+            self.l10n = __assign(__assign({}, flatpickr.l10ns.default), (typeof self.config.locale === "object"
+                ? self.config.locale
+                : self.config.locale !== "default"
+                    ? flatpickr.l10ns[self.config.locale]
+                    : undefined));
+            tokenRegex.K = "(" + self.l10n.amPM[0] + "|" + self.l10n.amPM[1] + "|" + self.l10n.amPM[0].toLowerCase() + "|" + self.l10n.amPM[1].toLowerCase() + ")";
+            var userConfig = __assign(__assign({}, instanceConfig), JSON.parse(JSON.stringify(element.dataset || {})));
+            if (userConfig.time_24hr === undefined &&
+                flatpickr.defaultConfig.time_24hr === undefined) {
+                self.config.time_24hr = self.l10n.time_24hr;
+            }
+            self.formatDate = createDateFormatter(self);
+            self.parseDate = createDateParser({ config: self.config, l10n: self.l10n });
+        }
+        function positionCalendar(customPositionElement) {
+            if (self.calendarContainer === undefined)
+                return;
+            triggerEvent("onPreCalendarPosition");
+            var positionElement = customPositionElement || self._positionElement;
+            var calendarHeight = Array.prototype.reduce.call(self.calendarContainer.children, (function (acc, child) { return acc + child.offsetHeight; }), 0), calendarWidth = self.calendarContainer.offsetWidth, configPos = self.config.position.split(" "), configPosVertical = configPos[0], configPosHorizontal = configPos.length > 1 ? configPos[1] : null, inputBounds = positionElement.getBoundingClientRect(), distanceFromBottom = window.innerHeight - inputBounds.bottom, showOnTop = configPosVertical === "above" ||
+                (configPosVertical !== "below" &&
+                    distanceFromBottom < calendarHeight &&
+                    inputBounds.top > calendarHeight);
+            var top = window.pageYOffset +
+                inputBounds.top +
+                (!showOnTop ? positionElement.offsetHeight + 2 : -calendarHeight - 2);
+            toggleClass(self.calendarContainer, "arrowTop", !showOnTop);
+            toggleClass(self.calendarContainer, "arrowBottom", showOnTop);
+            if (self.config.inline)
+                return;
+            var left = window.pageXOffset + inputBounds.left;
+            var isCenter = false;
+            var isRight = false;
+            if (configPosHorizontal === "center") {
+                left -= (calendarWidth - inputBounds.width) / 2;
+                isCenter = true;
+            }
+            else if (configPosHorizontal === "right") {
+                left -= calendarWidth - inputBounds.width;
+                isRight = true;
+            }
+            toggleClass(self.calendarContainer, "arrowLeft", !isCenter && !isRight);
+            toggleClass(self.calendarContainer, "arrowCenter", isCenter);
+            toggleClass(self.calendarContainer, "arrowRight", isRight);
+            var right = window.document.body.offsetWidth -
+                (window.pageXOffset + inputBounds.right);
+            var rightMost = left + calendarWidth > window.document.body.offsetWidth;
+            var centerMost = right + calendarWidth > window.document.body.offsetWidth;
+            toggleClass(self.calendarContainer, "rightMost", rightMost);
+            if (self.config.static)
+                return;
+            self.calendarContainer.style.top = top + "px";
+            if (!rightMost) {
+                self.calendarContainer.style.left = left + "px";
+                self.calendarContainer.style.right = "auto";
+            }
+            else if (!centerMost) {
+                self.calendarContainer.style.left = "auto";
+                self.calendarContainer.style.right = right + "px";
+            }
+            else {
+                var doc = getDocumentStyleSheet();
+                // some testing environments don't have css support
+                if (doc === undefined)
+                    return;
+                var bodyWidth = window.document.body.offsetWidth;
+                var centerLeft = Math.max(0, bodyWidth / 2 - calendarWidth / 2);
+                var centerBefore = ".flatpickr-calendar.centerMost:before";
+                var centerAfter = ".flatpickr-calendar.centerMost:after";
+                var centerIndex = doc.cssRules.length;
+                var centerStyle = "{left:" + inputBounds.left + "px;right:auto;}";
+                toggleClass(self.calendarContainer, "rightMost", false);
+                toggleClass(self.calendarContainer, "centerMost", true);
+                doc.insertRule(centerBefore + "," + centerAfter + centerStyle, centerIndex);
+                self.calendarContainer.style.left = centerLeft + "px";
+                self.calendarContainer.style.right = "auto";
+            }
+        }
+        function getDocumentStyleSheet() {
+            var editableSheet = null;
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                var sheet = document.styleSheets[i];
+                try {
+                    sheet.cssRules;
+                }
+                catch (err) {
+                    continue;
+                }
+                editableSheet = sheet;
+                break;
+            }
+            return editableSheet != null ? editableSheet : createStyleSheet();
+        }
+        function createStyleSheet() {
+            var style = document.createElement("style");
+            document.head.appendChild(style);
+            return style.sheet;
+        }
+        function redraw() {
+            if (self.config.noCalendar || self.isMobile)
+                return;
+            buildMonthSwitch();
+            updateNavigationCurrentMonth();
+            buildDays();
+        }
+        function focusAndClose() {
+            self._input.focus();
+            if (window.navigator.userAgent.indexOf("MSIE") !== -1 ||
+                navigator.msMaxTouchPoints !== undefined) {
+                // hack - bugs in the way IE handles focus keeps the calendar open
+                setTimeout(self.close, 0);
+            }
+            else {
+                self.close();
+            }
+        }
+        function selectDate(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var isSelectable = function (day) {
+                return day.classList &&
+                    day.classList.contains("flatpickr-day") &&
+                    !day.classList.contains("flatpickr-disabled") &&
+                    !day.classList.contains("notAllowed");
+            };
+            var t = findParent(getEventTarget(e), isSelectable);
+            if (t === undefined)
+                return;
+            var target = t;
+            var selectedDate = (self.latestSelectedDateObj = new Date(target.dateObj.getTime()));
+            var shouldChangeMonth = (selectedDate.getMonth() < self.currentMonth ||
+                selectedDate.getMonth() >
+                    self.currentMonth + self.config.showMonths - 1) &&
+                self.config.mode !== "range";
+            self.selectedDateElem = target;
+            if (self.config.mode === "single")
+                self.selectedDates = [selectedDate];
+            else if (self.config.mode === "multiple") {
+                var selectedIndex = isDateSelected(selectedDate);
+                if (selectedIndex)
+                    self.selectedDates.splice(parseInt(selectedIndex), 1);
+                else
+                    self.selectedDates.push(selectedDate);
+            }
+            else if (self.config.mode === "range") {
+                if (self.selectedDates.length === 2) {
+                    self.clear(false, false);
+                }
+                self.latestSelectedDateObj = selectedDate;
+                self.selectedDates.push(selectedDate);
+                // unless selecting same date twice, sort ascendingly
+                if (compareDates(selectedDate, self.selectedDates[0], true) !== 0)
+                    self.selectedDates.sort(function (a, b) { return a.getTime() - b.getTime(); });
+            }
+            setHoursFromInputs();
+            if (shouldChangeMonth) {
+                var isNewYear = self.currentYear !== selectedDate.getFullYear();
+                self.currentYear = selectedDate.getFullYear();
+                self.currentMonth = selectedDate.getMonth();
+                if (isNewYear) {
+                    triggerEvent("onYearChange");
+                    buildMonthSwitch();
+                }
+                triggerEvent("onMonthChange");
+            }
+            updateNavigationCurrentMonth();
+            buildDays();
+            updateValue();
+            // maintain focus
+            if (!shouldChangeMonth &&
+                self.config.mode !== "range" &&
+                self.config.showMonths === 1)
+                focusOnDayElem(target);
+            else if (self.selectedDateElem !== undefined &&
+                self.hourElement === undefined) {
+                self.selectedDateElem && self.selectedDateElem.focus();
+            }
+            if (self.hourElement !== undefined)
+                self.hourElement !== undefined && self.hourElement.focus();
+            if (self.config.closeOnSelect) {
+                var single = self.config.mode === "single" && !self.config.enableTime;
+                var range = self.config.mode === "range" &&
+                    self.selectedDates.length === 2 &&
+                    !self.config.enableTime;
+                if (single || range) {
+                    focusAndClose();
+                }
+            }
+            triggerChange();
+        }
+        var CALLBACKS = {
+            locale: [setupLocale, updateWeekdays],
+            showMonths: [buildMonths, setCalendarWidth, buildWeekdays],
+            minDate: [jumpToDate],
+            maxDate: [jumpToDate],
+        };
+        function set(option, value) {
+            if (option !== null && typeof option === "object") {
+                Object.assign(self.config, option);
+                for (var key in option) {
+                    if (CALLBACKS[key] !== undefined)
+                        CALLBACKS[key].forEach(function (x) { return x(); });
+                }
+            }
+            else {
+                self.config[option] = value;
+                if (CALLBACKS[option] !== undefined)
+                    CALLBACKS[option].forEach(function (x) { return x(); });
+                else if (HOOKS.indexOf(option) > -1)
+                    self.config[option] = arrayify(value);
+            }
+            self.redraw();
+            updateValue(true);
+        }
+        function setSelectedDate(inputDate, format) {
+            var dates = [];
+            if (inputDate instanceof Array)
+                dates = inputDate.map(function (d) { return self.parseDate(d, format); });
+            else if (inputDate instanceof Date || typeof inputDate === "number")
+                dates = [self.parseDate(inputDate, format)];
+            else if (typeof inputDate === "string") {
+                switch (self.config.mode) {
+                    case "single":
+                    case "time":
+                        dates = [self.parseDate(inputDate, format)];
+                        break;
+                    case "multiple":
+                        dates = inputDate
+                            .split(self.config.conjunction)
+                            .map(function (date) { return self.parseDate(date, format); });
+                        break;
+                    case "range":
+                        dates = inputDate
+                            .split(self.l10n.rangeSeparator)
+                            .map(function (date) { return self.parseDate(date, format); });
+                        break;
+                }
+            }
+            else
+                self.config.errorHandler(new Error("Invalid date supplied: " + JSON.stringify(inputDate)));
+            self.selectedDates = (self.config.allowInvalidPreload
+                ? dates
+                : dates.filter(function (d) { return d instanceof Date && isEnabled(d, false); }));
+            if (self.config.mode === "range")
+                self.selectedDates.sort(function (a, b) { return a.getTime() - b.getTime(); });
+        }
+        function setDate(date, triggerChange, format) {
+            if (triggerChange === void 0) { triggerChange = false; }
+            if (format === void 0) { format = self.config.dateFormat; }
+            if ((date !== 0 && !date) || (date instanceof Array && date.length === 0))
+                return self.clear(triggerChange);
+            setSelectedDate(date, format);
+            self.latestSelectedDateObj =
+                self.selectedDates[self.selectedDates.length - 1];
+            self.redraw();
+            jumpToDate(undefined, triggerChange);
+            setHoursFromDate();
+            if (self.selectedDates.length === 0) {
+                self.clear(false);
+            }
+            updateValue(triggerChange);
+            if (triggerChange)
+                triggerEvent("onChange");
+        }
+        function parseDateRules(arr) {
+            return arr
+                .slice()
+                .map(function (rule) {
+                if (typeof rule === "string" ||
+                    typeof rule === "number" ||
+                    rule instanceof Date) {
+                    return self.parseDate(rule, undefined, true);
+                }
+                else if (rule &&
+                    typeof rule === "object" &&
+                    rule.from &&
+                    rule.to)
+                    return {
+                        from: self.parseDate(rule.from, undefined),
+                        to: self.parseDate(rule.to, undefined),
+                    };
+                return rule;
+            })
+                .filter(function (x) { return x; }); // remove falsy values
+        }
+        function setupDates() {
+            self.selectedDates = [];
+            self.now = self.parseDate(self.config.now) || new Date();
+            // Workaround IE11 setting placeholder as the input's value
+            var preloadedDate = self.config.defaultDate ||
+                ((self.input.nodeName === "INPUT" ||
+                    self.input.nodeName === "TEXTAREA") &&
+                    self.input.placeholder &&
+                    self.input.value === self.input.placeholder
+                    ? null
+                    : self.input.value);
+            if (preloadedDate)
+                setSelectedDate(preloadedDate, self.config.dateFormat);
+            self._initialDate =
+                self.selectedDates.length > 0
+                    ? self.selectedDates[0]
+                    : self.config.minDate &&
+                        self.config.minDate.getTime() > self.now.getTime()
+                        ? self.config.minDate
+                        : self.config.maxDate &&
+                            self.config.maxDate.getTime() < self.now.getTime()
+                            ? self.config.maxDate
+                            : self.now;
+            self.currentYear = self._initialDate.getFullYear();
+            self.currentMonth = self._initialDate.getMonth();
+            if (self.selectedDates.length > 0)
+                self.latestSelectedDateObj = self.selectedDates[0];
+            if (self.config.minTime !== undefined)
+                self.config.minTime = self.parseDate(self.config.minTime, "H:i");
+            if (self.config.maxTime !== undefined)
+                self.config.maxTime = self.parseDate(self.config.maxTime, "H:i");
+            self.minDateHasTime =
+                !!self.config.minDate &&
+                    (self.config.minDate.getHours() > 0 ||
+                        self.config.minDate.getMinutes() > 0 ||
+                        self.config.minDate.getSeconds() > 0);
+            self.maxDateHasTime =
+                !!self.config.maxDate &&
+                    (self.config.maxDate.getHours() > 0 ||
+                        self.config.maxDate.getMinutes() > 0 ||
+                        self.config.maxDate.getSeconds() > 0);
+        }
+        function setupInputs() {
+            self.input = getInputElem();
+            /* istanbul ignore next */
+            if (!self.input) {
+                self.config.errorHandler(new Error("Invalid input element specified"));
+                return;
+            }
+            // hack: store previous type to restore it after destroy()
+            self.input._type = self.input.type;
+            self.input.type = "text";
+            self.input.classList.add("flatpickr-input");
+            self._input = self.input;
+            if (self.config.altInput) {
+                // replicate self.element
+                self.altInput = createElement(self.input.nodeName, self.config.altInputClass);
+                self._input = self.altInput;
+                self.altInput.placeholder = self.input.placeholder;
+                self.altInput.disabled = self.input.disabled;
+                self.altInput.required = self.input.required;
+                self.altInput.tabIndex = self.input.tabIndex;
+                self.altInput.type = "text";
+                self.input.setAttribute("type", "hidden");
+                if (!self.config.static && self.input.parentNode)
+                    self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
+            }
+            if (!self.config.allowInput)
+                self._input.setAttribute("readonly", "readonly");
+            self._positionElement = self.config.positionElement || self._input;
+        }
+        function setupMobile() {
+            var inputType = self.config.enableTime
+                ? self.config.noCalendar
+                    ? "time"
+                    : "datetime-local"
+                : "date";
+            self.mobileInput = createElement("input", self.input.className + " flatpickr-mobile");
+            self.mobileInput.tabIndex = 1;
+            self.mobileInput.type = inputType;
+            self.mobileInput.disabled = self.input.disabled;
+            self.mobileInput.required = self.input.required;
+            self.mobileInput.placeholder = self.input.placeholder;
+            self.mobileFormatStr =
+                inputType === "datetime-local"
+                    ? "Y-m-d\\TH:i:S"
+                    : inputType === "date"
+                        ? "Y-m-d"
+                        : "H:i:S";
+            if (self.selectedDates.length > 0) {
+                self.mobileInput.defaultValue = self.mobileInput.value = self.formatDate(self.selectedDates[0], self.mobileFormatStr);
+            }
+            if (self.config.minDate)
+                self.mobileInput.min = self.formatDate(self.config.minDate, "Y-m-d");
+            if (self.config.maxDate)
+                self.mobileInput.max = self.formatDate(self.config.maxDate, "Y-m-d");
+            if (self.input.getAttribute("step"))
+                self.mobileInput.step = String(self.input.getAttribute("step"));
+            self.input.type = "hidden";
+            if (self.altInput !== undefined)
+                self.altInput.type = "hidden";
+            try {
+                if (self.input.parentNode)
+                    self.input.parentNode.insertBefore(self.mobileInput, self.input.nextSibling);
+            }
+            catch (_a) { }
+            bind(self.mobileInput, "change", function (e) {
+                self.setDate(getEventTarget(e).value, false, self.mobileFormatStr);
+                triggerEvent("onChange");
+                triggerEvent("onClose");
+            });
+        }
+        function toggle(e) {
+            if (self.isOpen === true)
+                return self.close();
+            self.open(e);
+        }
+        function triggerEvent(event, data) {
+            // If the instance has been destroyed already, all hooks have been removed
+            if (self.config === undefined)
+                return;
+            var hooks = self.config[event];
+            if (hooks !== undefined && hooks.length > 0) {
+                for (var i = 0; hooks[i] && i < hooks.length; i++)
+                    hooks[i](self.selectedDates, self.input.value, self, data);
+            }
+            if (event === "onChange") {
+                self.input.dispatchEvent(createEvent("change"));
+                // many front-end frameworks bind to the input event
+                self.input.dispatchEvent(createEvent("input"));
+            }
+        }
+        function createEvent(name) {
+            var e = document.createEvent("Event");
+            e.initEvent(name, true, true);
+            return e;
+        }
+        function isDateSelected(date) {
+            for (var i = 0; i < self.selectedDates.length; i++) {
+                if (compareDates(self.selectedDates[i], date) === 0)
+                    return "" + i;
+            }
+            return false;
+        }
+        function isDateInRange(date) {
+            if (self.config.mode !== "range" || self.selectedDates.length < 2)
+                return false;
+            return (compareDates(date, self.selectedDates[0]) >= 0 &&
+                compareDates(date, self.selectedDates[1]) <= 0);
+        }
+        function updateNavigationCurrentMonth() {
+            if (self.config.noCalendar || self.isMobile || !self.monthNav)
+                return;
+            self.yearElements.forEach(function (yearElement, i) {
+                var d = new Date(self.currentYear, self.currentMonth, 1);
+                d.setMonth(self.currentMonth + i);
+                if (self.config.showMonths > 1 ||
+                    self.config.monthSelectorType === "static") {
+                    self.monthElements[i].textContent =
+                        monthToStr(d.getMonth(), self.config.shorthandCurrentMonth, self.l10n) + " ";
+                }
+                else {
+                    self.monthsDropdownContainer.value = d.getMonth().toString();
+                }
+                yearElement.value = d.getFullYear().toString();
+            });
+            self._hidePrevMonthArrow =
+                self.config.minDate !== undefined &&
+                    (self.currentYear === self.config.minDate.getFullYear()
+                        ? self.currentMonth <= self.config.minDate.getMonth()
+                        : self.currentYear < self.config.minDate.getFullYear());
+            self._hideNextMonthArrow =
+                self.config.maxDate !== undefined &&
+                    (self.currentYear === self.config.maxDate.getFullYear()
+                        ? self.currentMonth + 1 > self.config.maxDate.getMonth()
+                        : self.currentYear > self.config.maxDate.getFullYear());
+        }
+        function getDateStr(format) {
+            return self.selectedDates
+                .map(function (dObj) { return self.formatDate(dObj, format); })
+                .filter(function (d, i, arr) {
+                return self.config.mode !== "range" ||
+                    self.config.enableTime ||
+                    arr.indexOf(d) === i;
+            })
+                .join(self.config.mode !== "range"
+                ? self.config.conjunction
+                : self.l10n.rangeSeparator);
+        }
+        /**
+         * Updates the values of inputs associated with the calendar
+         */
+        function updateValue(triggerChange) {
+            if (triggerChange === void 0) { triggerChange = true; }
+            if (self.mobileInput !== undefined && self.mobileFormatStr) {
+                self.mobileInput.value =
+                    self.latestSelectedDateObj !== undefined
+                        ? self.formatDate(self.latestSelectedDateObj, self.mobileFormatStr)
+                        : "";
+            }
+            self.input.value = getDateStr(self.config.dateFormat);
+            if (self.altInput !== undefined) {
+                self.altInput.value = getDateStr(self.config.altFormat);
+            }
+            if (triggerChange !== false)
+                triggerEvent("onValueUpdate");
+        }
+        function onMonthNavClick(e) {
+            var eventTarget = getEventTarget(e);
+            var isPrevMonth = self.prevMonthNav.contains(eventTarget);
+            var isNextMonth = self.nextMonthNav.contains(eventTarget);
+            if (isPrevMonth || isNextMonth) {
+                changeMonth(isPrevMonth ? -1 : 1);
+            }
+            else if (self.yearElements.indexOf(eventTarget) >= 0) {
+                eventTarget.select();
+            }
+            else if (eventTarget.classList.contains("arrowUp")) {
+                self.changeYear(self.currentYear + 1);
+            }
+            else if (eventTarget.classList.contains("arrowDown")) {
+                self.changeYear(self.currentYear - 1);
+            }
+        }
+        function timeWrapper(e) {
+            e.preventDefault();
+            var isKeyDown = e.type === "keydown", eventTarget = getEventTarget(e), input = eventTarget;
+            if (self.amPM !== undefined && eventTarget === self.amPM) {
+                self.amPM.textContent =
+                    self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
+            }
+            var min = parseFloat(input.getAttribute("min")), max = parseFloat(input.getAttribute("max")), step = parseFloat(input.getAttribute("step")), curValue = parseInt(input.value, 10), delta = e.delta ||
+                (isKeyDown ? (e.which === 38 ? 1 : -1) : 0);
+            var newValue = curValue + step * delta;
+            if (typeof input.value !== "undefined" && input.value.length === 2) {
+                var isHourElem = input === self.hourElement, isMinuteElem = input === self.minuteElement;
+                if (newValue < min) {
+                    newValue =
+                        max +
+                            newValue +
+                            int(!isHourElem) +
+                            (int(isHourElem) && int(!self.amPM));
+                    if (isMinuteElem)
+                        incrementNumInput(undefined, -1, self.hourElement);
+                }
+                else if (newValue > max) {
+                    newValue =
+                        input === self.hourElement ? newValue - max - int(!self.amPM) : min;
+                    if (isMinuteElem)
+                        incrementNumInput(undefined, 1, self.hourElement);
+                }
+                if (self.amPM &&
+                    isHourElem &&
+                    (step === 1
+                        ? newValue + curValue === 23
+                        : Math.abs(newValue - curValue) > step)) {
+                    self.amPM.textContent =
+                        self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
+                }
+                input.value = pad(newValue);
+            }
+        }
+        init();
+        return self;
     }
     /* istanbul ignore next */
     function _flatpickr(nodeList, config) {
-      // static list
-      var nodes = Array.prototype.slice
-        .call(nodeList)
-        .filter(function (x) { return x instanceof HTMLElement; });
-      var instances = [];
-      for (var i = 0; i < nodes.length; i++) {
-        var node = nodes[i];
-        try {
-          if (node.getAttribute("data-fp-omit") !== null)
-            continue;
-          if (node._flatpickr !== undefined) {
-            node._flatpickr.destroy();
-            node._flatpickr = undefined;
-          }
-          node._flatpickr = FlatpickrInstance(node, config || {});
-          instances.push(node._flatpickr);
+        // static list
+        var nodes = Array.prototype.slice
+            .call(nodeList)
+            .filter(function (x) { return x instanceof HTMLElement; });
+        var instances = [];
+        for (var i = 0; i < nodes.length; i++) {
+            var node = nodes[i];
+            try {
+                if (node.getAttribute("data-fp-omit") !== null)
+                    continue;
+                if (node._flatpickr !== undefined) {
+                    node._flatpickr.destroy();
+                    node._flatpickr = undefined;
+                }
+                node._flatpickr = FlatpickrInstance(node, config || {});
+                instances.push(node._flatpickr);
+            }
+            catch (e) {
+                console.error(e);
+            }
         }
-        catch (e) {
-          console.error(e);
-        }
-      }
-      return instances.length === 1 ? instances[0] : instances;
+        return instances.length === 1 ? instances[0] : instances;
     }
     /* istanbul ignore next */
     if (typeof HTMLElement !== "undefined" &&
-      typeof HTMLCollection !== "undefined" &&
-      typeof NodeList !== "undefined") {
-      // browser env
-      HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function (config) {
-        return _flatpickr(this, config);
-      };
-      HTMLElement.prototype.flatpickr = function (config) {
-        return _flatpickr([this], config);
-      };
+        typeof HTMLCollection !== "undefined" &&
+        typeof NodeList !== "undefined") {
+        // browser env
+        HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function (config) {
+            return _flatpickr(this, config);
+        };
+        HTMLElement.prototype.flatpickr = function (config) {
+            return _flatpickr([this], config);
+        };
     }
     /* istanbul ignore next */
     var flatpickr = function (selector, config) {
-      if (typeof selector === "string") {
-        return _flatpickr(window.document.querySelectorAll(selector), config);
-      }
-      else if (selector instanceof Node) {
-        return _flatpickr([selector], config);
-      }
-      else {
-        return _flatpickr(selector, config);
-      }
+        if (typeof selector === "string") {
+            return _flatpickr(window.document.querySelectorAll(selector), config);
+        }
+        else if (selector instanceof Node) {
+            return _flatpickr([selector], config);
+        }
+        else {
+            return _flatpickr(selector, config);
+        }
     };
     /* istanbul ignore next */
     flatpickr.defaultConfig = {};
     flatpickr.l10ns = {
-      en: __assign({}, english),
-      default: __assign({}, english),
+        en: __assign({}, english),
+        default: __assign({}, english),
     };
     flatpickr.localize = function (l10n) {
-      flatpickr.l10ns.default = __assign(__assign({}, flatpickr.l10ns.default), l10n);
+        flatpickr.l10ns.default = __assign(__assign({}, flatpickr.l10ns.default), l10n);
     };
     flatpickr.setDefaults = function (config) {
-      flatpickr.defaultConfig = __assign(__assign({}, flatpickr.defaultConfig), config);
+        flatpickr.defaultConfig = __assign(__assign({}, flatpickr.defaultConfig), config);
     };
     flatpickr.parseDate = createDateParser({});
     flatpickr.formatDate = createDateFormatter({});
     flatpickr.compareDates = compareDates;
     /* istanbul ignore next */
     if (typeof jQuery !== "undefined" && typeof jQuery.fn !== "undefined") {
-      jQuery.fn.flatpickr = function (config) {
-        return _flatpickr(this, config);
-      };
+        jQuery.fn.flatpickr = function (config) {
+            return _flatpickr(this, config);
+        };
     }
     // eslint-disable-next-line @typescript-eslint/camelcase
     Date.prototype.fp_incr = function (days) {
-      return new Date(this.getFullYear(), this.getMonth(), this.getDate() + (typeof days === "string" ? parseInt(days, 10) : days));
+        return new Date(this.getFullYear(), this.getMonth(), this.getDate() + (typeof days === "string" ? parseInt(days, 10) : days));
     };
     if (typeof window !== "undefined") {
-      window.flatpickr = flatpickr;
+        window.flatpickr = flatpickr;
     }
 
     return flatpickr;
 
-  })));
+})));
 });
 
 var vn = createCommonjsModule(function (module, exports) {
-  (function (global, factory) {
-    factory(exports);
-  }(commonjsGlobal, (function (exports) {
-    var fp = typeof window !== "undefined" && window.flatpickr !== undefined
+(function (global, factory) {
+   factory(exports) ;
+}(commonjsGlobal, (function (exports) {
+  var fp = typeof window !== "undefined" && window.flatpickr !== undefined
       ? window.flatpickr
       : {
-        l10ns: {},
+          l10ns: {},
       };
-    var Vietnamese = {
+  var Vietnamese = {
       weekdays: {
-        shorthand: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
-        longhand: [
-          "Chủ nhật",
-          "Thứ hai",
-          "Thứ ba",
-          "Thứ tư",
-          "Thứ năm",
-          "Thứ sáu",
-          "Thứ bảy",
-        ],
+          shorthand: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+          longhand: [
+              "Chủ nhật",
+              "Thứ hai",
+              "Thứ ba",
+              "Thứ tư",
+              "Thứ năm",
+              "Thứ sáu",
+              "Thứ bảy",
+          ],
       },
       months: {
-        shorthand: [
-          "Th1",
-          "Th2",
-          "Th3",
-          "Th4",
-          "Th5",
-          "Th6",
-          "Th7",
-          "Th8",
-          "Th9",
-          "Th10",
-          "Th11",
-          "Th12",
-        ],
-        longhand: [
-          "Tháng một",
-          "Tháng hai",
-          "Tháng ba",
-          "Tháng tư",
-          "Tháng năm",
-          "Tháng sáu",
-          "Tháng bảy",
-          "Tháng tám",
-          "Tháng chín",
-          "Tháng mười",
-          "Tháng 11",
-          "Tháng 12",
-        ],
+          shorthand: [
+              "Th1",
+              "Th2",
+              "Th3",
+              "Th4",
+              "Th5",
+              "Th6",
+              "Th7",
+              "Th8",
+              "Th9",
+              "Th10",
+              "Th11",
+              "Th12",
+          ],
+          longhand: [
+              "Tháng một",
+              "Tháng hai",
+              "Tháng ba",
+              "Tháng tư",
+              "Tháng năm",
+              "Tháng sáu",
+              "Tháng bảy",
+              "Tháng tám",
+              "Tháng chín",
+              "Tháng mười",
+              "Tháng 11",
+              "Tháng 12",
+          ],
       },
       firstDayOfWeek: 1,
       rangeSeparator: " đến ",
-    };
-    fp.l10ns.vn = Vietnamese;
-    var vn = fp.l10ns;
+  };
+  fp.l10ns.vn = Vietnamese;
+  var vn = fp.l10ns;
 
-    exports.Vietnamese = Vietnamese;
-    exports.default = vn;
+  exports.Vietnamese = Vietnamese;
+  exports.default = vn;
 
-    Object.defineProperty(exports, '__esModule', { value: true });
+  Object.defineProperty(exports, '__esModule', { value: true });
 
-  })));
+})));
 });
 
 unwrapExports(vn);
@@ -7968,17 +7964,17 @@ var DatePicker = function DatePicker(props) {
 
 var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
   var fieldName = _ref.fieldName,
-    errors = _ref.errors,
-    touched = _ref.touched,
-    messageId = _ref.messageId,
-    className = _ref.className,
-    options = _ref.options,
-    _onChange = _ref.onChange,
-    disabled = _ref.disabled,
-    isShowErrorMessage = _ref.isShowErrorMessage,
-    _ref$isRequired = _ref.isRequired,
-    _placeHolder = _ref._placeHolder,
-    isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
+      errors = _ref.errors,
+      touched = _ref.touched,
+      messageId = _ref.messageId,
+      className = _ref.className,
+      options = _ref.options,
+      _onChange = _ref.onChange,
+      disabled = _ref.disabled,
+      isShowErrorMessage = _ref.isShowErrorMessage,
+      _ref$isRequired = _ref.isRequired,
+      _placeHolder = _ref._placeHolder,
+      isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
   var defaultOptions = {
     dateFormat: 'd/m/Y'
   };
@@ -7987,11 +7983,11 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
     name: fieldName
   }, function (_ref2) {
     var field = _ref2.field,
-      form = _ref2.form;
+        form = _ref2.form;
     return /*#__PURE__*/React__default.createElement(DatePicker, {
       className: "form-control position-relative " + (!disabled ? 'bg-white' : '') + " " + (isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid') + " " + className,
       placeholder: _placeHolder ? _placeHolder : intl.formatMessage({ id: messageId }),
-      label: messageId ? intl.formatMessage({ id: messageId }) : '',
+      label: messageId ? intl.formatMessage({ id: messageId })  : '',
       isShowErrorMessage: isShowErrorMessage,
       fieldName: fieldName,
       notRequired: !isRequired,
@@ -8001,6 +7997,8 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       value: field.value,
       options: options || defaultOptions,
       onChange: function onChange(date) {
+
+        console.log('date',date);
         form.setFieldValue(fieldName, date[0]);
 
         if (_onChange) {
@@ -8013,12 +8011,12 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
 
 var Select = function Select(props) {
   var _useState = React.useState(props.value),
-    inputValue = _useState[0],
-    setInputValue = _useState[1];
+      inputValue = _useState[0],
+      setInputValue = _useState[1];
 
   var _useState2 = React.useState(false),
-    isFocused = _useState2[0],
-    setIsFocused = _useState2[1];
+      isFocused = _useState2[0],
+      setIsFocused = _useState2[1];
 
   React.useEffect(function () {
     setInputValue(props.value);
@@ -8111,28 +8109,28 @@ var Select = function Select(props) {
 
 var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
   var fieldName = _ref.fieldName,
-    errors = _ref.errors,
-    touched = _ref.touched,
-    messageId = _ref.messageId,
-    options = _ref.options,
-    defaultValue = _ref.defaultValue,
-    _ref$isRequired = _ref.isRequired,
-    isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired,
-    isAsync = _ref.isAsync,
-    disabled = _ref.disabled,
-    _onChange = _ref.onChange,
-    loadOptions = _ref.loadOptions,
-    type = _ref.type,
-    _ref$isShowErrorMessa = _ref.isShowErrorMessage,
-    isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
-    defaultOptions = _ref.defaultOptions,
-    marginLabel = _ref.marginLabel;
+      errors = _ref.errors,
+      touched = _ref.touched,
+      messageId = _ref.messageId,
+      options = _ref.options,
+      defaultValue = _ref.defaultValue,
+      _ref$isRequired = _ref.isRequired,
+      isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired,
+      isAsync = _ref.isAsync,
+      disabled = _ref.disabled,
+      _onChange = _ref.onChange,
+      loadOptions = _ref.loadOptions,
+      type = _ref.type,
+      _ref$isShowErrorMessa = _ref.isShowErrorMessage,
+      isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
+      defaultOptions = _ref.defaultOptions,
+      marginLabel = _ref.marginLabel;
   var intl = reactIntl.useIntl();
   return /*#__PURE__*/React__default.createElement(formik.Field, {
     name: fieldName
   }, function (_ref2) {
     var field = _ref2.field,
-      form = _ref2.form;
+        form = _ref2.form;
     return /*#__PURE__*/React__default.createElement(Select, {
       placeholder: intl.formatMessage({
         id: messageId
@@ -8167,7 +8165,7 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
 };
 
 var DataColetionService = /*#__PURE__*/function () {
-  function DataColetionService() { }
+  function DataColetionService() {}
 
   DataColetionService.getCitiesByCountry = function getCitiesByCountry(countryId, locale) {
     try {
@@ -8240,11 +8238,11 @@ var mapDataToSelectOptions = function mapDataToSelectOptions(data, lang) {
 
 var useCityList = function useCityList(countryCode) {
   var _useState = React.useState([]),
-    cities = _useState[0],
-    setCities = _useState[1];
+      cities = _useState[0],
+      setCities = _useState[1];
 
   var _useIntl = reactIntl.useIntl(),
-    locale = _useIntl.locale;
+      locale = _useIntl.locale;
 
   React.useEffect(function () {
     if (!countryCode) {
@@ -8272,11 +8270,11 @@ var useCityList = function useCityList(countryCode) {
 };
 var useDistrictList = function useDistrictList(cityCode) {
   var _useState2 = React.useState([]),
-    districts = _useState2[0],
-    setDistricts = _useState2[1];
+      districts = _useState2[0],
+      setDistricts = _useState2[1];
 
   var _useIntl2 = reactIntl.useIntl(),
-    locale = _useIntl2.locale;
+      locale = _useIntl2.locale;
 
   React.useEffect(function () {
     if (!cityCode) {
@@ -8304,11 +8302,11 @@ var useDistrictList = function useDistrictList(cityCode) {
 };
 var useWardList = function useWardList(districtCode) {
   var _useState3 = React.useState([]),
-    wards = _useState3[0],
-    setWards = _useState3[1];
+      wards = _useState3[0],
+      setWards = _useState3[1];
 
   var _useIntl3 = reactIntl.useIntl(),
-    locale = _useIntl3.locale;
+      locale = _useIntl3.locale;
 
   React.useEffect(function () {
     if (!districtCode) {
@@ -8336,11 +8334,11 @@ var useWardList = function useWardList(districtCode) {
 };
 var useBankList = function useBankList() {
   var _useState4 = React.useState([]),
-    banks = _useState4[0],
-    setBanks = _useState4[1];
+      banks = _useState4[0],
+      setBanks = _useState4[1];
 
   var _useIntl4 = reactIntl.useIntl(),
-    locale = _useIntl4.locale;
+      locale = _useIntl4.locale;
 
   React.useEffect(function () {
     loadBanks();
@@ -8381,39 +8379,39 @@ var UserAccountTab = function UserAccountTab() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.customizer;
   }),
-    appId = _useSelector.appId;
+      appId = _useSelector.appId;
 
   var _useSelector2 = reactRedux.useSelector(function (state) {
     return appId !== AppId.ELITE_APP ? state.auth.user : state.auth.guest.user;
   }),
-    _useSelector2$userDet = _useSelector2.userDetails,
-    userDetails = _useSelector2$userDet === void 0 ? {} : _useSelector2$userDet,
-    _useSelector2$userSet = _useSelector2.userSettings,
-    userSettings = _useSelector2$userSet === void 0 ? {} : _useSelector2$userSet,
-    user = _objectWithoutPropertiesLoose(_useSelector2, ["userDetails", "userSettings"]);
+      _useSelector2$userDet = _useSelector2.userDetails,
+      userDetails = _useSelector2$userDet === void 0 ? {} : _useSelector2$userDet,
+      _useSelector2$userSet = _useSelector2.userSettings,
+      userSettings = _useSelector2$userSet === void 0 ? {} : _useSelector2$userSet,
+      user = _objectWithoutPropertiesLoose(_useSelector2, ["userDetails", "userSettings"]);
 
   var dispatch = reactRedux.useDispatch();
 
   var _useCityList = useCityList(VN_COUNTRY_CODE),
-    cities = _useCityList.cities;
+      cities = _useCityList.cities;
 
   var _useDistrictList = useDistrictList(null),
-    districts = _useDistrictList.districts,
-    loadDitrictsByCity = _useDistrictList.loadDitrictsByCity;
+      districts = _useDistrictList.districts,
+      loadDitrictsByCity = _useDistrictList.loadDitrictsByCity;
 
   var _useWardList = useWardList(null),
-    wards = _useWardList.wards,
-    loadWardsByDistrict = _useWardList.loadWardsByDistrict;
+      wards = _useWardList.wards,
+      loadWardsByDistrict = _useWardList.loadWardsByDistrict;
 
   var _useBankList = useBankList(),
-    banks = _useBankList.banks;
+      banks = _useBankList.banks;
 
   var _useState = React.useState({
     url: userSettings.avatar,
     file: null
   }),
-    avatar = _useState[0],
-    setAvatar = _useState[1];
+      avatar = _useState[0],
+      setAvatar = _useState[1];
 
   React.useEffect(function () {
     if (userDetails && userDetails.city) {
@@ -8569,9 +8567,9 @@ var UserAccountTab = function UserAccountTab() {
     })
   }, function (_ref) {
     var errors = _ref.errors,
-      touched = _ref.touched,
-      values = _ref.values,
-      setFieldValue = _ref.setFieldValue;
+        touched = _ref.touched,
+        values = _ref.values,
+        setFieldValue = _ref.setFieldValue;
     return /*#__PURE__*/React__default.createElement(formik.Form, null, /*#__PURE__*/React__default.createElement(reactstrap.Row, {
       className: "mt-2"
     }, /*#__PURE__*/React__default.createElement(reactstrap.Col, {
@@ -8790,7 +8788,7 @@ var ChangePassword = function ChangePassword() {
     validationSchema: formSchema
   }, function (_ref) {
     var errors = _ref.errors,
-      touched = _ref.touched;
+        touched = _ref.touched;
     return /*#__PURE__*/React__default.createElement(formik.Form, {
       className: "mt-3"
     }, /*#__PURE__*/React__default.createElement(BaseFormGroup, {
@@ -8840,11 +8838,11 @@ var ShareWithFriends = function ShareWithFriends() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.customizer.appId === AppId.ELITE_APP ? state.auth.guest : state.auth;
   }),
-    user = _useSelector.user;
+      user = _useSelector.user;
 
   var _useState = React.useState(null),
-    qrCodeInstance = _useState[0],
-    setQRCodeInstance = _useState[1];
+      qrCodeInstance = _useState[0],
+      setQRCodeInstance = _useState[1];
 
   var qrCode = React.useRef();
   // var shareUrl = document.location.origin + "/home?refId=" + user.username;
@@ -8911,13 +8909,13 @@ var ShareWithFriends = function ShareWithFriends() {
 
 var AccountSettings = function AccountSettings(props) {
   var _useState = React.useState('account-info'),
-    activeTab = _useState[0],
-    setActiveTab = _useState[1];
+      activeTab = _useState[0],
+      setActiveTab = _useState[1];
 
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.customizer;
   }),
-    appId = _useSelector.appId;
+      appId = _useSelector.appId;
 
   var history = reactRouterDom.useHistory();
   React.useEffect(function () {
@@ -9039,8 +9037,8 @@ var LanguageTab = function LanguageTab() {
   var intl = reactIntl.useIntl();
 
   var _useState = React.useState(localStorage.getItem('language')),
-    lang = _useState[0],
-    setLang = _useState[1];
+      lang = _useState[0],
+      setLang = _useState[1];
 
   var onClickBackHome = function onClickBackHome() {
     dispatch(showConfirmAlert({
@@ -9124,8 +9122,8 @@ var LanguageTab = function LanguageTab() {
 
 function useDeviceDetect() {
   var _React$useState = React__default.useState(false),
-    isMobile = _React$useState[0],
-    setMobile = _React$useState[1];
+      isMobile = _React$useState[0],
+      setMobile = _React$useState[1];
 
   React__default.useEffect(function () {
     var userAgent = typeof window.navigator === 'undefined' ? '' : navigator.userAgent;
@@ -9139,7 +9137,7 @@ function useDeviceDetect() {
 
 var ContactTab = function ContactTab() {
   var _useDeviceDetect = useDeviceDetect(),
-    isMobile = _useDeviceDetect.isMobile;
+      isMobile = _useDeviceDetect.isMobile;
 
   var dispatch = reactRedux.useDispatch();
 
@@ -9230,11 +9228,11 @@ var GeneralInfo = function GeneralInfo(props) {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.customizer;
   }),
-    appId = _useSelector.appId;
+      appId = _useSelector.appId;
 
   var _useState = React.useState('terms-and-condition'),
-    activeTab = _useState[0],
-    setActiveTab = _useState[1];
+      activeTab = _useState[0],
+      setActiveTab = _useState[1];
 
   var history = reactRouterDom.useHistory();
   React.useEffect(function () {
@@ -9323,28 +9321,28 @@ var CheckBox = /*#__PURE__*/function (_React$Component) {
 
 var SocialLogin = function SocialLogin(_ref) {
   var isLogin = _ref.isLogin,
-    isRemeberMe = _ref.isRemeberMe;
+      isRemeberMe = _ref.isRemeberMe;
 
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth;
   }),
-    isGuest = _useSelector.isGuest;
+      isGuest = _useSelector.isGuest;
 
   var _useState = React.useState(false),
-    isOpenModal = _useState[0],
-    setIsOpenModal = _useState[1];
+      isOpenModal = _useState[0],
+      setIsOpenModal = _useState[1];
 
   var _useState2 = React.useState(false),
-    isOpenSocialNetworkModal = _useState2[0],
-    setIsOpenSocialNetworkModal = _useState2[1];
+      isOpenSocialNetworkModal = _useState2[0],
+      setIsOpenSocialNetworkModal = _useState2[1];
 
   var _useState3 = React.useState({}),
-    userInfo = _useState3[0],
-    setUserInfo = _useState3[1];
+      userInfo = _useState3[0],
+      setUserInfo = _useState3[1];
 
   var _useState4 = React.useState(),
-    connectType = _useState4[0],
-    setConnectType = _useState4[1];
+      connectType = _useState4[0],
+      setConnectType = _useState4[1];
 
   var dispatch = reactRedux.useDispatch();
 
@@ -9481,9 +9479,9 @@ var SocialLogin = function SocialLogin(_ref) {
     validationSchema: validationSchema
   }, function (_ref4) {
     var errors = _ref4.errors,
-      touched = _ref4.touched,
-      validateForm = _ref4.validateForm,
-      values = _ref4.values;
+        touched = _ref4.touched,
+        validateForm = _ref4.validateForm,
+        values = _ref4.values;
     return /*#__PURE__*/React__default.createElement(formik.Form, null, /*#__PURE__*/React__default.createElement(reactstrap.Modal, {
       isOpen: isOpenModal,
       className: "modal-dialog-centered"
@@ -9554,7 +9552,7 @@ var AppSelection = function AppSelection(_ref) {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth;
   }),
-    isGuest = _useSelector.isGuest;
+      isGuest = _useSelector.isGuest;
 
   var dispatch = reactRedux.useDispatch();
 
@@ -9564,102 +9562,102 @@ var AppSelection = function AppSelection(_ref) {
 
   return /*#__PURE__*/React__default.createElement("div", {
     className: "text-center mt-2 mb-3"
-  },
-    // /*#__PURE__*/React__default.createElement("p", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
-    //   id: isLogin ? 'socialLogin.youLoginAs' : 'socialLogin.youRegisterAs'
-    // })), 
-    // /*#__PURE__*/React__default.createElement(reactstrap.ButtonGroup, {
-    //   className: "w-100"
-    // }, /*#__PURE__*/React__default.createElement(reactstrap.Button, {
-    //   className: "btn-app-selection left",
-    //   active: !isGuest,
-    //   type: "button",
-    //   onClick: function onClick() {
-    //     return onClickChangeAppType(false);
-    //   }
-    // }, /*#__PURE__*/React__default.createElement("div", {
-    //   className: "icon mr-1"
-    // }, /*#__PURE__*/React__default.createElement("svg", {
-    //   width: "40",
-    //   height: "40",
-    //   viewBox: "0 0 40 40",
-    //   fill: "none",
-    //   xmlns: "http://www.w3.org/2000/svg"
-    // }, /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M20 25C22.7614 25 25 22.7614 25 20C25 17.2386 22.7614 15 20 15C17.2386 15 15 17.2386 15 20C15 22.7614 17.2386 25 20 25Z",
-    //   stroke: !isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }), /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M20 35V35.0167",
-    //   stroke: !isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }), /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M5 15V15.0167",
-    //   stroke: !isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }), /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M35 15V15.0167",
-    //   stroke: !isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }), /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M13.3333 33.4999C11.0589 32.3906 9.1021 30.7238 7.64506 28.6548C6.18802 26.5858 5.2781 24.1818 5 21.6666",
-    //   stroke: !isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }), /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M26.6663 33.4999C28.9407 32.3906 30.8975 30.7238 32.3545 28.6548C33.8116 26.5858 34.7215 24.1818 34.9996 21.6666",
-    //   stroke: !isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }), /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M10.333 8.33345C13.0132 6.14004 16.3697 4.94164 19.833 4.94164C23.2963 4.94164 26.6529 6.14004 29.333 8.33345",
-    //   stroke: !isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }))), /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
-    //   id: "socialLogin.agent"
-    // })), /*#__PURE__*/React__default.createElement(reactstrap.Button, {
-    //   className: "btn-app-selection right",
-    //   active: isGuest,
-    //   onClick: function onClick() {
-    //     return onClickChangeAppType(true);
-    //   },
-    //   type: "button"
-    // }, /*#__PURE__*/React__default.createElement("div", {
-    //   className: "icon mr-1"
-    // }, /*#__PURE__*/React__default.createElement("svg", {
-    //   width: "40",
-    //   height: "40",
-    //   viewBox: "0 0 40 40",
-    //   fill: "none",
-    //   xmlns: "http://www.w3.org/2000/svg"
-    // }, /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M20.0005 18.4999C23.3143 18.4999 26.0007 15.8136 26.0007 12.4997C26.0007 9.1859 23.3143 6.49951 20.0005 6.49951C16.6866 6.49951 14.0002 9.1859 14.0002 12.4997C14.0002 15.8136 16.6866 18.4999 20.0005 18.4999Z",
-    //   stroke: isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }), /*#__PURE__*/React__default.createElement("path", {
-    //   d: "M10.9993 33.5004V30.5003C10.9993 28.9089 11.6314 27.3828 12.7567 26.2575C13.8819 25.1322 15.4081 24.5001 16.9995 24.5001H22.9997C24.5911 24.5001 26.1172 25.1322 27.2425 26.2575C28.3678 27.3828 28.9999 28.9089 28.9999 30.5003V33.5004",
-    //   stroke: isGuest ? '#73C14F' : '#587471',
-    //   "stroke-width": "2",
-    //   "stroke-linecap": "round",
-    //   "stroke-linejoin": "round"
-    // }))), /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
-    //   id: "socialLogin.personal"
-    // })))
-  );
+  }, 
+  // /*#__PURE__*/React__default.createElement("p", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+  //   id: isLogin ? 'socialLogin.youLoginAs' : 'socialLogin.youRegisterAs'
+  // })), 
+  // /*#__PURE__*/React__default.createElement(reactstrap.ButtonGroup, {
+  //   className: "w-100"
+  // }, /*#__PURE__*/React__default.createElement(reactstrap.Button, {
+  //   className: "btn-app-selection left",
+  //   active: !isGuest,
+  //   type: "button",
+  //   onClick: function onClick() {
+  //     return onClickChangeAppType(false);
+  //   }
+  // }, /*#__PURE__*/React__default.createElement("div", {
+  //   className: "icon mr-1"
+  // }, /*#__PURE__*/React__default.createElement("svg", {
+  //   width: "40",
+  //   height: "40",
+  //   viewBox: "0 0 40 40",
+  //   fill: "none",
+  //   xmlns: "http://www.w3.org/2000/svg"
+  // }, /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M20 25C22.7614 25 25 22.7614 25 20C25 17.2386 22.7614 15 20 15C17.2386 15 15 17.2386 15 20C15 22.7614 17.2386 25 20 25Z",
+  //   stroke: !isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }), /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M20 35V35.0167",
+  //   stroke: !isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }), /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M5 15V15.0167",
+  //   stroke: !isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }), /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M35 15V15.0167",
+  //   stroke: !isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }), /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M13.3333 33.4999C11.0589 32.3906 9.1021 30.7238 7.64506 28.6548C6.18802 26.5858 5.2781 24.1818 5 21.6666",
+  //   stroke: !isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }), /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M26.6663 33.4999C28.9407 32.3906 30.8975 30.7238 32.3545 28.6548C33.8116 26.5858 34.7215 24.1818 34.9996 21.6666",
+  //   stroke: !isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }), /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M10.333 8.33345C13.0132 6.14004 16.3697 4.94164 19.833 4.94164C23.2963 4.94164 26.6529 6.14004 29.333 8.33345",
+  //   stroke: !isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }))), /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+  //   id: "socialLogin.agent"
+  // })), /*#__PURE__*/React__default.createElement(reactstrap.Button, {
+  //   className: "btn-app-selection right",
+  //   active: isGuest,
+  //   onClick: function onClick() {
+  //     return onClickChangeAppType(true);
+  //   },
+  //   type: "button"
+  // }, /*#__PURE__*/React__default.createElement("div", {
+  //   className: "icon mr-1"
+  // }, /*#__PURE__*/React__default.createElement("svg", {
+  //   width: "40",
+  //   height: "40",
+  //   viewBox: "0 0 40 40",
+  //   fill: "none",
+  //   xmlns: "http://www.w3.org/2000/svg"
+  // }, /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M20.0005 18.4999C23.3143 18.4999 26.0007 15.8136 26.0007 12.4997C26.0007 9.1859 23.3143 6.49951 20.0005 6.49951C16.6866 6.49951 14.0002 9.1859 14.0002 12.4997C14.0002 15.8136 16.6866 18.4999 20.0005 18.4999Z",
+  //   stroke: isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }), /*#__PURE__*/React__default.createElement("path", {
+  //   d: "M10.9993 33.5004V30.5003C10.9993 28.9089 11.6314 27.3828 12.7567 26.2575C13.8819 25.1322 15.4081 24.5001 16.9995 24.5001H22.9997C24.5911 24.5001 26.1172 25.1322 27.2425 26.2575C28.3678 27.3828 28.9999 28.9089 28.9999 30.5003V33.5004",
+  //   stroke: isGuest ? '#73C14F' : '#587471',
+  //   "stroke-width": "2",
+  //   "stroke-linecap": "round",
+  //   "stroke-linejoin": "round"
+  // }))), /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+  //   id: "socialLogin.personal"
+  // })))
+);
 };
 
 var formSchema$1 = Yup.object().shape({
@@ -9677,19 +9675,19 @@ var formSchema$1 = Yup.object().shape({
 
 var Login = function Login() {
   var _useState = React.useState(null),
-    rememberMe = _useState[0],
-    setRememberMe = _useState[1];
+      rememberMe = _useState[0],
+      setRememberMe = _useState[1];
 
   var _useState2 = React.useState(false),
-    isRemeberMe = _useState2[0],
-    setIsRemeberMe = _useState2[1];
+      isRemeberMe = _useState2[0],
+      setIsRemeberMe = _useState2[1];
 
   var dispatch = reactRedux.useDispatch();
 
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth;
   }),
-    isGuest = _useSelector.isGuest;
+      isGuest = _useSelector.isGuest;
 
   React.useEffect(function () {
     var user = JSON.parse(localStorage.getItem(REMEMBER_ME_TOKEN));
@@ -9724,7 +9722,7 @@ var Login = function Login() {
     validationSchema: formSchema$1
   }, function (_ref) {
     var errors = _ref.errors,
-      touched = _ref.touched;
+        touched = _ref.touched;
     return /*#__PURE__*/React__default.createElement(formik.Form, null, /*#__PURE__*/React__default.createElement(AppSelection, {
       isLogin: true
     }), rememberMe ? /*#__PURE__*/React__default.createElement("h4", {
@@ -9748,7 +9746,7 @@ var Login = function Login() {
         name: "password"
       }, function (_ref2) {
         var field = _ref2.field,
-          form = _ref2.form;
+            form = _ref2.form;
         return /*#__PURE__*/React__default.createElement(reactstrap.Input, _extends({
           type: "password",
           className: "form-control " + (errors.password && touched.password && 'is-invalid'),
@@ -9844,19 +9842,19 @@ var Register = function Register() {
   var _guest$user, _guest$user2, _guest$user3;
 
   var _useState = React.useState(false),
-    isAppcepted = _useState[0],
-    setIsAppcepted = _useState[1];
+      isAppcepted = _useState[0],
+      setIsAppcepted = _useState[1];
 
   var _useState2 = React.useState(false),
-    isNotApccepted = _useState2[0],
-    setIsNotAccepted = _useState2[1];
+      isNotApccepted = _useState2[0],
+      setIsNotAccepted = _useState2[1];
 
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth;
   }),
-    isGuest = _useSelector.isGuest,
-    registerInfo = _useSelector.register,
-    guest = _useSelector.guest;
+      isGuest = _useSelector.isGuest,
+      registerInfo = _useSelector.register,
+      guest = _useSelector.guest;
 
   var dispatch = reactRedux.useDispatch();
   var history = reactRouterDom.useHistory();
@@ -9910,7 +9908,7 @@ var Register = function Register() {
     validationSchema: formSchema$2
   }, function (_ref) {
     var errors = _ref.errors,
-      touched = _ref.touched;
+        touched = _ref.touched;
     return /*#__PURE__*/React__default.createElement(formik.Form, null, /*#__PURE__*/React__default.createElement(AppSelection, null), /*#__PURE__*/React__default.createElement(BaseFormGroup, {
       fieldName: "fullName",
       errors: errors,
@@ -9986,12 +9984,12 @@ var formSchema$3 = Yup.object().shape({
 
 var ForgotPassword = function ForgotPassword() {
   var _useState = React.useState(false),
-    isModalOpen = _useState[0],
-    setIsOpenModal = _useState[1];
+      isModalOpen = _useState[0],
+      setIsOpenModal = _useState[1];
 
   var _useState2 = React.useState(''),
-    emailSuggestion = _useState2[0],
-    setEmailSuggestion = _useState2[1];
+      emailSuggestion = _useState2[0],
+      setEmailSuggestion = _useState2[1];
 
   var dispatch = reactRedux.useDispatch();
 
@@ -10025,8 +10023,8 @@ var ForgotPassword = function ForgotPassword() {
     validationSchema: formSchema$3
   }, function (_ref) {
     var errors = _ref.errors,
-      touched = _ref.touched,
-      values = _ref.values;
+        touched = _ref.touched,
+        values = _ref.values;
     return /*#__PURE__*/React__default.createElement(formik.Form, null, /*#__PURE__*/React__default.createElement("h1", {
       className: "landing-page-title"
     }, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
@@ -10045,7 +10043,7 @@ var ForgotPassword = function ForgotPassword() {
         name: "email"
       }, function (_ref2) {
         var field = _ref2.field,
-          form = _ref2.form;
+            form = _ref2.form;
         return /*#__PURE__*/React__default.createElement(reactstrap.Input, _extends({
           className: "" + (errors.email && touched.email && 'is-invalid not-show-icon'),
           placeholder: msg
@@ -10119,7 +10117,7 @@ var formSchema$4 = Yup.object().shape({
 
 var CreatePassword = function CreatePassword(_ref) {
   var _ref$isCreatePassword = _ref.isCreatePassword,
-    isCreatePassword = _ref$isCreatePassword === void 0 ? false : _ref$isCreatePassword;
+      isCreatePassword = _ref$isCreatePassword === void 0 ? false : _ref$isCreatePassword;
   var history = reactRouterDom.useHistory();
   var dispatch = reactRedux.useDispatch();
   React.useEffect(function () {
@@ -10161,7 +10159,7 @@ var CreatePassword = function CreatePassword(_ref) {
     validationSchema: formSchema$4
   }, function (_ref2) {
     var errors = _ref2.errors,
-      touched = _ref2.touched;
+        touched = _ref2.touched;
     return /*#__PURE__*/React__default.createElement(formik.Form, null, /*#__PURE__*/React__default.createElement("div", {
       className: "text-center mb-3"
     }, /*#__PURE__*/React__default.createElement("h1", {
@@ -10199,8 +10197,8 @@ var CreatePassword = function CreatePassword(_ref) {
 
 var VerifyOtp = function VerifyOtp() {
   var _useState = React.useState(''),
-    otp = _useState[0],
-    setOtp = _useState[1];
+      otp = _useState[0],
+      setOtp = _useState[1];
 
   var registerInfo = reactRedux.useSelector(function (state) {
     return state.auth.register;
@@ -10209,7 +10207,7 @@ var VerifyOtp = function VerifyOtp() {
   var history = reactRouterDom.useHistory();
   var intl = reactIntl.useIntl();
   var NUM_INPUTS = 6;
-  React.useEffect(function () { }, []);
+  React.useEffect(function () {}, []);
 
   var onChangeOtp = function onChangeOtp(value) {
     setOtp(value);
@@ -10391,18 +10389,18 @@ var CompleteInformation = function CompleteInformation() {
   });
 
   var _useCityList = useCityList(VN_COUNTRY_CODE),
-    cities = _useCityList.cities;
+      cities = _useCityList.cities;
 
   var _useDistrictList = useDistrictList(cities[0] ? cities[0].id : null),
-    districts = _useDistrictList.districts,
-    loadDitrictsByCity = _useDistrictList.loadDitrictsByCity;
+      districts = _useDistrictList.districts,
+      loadDitrictsByCity = _useDistrictList.loadDitrictsByCity;
 
   var _useWardList = useWardList(districts[0] ? districts[0].id : null),
-    wards = _useWardList.wards,
-    loadWardsByDistrict = _useWardList.loadWardsByDistrict;
+      wards = _useWardList.wards,
+      loadWardsByDistrict = _useWardList.loadWardsByDistrict;
 
   var _useBankList = useBankList(),
-    banks = _useBankList.banks;
+      banks = _useBankList.banks;
 
   var dispatch = reactRedux.useDispatch();
 
@@ -10432,7 +10430,7 @@ var CompleteInformation = function CompleteInformation() {
     onSubmit: onSubmit
   }, function (_ref) {
     var errors = _ref.errors,
-      touched = _ref.touched;
+        touched = _ref.touched;
     return /*#__PURE__*/React__default.createElement(formik.Form, null, /*#__PURE__*/React__default.createElement("h1", {
       className: "landing-page-title"
     }, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
@@ -10569,7 +10567,7 @@ var VerifyAccount = function VerifyAccount() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth.verifyAccount;
   }),
-    status = _useSelector.status;
+      status = _useSelector.status;
 
   var dispatch = reactRedux.useDispatch();
   var history = reactRouterDom.useHistory();
@@ -10655,8 +10653,8 @@ var PageStyle = styled.div(_templateObject$1(), IMAGE.LANDING_PAGE_BG);
 
 var LandingPage = function LandingPage(props) {
   var _useState = React.useState(''),
-    activeTab = _useState[0],
-    setActiveTab = _useState[1];
+      activeTab = _useState[0],
+      setActiveTab = _useState[1];
 
   var history = reactRouterDom.useHistory();
   React.useEffect(function () {
@@ -10792,14 +10790,14 @@ var ConfirmAlert = function ConfirmAlert() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.ui.confirmAlert;
   }),
-    title = _useSelector.title,
-    isShow = _useSelector.isShow,
-    content = _useSelector.content,
-    onConfirm = _useSelector.onConfirm,
-    onCancel = _useSelector.onCancel,
-    confirmBtnText = _useSelector.confirmBtnText,
-    cancelBtnText = _useSelector.cancelBtnText,
-    otherConfigs = _objectWithoutPropertiesLoose(_useSelector, ["title", "isShow", "content", "onConfirm", "onCancel", "confirmBtnText", "cancelBtnText"]);
+      title = _useSelector.title,
+      isShow = _useSelector.isShow,
+      content = _useSelector.content,
+      onConfirm = _useSelector.onConfirm,
+      onCancel = _useSelector.onCancel,
+      confirmBtnText = _useSelector.confirmBtnText,
+      cancelBtnText = _useSelector.cancelBtnText,
+      otherConfigs = _objectWithoutPropertiesLoose(_useSelector, ["title", "isShow", "content", "onConfirm", "onCancel", "confirmBtnText", "cancelBtnText"]);
 
   var dispatch = reactRedux.useDispatch();
   var intl = reactIntl.useIntl();
@@ -10845,12 +10843,12 @@ var CheckLocationChange = function CheckLocationChange() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.customizer;
   }),
-    appId = _useSelector.appId;
+      appId = _useSelector.appId;
 
   var _useSelector2 = reactRedux.useSelector(function (state) {
     return state.auth;
   }),
-    authToken = _useSelector2.authToken;
+      authToken = _useSelector2.authToken;
 
   React.useEffect(function () {
     var id;
@@ -10882,13 +10880,13 @@ var ConnectWithSocial = function ConnectWithSocial() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth.user;
   }),
-    id = _useSelector.id;
+      id = _useSelector.id;
 
   var _useSelector2 = reactRedux.useSelector(function (state) {
     return state.auth;
   }),
-    userFacebookAuth = _useSelector2.userFacebookAuth,
-    userGoogleAuth = _useSelector2.userGoogleAuth;
+      userFacebookAuth = _useSelector2.userFacebookAuth,
+      userGoogleAuth = _useSelector2.userGoogleAuth;
 
   React.useEffect(function () {
     if (id) {
@@ -10988,7 +10986,7 @@ var ConnectWithSocial = function ConnectWithSocial() {
   }))));
 };
 
-var BonusHistoryService = function BonusHistoryService() { };
+var BonusHistoryService = function BonusHistoryService() {};
 
 BonusHistoryService.getBonusTransactionByUser = function (userId) {
   return HttpClient.get(API_GET_ALL_BONUS_TRANSACTION_BY_USER + "/" + userId);
@@ -11011,10 +11009,10 @@ var range = function range(start, end) {
 
 var usePagination = function usePagination(_ref) {
   var totalCount = _ref.totalCount,
-    pageSize = _ref.pageSize,
-    _ref$siblingCount = _ref.siblingCount,
-    siblingCount = _ref$siblingCount === void 0 ? 1 : _ref$siblingCount,
-    currentPage = _ref.currentPage;
+      pageSize = _ref.pageSize,
+      _ref$siblingCount = _ref.siblingCount,
+      siblingCount = _ref$siblingCount === void 0 ? 1 : _ref$siblingCount,
+      currentPage = _ref.currentPage;
   var paginationRange = React.useMemo(function () {
     var totalPageCount = Math.ceil(totalCount / pageSize);
     var totalPageNumbers = siblingCount + 5;
@@ -11054,12 +11052,12 @@ var Pagination = function Pagination(props) {
   var _classnames;
 
   var onPageChange = props.onPageChange,
-    totalCount = props.totalCount,
-    _props$siblingCount = props.siblingCount,
-    siblingCount = _props$siblingCount === void 0 ? 1 : _props$siblingCount,
-    currentPage = props.currentPage,
-    pageSize = props.pageSize,
-    className = props.className;
+      totalCount = props.totalCount,
+      _props$siblingCount = props.siblingCount,
+      siblingCount = _props$siblingCount === void 0 ? 1 : _props$siblingCount,
+      currentPage = props.currentPage,
+      pageSize = props.pageSize,
+      className = props.className;
   var paginationRange = usePagination({
     currentPage: currentPage,
     totalCount: totalCount,
@@ -11120,8 +11118,8 @@ var BonusPointItem = function BonusPointItem(_ref) {
   var items = _ref.items;
 
   var _useState = React.useState(1),
-    currentPage = _useState[0],
-    setCurrentPage = _useState[1];
+      currentPage = _useState[0],
+      setCurrentPage = _useState[1];
 
   var currentTableData = React.useMemo(function () {
     var firstPageIndex = (currentPage - 1) * PageSize;
@@ -11257,27 +11255,27 @@ var BonusPoint = function BonusPoint() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth;
   }),
-    user = _useSelector.user;
+      user = _useSelector.user;
 
   var _useState = React.useState('1'),
-    active = _useState[0],
-    setActive = _useState[1];
+      active = _useState[0],
+      setActive = _useState[1];
 
   var _useState2 = React.useState(),
-    bonusPointHistory = _useState2[0],
-    setBonusPointHistory = _useState2[1];
+      bonusPointHistory = _useState2[0],
+      setBonusPointHistory = _useState2[1];
 
   var _useState3 = React.useState(),
-    bonusPointReceived = _useState3[0],
-    setBonusPointReceived = _useState3[1];
+      bonusPointReceived = _useState3[0],
+      setBonusPointReceived = _useState3[1];
 
   var _useState4 = React.useState(),
-    bonusPointUsed = _useState4[0],
-    setBonusPointUsed = _useState4[1];
+      bonusPointUsed = _useState4[0],
+      setBonusPointUsed = _useState4[1];
 
   var _useState5 = React.useState(),
-    bonusPointTotal = _useState5[0],
-    setBonusPointTotal = _useState5[1];
+      bonusPointTotal = _useState5[0],
+      setBonusPointTotal = _useState5[1];
 
   var toggle = function toggle(tab) {
     if (active !== tab) {
@@ -11398,15 +11396,15 @@ var BonusPoint = function BonusPoint() {
 
 var AppRouter = function AppRouter(props) {
   var checkLoginStatus = props.checkLoginStatus,
-    appId = props.appId,
-    user = props.user,
-    loginStatus = props.loginStatus,
-    isAuthentication = props.isAuthentication,
-    guest = props.guest,
-    authToken = props.authToken,
-    children = props.children,
-    history = props.history,
-    message = props.message;
+      appId = props.appId,
+      user = props.user,
+      loginStatus = props.loginStatus,
+      isAuthentication = props.isAuthentication,
+      guest = props.guest,
+      authToken = props.authToken,
+      children = props.children,
+      history = props.history,
+      message = props.message;
   React.useEffect(function () {
     var urlParams = new URLSearchParams(document.location.search);
     var code = guest.authToken || authToken;
@@ -11549,7 +11547,7 @@ var LoadingSpinner = function LoadingSpinner() {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.ui;
   }),
-    isLoading = _useSelector.isLoading;
+      isLoading = _useSelector.isLoading;
 
   return isLoading ? /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
     className: "app-loading"
@@ -11567,9 +11565,9 @@ var LoadingSpinner = function LoadingSpinner() {
 
 var RippleButton = function RippleButton(_ref) {
   var rippleColor = _ref.rippleColor,
-    during = _ref.during,
-    block = _ref.block,
-    rest = _objectWithoutPropertiesLoose(_ref, ["rippleColor", "during", "block"]);
+      during = _ref.during,
+      block = _ref.block,
+      rest = _objectWithoutPropertiesLoose(_ref, ["rippleColor", "during", "block"]);
 
   return /*#__PURE__*/React__default.createElement(Ripples, {
     color: rippleColor ? rippleColor : "rgba(255, 255, 255, .5)",
@@ -11596,11 +11594,11 @@ function unregister() {
 
 var App = function App(_ref) {
   var children = _ref.children,
-    appId = _ref.appId,
-    appReducer = _ref.appReducer,
-    message = _ref.message,
-    apiBaseUrl = _ref.apiBaseUrl,
-    history = _ref.history;
+      appId = _ref.appId,
+      appReducer = _ref.appReducer,
+      message = _ref.message,
+      apiBaseUrl = _ref.apiBaseUrl,
+      history = _ref.history;
   var middlewares = [thunk, createDebounce()];
   var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
   var store = redux.createStore(rootReducer(appReducer), {}, composeEnhancers(redux.applyMiddleware.apply(void 0, middlewares)));
@@ -11668,11 +11666,11 @@ var defaultMaskOptions = {
 
 var CurrencyInput = function CurrencyInput(_ref) {
   var maskOptions = _ref.maskOptions,
-    placeholder = _ref.placeholder,
-    inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]);
+      placeholder = _ref.placeholder,
+      inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]);
 
   var _useIntl = reactIntl.useIntl(),
-    formatMessage = _useIntl.formatMessage;
+      formatMessage = _useIntl.formatMessage;
 
   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
   return /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
@@ -11730,14 +11728,14 @@ var ReactTable = function ReactTable(props) {
 
 var usePageAuthorities = function usePageAuthorities() {
   var _useState = React.useState([]),
-    authorities = _useState[0],
-    setAuthorities = _useState[1];
+      authorities = _useState[0],
+      setAuthorities = _useState[1];
 
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.navbar;
   }),
-    userRoles = _useSelector.userRoles,
-    roles = _useSelector.roles;
+      userRoles = _useSelector.userRoles,
+      roles = _useSelector.roles;
 
   var history = reactRouterDom.useHistory();
   React.useEffect(function () {
