@@ -8123,6 +8123,9 @@ var DatePicker = function DatePicker(props) {
     },
     onChange: function onChange(date) {
       return props.onChange && props.onChange(date);
+    },
+    onBlur: function onBlur(date) {
+      return props.onChange && props.onBlur(date);
     }
   }), /*#__PURE__*/React__default.createElement(reactstrap.Label, null, props.label), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React__default.createElement("div", {
     className: "text-danger"
@@ -8165,6 +8168,13 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       value: field.value,
       options: options || defaultOptions,
       onChange: function onChange(date) {
+        form.setFieldValue(fieldName, date[0]);
+
+        if (_onChange) {
+          _onChange(date, form);
+        }
+      },
+      onBlur: function onBlur(date) {
         form.setFieldValue(fieldName, date[0]);
 
         if (_onChange) {
