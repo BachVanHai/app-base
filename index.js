@@ -3101,11 +3101,7 @@ var NavbarUser = function NavbarUser(props) {
       setNavbarSearch(false);
       props.handleAppOverlay('');
     }
-  })))), /*#__PURE__*/
-  
-  // React__default.createElement(Bells, null), 
-  
-  /*#__PURE__*/React__default.createElement(reactstrap.UncontrolledDropdown, {
+  })))), /*#__PURE__*/React__default.createElement(Bells, null), /*#__PURE__*/React__default.createElement(reactstrap.UncontrolledDropdown, {
     tag: "li",
     className: "dropdown-user nav-item"
   }, /*#__PURE__*/React__default.createElement(reactstrap.DropdownToggle, {
