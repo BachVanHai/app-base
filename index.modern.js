@@ -7349,6 +7349,7 @@ const DatePicker = props => {
     value: props.value,
     onClose: () => props.onClose && props.onClose(),
     onChange: date => props.onChange && props.onChange(date),
+    onBlur: date => props.onChange && props.onChange(date)
   }), /*#__PURE__*/React.createElement(Label, null, props.label), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
     className: "text-danger"
   }, getPropObject(props.errors, props.fieldName)) : null);
