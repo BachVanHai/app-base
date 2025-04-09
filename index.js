@@ -8165,6 +8165,8 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       value: field.value,
       options: options || defaultOptions,
       onChange: function onChange(date) {
+
+        console.log('date',date);
         form.setFieldValue(fieldName, date[0]);
 
         if (_onChange) {
