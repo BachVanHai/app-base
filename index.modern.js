@@ -7348,8 +7348,7 @@ const DatePicker = props => {
     className: `form-control position-relative bg-white flatpickr-input ${props.className}`,
     value: props.value,
     onClose: () => props.onClose && props.onClose(),
-    onChange: date => props.onChange && props.onChange(date),
-    onBlur: date => props.onChange && props.onChange(date)
+    onChange: date => props.onChange && props.onChange(date)
   }), /*#__PURE__*/React.createElement(Label, null, props.label), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
     className: "text-danger"
   }, getPropObject(props.errors, props.fieldName)) : null);
@@ -7392,7 +7391,6 @@ const BaseFormDatePicker = ({
     value: field.value,
     options: options || defaultOptions,
     onChange: date => {
-      console.log('date',date);
       form.setFieldValue(fieldName, date[0]);
       if (onChange) {
         onChange(date, form);
