@@ -7347,8 +7347,12 @@ const DatePicker = props => {
     "data-enable-time": true,
     className: `form-control position-relative bg-white flatpickr-input ${props.className}`,
     value: props.value,
-    onClose: () => props.onClose && props.onClose(),
-    onChange: date => props.onChange && props.onChange(date)
+      onClose: (date) => {
+          console.log('date',date);
+          props.onChange && props.onChange(date);
+          return props.onClose && props.onClose();
+      },
+      onChange: date => props.onChange && props.onChange(date)
   }), /*#__PURE__*/React.createElement(Label, null, props.label), props.errors && props.touched && props.isShowErrorMessage && getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
     className: "text-danger"
   }, getPropObject(props.errors, props.fieldName)) : null);
