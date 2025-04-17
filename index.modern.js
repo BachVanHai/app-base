@@ -7348,7 +7348,6 @@ const DatePicker = props => {
     className: `form-control position-relative bg-white flatpickr-input ${props.className}`,
     value: props.value,
       onClose: (date) => {
-          console.log('date',date);
           props.onChange && props.onChange(date);
           return props.onClose && props.onClose();
       },
