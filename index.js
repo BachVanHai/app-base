@@ -583,38 +583,27 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
       return e;
     }
 
-    const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || e.response.config.headers['client-message-id'];
-
     switch (e.response.status) {
       case 400:
-        if(clientMessageId){
-          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
-        }else{
-          toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-            id: "common.error.400"
-          }));
-        }
+        toastError(e.response.data.message);
         break;
+
       case 403:
         if (e.response.data.error === 'Forbidden') {
           return e.response;
         }
-        toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.sessionExpired"
-        }));
+
+        toastError(e.response.data.message);
         store.dispatch({
           type: LOGOUT_ACTION
         });
         history.push('/login');
         break;
+
       case 500:
-        if(clientMessageId){
-          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
-        }else{
-          toastInfo( e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-            id: "common.error.500"
-          }));
-        }
+        toastError( /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+          id: "common.error.500"
+        }));
     }
 
     store.dispatch({
