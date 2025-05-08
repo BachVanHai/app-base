@@ -499,7 +499,7 @@ const setUpHttpClient = (store, apiBaseUrl) => {
                            e.response.config.headers.clientMessageId || 
                            e.response.config.headers['client-message-id'];
         if(clientMessageId){
-          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         }else{
           toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
             id: "common.error.400"
@@ -520,9 +520,9 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         break;
       case 500:
         if(clientMessageId){
-          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         }else{
-          toastInfo( e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
+          toastInfo( /*#__PURE__*/React.createElement(FormattedMessage, {
             id: "common.error.500"
           }));
         }
