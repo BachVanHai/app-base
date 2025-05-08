@@ -7950,7 +7950,8 @@ var DatePicker = function DatePicker(props) {
     "data-enable-time": true,
     className: "form-control position-relative bg-white flatpickr-input " + props.className,
     value: props.value,
-    onClose: function onClose() {
+    onClose: function onClose(date) {
+      props.onChange && props.onChange(date);
       return props.onClose && props.onClose();
     },
     onChange: function onChange(date) {
@@ -7997,8 +7998,6 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       value: field.value,
       options: options || defaultOptions,
       onChange: function onChange(date) {
-
-        console.log('date',date);
         form.setFieldValue(fieldName, date[0]);
 
         if (_onChange) {
