@@ -495,37 +495,30 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     }
     switch (e.response.status) {
       case 400:
-        const clientMessageId = e.response.config.headers.clientmessageid || 
-                           e.response.config.headers.clientMessageId || 
-                           e.response.config.headers['client-message-id'];
-        if(clientMessageId){
-          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
-        }else{
+      case 500: {
+        let clientMessageId = "";
+        clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+        if (clientMessageId) {
+          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+        } else {
           toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-            id: "common.error.400"
+            id: e.response.status === 400 ? "common.error.400" : "common.error.500"
           }));
         }
         break;
-      case 403:
+      }
+      case 403: {
         if (e.response.data.error === 'Forbidden') {
           return e.response;
         }
-        toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.sessionExpired"
-        }));
+
+        toastError(e.response.data.message);
         store.dispatch({
           type: LOGOUT_ACTION
         });
         history.push('/login');
         break;
-      case 500:
-        if(clientMessageId){
-          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
-        }else{
-          toastInfo( /*#__PURE__*/React.createElement(FormattedMessage, {
-            id: "common.error.500"
-          }));
-        }
+      }
     }
     store.dispatch({
       type: HIDE_LOADING_BAR,
