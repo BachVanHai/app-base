@@ -586,7 +586,11 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
     switch (e.response.status) {
       case 400:
       case 500: {
-        const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || e.response.config.headers['client-message-id'];
+        let clientMessageId;
+        clientMessageId = e.response.config.headers.clientmessageid || 
+                         e.response.config.headers.clientMessageId || 
+                         e.response.config.headers['client-message-id'];
+        
         if(clientMessageId){
           toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         } else {
