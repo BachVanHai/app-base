@@ -497,12 +497,14 @@ const setUpHttpClient = (store, apiBaseUrl) => {
       case 400:
       case 500: {
         const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
-        if (clientMessageId) {
-          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
-        }  else {
-          toastInfo(React.createElement(FormattedMessage, {
-            id: e.response.status === 400 ? "common.error.400" : "common.error.500"
-          }));
+        if (e.response.data.message) {
+            toastInfo(e.response.data.message);
+        } else if (clientMessageId) {
+            toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+        } else {
+            toastInfo(React.createElement(FormattedMessage, {
+                id: e.response.status === 400 ? "common.error.400" : "common.error.500"
+            }));
         }
         break;
       }
