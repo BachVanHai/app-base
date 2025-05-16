@@ -48,6 +48,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import Table from 'react-table';
 
 const AppId = {
+  FEE_PAYMENT_APP: 'FEE_PAYMENT_APP',
   APP_NO1: 'APP_NO1',
   INSURANCE_APP: 'INSURANCE_APP',
   SUPPLEMENT_APP: 'SUPPLEMENT_APP',
@@ -174,28 +175,32 @@ const IC_TYPES_OPTIONS = [{
   })
 }];
 const getExternalAppUrl = (appId, url) => {
-  switch (appId) {
+switch (appId) {
+    case AppId.FEE_PAYMENT_APP:
+        return `fee-payment/${url}`;
     case AppId.APP_NO1:
-      return `/app${url}`;
+        return `/app${url}`;
     case AppId.INSURANCE_APP:
-      return `/insurance${url}`;
+        return `/insurance${url}`;
     case AppId.SUPPLEMENT_APP:
-      return `/supplement${url}`;
+        return `/supplement${url}`;
     case AppId.ELITE_APP:
-      return `${url}`;
-  }
+        return `${url}`;
+}
 };
 const getContextPath = appId => {
-  switch (appId) {
+switch (appId) {
     case AppId.APP_NO1:
-      return 'app';
+        return 'app';
     case AppId.INSURANCE_APP:
-      return 'insurance';
+        return 'insurance';
+    case AppId.FEE_PAYMENT_APP:
+        return 'fee-payment';
     case AppId.SUPPLEMENT_APP:
-      return 'supplement';
+        return 'supplement';
     case AppId.ELITE_APP:
-      return '';
-  }
+        return '';
+}
 };
 const getPropObject = (obj, prop) => {
   if (!obj) {
@@ -9606,6 +9611,8 @@ const CheckLocationChange = () => {
     let id;
     if (window.location.href.includes('/app/')) {
       id = AppId.APP_NO1;
+    } else if (window.location.href.includes('/fee-payment/')) {
+      id = AppId.FEE_PAYMENT_APP;
     } else if (window.location.href.includes('/insurance/')) {
       id = AppId.INSURANCE_APP;
     } else if (window.location.href.includes('/supplement/')) {
@@ -9616,7 +9623,7 @@ const CheckLocationChange = () => {
     if (appId !== id) {
       dispatch(setAppId(id));
     }
-    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.INSURANCE_APP].indexOf(id) >= 0 && !authToken) {
+    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.INSURANCE_APP, AppId.FEE_PAYMENT_APP].indexOf(id) >= 0 && !authToken) {
       history.push('/');
     }
   }, [history.location.pathname]);

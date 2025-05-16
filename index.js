@@ -126,7 +126,8 @@ var AppId = {
   INSURANCE_APP: 'INSURANCE_APP',
   SUPPLEMENT_APP: 'SUPPLEMENT_APP',
   ELITE_APP: 'ELITE_APP',
-  DIVAY_APP: 'DIVAY_APP'
+  DIVAY_APP: 'DIVAY_APP',
+  FEE_PAYMENT_APP: 'FEE_PAYMENT_APP',
 };
 
 var API_BASE_URL = 'https://api.bmktech.vn';
@@ -248,6 +249,9 @@ var IC_TYPES_OPTIONS = [{
 }];
 var getExternalAppUrl = function getExternalAppUrl(appId, url) {
   switch (appId) {
+    case AppId.FEE_PAYMENT_APP:
+      return "/fee-payment" + url;
+
     case AppId.APP_NO1:
       return "/app" + url;
 
@@ -263,6 +267,9 @@ var getExternalAppUrl = function getExternalAppUrl(appId, url) {
 };
 var getContextPath = function getContextPath(appId) {
   switch (appId) {
+    case AppId.FEE_PAYMENT_APP:
+      return "/fee-payment" + url;
+
     case AppId.APP_NO1:
       return 'app';
 
@@ -10864,6 +10871,8 @@ var CheckLocationChange = function CheckLocationChange() {
 
     if (window.location.href.includes('/app/')) {
       id = AppId.APP_NO1;
+    } else if (window.location.href.includes('/fee-payment/')) {
+      id = AppId.FEE_PAYMENT_APP;
     } else if (window.location.href.includes('/insurance/')) {
       id = AppId.INSURANCE_APP;
     } else if (window.location.href.includes('/supplement/')) {
@@ -10876,7 +10885,7 @@ var CheckLocationChange = function CheckLocationChange() {
       dispatch(setAppId(id));
     }
 
-    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.INSURANCE_APP].indexOf(id) >= 0 && !authToken) {
+    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.INSURANCE_APP, AppId.FEE_PAYMENT_APP].indexOf(id) >= 0 && !authToken) {
       history.push('/');
     }
   }, [history.location.pathname]);
