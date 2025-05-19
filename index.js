@@ -10860,7 +10860,8 @@ var CheckLocationChange = function CheckLocationChange() {
 
   React.useEffect(function () {
     var id;
-
+    console.log("window.location.href",window.location.href);
+    console.log("history.location.pathname",history.location.pathname);
     if (window.location.href.includes('/app/')) {
       id = AppId.APP_NO1;
     } else if (window.location.href.includes('/bpm/')) {
