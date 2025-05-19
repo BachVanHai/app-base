@@ -250,8 +250,8 @@ var getExternalAppUrl = function getExternalAppUrl(appId, url) {
     case AppId.APP_NO1:
       return "/app" + url;
 
-    case AppId.INSURANCE_APP:
-      return "/insurance" + url;
+    case AppId.BPM_APP:
+      return "/bpm" + url;
 
     case AppId.SUPPLEMENT_APP:
       return "/supplement" + url;
