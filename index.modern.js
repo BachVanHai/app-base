@@ -49,10 +49,9 @@ import Table from 'react-table';
 
 const AppId = {
   APP_NO1: 'APP_NO1',
-  INSURANCE_APP: 'INSURANCE_APP',
+  BPM_APP: 'BPM_APP',
   SUPPLEMENT_APP: 'SUPPLEMENT_APP',
-  ELITE_APP: 'ELITE_APP',
-  DIVAY_APP: 'DIVAY_APP'
+  ELITE_APP: 'ELITE_APP'
 };
 
 const API_BASE_URL = 'https://api.bmktech.vn';
