@@ -9610,7 +9610,7 @@ const CheckLocationChange = () => {
     } else if (window.location.href.includes('/supplement/')) {
       id = AppId.SUPPLEMENT_APP;
     } else {
-      id = AppId.ELITE_APP;
+      id = AppId.BPM_APP;
     }
     if (appId !== id) {
       dispatch(setAppId(id));
