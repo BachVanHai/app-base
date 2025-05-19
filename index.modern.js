@@ -188,8 +188,8 @@ const getContextPath = appId => {
   switch (appId) {
     case AppId.APP_NO1:
       return 'app';
-    case AppId.INSURANCE_APP:
-      return 'insurance';
+    case AppId.BPM_APP:
+      return 'bpm';
     case AppId.SUPPLEMENT_APP:
       return 'supplement';
     case AppId.ELITE_APP:
@@ -2641,7 +2641,7 @@ const Footer = props => {
   })))), /*#__PURE__*/React.createElement("div", {
     className: "w-25"
   }, /*#__PURE__*/React.createElement("span", {
-    onClick: e => goToPage(e, '/insurance/contracts')
+    onClick: e => goToPage(e, '/bpm')
   }, /*#__PURE__*/React.createElement(List, null), /*#__PURE__*/React.createElement("div", {
     className: "mt-1"
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2649,7 +2649,7 @@ const Footer = props => {
   })))), /*#__PURE__*/React.createElement("div", {
     className: "position-relative w-25"
   }, /*#__PURE__*/React.createElement("span", {
-    onClick: e => goToPage(e, '/insurance/buy-insurance')
+    onClick: e => goToPage(e, '/bpm')
   }, /*#__PURE__*/React.createElement("img", {
     src: IMAGE.BUY_INSURANCE,
     className: "buy-insurance",
@@ -9605,8 +9605,8 @@ const CheckLocationChange = () => {
     let id;
     if (window.location.href.includes('/app/')) {
       id = AppId.APP_NO1;
-    } else if (window.location.href.includes('/insurance/')) {
-      id = AppId.INSURANCE_APP;
+    } else if (window.location.href.includes('/bpm/')) {
+      id = AppId.BPM_APP;
     } else if (window.location.href.includes('/supplement/')) {
       id = AppId.SUPPLEMENT_APP;
     } else {
@@ -9615,7 +9615,7 @@ const CheckLocationChange = () => {
     if (appId !== id) {
       dispatch(setAppId(id));
     }
-    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.INSURANCE_APP].indexOf(id) >= 0 && !authToken) {
+    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.BPM_APP].indexOf(id) >= 0 && !authToken) {
       history.push('/');
     }
   }, [history.location.pathname]);

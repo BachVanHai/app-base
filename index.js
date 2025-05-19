@@ -265,8 +265,8 @@ var getContextPath = function getContextPath(appId) {
     case AppId.APP_NO1:
       return 'app';
 
-    case AppId.INSURANCE_APP:
-      return 'insurance';
+    case AppId.BPM_APP:
+      return 'bpm';
 
     case AppId.SUPPLEMENT_APP:
       return 'supplement';
@@ -3179,7 +3179,7 @@ var Footer = function Footer(props) {
     className: "w-25"
   }, /*#__PURE__*/React__default.createElement("span", {
     onClick: function onClick(e) {
-      return goToPage(e, '/insurance/contracts');
+      return goToPage(e, '/bpm');
     }
   }, /*#__PURE__*/React__default.createElement(Icon.List, null), /*#__PURE__*/React__default.createElement("div", {
     className: "mt-1"
@@ -3189,7 +3189,7 @@ var Footer = function Footer(props) {
     className: "position-relative w-25"
   }, /*#__PURE__*/React__default.createElement("span", {
     onClick: function onClick(e) {
-      return goToPage(e, '/insurance/buy-insurance');
+      return goToPage(e, '/bpm');
     }
   }, /*#__PURE__*/React__default.createElement("img", {
     src: IMAGE.BUY_INSURANCE,
@@ -10863,8 +10863,8 @@ var CheckLocationChange = function CheckLocationChange() {
 
     if (window.location.href.includes('/app/')) {
       id = AppId.APP_NO1;
-    } else if (window.location.href.includes('/insurance/')) {
-      id = AppId.INSURANCE_APP;
+    } else if (window.location.href.includes('/bpm/')) {
+      id = AppId.BPM_APP;
     } else if (window.location.href.includes('/supplement/')) {
       id = AppId.SUPPLEMENT_APP;
     } else {
@@ -10875,7 +10875,7 @@ var CheckLocationChange = function CheckLocationChange() {
       dispatch(setAppId(id));
     }
 
-    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.INSURANCE_APP].indexOf(id) >= 0 && !authToken) {
+    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.BPM_APP].indexOf(id) >= 0 && !authToken) {
       history.push('/');
     }
   }, [history.location.pathname]);
