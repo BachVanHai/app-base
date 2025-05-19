@@ -176,8 +176,8 @@ const getExternalAppUrl = (appId, url) => {
   switch (appId) {
     case AppId.APP_NO1:
       return `/app${url}`;
-    case AppId.INSURANCE_APP:
-      return `/insurance${url}`;
+    case AppId.BPM_APP:
+      return `/bpm${url}`;
     case AppId.SUPPLEMENT_APP:
       return `/supplement${url}`;
     case AppId.ELITE_APP:
