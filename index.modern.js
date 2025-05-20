@@ -9602,8 +9602,6 @@ const CheckLocationChange = () => {
     authToken
   } = useSelector(state => state.auth);
   useEffect(() => {
-      console.log("window.location.href",window.location.href);
-      console.log("history.location.pathname",history.location.pathname);
     let id;
     if (window.location.href.includes('/app/')) {
       id = AppId.APP_NO1;
