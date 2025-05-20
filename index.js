@@ -10869,7 +10869,7 @@ var CheckLocationChange = function CheckLocationChange() {
     } else if (window.location.href.includes('/supplement/')) {
       id = AppId.SUPPLEMENT_APP;
     } else {
-      id = AppId.BPM_APP;
+      id = AppId.ELITE_APP;
     }
 
     if (appId !== id) {
