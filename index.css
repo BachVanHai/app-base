@@ -2715,6 +2715,9 @@ pre {
   .table-responsive > .table-bordered {
     border: 0; }
 
+.bg-white {
+  background-color: #fff !important; }
+
 .form-control {
   display: block;
   width: 100%;
@@ -6126,9 +6129,6 @@ a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
 button.bg-dark:focus {
   background-color: #050505 !important; }
-
-.bg-white {
-  background-color: #fff !important; }
 
 .bg-transparent {
   background-color: transparent !important; }
