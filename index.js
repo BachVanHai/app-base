@@ -584,10 +584,20 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
 
     switch (e.response.status) {
       case 400:
-        toastError(e.response.data.message);
+      case 500: {
+        const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+        if (e.response.data.message) {
+          toastInfo(e.response.data.message);
+        } else if (clientMessageId) {
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+        } else {
+          toastInfo(React.createElement(FormattedMessage, {
+            id: e.response.status === 400 ? "common.error.400" : "common.error.500"
+          }));
+        }
         break;
-
-      case 403:
+      }
+      case 403: {
         if (e.response.data.error === 'Forbidden') {
           return e.response;
         }
@@ -598,11 +608,7 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
         });
         history.push('/login');
         break;
-
-      case 500:
-        toastError( /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
-          id: "common.error.500"
-        }));
+      }
     }
 
     store.dispatch({
