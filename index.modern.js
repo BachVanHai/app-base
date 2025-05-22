@@ -7158,7 +7158,7 @@ const BaseFormDatePicker = ({
     field,
     form
   }) => /*#__PURE__*/React.createElement(DatePicker, {
-    className: `form-control position-relative ${!disabled ? 'bg-white' : ''} ${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'} ${className}`,
+    className: `form-control position-relative ${!disabled ? 'bg-white' : 'bg-disabled'} ${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'} ${className}`,
     placeholder: placeHolder ? placeHolder : intl.formatMessage({ id: messageId }),
     label: messageId ? intl.formatMessage({ id: messageId }) : '',
     isShowErrorMessage: isShowErrorMessage,
