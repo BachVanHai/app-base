@@ -11683,15 +11683,10 @@ var CurrencyInput = function CurrencyInput(_ref) {
   var maskOptions = _ref.maskOptions,
       placeholder = _ref.placeholder,
       inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]),
-      fieldName = _ref.fieldName,
-      errors = _ref.errors,
-      touched = _ref.touched,
       messageId = _ref.messageId,
       className = _ref.className,
       _ref$isShowErrorMessa = _ref.isShowErrorMessage,
-      _isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
-      _ref$isRequired = _ref.isRequired,
-      _isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
+      _ref$isRequired = _ref.isRequired;
 
   var _useIntl = reactIntl.useIntl(),
       formatMessage = _useIntl.formatMessage;
@@ -11702,27 +11697,14 @@ var CurrencyInput = function CurrencyInput(_ref) {
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: messageId
   }, (msg) => (
-      /*#__PURE__*/React.createElement(React.Fragment, null,
-          /*#__PURE__*/React.createElement(Field, {
-            name: fieldName
-          }, ({ field, form }) => (  // Thêm destructuring cho field và form
-              /*#__PURE__*/React.createElement(React.Fragment, null,
-                  /*#__PURE__*/React.createElement(MaskedInput, {
-                    ...field,  // Spread field props vào MaskedInput
+      /*#__PURE__*/React.createElement(MaskedInput, {
                     ...inputProps,
                     mask: currencyMask,
                     placeholder: formatMessage({ id: placeholder })
                   }),
-                  _isRequired && _isShowErrorMessage && getPropObject(form.errors, fieldName) && getPropObject(form.touched, fieldName)
-                      ? /*#__PURE__*/React.createElement("div", {
-                        className: "text-danger"
-                      }, getPropObject(form.errors, fieldName))
-                      : null
-              )
-          )),
-          /*#__PURE__*/React.createElement(Label, null, msg)
+      /*#__PURE__*/React.createElement(Label, null, msg)
       )
-  )))
+  ))
 };
 
 
