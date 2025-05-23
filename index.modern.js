@@ -10298,25 +10298,57 @@ const defaultMaskOptions = {
   allowNegative: false,
   allowLeadingZeroes: false
 };
+// const CurrencyInput = ({
+//   maskOptions,
+//   placeholder,
+//   ...inputProps
+// }) => {
+//   const {
+//     formatMessage
+//   } = useIntl();
+//   const currencyMask = createNumberMask({
+//     ...defaultMaskOptions,
+//     ...maskOptions
+//   });
+//   return /*#__PURE__*/React.createElement(MaskedInput, Object.assign({
+//     mask: currencyMask,
+//     placeholder: formatMessage({
+//       id: placeholder
+//     })
+//   }, inputProps));
+// };
+
 const CurrencyInput = ({
-  maskOptions,
-  placeholder,
-  ...inputProps
-}) => {
-  const {
-    formatMessage
-  } = useIntl();
+                         maskOptions,
+                         placeholder,
+                         messageId,  // Thêm prop này để xác định nội dung label
+                         className,  // Thêm prop này để có thể tùy chỉnh class
+                         ...inputProps
+                       }) => {
+  const { formatMessage } = useIntl();
   const currencyMask = createNumberMask({
     ...defaultMaskOptions,
     ...maskOptions
   });
-  return /*#__PURE__*/React.createElement(MaskedInput, Object.assign({
-    mask: currencyMask,
-    placeholder: formatMessage({
-      id: placeholder
-    })
-  }, inputProps));
+
+  return /*#__PURE__*/ React.createElement(
+    FormGroup,
+    { className: `form-label-group position-relative ${className || ''}` },
+    messageId && React.createElement(
+      Label,
+      null,
+      React.createElement(FormattedMessage, { id: messageId })
+    ),
+    /*#__PURE__*/ React.createElement(
+      MaskedInput,
+      Object.assign({
+        mask: currencyMask,
+        placeholder: formatMessage({ id: placeholder })
+      }, inputProps)
+    )
+  );
 };
+
 CurrencyInput.defaultProps = {
   inputMode: 'numeric',
   maskOptions: {}
