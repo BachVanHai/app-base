@@ -10516,24 +10516,11 @@ const defaultMaskOptions = {
   allowNegative: false,
   allowLeadingZeroes: false
 };
-
-
-
-const CurrencyInput = ({ fieldName,
-                         errors,
-                         touched,
-                         messageId,
-                         type,
-                         className,
-                         maxLength,
-                         disabled,
-                         onChange,
-                         isShowErrorMessage: _isShowErrorMessage = true,
-                         isRequired: _isRequired = true,
-                         maskOptions,
-                         placeholder,
-                         ...inputProps
-                       }) => {
+const CurrencyInput = ({
+  maskOptions,
+  placeholder,
+  ...inputProps
+}) => {
   const {
     formatMessage
   } = useIntl();
@@ -10541,22 +10528,13 @@ const CurrencyInput = ({ fieldName,
     ...defaultMaskOptions,
     ...maskOptions
   });
-  return /*#__PURE__*/React.createElement(FormGroup, {
-    className: `form-label-group position-relative ${className}`
-  }, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: messageId
-  },msg => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Field, {
-    name: fieldName
-  },React.createElement(MaskedInput, Object.assign({
+  return /*#__PURE__*/React.createElement(MaskedInput, Object.assign({
     mask: currencyMask,
     placeholder: formatMessage({
       id: placeholder
     })
-  }, inputProps)), _isRequired && _isShowErrorMessage && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) ? /*#__PURE__*/React.createElement("div", {
-    className: "text-danger"
-  }, getPropObject(errors, fieldName)) : null, /*#__PURE__*/React.createElement(Label, null, msg)))));
+  }, inputProps));
 };
-
 CurrencyInput.defaultProps = {
   inputMode: 'numeric',
   maskOptions: {}
@@ -10577,47 +10555,6 @@ CurrencyInput.propTypes = {
     integerLimit: PropTypes.number
   })
 };
-
-
-// const CurrencyInput = ({
-//   maskOptions,
-//   placeholder,
-//   ...inputProps
-// }) => {
-//   const {
-//     formatMessage
-//   } = useIntl();
-//   const currencyMask = createNumberMask({
-//     ...defaultMaskOptions,
-//     ...maskOptions
-//   });
-//   return /*#__PURE__*/React.createElement(MaskedInput, Object.assign({
-//     mask: currencyMask,
-//     placeholder: formatMessage({
-//       id: placeholder
-//     })
-//   }, inputProps));
-// };
-// CurrencyInput.defaultProps = {
-//   inputMode: 'numeric',
-//   maskOptions: {}
-// };
-// CurrencyInput.propTypes = {
-//   inputmode: PropTypes.string,
-//   maskOptions: PropTypes.shape({
-//     prefix: PropTypes.string,
-//     suffix: PropTypes.string,
-//     includeThousandsSeparator: PropTypes.bool,
-//     thousandsSeparatorSymbol: PropTypes.string,
-//     allowDecimal: PropTypes.bool,
-//     decimalSymbol: PropTypes.string,
-//     decimalLimit: PropTypes.string,
-//     requireDecimal: PropTypes.bool,
-//     allowNegative: PropTypes.bool,
-//     allowLeadingZeroes: PropTypes.bool,
-//     integerLimit: PropTypes.number
-//   })
-// };
 
 const ReactTable = props => {
   const intl = useIntl();
