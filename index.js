@@ -584,10 +584,20 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
 
     switch (e.response.status) {
       case 400:
-        toastError(e.response.data.message);
+      case 500: {
+        const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+        if (e.response.data.message) {
+          toastInfo(e.response.data.message);
+        } else if (clientMessageId) {
+          toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+        } else {
+          toastInfo(React.createElement(FormattedMessage, {
+            id: e.response.status === 400 ? "common.error.400" : "common.error.500"
+          }));
+        }
         break;
-
-      case 403:
+      }
+      case 403: {
         if (e.response.data.error === 'Forbidden') {
           return e.response;
         }
@@ -598,11 +608,7 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
         });
         history.push('/login');
         break;
-
-      case 500:
-        toastError( /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
-          id: "common.error.500"
-        }));
+      }
     }
 
     store.dispatch({
@@ -4370,11 +4376,12 @@ var messages_en = {
 	"menu.user": "User Management",
 	"menu.contract": "Contract",
 	"menu.buyInsurance": "Buy Insurance",
-    "menu.payFee": "Fee Payment",
-    "menu.createBudgetRequest": "Create Budget Request",
-    "menu.budgetApproval": "Budget Approval",
-    "menu.createPaymentRequest": "Create Payment Request",
-    "menu.paymentApproval": "Payment Approval",
+  "menu.payFee": "Fee Payment",
+  "menu.createBudgetRequest": "Create Budget Request",
+  "menu.budgetApproval": "Budget Approval",
+  "menu.createPaymentRequest": "Create Payment Request",
+  "menu.paymentApproval": "Payment Approval",
+  "menu.paymentRecordLookup": "Payment Record Lookup",
 	"menu.contractManagement": "Contract Management",
 	"menu.personalContracts": "Personal Contracts",
 	"menu.partnerContracts": "Parnter Contracts",
@@ -4794,11 +4801,12 @@ var messages_vi = {
 	"menu.user": "Tài khoản",
 	"menu.contract": "Hợp đồng",
 	"menu.buyInsurance": "Mua bảo hiểm",
-    "menu.payFee": "Thanh toán chi phí",
-    "menu.createBudgetRequest": "Tạo yêu cầu phê duyệt ngân sách",
-    "menu.budgetApproval": "Phê duyệt ngân sách",
-    "menu.createPaymentRequest": "Tạo yêu cầu thanh toán",
-    "menu.paymentApproval": "Phê duyệt yêu cầu thanh toán",
+  "menu.payFee": "Thanh toán chi phí",
+  "menu.createBudgetRequest": "Tạo yêu cầu phê duyệt ngân sách",
+  "menu.budgetApproval": "Phê duyệt ngân sách",
+  "menu.createPaymentRequest": "Tạo yêu cầu thanh toán",
+  "menu.paymentApproval": "Phê duyệt yêu cầu thanh toán",
+  "menu.paymentRecordLookup": "Tra cứu hồ sơ thanh toán",
 	"menu.contractManagement": "Quản lý hợp đồng",
 	"menu.personalContracts": "Hợp đồng cá nhân",
 	"menu.partnerContracts": "Hợp đồng đối tác",

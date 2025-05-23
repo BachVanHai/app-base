@@ -492,40 +492,34 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     if (!e.response) {
       return e;
     }
-    const clientMessageId = e.response.config.headers.clientmessageid ||
-      e.response.config.headers.clientMessageId ||
-      e.response.config.headers['client-message-id'];
-    switch (e.response.status) {
+  switch (e.response.status) {
       case 400:
-        if(clientMessageId){
-          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
-        }else{
-          toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-            id: "common.error.400"
-          }));
-        }
-        break;
-      case 403:
-        if (e.response.data.error === 'Forbidden') {
-          return e.response;
-        }
-        toastInfo(e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.sessionExpired"
-        }));
-        store.dispatch({
-          type: LOGOUT_ACTION
-        });
-        history.push('/login');
-        break;
-      case 500:
-        if(clientMessageId){
-          toastInfo(e.response.data.message || `Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
-        }else{
-          toastInfo( e.response.data.message || /*#__PURE__*/React.createElement(FormattedMessage, {
-            id: "common.error.500"
-          }));
-        }
-    }
+      case 500: {
+          const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+          if (e.response.data.message) {
+              toastInfo(e.response.data.message);
+          } else if (clientMessageId) {
+              toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+          } else {
+              toastInfo(React.createElement(FormattedMessage, {
+                  id: e.response.status === 400 ? "common.error.400" : "common.error.500"
+              }));
+          }
+          break;
+      }
+      case 403: {
+          if (e.response.data.error === 'Forbidden') {
+              return e.response;
+          }
+
+          toastError(e.response.data.message);
+          store.dispatch({
+              type: LOGOUT_ACTION
+          });
+          history.push('/login');
+          break;
+      }
+  }
     store.dispatch({
       type: HIDE_LOADING_BAR,
       payload: e.response.config.requestUUID
@@ -3647,11 +3641,12 @@ var messages_en = {
 	"menu.user": "User Management",
 	"menu.contract": "Contract",
 	"menu.buyInsurance": "Buy Insurance",
-    "menu.payFee": "Fee Payment",
-    "menu.createBudgetRequest": "Create Budget Request",
-    "menu.budgetApproval": "Budget Approval",
-    "menu.createPaymentRequest": "Create Payment Request",
-    "menu.paymentApproval": "Payment Approval",
+  "menu.payFee": "Fee Payment",
+  "menu.createBudgetRequest": "Create Budget Request",
+  "menu.budgetApproval": "Budget Approval",
+  "menu.createPaymentRequest": "Create Payment Request",
+  "menu.paymentApproval": "Payment Approval",
+  "menu.paymentRecordLookup": "Payment Record Lookup",
 	"menu.contractManagement": "Contract Management",
 	"menu.personalContracts": "Personal Contracts",
 	"menu.partnerContracts": "Parnter Contracts",
@@ -4072,11 +4067,12 @@ var messages_vi = {
 	"menu.user": "Tài khoản",
 	"menu.contract": "Hợp đồng",
 	"menu.buyInsurance": "Mua bảo hiểm",
-    "menu.payFee": "Thanh toán chi phí",
-    "menu.createBudgetRequest": "Tạo yêu cầu phê duyệt ngân sách",
-    "menu.budgetApproval": "Phê duyệt ngân sách",
-    "menu.createPaymentRequest": "Tạo yêu cầu thanh toán",
-    "menu.paymentApproval": "Phê duyệt yêu cầu thanh toán",
+  "menu.payFee": "Thanh toán chi phí",
+  "menu.createBudgetRequest": "Tạo yêu cầu phê duyệt ngân sách",
+  "menu.budgetApproval": "Phê duyệt ngân sách",
+  "menu.createPaymentRequest": "Tạo yêu cầu thanh toán",
+  "menu.paymentApproval": "Phê duyệt yêu cầu thanh toán",
+  "menu.paymentRecordLookup": "Tra cứu hồ sơ thanh toán",
 	"menu.contractManagement": "Quản lý hợp đồng",
 	"menu.personalContracts": "Hợp đồng cá nhân",
 	"menu.partnerContracts": "Hợp đồng đối tác",
@@ -7162,7 +7158,7 @@ const BaseFormDatePicker = ({
     field,
     form
   }) => /*#__PURE__*/React.createElement(DatePicker, {
-    className: `form-control position-relative ${!disabled ? 'bg-white' : ''} ${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'} ${className}`,
+    className: `form-control position-relative ${!disabled ? '' : 'bg-disabled'} ${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'} ${className}`,
     placeholder: placeHolder ? placeHolder : intl.formatMessage({ id: messageId }),
     label: messageId ? intl.formatMessage({ id: messageId }) : '',
     isShowErrorMessage: isShowErrorMessage,
