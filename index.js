@@ -11697,7 +11697,7 @@ var CurrencyInput = function CurrencyInput(_ref) {
       formatMessage = _useIntl.formatMessage;
 
   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
-  /*#__PURE__*/React.createElement(FormGroup, {
+  return /*#__PURE__*/React.createElement(FormGroup, {
     className: `form-label-group position-relative ${className}`
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: messageId
