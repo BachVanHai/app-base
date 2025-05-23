@@ -10338,6 +10338,7 @@ const CurrencyInput = ({ fieldName,
                     /*#__PURE__*/React.createElement(MaskedInput, {
                         ...field,  // Spread field props vào MaskedInput
                         ...inputProps,
+                        disabled: disabled,
                         mask: currencyMask,
                         className : 'form-control',
                         placeholder: formatMessage({ id: placeholder })
