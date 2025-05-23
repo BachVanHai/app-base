@@ -11697,20 +11697,32 @@ var CurrencyInput = function CurrencyInput(_ref) {
       formatMessage = _useIntl.formatMessage;
 
   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
-  return /*#__PURE__*/React.createElement(FormGroup, {
+  /*#__PURE__*/React.createElement(FormGroup, {
     className: `form-label-group position-relative ${className}`
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: messageId
-  },msg => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Field, {
-    name: fieldName
-  },React.createElement(MaskedInput, Object.assign({
-    mask: currencyMask,
-    placeholder: formatMessage({
-      id: placeholder
-    })
-  }, inputProps)), _isRequired && _isShowErrorMessage && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) ? /*#__PURE__*/React.createElement("div", {
-    className: "text-danger"
-  }, getPropObject(errors, fieldName)) : null, /*#__PURE__*/React.createElement(Label, null, msg)))));
+  }, (msg) => (
+      /*#__PURE__*/React.createElement(React.Fragment, null,
+          /*#__PURE__*/React.createElement(Field, {
+            name: fieldName
+          }, ({ field, form }) => (  // Thêm destructuring cho field và form
+              /*#__PURE__*/React.createElement(React.Fragment, null,
+                  /*#__PURE__*/React.createElement(MaskedInput, {
+                    ...field,  // Spread field props vào MaskedInput
+                    ...inputProps,
+                    mask: currencyMask,
+                    placeholder: formatMessage({ id: placeholder })
+                  }),
+                  _isRequired && _isShowErrorMessage && getPropObject(form.errors, fieldName) && getPropObject(form.touched, fieldName)
+                      ? /*#__PURE__*/React.createElement("div", {
+                        className: "text-danger"
+                      }, getPropObject(form.errors, fieldName))
+                      : null
+              )
+          )),
+          /*#__PURE__*/React.createElement(Label, null, msg)
+      )
+  )))
 };
 
 
