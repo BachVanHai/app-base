@@ -10330,10 +10330,7 @@ const CurrencyInput = ({ fieldName,
         id: messageId
     }, (msg) => (
         /*#__PURE__*/React.createElement(React.Fragment, null,
-            /*#__PURE__*/React.createElement(Field, {
-                name: fieldName
-            }, ({ field, form }) => (  // Thêm destructuring cho field và form
-                /*#__PURE__*/React.createElement(React.Fragment, null,
+          /*#__PURE__*/React.createElement(React.Fragment, null,
                     /*#__PURE__*/React.createElement(MaskedInput, {
                         ...field,  // Spread field props vào MaskedInput
                         ...inputProps,
