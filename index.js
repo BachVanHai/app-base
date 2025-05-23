@@ -11696,7 +11696,7 @@ var CurrencyInput = function CurrencyInput(_ref) {
     className: `form-label-group position-relative ${className}`
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
         id: messageId
-      }, React__default.createElement(MaskedInput, _extends({
+      }, React.createElement(MaskedInput, _extends({
         mask: currencyMask,
         placeholder: formatMessage({
           id: placeholder
