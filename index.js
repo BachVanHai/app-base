@@ -11695,14 +11695,13 @@ var CurrencyInput = function CurrencyInput(_ref) {
   return /*#__PURE__*/React.createElement(FormGroup, {
     className: `form-label-group position-relative ${className}`
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: messageId
-  }, (msg) => (
-      /*#__PURE__*/React.createElement(MaskedInput, {
-                    ...inputProps,
-                    mask: currencyMask,
-                    placeholder: formatMessage({ id: placeholder })
-                  }),
-      /*#__PURE__*/React.createElement(Label, null, msg)
+        id: messageId
+      }, React.createElement(MaskedInput, {
+        ...inputProps,
+        mask: currencyMask,
+        placeholder: formatMessage({ id: placeholder })
+      }), (msg) => (
+          /*#__PURE__*/React.createElement(Label, null, msg)
       )
   ))
 };

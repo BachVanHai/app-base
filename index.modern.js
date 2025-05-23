@@ -10323,13 +10323,12 @@ const CurrencyInput = ({ fieldName,
         className: `form-label-group position-relative ${className}`
     }, /*#__PURE__*/React.createElement(FormattedMessage, {
             id: messageId
-        }, (msg) => (
-            /*#__PURE__*/React.createElement(MaskedInput, {
-                ...inputProps,
-                mask: currencyMask,
-                placeholder: formatMessage({ id: placeholder })
-            }),
-                /*#__PURE__*/React.createElement(Label, null, msg)
+        }, React.createElement(MaskedInput, {
+            ...inputProps,
+            mask: currencyMask,
+            placeholder: formatMessage({ id: placeholder })
+        }), (msg) => (
+            /*#__PURE__*/React.createElement(Label, null, msg)
         )
     ))
 };
