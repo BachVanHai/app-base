@@ -11679,49 +11679,23 @@ var defaultMaskOptions = {
   allowLeadingZeroes: false
 };
 
-// var CurrencyInput = function CurrencyInput(_ref) {
-//   var maskOptions = _ref.maskOptions,
-//       placeholder = _ref.placeholder,
-//       inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]);
-//
-//   var _useIntl = reactIntl.useIntl(),
-//       formatMessage = _useIntl.formatMessage;
-//
-//   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
-//   return /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
-//     mask: currencyMask,
-//     placeholder: formatMessage({
-//       id: placeholder
-//     })
-//   }, inputProps));
-// };
-
 var CurrencyInput = function CurrencyInput(_ref) {
   var maskOptions = _ref.maskOptions,
-    placeholder = _ref.placeholder,
-    messageId = _ref.messageId,
-    className = _ref.className,
-    inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder", "messageId", "className"]);
+      placeholder = _ref.placeholder,
+      inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]);
 
   var _useIntl = reactIntl.useIntl(),
-    formatMessage = _useIntl.formatMessage;
+      formatMessage = _useIntl.formatMessage;
 
   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
-
-  return /*#__PURE__*/React__default.createElement(reactstrap.FormGroup, {
-      className: "form-label-group position-relative " + (className || '')
-    },
-    messageId && /*#__PURE__*/React__default.createElement(reactstrap.Label, null,
-      /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, { id: messageId })
-    ),
-    /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
-      mask: currencyMask,
-      placeholder: formatMessage({
-        id: placeholder
-      })
-    }, inputProps))
-  );
+  return /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
+    mask: currencyMask,
+    placeholder: formatMessage({
+      id: placeholder
+    })
+  }, inputProps));
 };
+
 
 CurrencyInput.defaultProps = {
   inputMode: 'numeric',
