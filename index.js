@@ -11671,21 +11671,52 @@ var defaultMaskOptions = {
   allowLeadingZeroes: false
 };
 
+// var CurrencyInput = function CurrencyInput(_ref) {
+//   var maskOptions = _ref.maskOptions,
+//       placeholder = _ref.placeholder,
+//       inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]);
+
+//   var _useIntl = reactIntl.useIntl(),
+//       formatMessage = _useIntl.formatMessage;
+
+//   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
+//   return /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
+//     mask: currencyMask,
+//     placeholder: formatMessage({
+//       id: placeholder
+//     })
+//   }, inputProps));
+// };
+
 var CurrencyInput = function CurrencyInput(_ref) {
   var maskOptions = _ref.maskOptions,
       placeholder = _ref.placeholder,
-      inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]);
+      messageId = _ref.messageId,
+      fieldName = _ref.fieldName,
+      className = _ref.className,
+      inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder", "messageId", "fieldName", "className"]);
 
   var _useIntl = reactIntl.useIntl(),
       formatMessage = _useIntl.formatMessage;
 
   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
-  return /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
-    mask: currencyMask,
-    placeholder: formatMessage({
-      id: placeholder
-    })
-  }, inputProps));
+  
+  return /*#__PURE__*/React__default.createElement(reactstrap.FormGroup, {
+    className: "form-label-group position-relative " + (className || '')
+  }, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+    id: messageId
+  }, function (msg) {
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null,
+      messageId && /*#__PURE__*/React__default.createElement(reactstrap.Label, null, msg),
+      /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
+        mask: currencyMask,
+        name: fieldName,
+        placeholder: formatMessage({
+          id: placeholder
+        })
+      }, inputProps))
+    );
+  }));
 };
 
 CurrencyInput.defaultProps = {

@@ -10302,24 +10302,52 @@ const defaultMaskOptions = {
   allowNegative: false,
   allowLeadingZeroes: false
 };
+// const CurrencyInput = ({
+//   maskOptions,
+//   placeholder,
+//   ...inputProps
+// }) => {
+//   const {
+//     formatMessage
+//   } = useIntl();
+//   const currencyMask = createNumberMask({
+//     ...defaultMaskOptions,
+//     ...maskOptions
+//   });
+//   return /*#__PURE__*/React.createElement(MaskedInput, Object.assign({
+//     mask: currencyMask,
+//     placeholder: formatMessage({
+//       id: placeholder
+//     })
+//   }, inputProps));
+// };
 const CurrencyInput = ({
   maskOptions,
   placeholder,
+  messageId,
+  className,
   ...inputProps
 }) => {
-  const {
-    formatMessage
-  } = useIntl();
+  const { formatMessage } = useIntl();
   const currencyMask = createNumberMask({
     ...defaultMaskOptions,
     ...maskOptions
   });
-  return /*#__PURE__*/React.createElement(MaskedInput, Object.assign({
-    mask: currencyMask,
-    placeholder: formatMessage({
-      id: placeholder
-    })
-  }, inputProps));
+
+  return (
+    <FormGroup className={`form-label-group position-relative ${className || ''}`}>
+      {messageId && (
+        <Label>
+          <FormattedMessage id={messageId} />
+        </Label>
+      )}
+      <MaskedInput
+        mask={currencyMask}
+        placeholder={formatMessage({ id: placeholder })}
+        {...inputProps}
+      />
+    </FormGroup>
+  );
 };
 CurrencyInput.defaultProps = {
   inputMode: 'numeric',
