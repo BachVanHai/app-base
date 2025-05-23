@@ -11703,9 +11703,6 @@ var CurrencyInput = function CurrencyInput(_ref) {
     id: messageId
   }, (msg) => (
       /*#__PURE__*/React.createElement(React.Fragment, null,
-          /*#__PURE__*/React.createElement(Field, {
-            name: fieldName
-          }, ({ field, form }) => (  // Thêm destructuring cho field và form
               /*#__PURE__*/React.createElement(React.Fragment, null,
                   /*#__PURE__*/React.createElement(MaskedInput, {
                     ...field,  // Spread field props vào MaskedInput
@@ -11718,8 +11715,7 @@ var CurrencyInput = function CurrencyInput(_ref) {
                         className: "text-danger"
                       }, getPropObject(form.errors, fieldName))
                       : null
-              )
-          )),
+              ),
           /*#__PURE__*/React.createElement(Label, null, msg)
       )
   )))
