@@ -10335,7 +10335,7 @@ const CurrencyInput = ({ fieldName,
                         ...field,  // Spread field props vào MaskedInput
                         ...inputProps,
                         mask: currencyMask,
-                        className: `form-control`
+                        className: `form-control`,
                         placeholder: formatMessage({ id: placeholder })
                     }),
                     _isRequired && _isShowErrorMessage && getPropObject(form.errors, fieldName) && getPropObject(form.touched, fieldName)
