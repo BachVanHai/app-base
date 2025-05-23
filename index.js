@@ -11682,18 +11682,35 @@ var defaultMaskOptions = {
 var CurrencyInput = function CurrencyInput(_ref) {
   var maskOptions = _ref.maskOptions,
       placeholder = _ref.placeholder,
-      inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]);
+      inputProps = _objectWithoutPropertiesLoose(_ref, ["maskOptions", "placeholder"]),
+      fieldName = _ref.fieldName,
+      errors = _ref.errors,
+      touched = _ref.touched,
+      messageId = _ref.messageId,
+      className = _ref.className,
+      _ref$isShowErrorMessa = _ref.isShowErrorMessage,
+      _isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
+      _ref$isRequired = _ref.isRequired,
+      _isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
 
   var _useIntl = reactIntl.useIntl(),
       formatMessage = _useIntl.formatMessage;
 
   var currencyMask = createNumberMask(_extends({}, defaultMaskOptions, maskOptions));
-  return /*#__PURE__*/React__default.createElement(MaskedInput, _extends({
+  return /*#__PURE__*/React.createElement(FormGroup, {
+    className: `form-label-group position-relative ${className}`
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: messageId
+  },msg => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Field, {
+    name: fieldName
+  },React.createElement(MaskedInput, Object.assign({
     mask: currencyMask,
     placeholder: formatMessage({
       id: placeholder
     })
-  }, inputProps));
+  }, inputProps)), _isRequired && _isShowErrorMessage && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) ? /*#__PURE__*/React.createElement("div", {
+    className: "text-danger"
+  }, getPropObject(errors, fieldName)) : null, /*#__PURE__*/React.createElement(Label, null, msg)))));
 };
 
 
