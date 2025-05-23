@@ -10347,7 +10347,7 @@ const CurrencyInput = ({ fieldName,
             )),
             /*#__PURE__*/React.createElement(Label, null, msg)
         )
-    )))
+    )
 };
 
 CurrencyInput.defaultProps = {
