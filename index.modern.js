@@ -2454,7 +2454,7 @@ const NavbarUser = props => {
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("ul", {
     className: "nav navbar-nav navbar-nav-user float-right"
-  }, /*#__PURE__*/React.createElement(UncontrolledDropdown, {
+  }, /*#__PURE__*/React__default.createElement(Bells, null), /*#__PURE__*/React.createElement(UncontrolledDropdown, {
     tag: "li",
     className: "dropdown-user nav-item"
   }, /*#__PURE__*/React.createElement(DropdownToggle, {

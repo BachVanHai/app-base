@@ -2987,7 +2987,7 @@ var NavbarUser = function NavbarUser(props) {
 
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("ul", {
     className: "nav navbar-nav navbar-nav-user float-right"
-  }, /*#__PURE__*/React__default.createElement(reactstrap.UncontrolledDropdown, {
+  }, /*#__PURE__*/React__default.createElement(Bells, null), /*#__PURE__*/React__default.createElement(reactstrap.UncontrolledDropdown, {
     tag: "li",
     className: "dropdown-user nav-item"
   }, /*#__PURE__*/React__default.createElement(reactstrap.DropdownToggle, {
