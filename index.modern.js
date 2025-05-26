@@ -3863,7 +3863,7 @@ var messages_vi = {
 	"menu.buyInsurance": "Mua bảo hiểm",
   "menu.payFee": "Thanh toán chi phí",
   "menu.createBudgetRequest": "Tạo yêu cầu phê duyệt ngân sách",
-  "menu.budgetApproval": "Phê duyệt ngân sách",
+  "menu.budgetApproval": "Hồ sơ đến",
   "menu.createPaymentRequest": "Tạo yêu cầu thanh toán",
   "menu.paymentApproval": "Phê duyệt yêu cầu thanh toán",
   "menu.paymentRecordLookup": "Tra cứu hồ sơ thanh toán",
