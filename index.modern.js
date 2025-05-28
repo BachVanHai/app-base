@@ -10134,7 +10134,7 @@ const CurrencyInput = ({ fieldName,
                         ...inputProps,
                         disabled: disabled,
                         mask: currencyMask,
-                        className : 'form-control',
+                        className : `form-control ${getPropObject(form.errors, fieldName) && getPropObject(form.touched, fieldName) && 'is-invalid'}`,
                         placeholder: formatMessage({ id: placeholder })
                     }),
                     _isRequired && _isShowErrorMessage && getPropObject(form.errors, fieldName) && getPropObject(form.touched, fieldName)
