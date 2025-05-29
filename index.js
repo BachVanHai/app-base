@@ -2803,6 +2803,179 @@ var Notifications = function Notifications(_ref) {
   })))));
 };
 
+var Bells = function Bells() {
+  var dispatch = reactRedux.useDispatch();
+
+  var _useSelector = reactRedux.useSelector(function (state) {
+    return state.notifications;
+  }),
+      notifications = _useSelector.notifications;
+
+  var _useState = React.useState(false),
+      dropdownOpen = _useState[0],
+      setDropdownOpen = _useState[1];
+
+  var _useState2 = React.useState(false),
+      notificationModal = _useState2[0],
+      setNotificationModal = _useState2[1];
+
+  var _useState3 = React.useState(0),
+      numberNewNotification = _useState3[0],
+      setNumberNewNotification = _useState3[1];
+
+  var _useState4 = React.useState(null),
+      notification = _useState4[0],
+      setNotification = _useState4[1];
+
+  var _useState5 = React.useState(false),
+      centeredModal = _useState5[0],
+      setCenteredModal = _useState5[1];
+
+  React.useEffect(function () {
+    dispatch(getMyNotifications());
+    var intervalId = setInterval(function () {
+      dispatch(getMyNotifications());
+    }, 30000);
+    return function () {
+      return clearInterval(intervalId);
+    };
+  }, []);
+  React.useEffect(function () {
+    var newNotifications = notifications.filter(function (item) {
+      return item.read === false && item.deleted === false;
+    });
+    setNumberNewNotification(newNotifications.length);
+  }, [notifications]);
+  React.useEffect(function () {
+    var notifications = dispatch(checkReceiveNewNotification());
+    checkNewNotifications(notifications);
+    var intervalId = setInterval(function () {
+      var notifications = dispatch(checkReceiveNewNotification());
+      checkNewNotifications(notifications);
+    }, 30000);
+    return function () {
+      return clearInterval(intervalId);
+    };
+  }, []);
+
+  var toggleDropdown = function toggleDropdown() {
+    if (!notificationModal) {
+      setDropdownOpen(!dropdownOpen);
+    }
+  };
+
+  var openModal = function openModal(notification) {
+    setNotificationModal(true);
+    setNotification(notification);
+  };
+
+  var openDeleteAllModal = function openDeleteAllModal() {
+    setCenteredModal(!centeredModal);
+  };
+
+  var checkNewNotifications = function checkNewNotifications(newNotifications) {
+    if (newNotifications.length > 0) {
+      toastSuccess( /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+        id: "navbar.notifications.newNotificationNotice"
+      }));
+    }
+  };
+
+  var onClickUpdateAllNotifications = function onClickUpdateAllNotifications(status) {
+    var newNotificationsRequest;
+
+    if (status === 'DELETE') {
+      newNotificationsRequest = notifications.map(function (item) {
+        var notification = {};
+        notification.id = item.id;
+        notification.deleted = true;
+        notification.read = true;
+        notification.notificationTemplateHisId = item.notificationTemplateHisId;
+        notification.templateId = item.templateId;
+        return notification;
+      });
+    } else {
+      newNotificationsRequest = notifications.map(function (item) {
+        var notification = {};
+        notification.id = item.id;
+        notification.read = status;
+        notification.deleted = false;
+        notification.notificationTemplateHisId = item.notificationTemplateHisId;
+        notification.templateId = item.templateId;
+        return notification;
+      });
+    }
+
+    dispatch(updateAllNotifications(newNotificationsRequest, status));
+  };
+
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(reactstrap.ButtonDropdown, {
+    isOpen: dropdownOpen,
+    toggle: toggleDropdown,
+    tag: "li",
+    className: "dropdown-notification nav-item"
+  }, /*#__PURE__*/React__default.createElement(reactstrap.DropdownToggle, {
+    tag: "a",
+    className: "nav-link nav-link-label"
+  }, /*#__PURE__*/React__default.createElement(Icon.Bell, {
+    className: "text-primary",
+    size: 22
+  }), /*#__PURE__*/React__default.createElement(reactstrap.Badge, {
+    pill: true,
+    color: "primary",
+    className: "badge-up"
+  }, numberNewNotification)), /*#__PURE__*/React__default.createElement(reactstrap.DropdownMenu, {
+    tag: "ul",
+    right: true,
+    className: "dropdown-menu-media"
+  }, /*#__PURE__*/React__default.createElement(Notifications, {
+    notifications: notifications,
+    openModal: openModal,
+    openDeleteAllModal: openDeleteAllModal,
+    onClickUpdateAllNotifications: onClickUpdateAllNotifications
+  }))), notification && /*#__PURE__*/React__default.createElement(reactstrap.Modal, {
+    className: "modal-lg modal-dialog-centered custom-modal-notification",
+    isOpen: notificationModal
+  }, /*#__PURE__*/React__default.createElement(reactstrap.ModalHeader, {
+    toggle: function toggle() {
+      return setNotificationModal(!notificationModal);
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "font-weight-bold",
+    dangerouslySetInnerHTML: {
+      __html: notification.title
+    }
+  })), /*#__PURE__*/React__default.createElement(reactstrap.ModalBody, {
+    className: "overflow-auto"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: notification.content
+    }
+  }))), /*#__PURE__*/React__default.createElement(reactstrap.Modal, {
+    isOpen: centeredModal,
+    toggle: function toggle() {
+      return setCenteredModal(!centeredModal);
+    },
+    className: "modal-dialog-centered"
+  }, /*#__PURE__*/React__default.createElement(reactstrap.ModalBody, null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+    id: "menu.confirmDeleteAll"
+  })), /*#__PURE__*/React__default.createElement(reactstrap.ModalFooter, null, /*#__PURE__*/React__default.createElement(reactstrap.Button, {
+    color: "primary",
+    onClick: function onClick() {
+      onClickUpdateAllNotifications('DELETE');
+      setCenteredModal(!centeredModal);
+    }
+  }, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+    id: "common.ok"
+  })), ' ', /*#__PURE__*/React__default.createElement(reactstrap.Button, {
+    onClick: function onClick() {
+      return setCenteredModal(!centeredModal);
+    }
+  }, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+    id: "common.cancel"
+  })))));
+};
+
 var NavbarUser = function NavbarUser(props) {
   var _useSelector = reactRedux.useSelector(function (state) {
     return state.auth.user;
