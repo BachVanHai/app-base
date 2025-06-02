@@ -4072,7 +4072,7 @@ var messages_vi = {
   "menu.budgetApproval": "Hồ sơ đến",
   "menu.createPaymentRequest": "Tạo mới",
   "menu.paymentApproval": "Hồ sơ đến",
-  "menu.paymentRecordLookup": "Tìm kiếm chung",
+  "menu.paymentRecordLookup": "Tra cứu hồ sơ",
 	"menu.contractManagement": "Quản lý hợp đồng",
 	"menu.personalContracts": "Hợp đồng cá nhân",
 	"menu.partnerContracts": "Hợp đồng đối tác",
