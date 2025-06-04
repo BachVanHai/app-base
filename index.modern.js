@@ -3647,6 +3647,8 @@ var messages_en = {
   "menu.createPaymentRequest": "Create Payment Request",
   "menu.paymentApproval": "Payment Approval",
   "menu.paymentRecordLookup": "Payment Record Lookup",
+  "menu.roleManage": "Role Management",
+  "menu.createRole": "Create role",
 	"menu.contractManagement": "Contract Management",
 	"menu.personalContracts": "Personal Contracts",
 	"menu.partnerContracts": "Parnter Contracts",

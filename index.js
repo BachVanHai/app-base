@@ -4807,6 +4807,8 @@ var messages_vi = {
   "menu.createPaymentRequest": "Tạo mới",
   "menu.paymentApproval": "Hồ sơ đến",
   "menu.paymentRecordLookup": "Tra cứu hồ sơ",
+  "menu.roleManage": "Quản lý",
+  "menu.createRole": "Tạo mới",
 	"menu.contractManagement": "Quản lý hợp đồng",
 	"menu.personalContracts": "Hợp đồng cá nhân",
 	"menu.partnerContracts": "Hợp đồng đối tác",
