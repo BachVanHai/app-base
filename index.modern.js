@@ -2561,6 +2561,9 @@ function useWindowDimensions() {
 }
 
 const Footer = props => {
+  
+  return null;
+
   const [footerHide, setfooterHide] = useState(false);
   const [currentHeight] = useState(window.innerHeight);
   const {

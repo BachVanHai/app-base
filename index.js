@@ -3100,6 +3100,9 @@ function useWindowDimensions() {
 }
 
 var Footer = function Footer(props) {
+
+  return null;
+  
   var _useState = React.useState(false),
       footerHide = _useState[0],
       setfooterHide = _useState[1];
