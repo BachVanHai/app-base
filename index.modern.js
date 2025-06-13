@@ -7952,6 +7952,8 @@ const AccountSettings = props => {
     onClick: () => {
       if (appId !== 'APP_NO1') {
         history.push('/account-info');
+      } else if (appId !== 'BPM_APP') {
+        history.push('/app/account-info')
       } else history.push('/app/account-info');
     }
   }, /*#__PURE__*/React.createElement(User, {

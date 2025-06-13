@@ -2449,8 +2449,10 @@ var UserDropdown = function UserDropdown() {
   }, /*#__PURE__*/React__default.createElement(reactstrap.DropdownItem, {
     tag: "a",
     href: "#",
-    onClick: function onClick(e) {
-      return handleNavigation(e, '/app/account-info');
+    onClick: e => {
+      if (appId !== 'APP_NO1') {
+        handleNavigation(e, '/account-info');
+      } else handleNavigation(e, '/app/account-info');
     }
   }, /*#__PURE__*/React__default.createElement(Icon.User, {
     size: 14,
@@ -8956,9 +8958,11 @@ var AccountSettings = function AccountSettings(props) {
     className: classnames({
       active: activeTab === 'account-info'
     }),
-    onClick: function onClick() {
+    onClick: () => {
       if (appId !== 'APP_NO1') {
         history.push('/account-info');
+      } else if (appId !== 'BPM_APP') {
+        history.push('/app/account-info')
       } else history.push('/app/account-info');
     }
   }, /*#__PURE__*/React__default.createElement(Icon.User, {
