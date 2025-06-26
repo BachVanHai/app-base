@@ -1568,9 +1568,7 @@ NotificationService.updateNotification = notification => {
 };
 NotificationService.updateAllNotificationStatus = notifications => {
   return HttpClient.put(API_UPDATE_ALL_NOTIFICATION_STATUS, notifications, {
-    params: {
-      isBackgroundRequest: true
-    }
+    isBackgroundRequest: true
   });
 };
 
