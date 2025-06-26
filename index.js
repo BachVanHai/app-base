@@ -1863,9 +1863,7 @@ NotificationService.updateNotification = function (notification) {
 
 NotificationService.updateAllNotificationStatus = function (notifications) {
   return HttpClient.put(API_UPDATE_ALL_NOTIFICATION_STATUS, notifications, {
-    params: {
-      isBackgroundRequest: true
-    }
+    isBackgroundRequest: true
   });
 };
 
