@@ -5037,6 +5037,7 @@ var messages_vi = {
 	"menu.accountProductImport": "Nhập dữ liệu",
 	"menu.exportAvailableContracts": "Xuất báo cáo",
 	"menu.transactionManage": "Quản lý giao dịch",
+	"menu.reconciliationAgreement": "Đối soát hợp đồng",
   "menu.vehicleManagement": "Quản lý phân giao mã xe",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",

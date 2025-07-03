@@ -4297,6 +4297,7 @@ var messages_vi = {
 	"menu.allContracts": "Tất cả hợp đồng",
   "menu.exportAvailableContracts": "Xuất báo cáo",
   "menu.transactionManage": "Quản lý giao dịch",
+  "menu.reconciliationAgreement": "Đối soát hợp đồng",
 	"menu.account": "Tài khoản",
 	"menu.createAccount": "Tạo mới tài khoản",
 	"menu.accountManagement": "Quản lý tài khoản",
