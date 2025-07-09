@@ -4367,6 +4367,8 @@ var messages_vi = {
 	"menu.accountProductImport": "Nhập dữ liệu",
 	"menu.newContract": "Thêm mới hợp đồng",
   "menu.vehicleManagement": "Quản lý phân giao mã xe",
+  "menu.createCancelContractRequest": "Tạo mới",
+  "menu.cancelContractInbox": "Hồ sơ đến",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",
 	"navbar.logout": "Đăng xuất",

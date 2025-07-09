@@ -5039,6 +5039,8 @@ var messages_vi = {
 	"menu.transactionManage": "Quản lý giao dịch",
 	"menu.reconciliationAgreement": "Đối soát hợp đồng",
   "menu.vehicleManagement": "Quản lý phân giao mã xe",
+  "menu.createCancelContractRequest": "Tạo mới",
+  "menu.cancelContractInbox": "Hồ sơ đến",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",
 	"navbar.logout": "Đăng xuất",
