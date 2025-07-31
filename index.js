@@ -5044,6 +5044,7 @@ var messages_vi = {
   "menu.cancelContract": "Hủy hợp đồng",
   "menu.importOfflineContract": "Nhập hợp đồng",
   "menu.mappingManagerment": "Quản lý phân giao mã xe",
+  "menu.mappingManagermentCreate": "Quản lý phân giao mã xe",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",
 	"navbar.logout": "Đăng xuất",
