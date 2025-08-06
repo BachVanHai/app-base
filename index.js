@@ -5046,7 +5046,7 @@ var messages_vi = {
   "menu.mappingManagerment": "Quản lý phân giao mã xe",
   "menu.mappingManagermentCreate": "Quản lý phân giao mã xe",
   "menu.telesaleCustomer": "Khách hàng Telesale",
-  "menu.telesaleCustomerInbox": "Danh sách",
+  "menu.telesaleCustomerInbox": "Quản lý",
   "menu.createTelesaleCustomer": "Tạo mới",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",
