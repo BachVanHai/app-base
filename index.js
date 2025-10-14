@@ -8277,7 +8277,7 @@ var Select = function Select(props) {
     theme: function theme(_theme) {
       return _extends({}, _theme, {
         colors: _extends({}, _theme.colors, {
-          primary: '#7B35BB'
+          primary: '#42236A'
         })
       });
     }

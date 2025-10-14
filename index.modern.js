@@ -2579,7 +2579,7 @@ const NavbarUser = props => {
     onClick: e => handleNavigation(e, '/app/bonus-point')
   }, /*#__PURE__*/React.createElement(DollarSign, {
     size: 21,
-    color: "#7B35BB"
+    color: "#42236A"
   }))), /*#__PURE__*/React.createElement(NavItem, {
     className: "nav-search",
     onClick: handleNavbarSearch
@@ -7470,7 +7470,7 @@ const Select = props => {
       ...theme,
       colors: {
         ...theme.colors,
-        primary: '#7B35BB'
+        primary: '#42236A'
       }
     })
   })), props.required && props.isShowErrorMessage ? getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
