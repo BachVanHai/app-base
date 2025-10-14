@@ -14337,8 +14337,8 @@ footer.false-cjs {
 }
 
 .false-cjs.false-cjs .false-cjs>li ul .false-cjs {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
-  box-shadow: 0 0 10px 1px rgba(51, 137, 85, 0.7);
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
+  box-shadow: 0 0 10px 1px #8949C3;
   border-radius: 4px;
 }
 
@@ -14576,8 +14576,8 @@ footer.false-cjs {
 }
 
 .false-cjs.false-cjs .false-cjs>li ul .false-cjs {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
-  box-shadow: 0 0 10px 1px rgba(51, 137, 85, 0.7);
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
+  box-shadow: 0 0 10px 1px #8949C3;
   border-radius: 4px;
 }
 
@@ -14829,13 +14829,13 @@ footer.false-cjs {
 }
 
 .false-cjs .false-cjs.false-cjs a {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
-  box-shadow: 0 0 10px 1px rgba(51, 137, 85, 0.7) !important;
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
+  box-shadow: 0 0 10px 1px #8949C3 !important;
 }
 
 .false-cjs .false-cjs .false-cjs li.false-cjs {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
-  box-shadow: 0 0 10px 1px rgba(51, 137, 85, 0.7) !important;
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
+  box-shadow: 0 0 10px 1px #8949C3 !important;
 }
 
 .false-cjs li.false-cjs a {
@@ -15102,7 +15102,7 @@ body .false-cjs.false-cjs .false-cjs.false-cjs {
 }
 
 .false-cjs ul#false-cjs>li.false-cjs .false-cjs {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
   box-shadow: 0px 0px 6px 1px rgba(51, 137, 85, 0.6);
   color: #fff !important;
   border-radius: 4px;
@@ -18974,7 +18974,7 @@ body.false-cjs .false-cjs {
 }
 
 body.false-cjs #false-cjs .false-cjs {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
 }
 
 body.false-cjs #false-cjs .false-cjs p {
@@ -26642,13 +26642,13 @@ input:focus~.false-cjs {
 }
 
 .false-cjs .false-cjs.false-cjs .false-cjs .false-cjs.false-cjs a {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
-  box-shadow: 0 0 10px 1px rgba(51, 137, 85, 0.7) !important;
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
+  box-shadow: 0 0 10px 1px #8949C3 !important;
 }
 
 .false-cjs .false-cjs.false-cjs .false-cjs .false-cjs .false-cjs li.false-cjs {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
-  box-shadow: 0 0 10px 1px rgba(51, 137, 85, 0.7) !important;
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
+  box-shadow: 0 0 10px 1px #8949C3 !important;
 }
 
 .false-cjs.false-cjs .false-cjs .false-cjs {
@@ -26656,8 +26656,8 @@ input:focus~.false-cjs {
 }
 
 .false-cjs.false-cjs .false-cjs #false-cjs .false-cjs.false-cjs .false-cjs {
-  background: linear-gradient(118deg, #7B35BB, rgba(51, 137, 85, 0.7));
-  box-shadow: 0 0 10px 1px rgba(51, 137, 85, 0.7) !important;
+  background: linear-gradient(118deg, #7B35BB, #8949C3);
+  box-shadow: 0 0 10px 1px #8949C3 !important;
 }
 
 .false-cjs .false-cjs:checked~.false-cjs::before {
