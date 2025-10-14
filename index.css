@@ -1098,7 +1098,7 @@ span.flatpickr-day.selected {
 }
 
 .landing-page .lg-content-header .tab-control.active {
-  color: #73C14F;
+  color: #8949C3;
   border-bottom: 4px solid #42236A;
 }
 
@@ -1177,12 +1177,12 @@ span.flatpickr-day.selected {
 
 .btn-app-selection.active {
   background: #E3F3DC !important;
-  border: 1px solid #73C14F;
-  color: #73C14F !important;
+  border: 1px solid #8949C3;
+  color: #8949C3 !important;
 }
 
 .btn-app-selection:hover {
-  color: #73C14F !important;
+  color: #8949C3 !important;
 }
 
 .btn-app-selection.left {
@@ -1349,7 +1349,7 @@ span.flatpickr-day.selected {
 .app-loading .load-icon .loader {
   border: 16px solid #f3f3f3;
   /* Light grey */
-  border-top: 16px solid #73c14f;
+  border-top: 16px solid #8949C3;
   /* Dark Green */
   border-radius: 50%;
   top: 0;
@@ -1397,7 +1397,7 @@ span.flatpickr-day.selected {
   .app-loading .load-icon .loader {
     border: 12px solid #f3f3f3;
     /* Light grey */
-    border-top: 12px solid #73c14f;
+    border-top: 12px solid #8949C3;
     width: 100px;
     height: 100px;
   }
@@ -17902,7 +17902,7 @@ body .vertical-layout.fixed-footer .main-menu.menu-fixed {
 .app-loading .load-icon .loader {
   border: 16px solid #f3f3f3;
   /* Light grey */
-  border-top: 16px solid #73c14f;
+  border-top: 16px solid #8949C3;
   /* Dark Green */
   border-radius: 50%;
   top: 0;
@@ -17950,7 +17950,7 @@ body .vertical-layout.fixed-footer .main-menu.menu-fixed {
   .app-loading .load-icon .loader {
     border: 12px solid #f3f3f3;
     /* Light grey */
-    border-top: 12px solid #73c14f;
+    border-top: 12px solid #8949C3;
     width: 100px;
     height: 100px;
   }
