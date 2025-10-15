@@ -78,7 +78,7 @@
 
 .false-cjs.false-cjs .false-cjs {
   height: 40px;
-  border-top: 1px solid #eceef1;
+  border-top: 1px solid #FFFFFF;
 }
 
 .false-cjs.false-cjs .false-cjs {
@@ -86,7 +86,7 @@
 }
 
 .false-cjs.false-cjs .false-cjs {
-  border: 1px solid #eceef1;
+  border: 1px solid #FFFFFF;
 }
 
 .false-cjs.false-cjs.false-cjs .false-cjs {
@@ -135,11 +135,11 @@
 }
 
 .false-cjs.false-cjs:before {
-  border-bottom-color: #eceef1;
+  border-bottom-color: #FFFFFF;
 }
 
 .false-cjs.false-cjs:after {
-  border-bottom-color: #eceef1;
+  border-bottom-color: #FFFFFF;
 }
 
 .false-cjs.false-cjs:before,
@@ -148,11 +148,11 @@
 }
 
 .false-cjs.false-cjs:before {
-  border-top-color: #eceef1;
+  border-top-color: #FFFFFF;
 }
 
 .false-cjs.false-cjs:after {
-  border-top-color: #eceef1;
+  border-top-color: #FFFFFF;
 }
 
 .false-cjs:focus {
@@ -173,7 +173,7 @@
 
 .false-cjs .false-cjs {
   border-radius: 5px 5px 0 0;
-  background: #eceef1;
+  background: #FFFFFF;
   color: #5a6171;
   fill: #5a6171;
   height: 34px;
@@ -447,7 +447,7 @@
 
 .false-cjs .false-cjs {
   appearance: menulist;
-  background: #eceef1;
+  background: #FFFFFF;
   border: none;
   border-radius: 0;
   box-sizing: border-box;
@@ -479,13 +479,13 @@
 }
 
 .false-cjs .false-cjs .false-cjs {
-  background-color: #eceef1;
+  background-color: #FFFFFF;
   outline: none;
   padding: 0;
 }
 
 .false-cjs {
-  background: #eceef1;
+  background: #FFFFFF;
   text-align: center;
   overflow: hidden;
   width: 100%;
@@ -514,7 +514,7 @@
 span.false-cjs {
   cursor: default;
   font-size: 90%;
-  background: #eceef1;
+  background: #FFFFFF;
   color: #5a6171;
   line-height: 1;
   margin: 0;
@@ -544,8 +544,8 @@ span.false-cjs {
   -ms-flex-align: start;
   align-items: flex-start;
   width: 307.875px;
-  border-left: 1px solid #eceef1;
-  border-right: 1px solid #eceef1;
+  border-left: 1px solid #FFFFFF;
+  border-right: 1px solid #FFFFFF;
 }
 
 .false-cjs:focus {
@@ -578,8 +578,8 @@ span.false-cjs {
 }
 
 .false-cjs+.false-cjs {
-  -webkit-box-shadow: -1px 0 0 #eceef1;
-  box-shadow: -1px 0 0 #eceef1;
+  -webkit-box-shadow: -1px 0 0 #FFFFFF;
+  box-shadow: -1px 0 0 #FFFFFF;
 }
 
 .false-cjs {
@@ -732,7 +732,7 @@ span.false-cjs {
 
 .false-cjs .false-cjs {
   padding: 0 12px;
-  border-left: 1px solid #eceef1;
+  border-left: 1px solid #FFFFFF;
 }
 
 .false-cjs .false-cjs {
@@ -762,7 +762,7 @@ span.false-cjs {
   box-sizing: border-box;
   overflow: hidden;
   background: #fff;
-  border-bottom: 1px solid #eceef1;
+  border-bottom: 1px solid #FFFFFF;
 }
 
 .false-cjs {
