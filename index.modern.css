@@ -1070,7 +1070,7 @@ span.false-cjs.false-cjs {
 
 .false-cjs .false-cjs {
   width: 100%;
-  background: #FF9900 !important;
+  background: #FF9800 !important;
   border-radius: 16px;
   font-weight: bold;
 }
@@ -1078,15 +1078,15 @@ span.false-cjs.false-cjs {
 .false-cjs .false-cjs {
   width: 100%;
   background: #FFEBCC !important;
-  color: #FF9900 !important;
+  color: #FF9800 !important;
   font-weight: bold;
-  border: 1px solid #FF9900 !important;
+  border: 1px solid #FF9800 !important;
   border-radius: 16px;
 }
 
 .false-cjs .false-cjs:hover {
-  color: #FF9900 !important;
-  border: 1px solid #FF9900 !important;
+  color: #FF9800 !important;
+  border: 1px solid #FF9800 !important;
 }
 
 .false-cjs .false-cjs {
@@ -1155,7 +1155,7 @@ span.false-cjs.false-cjs {
 }
 
 .false-cjs .false-cjs {
-  color: #FF9900 !important;
+  color: #FF9800 !important;
 }
 
 .false-cjs .false-cjs.false-cjs.false-cjs {

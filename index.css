@@ -1067,7 +1067,7 @@ span.flatpickr-day.selected {
 
 .landing-page .btn-primary {
   width: 100%;
-  background: #FF9900 !important;
+  background: #FF9800 !important;
   border-radius: 16px;
   font-weight: bold;
 }
@@ -1075,15 +1075,15 @@ span.flatpickr-day.selected {
 .landing-page .btn-second {
   width: 100%;
   background: #FFEBCC !important;
-  color: #FF9900 !important;
+  color: #FF9800 !important;
   font-weight: bold;
-  border: 1px solid #FF9900 !important;
+  border: 1px solid #FF9800 !important;
   border-radius: 16px;
 }
 
 .landing-page .btn-second:hover {
-  color: #FF9900 !important;
-  border: 1px solid #FF9900 !important;
+  color: #FF9800 !important;
+  border: 1px solid #FF9800 !important;
 }
 
 .landing-page .lg-content-header {
@@ -1152,7 +1152,7 @@ span.flatpickr-day.selected {
 }
 
 .landing-page .text-secondary {
-  color: #FF9900 !important;
+  color: #FF9800 !important;
 }
 
 .landing-page .form-control.is-invalid.not-show-icon {
