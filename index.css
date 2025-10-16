@@ -4655,7 +4655,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-primary:focus,
 .btn-outline-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(51, 137, 85, 0.5);
+  box-shadow: 0 0 0 0.2rem #7B35BB;
 }
 
 .btn-outline-primary.disabled,
@@ -4675,7 +4675,7 @@ fieldset:disabled a.btn {
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-outline-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(51, 137, 85, 0.5);
+  box-shadow: 0 0 0 0.2rem #7B35BB;
 }
 
 .btn-outline-secondary {
@@ -5682,11 +5682,11 @@ input[type="button"].btn-block {
 }
 
 .custom-checkbox .custom-control-input:disabled:checked~.custom-control-label::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .custom-checkbox .custom-control-input:disabled:indeterminate~.custom-control-label::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .custom-radio .custom-control-label::before {
@@ -5698,7 +5698,7 @@ input[type="button"].btn-block {
 }
 
 .custom-radio .custom-control-input:disabled:checked~.custom-control-label::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .custom-switch {
@@ -5734,7 +5734,7 @@ input[type="button"].btn-block {
 }
 
 .custom-switch .custom-control-input:disabled:checked~.custom-control-label::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .custom-select {
@@ -7007,7 +7007,7 @@ a.badge-primary:focus {
 a.badge-primary:focus,
 a.badge-primary.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(51, 137, 85, 0.5);
+  box-shadow: 0 0 0 0.2rem #7B35BB;
 }
 
 .badge-secondary {
@@ -23769,8 +23769,8 @@ body[data-col="1-column"] .header-navbar.floating-nav {
   position: absolute;
   bottom: 0;
   top: 100%;
-  background: linear-gradient(30deg, #42236A, rgba(51, 137, 85, 0.5)) !important;
-  box-shadow: 0 0 8px 0 rgba(51, 137, 85, 0.5) !important;
+  background: linear-gradient(30deg, #42236A, #7B35BB) !important;
+  box-shadow: 0 0 8px 0 #7B35BB !important;
   transform: translateY(0px);
   transition: all 0.2s linear;
 }
@@ -24818,7 +24818,7 @@ a:hover {
 .bg-gradient-primary {
   background: #640064;
   color: #fff;
-  background-image: linear-gradient(30deg, #42236A, rgba(51, 137, 85, 0.5));
+  background-image: linear-gradient(30deg, #42236A, #7B35BB);
   background-repeat: repeat-x;
 }
 

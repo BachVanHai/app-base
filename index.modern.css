@@ -4627,7 +4627,7 @@ fieldset:disabled a.false-cjs {
 
 .false-cjs:focus,
 .false-cjs.false-cjs {
-  box-shadow: 0 0 0 0.2rem rgba(51, 137, 85, 0.5);
+  box-shadow: 0 0 0 0.2rem #7B35BB;
 }
 
 .false-cjs.false-cjs,
@@ -4647,7 +4647,7 @@ fieldset:disabled a.false-cjs {
 .false-cjs:not(:disabled):not(.false-cjs):active:focus,
 .false-cjs:not(:disabled):not(.false-cjs).false-cjs:focus,
 .false-cjs>.false-cjs.false-cjs:focus {
-  box-shadow: 0 0 0 0.2rem rgba(51, 137, 85, 0.5);
+  box-shadow: 0 0 0 0.2rem #7B35BB;
 }
 
 .false-cjs {
@@ -5679,11 +5679,11 @@ input[type="button"].false-cjs {
 }
 
 .false-cjs .false-cjs:disabled:checked~.false-cjs::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .false-cjs .false-cjs:disabled:indeterminate~.false-cjs::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .false-cjs .false-cjs::before {
@@ -5695,7 +5695,7 @@ input[type="button"].false-cjs {
 }
 
 .false-cjs .false-cjs:disabled:checked~.false-cjs::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .false-cjs {
@@ -5731,7 +5731,7 @@ input[type="button"].false-cjs {
 }
 
 .false-cjs .false-cjs:disabled:checked~.false-cjs::before {
-  background-color: rgba(51, 137, 85, 0.5);
+  background-color: #7B35BB;
 }
 
 .false-cjs {
@@ -7027,7 +7027,7 @@ a.false-cjs:focus {
 a.false-cjs:focus,
 a.false-cjs.false-cjs {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(51, 137, 85, 0.5);
+  box-shadow: 0 0 0 0.2rem #7B35BB;
 }
 
 .false-cjs {
@@ -23596,8 +23596,8 @@ body[data-col="1-column"] .false-cjs.false-cjs {
   position: absolute;
   bottom: 0;
   top: 100%;
-  background: linear-gradient(30deg, #42236A, rgba(51, 137, 85, 0.5)) !important;
-  box-shadow: 0 0 8px 0 rgba(51, 137, 85, 0.5) !important;
+  background: linear-gradient(30deg, #42236A, #7B35BB) !important;
+  box-shadow: 0 0 8px 0 #7B35BB !important;
   transform: translateY(0px);
   transition: all 0.2s linear;
 }
@@ -24611,7 +24611,7 @@ a:hover {
 .false-cjs {
   background: #640064;
   color: #fff;
-  background-image: linear-gradient(30deg, #42236A, rgba(51, 137, 85, 0.5));
+  background-image: linear-gradient(30deg, #42236A, #7B35BB);
   background-repeat: repeat-x;
 }
 
