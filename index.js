@@ -3493,11 +3493,13 @@ var SidebarHeader = function SidebarHeader(props) {
     onClick: onClickHome
   }, /*#__PURE__*/React__default.createElement("img", {
     className: "img-fluid logo-img",
-    src: IMAGE.LOGO_NO_TEXT,
+    // src: IMAGE.LOGO_NO_TEXT,
+    src: "",
     alt: "logo"
   }), /*#__PURE__*/React__default.createElement("img", {
     className: "img-fluid logo-text",
-    src: IMAGE.LOGO_TEXT,
+    // src: IMAGE.LOGO_TEXT,
+    src: "",
     alt: "logo"
   })), /*#__PURE__*/React__default.createElement("li", {
     className: "nav-item nav-toggle"
