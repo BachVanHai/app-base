@@ -2465,7 +2465,7 @@ const NavbarUser = props => {
   }, user.fullName)), /*#__PURE__*/React.createElement("span", {
     "data-tour": "user"
   }, /*#__PURE__*/React.createElement("img", {
-    src: userSettings.avatar || '',
+    src: userSettingsDTO.avatar || 'https://sit2.bmktech.vn/resources/images/default-user-avatar.png',
     className: "round",
     height: "40",
     width: "40",
