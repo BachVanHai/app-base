@@ -3000,7 +3000,7 @@ var NavbarUser = function NavbarUser(props) {
   }, user.fullName)), /*#__PURE__*/React__default.createElement("span", {
     "data-tour": "user"
   }, /*#__PURE__*/React__default.createElement("img", {
-    src: userSettingsDTO.avatar || 'https://sit2.bmktech.vn/resources/images/default-user-avatar.png',
+    src: userSettings.avatar || 'https://sit2.bmktech.vn/resources/images/default-user-avatar.png',
     className: "round",
     height: "40",
     width: "40",
