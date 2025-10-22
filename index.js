@@ -981,8 +981,9 @@ var loginAction = function loginAction(user) {
               }
 
               var _response$data = response.data,
-                  userSettings = _response$data.userSettings,
+                  userSettingsDTO = _response$data.userSettingsDTO,
                   groupId = _response$data.groupId;
+              var userSettings = userSettingsDTO;
 
               if (userSettings) {
                 localStorage.setItem('language', userSettings.language.toLowerCase());
@@ -1071,7 +1072,8 @@ var socialLogin = function socialLogin(data, loginMethod, isGuest, isRemeberMe, 
                     }));
                   }
 
-                  var userSettings = res.data.userSettings;
+                  var userSettingsDTO = res.data.userSettingsDTO;
+                  var userSettings = userSettingsDTO;
 
                   if (userSettings) {
                     localStorage.setItem('language', userSettings.language.toLowerCase());

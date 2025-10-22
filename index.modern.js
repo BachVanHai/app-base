@@ -819,9 +819,10 @@ const loginAction = user => {
         }));
       }
       const {
-        userSettings,
+        userSettingsDTO,
         groupId
       } = response.data;
+      const userSettings = userSettingsDTO;
       if (userSettings) {
         localStorage.setItem('language', userSettings.language.toLowerCase());
       }
@@ -892,8 +893,9 @@ const socialLogin = (data, loginMethod, isGuest, isRemeberMe, openAddInfoPopup, 
           }));
         }
         const {
-          userSettings
+          userSettingsDTO
         } = res.data;
+        const userSettings = userSettingsDTO;
         if (userSettings) {
           localStorage.setItem('language', userSettings.language.toLowerCase());
         }
@@ -2465,7 +2467,7 @@ const NavbarUser = props => {
   }, user.fullName)), /*#__PURE__*/React.createElement("span", {
     "data-tour": "user"
   }, /*#__PURE__*/React.createElement("img", {
-    src: userSettings.avatar || '',
+    src: userSettings.avatar || 'https://sit2.bmktech.vn/resources/images/default-user-avatar.png',
     className: "round",
     height: "40",
     width: "40",
