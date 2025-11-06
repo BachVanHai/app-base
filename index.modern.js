@@ -4170,6 +4170,7 @@ var messages_vi = {
   "menu.manageCollaboratorWorkingHour": "Quản lý giờ làm việc",
   "menu.manageCollaboratorAttendance": "Quản lý chấm công",
   "menu.manageCollaboratorCheckin": "Quản lý checkin",
+  "menu.manageCollaboratorEmail": "Quản lý email",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",
 	"navbar.logout": "Đăng xuất",
