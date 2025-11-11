@@ -3944,6 +3944,7 @@ var messages_en = {
 	"menu.accountProductManagement": "Account Product Management",
 	"menu.accountProductImport": "Account Product Import",
 	"menu.renewalContract": "Renewal Contract",
+  "menu.notificationTemplateManagement": "Notification Template Management",
 	"navbar.language.vi": "Tiếng việt",
 	"navbar.language.en": "English",
 	"navbar.logout": "Logout",

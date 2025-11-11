@@ -5050,6 +5050,7 @@ var messages_vi = {
   "menu.telesaleCustomerInbox": "Quản lý",
   "menu.createTelesaleCustomer": "Tạo mới",
   "menu.renewalContract": "Thông tin HĐTT",
+  "menu.notificationTemplateManagement": "Quản lý mẫu thông báo",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",
 	"navbar.logout": "Đăng xuất",
