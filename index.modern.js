@@ -9324,7 +9324,10 @@ const VerifyOtp = () => {
 const LandingPageHeader = ({
   activeTab
 }) => /*#__PURE__*/React.createElement(Context.Consumer, null, context => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-  className: "d-flex justify-content-between align-items-center"
+  className: "d-flex align-items-center",
+  style: {
+    position: 'relative'
+  }
 }, activeTab !== 'login' ? /*#__PURE__*/React.createElement("a", {
   href: "https://bmktech.vn/"
 }, /*#__PURE__*/React.createElement("span", {
@@ -9333,7 +9336,10 @@ const LandingPageHeader = ({
   src: IMAGE.LOGO,
   alt: "logo"
 }))) : null, /*#__PURE__*/React.createElement("div", {
-  className: "languages d-flex align-items-center"
+  className: "languages d-flex align-items-center",
+  style: {
+    marginLeft: 'auto'
+  }
 }, /*#__PURE__*/React.createElement(UncontrolledButtonDropdown, {
   direction: "left"
 }, /*#__PURE__*/React.createElement(DropdownToggle, {
@@ -9757,7 +9763,7 @@ const LandingPage = props => {
   }, /*#__PURE__*/React.createElement(LandingPageHeader, {
     activeTab: activeTab
   }), activeTab === 'login' || activeTab === 'register' ? /*#__PURE__*/React.createElement("div", {
-    className: "lg-content-header d-flex cursor-pointer mt-3"
+    className: "lg-content-header d-flex cursor-pointer mt-3 justify-content-center"
   }, /*#__PURE__*/React.createElement("div", {
     onClick: () => goToLink('/login'),
     className: classnames('col-6 text-center tab-control', {
