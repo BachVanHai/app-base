@@ -9321,16 +9321,18 @@ const VerifyOtp = () => {
   })))));
 };
 
-const LandingPageHeader = () => /*#__PURE__*/React.createElement(Context.Consumer, null, context => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+const LandingPageHeader = ({
+  activeTab
+}) => /*#__PURE__*/React.createElement(Context.Consumer, null, context => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "d-flex justify-content-between align-items-center"
-}, /*#__PURE__*/React.createElement("a", {
+}, activeTab !== 'login' ? /*#__PURE__*/React.createElement("a", {
   href: "https://bmktech.vn/"
 }, /*#__PURE__*/React.createElement("span", {
   className: "d-block d-lg-none"
 }, /*#__PURE__*/React.createElement("img", {
   src: IMAGE.LOGO,
   alt: "logo"
-}))), /*#__PURE__*/React.createElement("div", {
+}))) : null, /*#__PURE__*/React.createElement("div", {
   className: "languages d-flex align-items-center"
 }, /*#__PURE__*/React.createElement(UncontrolledButtonDropdown, {
   direction: "left"
@@ -9752,7 +9754,9 @@ const LandingPage = props => {
     lg: 7
   }, /*#__PURE__*/React.createElement("div", {
     className: activeTab === 'complete-information' ? 'main-content wider' : 'main-content'
-  }, /*#__PURE__*/React.createElement(LandingPageHeader, null), activeTab === 'login' || activeTab === 'register' ? /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(LandingPageHeader, {
+    activeTab: activeTab
+  }), activeTab === 'login' || activeTab === 'register' ? /*#__PURE__*/React.createElement("div", {
     className: "lg-content-header d-flex cursor-pointer mt-3"
   }, /*#__PURE__*/React.createElement("div", {
     onClick: () => goToLink('/login'),
