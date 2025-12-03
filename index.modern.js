@@ -52,14 +52,14 @@ const AppId = {
   INSURANCE_APP: 'INSURANCE_APP',
   SUPPLEMENT_APP: 'SUPPLEMENT_APP',
   ELITE_APP: 'ELITE_APP',
-  DIVAY_APP: 'DIVAY_APP'
+  TPBANK_APP: 'TPBANK_APP'
 };
 
 const API_BASE_URL = 'https://api.bmktech.vn';
 const RESOURCE_URL = 'https://sit2.bmktech.vn/resources/images/';
 const FB_APP_ID = '2651185198505964';
 const GOOGLE_APP_ID = '400818618331-k9ptcdcgr99po0g5q5mh8e5ekodgj61n.apps.googleusercontent.com';
-const API_LOGIN_URL = '/api/authenticate';
+const API_LOGIN_URL = '/tpbank-authenticate';
 const API_LOGOUT_URL = '/api/logout';
 const API_GUEST_SOCIAL_LOGIN = '/api/social-login/guest';
 const API_PARTNER_SOCIAL_LOGIN = '/api/social-login/partner';
@@ -127,8 +127,8 @@ const LOGIN_METHODS = {
   PASSWORD: 'PASSWORD'
 };
 const API_TIME_OUT = 5 * 60 * 1000;
-const MAX_FILE_SIZE = 5;
-const CONTACT_PHONE = '0899.300.800';
+const MAX_FILE_SIZE = 10;
+const CONTACT_PHONE = '0966.530.550';
 const SESSION_TIMEOUT = 30;
 const DATE_TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss';
 const ANDROID_APP_LINK = 'https://play.google.com/store/apps/details?id=com.inon.vn';
@@ -530,8 +530,8 @@ const setUpHttpClient = (store, apiBaseUrl) => {
 };
 
 class AuthService { }
-AuthService.login = user => {
-  return HttpClient.post(API_LOGIN_URL, user);
+AuthService.login = userToken => {
+  return HttpClient.post(API_LOGIN_URL, userToken);
 };
 AuthService.guestSocialLogin = data => {
   return HttpClient.post(API_GUEST_SOCIAL_LOGIN, data);
@@ -803,19 +803,19 @@ const checkLoginStatus = (authToken, redirectUrl) => {
     }
   };
 };
-const loginAction = user => {
+const loginAction = userToken => {
   return async (dispatch, getState) => {
-    user.rememberMe = user.isRemeberMe;
-    let response = await AuthService.login(user);
+    let response = await AuthService.login(userToken);
     const {
       isGuest
     } = getState().auth;
     if (response.status === API_R_200) {
       const authToken = response.data.id_token;
-      response = await AuthService.getUserInfo(user.username, authToken);
-      if (user.isRemeberMe) {
+      const username = response.data.username;
+      response = await AuthService.getUserInfo(username, authToken);
+      if (response?.data) {
         localStorage.setItem(REMEMBER_ME_TOKEN, JSON.stringify({
-          username: user.username,
+          username: username,
           name: response.data.fullName
         }));
       }
