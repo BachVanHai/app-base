@@ -233,7 +233,7 @@ const IMAGE = {
   LOGO_TEXT: RESOURCE_URL + 'in-on-logo-text.svg',
   NAV_ICON_1: RESOURCE_URL + 'nav-help-center.png',
   NAV_ICON_2: RESOURCE_URL + 'nav-247-icon.png',
-  BUY_INSURANCE: RESOURCE_URL + 'buy-insurance-icon.svg',
+  BUY_INSURANCE: RESOURCE_URL + 'buy-insurance-icon-new.svg',
   LOGO_WHITE: RESOURCE_URL + 'in-on-logo-white.svg',
   LANDING_PAGE_BG: RESOURCE_URL + 'landing-page-bg.jpg',
   LANDING_PAGE_2_BG: RESOURCE_URL + 'lading-page-2.svg',
