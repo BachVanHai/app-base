@@ -46,6 +46,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import Table from 'react-table';
+import {BaseAppUltils} from "./index";
 
 const AppId = {
   APP_NO1: 'APP_NO1',
@@ -531,7 +532,14 @@ const setUpHttpClient = (store, apiBaseUrl) => {
 
 class AuthService { }
 AuthService.login = userToken => {
-  return HttpClient.post(API_LOGIN_URL, userToken);
+
+  const headers = {
+    clientMessageId: BaseAppUltils.generateUUID()
+  }
+
+  return HttpClient.post(API_LOGIN_URL, userToken,{
+    headers: headers
+  });
 };
 AuthService.guestSocialLogin = data => {
   return HttpClient.post(API_GUEST_SOCIAL_LOGIN, data);
