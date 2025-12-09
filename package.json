@@ -5,7 +5,6 @@
   "author": "BachVanHai",
   "license": "MIT",
   "repository": "BachVanHai/base-app",
-  "main": "index.js",
   "module": "index.modern.js",
   "engines": {
     "node": ">=10"
