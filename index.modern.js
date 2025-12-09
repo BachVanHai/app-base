@@ -7275,7 +7275,7 @@ const Select = props => {
       ...theme,
       colors: {
         ...theme.colors,
-        primary: '#5E2D91'
+        primary: '#5D3389'
       }
     })
   })), props.required && props.isShowErrorMessage ? getPropObject(props.errors, props.fieldName) && getPropObject(props.touched, props.fieldName) ? /*#__PURE__*/React.createElement("div", {
