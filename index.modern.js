@@ -4393,6 +4393,8 @@ var messages_vi = {
   "menu.vehicleTypeMapping": "Phân giao loại xe",
   "menu.keyRedisManagement": "Quản lý key Redis",
   "menu.assignBranch": "Phân giao chi nhánh",
+  "menu.createCatProposal": "Tạo mới",
+  "menu.manageCatProposal": "Quản lý",
 	"navbar.language.vi": "Tiếng Việt",
 	"navbar.language.en": "English",
 	"navbar.logout": "Đăng xuất",
