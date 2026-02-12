@@ -547,7 +547,13 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
       }
     }
 
-    config.headers.appId = store.getState().customizer.appId;
+    var appId = store.getState().customizer.appId;
+
+    if ('INSURANCE_APP' === appId) {
+      appId = 'TPB_SALE_APP';
+    }
+
+    config.headers.appId = appId;
     config.headers.appVersion = 'v1';
     config.headers.latitude = localStorage.getItem('latitude');
     config.headers.longitude = localStorage.getItem('longitude');

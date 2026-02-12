@@ -46,7 +46,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import Table from 'react-table';
-import {BaseAppUltils} from "./index";
+import { BaseAppUltils } from "./index";
 
 const AppId = {
   APP_NO1: 'APP_NO1',
@@ -463,7 +463,11 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         return;
       }
     }
-    config.headers.appId = store.getState().customizer.appId;
+    let appId = store.getState().customizer.appId;
+    if ('INSURANCE_APP' === appId) {
+      appId = 'TPB_SALE_APP';
+    }
+    config.headers.appId = appId;
     config.headers.appVersion = 'v1';
     config.headers.latitude = localStorage.getItem('latitude');
     config.headers.longitude = localStorage.getItem('longitude');
@@ -537,7 +541,7 @@ AuthService.login = userToken => {
     clientMessageId: BaseAppUltils.generateUUID()
   }
 
-  return HttpClient.post(API_LOGIN_URL, userToken,{
+  return HttpClient.post(API_LOGIN_URL, userToken, {
     headers: headers
   });
 };
@@ -10627,4 +10631,4 @@ const usePageAuthorities = () => {
   return authorities;
 };
 
-export { AccountSettings, AppId, Autocomplete as AutoComplete, App as BaseApp, appConfigs as BaseAppConfigs, index as BaseAppUltils, BaseFormDatePicker, BaseFormGroup, BaseFormGroupSelect, Bells, CheckBox as Checkbox, CurrencyInput, DatePicker, FallbackSpinner, GeneralInfo, HttpClient, LandingPage, Radio, ReactTable, Select, changeIsGuest, goBackHomePage, goToAgencyApp, hideConfirmAlert,loginAction,logoutAction, showConfirmAlert, useBankList, useCityList, useDeviceDetect, useDistrictList, usePageAuthorities, useWardList, useWindowDimensions };
+export { AccountSettings, AppId, Autocomplete as AutoComplete, App as BaseApp, appConfigs as BaseAppConfigs, index as BaseAppUltils, BaseFormDatePicker, BaseFormGroup, BaseFormGroupSelect, Bells, CheckBox as Checkbox, CurrencyInput, DatePicker, FallbackSpinner, GeneralInfo, HttpClient, LandingPage, Radio, ReactTable, Select, changeIsGuest, goBackHomePage, goToAgencyApp, hideConfirmAlert, loginAction, logoutAction, showConfirmAlert, useBankList, useCityList, useDeviceDetect, useDistrictList, usePageAuthorities, useWardList, useWindowDimensions };
