@@ -61,6 +61,7 @@ const RESOURCE_URL = 'https://sit2.bmktech.vn/resources/images/';
 const FB_APP_ID = '2651185198505964';
 const GOOGLE_APP_ID = '400818618331-k9ptcdcgr99po0g5q5mh8e5ekodgj61n.apps.googleusercontent.com';
 const API_LOGIN_URL = '/api/tpbank-authenticate';
+const API_CHECK_LOGIN_URL = '/api/authenticate';
 const API_LOGOUT_URL = '/api/logout';
 const API_GUEST_SOCIAL_LOGIN = '/api/social-login/guest';
 const API_PARTNER_SOCIAL_LOGIN = '/api/social-login/partner';
@@ -578,7 +579,7 @@ AuthService.register = user => {
   return HttpClient.post(API_REGISTER, user);
 };
 AuthService.checkLoginByToken = () => {
-  return HttpClient.get(API_LOGIN_URL);
+  return HttpClient.get(API_CHECK_LOGIN_URL);
 };
 AuthService.getSuggestionEmail = username => {
   return HttpClient.get(`${API_EMAIL_SUGGESTION}/${username}`);
