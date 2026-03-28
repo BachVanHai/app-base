@@ -1461,6 +1461,19 @@ const authReducers = (state = {
           }
         };
       }
+    case 'ACTION_SAVE_REF_ID':
+      {
+        return {
+          ...state,
+          guest: {
+            ...state.guest,
+            user: {
+              ...state.guest?.user,
+              refId: action.payload
+            }
+          }
+        };
+      }
     default:
       return state;
   }
