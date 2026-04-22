@@ -60,7 +60,7 @@ const API_BASE_URL = 'https://api.bmktech.vn';
 const RESOURCE_URL = 'https://sit2.bmktech.vn/resources/images/';
 const FB_APP_ID = '2651185198505964';
 const GOOGLE_APP_ID = '400818618331-k9ptcdcgr99po0g5q5mh8e5ekodgj61n.apps.googleusercontent.com';
-const API_LOGIN_URL = '/api/tpbank-authenticate';
+const API_LOGIN_URL = '/api/authenticate';
 const API_CHECK_LOGIN_URL = '/api/authenticate';
 const API_LOGOUT_URL = '/api/logout';
 const API_GUEST_SOCIAL_LOGIN = '/api/social-login/guest';
@@ -2764,20 +2764,8 @@ const ThemeNavbar = props => {
     onClick: props.sidebarVisibility
   }, /*#__PURE__*/React.createElement(Menu, {
     className: "ficon"
-  })))), /*#__PURE__*/React.createElement("ul", {
-    className: "nav navbar-nav d-none d-xl-flex bookmark-icons"
-  }, NAV_ICONS.map((item, index) => /*#__PURE__*/React.createElement(NavItem, {
-    key: index
-  }, /*#__PURE__*/React.createElement("img", {
-    onClick: () => onClickRedirectToPage(item),
-    style: {
-      width: '58px',
-      height: '58px'
-    },
-    className: "img-fluid cursor-pointer",
-    src: IMAGE[`NAV_ICON_${index + 1}`],
-    alt: ""
-  })))))), /*#__PURE__*/React.createElement(NavbarUser, {
+  })))),
+  )), /*#__PURE__*/React.createElement(NavbarUser, {
     handleAppOverlay: props.handleAppOverlay,
     onClickRedirectToPage: onClickRedirectToPage
   }))))));
@@ -2997,25 +2985,12 @@ const SidebarHeader = props => {
     menuShadow
   } = props;
   const dispatch = useDispatch();
-  const onClickHome = () => {
-    dispatch(goBackHomePage());
-  };
+
   return /*#__PURE__*/React.createElement("div", {
     className: "navbar-header"
   }, /*#__PURE__*/React.createElement("ul", {
     className: "nav navbar-nav flex-row"
   }, /*#__PURE__*/React.createElement("li", {
-    className: "nav-item my-auto mr-auto cursor-pointer",
-    onClick: onClickHome
-  }, /*#__PURE__*/React.createElement("img", {
-    className: "img-fluid logo-img",
-    src: IMAGE.LOGO_NO_TEXT,
-    alt: "logo"
-  }), /*#__PURE__*/React.createElement("img", {
-    className: "img-fluid logo-text",
-    src: IMAGE.LOGO_TEXT,
-    alt: "logo"
-  })), /*#__PURE__*/React.createElement("li", {
     className: "nav-item nav-toggle"
   }, /*#__PURE__*/React.createElement("div", {
     className: "nav-link modern-nav-toggle"
@@ -8755,43 +8730,43 @@ const AppSelection = ({
     //   xmlns: "http://www.w3.org/2000/svg"
     // }, /*#__PURE__*/React.createElement("path", {
     //   d: "M20 25C22.7614 25 25 22.7614 25 20C25 17.2386 22.7614 15 20 15C17.2386 15 15 17.2386 15 20C15 22.7614 17.2386 25 20 25Z",
-    //   stroke: !isGuest ? '#8949C3' : '#587471',
+    //   stroke: !isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
     // }), /*#__PURE__*/React.createElement("path", {
     //   d: "M20 35V35.0167",
-    //   stroke: !isGuest ? '#8949C3' : '#587471',
+    //   stroke: !isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
     // }), /*#__PURE__*/React.createElement("path", {
     //   d: "M5 15V15.0167",
-    //   stroke: !isGuest ? '#8949C3' : '#587471',
+    //   stroke: !isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
     // }), /*#__PURE__*/React.createElement("path", {
     //   d: "M35 15V15.0167",
-    //   stroke: !isGuest ? '#8949C3' : '#587471',
+    //   stroke: !isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
     // }), /*#__PURE__*/React.createElement("path", {
     //   d: "M13.3333 33.4999C11.0589 32.3906 9.1021 30.7238 7.64506 28.6548C6.18802 26.5858 5.2781 24.1818 5 21.6666",
-    //   stroke: !isGuest ? '#8949C3' : '#587471',
+    //   stroke: !isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
     // }), /*#__PURE__*/React.createElement("path", {
     //   d: "M26.6663 33.4999C28.9407 32.3906 30.8975 30.7238 32.3545 28.6548C33.8116 26.5858 34.7215 24.1818 34.9996 21.6666",
-    //   stroke: !isGuest ? '#8949C3' : '#587471',
+    //   stroke: !isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
     // }), /*#__PURE__*/React.createElement("path", {
     //   d: "M10.333 8.33345C13.0132 6.14004 16.3697 4.94164 19.833 4.94164C23.2963 4.94164 26.6529 6.14004 29.333 8.33345",
-    //   stroke: !isGuest ? '#8949C3' : '#587471',
+    //   stroke: !isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
@@ -8813,13 +8788,13 @@ const AppSelection = ({
     //   xmlns: "http://www.w3.org/2000/svg"
     // }, /*#__PURE__*/React.createElement("path", {
     //   d: "M20.0005 18.4999C23.3143 18.4999 26.0007 15.8136 26.0007 12.4997C26.0007 9.1859 23.3143 6.49951 20.0005 6.49951C16.6866 6.49951 14.0002 9.1859 14.0002 12.4997C14.0002 15.8136 16.6866 18.4999 20.0005 18.4999Z",
-    //   stroke: isGuest ? '#8949C3' : '#587471',
+    //   stroke: isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
     // }), /*#__PURE__*/React.createElement("path", {
     //   d: "M10.9993 33.5004V30.5003C10.9993 28.9089 11.6314 27.3828 12.7567 26.2575C13.8819 25.1322 15.4081 24.5001 16.9995 24.5001H22.9997C24.5911 24.5001 26.1172 25.1322 27.2425 26.2575C28.3678 27.3828 28.9999 28.9089 28.9999 30.5003V33.5004",
-    //   stroke: isGuest ? '#8949C3' : '#587471',
+    //   stroke: isGuest ? '#8949C3' : '#71586E',
     //   "stroke-width": "2",
     //   "stroke-linecap": "round",
     //   "stroke-linejoin": "round"
@@ -10466,9 +10441,6 @@ const LoadingSpinner = () => {
     className: "load-icon"
   }, /*#__PURE__*/React.createElement("div", {
     className: "loader"
-  }), /*#__PURE__*/React.createElement("img", {
-    alt: "InOn-logo",
-    src: `${RESOURCE_URL}InOn-logo.svg`
   })), /*#__PURE__*/React.createElement("div", {
     className: "fade"
   }))) : null;
@@ -10533,11 +10505,7 @@ class FallbackSpinner extends React.Component {
   render() {
     return /*#__PURE__*/React.createElement("div", {
       className: "fallback-spinner"
-    }, /*#__PURE__*/React.createElement("img", {
-      className: "fallback-logo",
-      src: IMAGE.INON_LOGO,
-      alt: "logo"
-    }), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "loading"
     }, /*#__PURE__*/React.createElement("div", {
       className: "effect-1 effects"

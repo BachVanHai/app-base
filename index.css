@@ -409,7 +409,6 @@
 }
 
 .flatpickr-current-month input.cur-year {
-  background: transparent;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: inherit;
@@ -444,18 +443,15 @@
 
 .flatpickr-current-month .flatpickr-monthDropdown-months {
   appearance: menulist;
-  background: #ff9800;
   border: none;
   border-radius: 0;
   box-sizing: border-box;
-  color: inherit;
   cursor: pointer;
   font-size: inherit;
   font-family: inherit;
   font-weight: 300;
   height: auto;
   line-height: inherit;
-  margin: -1px 0 0 0;
   outline: none;
   padding: 0 0 0 0.5ch;
   position: relative;
@@ -476,7 +472,6 @@
 }
 
 .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
-  background-color: #ff9800 !important;
   outline: none;
   padding: 0;
 }
@@ -1049,7 +1044,7 @@ span.flatpickr-day.selected {
   font-weight: bold;
   margin: 5rem 0;
   text-align: center;
-  color: #106D5A;
+  color: #5d3389;
 }
 
 .landing-page input {
@@ -1057,7 +1052,7 @@ span.flatpickr-day.selected {
 }
 
 .landing-page label {
-  color: #106D5A !important;
+  color: #5d3389 !important;
   font-weight: bold;
 }
 
@@ -1089,7 +1084,7 @@ span.flatpickr-day.selected {
 .landing-page .lg-content-header {
   margin-top: 2rem;
   font-weight: bold;
-  color: #587471;
+  color: #71586E;
 }
 
 .landing-page .lg-content-header .tab-control {
@@ -1148,7 +1143,7 @@ span.flatpickr-day.selected {
 }
 
 .landing-page .text-dark-green-2 {
-  color: #587471;
+  color: #71586E;
 }
 
 .landing-page .text-secondary {
@@ -1166,7 +1161,7 @@ span.flatpickr-day.selected {
 .btn-app-selection {
   background: white !important;
   border: 1px solid #B8C4C2;
-  color: #587471 !important;
+  color: #71586E !important;
   text-transform: uppercase;
   height: 60px;
   display: flex !important;
@@ -8531,7 +8526,7 @@ a.close.disabled {
   width: 2rem;
   height: 2rem;
   vertical-align: text-bottom;
-  border: 0.25em solid currentColor;
+  border: 0.25em solid #5d3389;
   border-right-color: transparent;
   border-radius: 50%;
   -webkit-animation: spinner-border .75s linear infinite;
@@ -13438,12 +13433,12 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #42236A !important;
+  color: #5d3389 !important;
 }
 
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #1e5132 !important;
+  color: #5d3389 !important;
 }
 
 .text-secondary {
@@ -18314,7 +18309,7 @@ body.dark-layout h6 {
 }
 
 body.dark-layout [class*="border-"]:not(.bullet):not(.spinner-border) {
-  border-color: #414561 !important;
+  border-color: #5d3389 !important;
 }
 
 body.dark-layout a:hover {
