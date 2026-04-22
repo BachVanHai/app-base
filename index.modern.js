@@ -786,8 +786,9 @@ const checkLoginStatus = (authToken, redirectUrl) => {
       const {
         username
       } = appId === AppId.ELITE_APP ? getState().auth.guest.user : getState().auth.user;
-      if (response.status === API_R_200 && username) {
-        response = await AuthService.getUserInfo(username, authToken);
+      const loginName = username || (typeof response.data === 'string' ? response.data : response.data?.username);
+      if (API_R_200 === response.status && loginName) {
+        response = await AuthService.getUserInfo(loginName, authToken);
         const payload = appId === AppId.ELITE_APP ? {
           guest: {
             authToken,
@@ -822,9 +823,9 @@ const loginAction = userToken => {
     const {
       isGuest
     } = getState().auth;
-    if (response.status === API_R_200) {
+    if (API_R_200 === response.status) {
       const authToken = response.data.id_token;
-      const username = response.data.username;
+      const username = response.data.username || userToken.username;
       response = await AuthService.getUserInfo(username, authToken);
       if (response?.data) {
         localStorage.setItem(REMEMBER_ME_TOKEN, JSON.stringify({
