@@ -394,22 +394,12 @@ const toastInfo = message => {
   }, message)));
 };
 
-var index = {
-    __proto__: null,
-    generateUUID: generateUUID,
-    trimValue: trimValue,
-    bytesToMb: bytesToMb,
-    trimObjectValues: trimObjectValues,
-    numberFormat: numberFormat,
-    toastError: toastError,
-    toastSuccess: toastSuccess,
-    toastInfo: toastInfo
-};
-
 const SHOW_LOADING_BAR = 'SHOW_LOADING_BAR';
 const HIDE_LOADING_BAR = 'HIDE_LOADING_BAR';
 const SHOW_CONFIRM_ALERT = 'SHOW_CONFIRM_ALERT';
 const HIDE_CONFIRM_ALERT = 'HIDE_CONFIRM_ALERT';
+const SHOW_ERROR_MODAL = 'SHOW_ERROR_MODAL';
+const HIDE_ERROR_MODAL = 'HIDE_ERROR_MODAL';
 const showConfirmAlert = configs => {
   return dispatch => dispatch({
     type: SHOW_CONFIRM_ALERT,
@@ -420,6 +410,20 @@ const hideConfirmAlert = () => {
   return dispatch => dispatch({
     type: HIDE_CONFIRM_ALERT
   });
+};
+
+
+var index = {
+    __proto__: null,
+    generateUUID: generateUUID,
+    trimValue: trimValue,
+    bytesToMb: bytesToMb,
+    trimObjectValues: trimObjectValues,
+    numberFormat: numberFormat,
+    toastError: toastError,
+    toastSuccess: toastSuccess,
+    toastInfo: toastInfo,
+
 };
 
 const HttpClient = Axios.create({
@@ -452,9 +456,15 @@ const setUpHttpClient = (store, apiBaseUrl) => {
       config.headers.Authorization = `Bearer ${token}`;
       const isSessionExpired = moment().isAfter(moment(sessionExpireTime));
       if (sessionExpireTime && isSessionExpired) {
-        toastError( /*#__PURE__*/React.createElement(FormattedMessage, {
-          id: "common.sessionExpired"
-        }));
+        store.dispatch({
+          type: SHOW_ERROR_MODAL,
+          payload: {
+            message: /*#__PURE__*/React.createElement(FormattedMessage, {
+              id: "common.sessionExpired"
+            }),
+            errorCode: null
+          }
+        });
         store.dispatch({
           type: LOGOUT_ACTION
         });
@@ -497,15 +507,18 @@ const setUpHttpClient = (store, apiBaseUrl) => {
       case 400:
       case 500: {
         const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+        let errorMessage;
         if (e.response.data.message) {
-            toastInfo(e.response.data.message);
+          errorMessage = e.response.data.message;
         } else if (clientMessageId) {
-            toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
+          errorMessage = 'Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất.';
         } else {
-            toastInfo(React.createElement(FormattedMessage, {
-                id: e.response.status === 400 ? "common.error.400" : "common.error.500"
-            }));
+          errorMessage = e.response.status === 400 ? 'Yêu cầu không hợp lệ. Vui lòng kiểm tra lại thông tin.' : 'Có lỗi xảy ra phía máy chủ. Vui lòng thử lại sau.';
         }
+        store.dispatch({
+          type: SHOW_ERROR_MODAL,
+          payload: { message: errorMessage, errorCode: clientMessageId || null }
+        });
         break;
       }
       case 403: {
@@ -513,7 +526,10 @@ const setUpHttpClient = (store, apiBaseUrl) => {
           return e.response;
         }
 
-        toastError(e.response.data.message);
+        store.dispatch({
+          type: SHOW_ERROR_MODAL,
+          payload: { message: e.response.data.message || 'Bạn không có quyền thực hiện thao tác này.', errorCode: null }
+        });
         store.dispatch({
           type: LOGOUT_ACTION
         });
@@ -1509,11 +1525,19 @@ const DEFAULT_CONFIRM_ALERT = {
   onConfirm: () => {},
   onCancel: () => {}
 };
+const DEFAULT_ERROR_MODAL = {
+  isOpen: false,
+  message: '',
+  errorCode: null
+};
 const initialState$1 = {
   loading: new Set(),
   isLoading: false,
   confirmAlert: {
     ...DEFAULT_CONFIRM_ALERT
+  },
+  errorModal: {
+    ...DEFAULT_ERROR_MODAL
   }
 };
 const uiReducer = (state = initialState$1, action) => {
@@ -1551,6 +1575,22 @@ const uiReducer = (state = initialState$1, action) => {
         ...state,
         confirmAlert: {
           ...DEFAULT_CONFIRM_ALERT
+        }
+      };
+    case SHOW_ERROR_MODAL:
+      return {
+        ...state,
+        errorModal: {
+          isOpen: true,
+          message: action.payload.message,
+          errorCode: action.payload.errorCode || null
+        }
+      };
+    case HIDE_ERROR_MODAL:
+      return {
+        ...state,
+        errorModal: {
+          ...DEFAULT_ERROR_MODAL
         }
       };
     default:
@@ -9849,6 +9889,58 @@ const ConfirmAlert = () => {
   }, otherConfigs), content);
 };
 
+const GlobalErrorModal = () => {
+  const { isOpen, message, errorCode } = useSelector(state => state.ui.errorModal);
+  const dispatch = useDispatch();
+  const intl = useIntl();
+  const handleClose = () => {
+    dispatch({ type: HIDE_ERROR_MODAL });
+  };
+  return /*#__PURE__*/React.createElement(
+    Modal,
+    { isOpen: isOpen, toggle: handleClose, className: 'modal-dialog-centered', centered: true },
+    /*#__PURE__*/React.createElement(
+      ModalHeader,
+      { toggle: handleClose },
+      /*#__PURE__*/React.createElement(
+        'div',
+        { style: { fontWeight: 'bold', color: '#338955', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '8px' } },
+        /*#__PURE__*/React.createElement(Info, { size: 18, color: '#338955' }),
+        'Thông báo lỗi'
+      )
+    ),
+    /*#__PURE__*/React.createElement(
+      ModalBody,
+      { className: 'text-center pt-3 pb-2' },
+      /*#__PURE__*/React.createElement('div', { style: { whiteSpace: 'pre-line', marginBottom: null !== errorCode ? '12px' : '0' } }, message),
+      null !== errorCode ? /*#__PURE__*/React.createElement(
+        'div',
+        { style: { marginTop: '8px', fontSize: '14px', color: '#6c757d', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' } },
+        'Mã lỗi: ',
+        /*#__PURE__*/React.createElement('span', { style: { fontWeight: 'bold' } }, errorCode),
+        /*#__PURE__*/React.createElement(Clipboard, {
+          size: 14,
+          className: 'ml-1 cursor-pointer',
+          title: 'Sao chép mã lỗi',
+          onClick: () => {
+            navigator.clipboard.writeText(String(errorCode));
+            toastSuccess('Đã sao chép mã lỗi');
+          }
+        })
+      ) : null
+    ),
+    /*#__PURE__*/React.createElement(
+      ModalFooter,
+      { className: 'justify-content-center' },
+      /*#__PURE__*/React.createElement(
+        Button,
+        { color: 'primary', onClick: handleClose },
+        'Đóng'
+      )
+    )
+  );
+};
+
 const CheckLocationChange = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -10430,7 +10522,7 @@ const AppRouter = props => {
     autoClose: 5000,
     closeOnClick: true,
     pauseOnHover: true
-  }), /*#__PURE__*/React.createElement(ConfirmAlert, null));
+  }), /*#__PURE__*/React.createElement(ConfirmAlert, null), /*#__PURE__*/React.createElement(GlobalErrorModal, null));
 };
 const mapStateToProps$3 = state => {
   return {
