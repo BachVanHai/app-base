@@ -9906,7 +9906,7 @@ const GlobalErrorModal = () => {
         'div',
         { style: { fontWeight: 'bold', color: '#338955', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '8px' } },
         /*#__PURE__*/React.createElement(Info, { size: 18, color: '#338955' }),
-        'Thông báo lỗi'
+        'Thông báo'
       )
     ),
     /*#__PURE__*/React.createElement(
@@ -9916,15 +9916,15 @@ const GlobalErrorModal = () => {
       null !== errorCode ? /*#__PURE__*/React.createElement(
         'div',
         { style: { marginTop: '8px', fontSize: '14px', color: '#6c757d', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' } },
-        'Mã lỗi: ',
+        'Mã tra cứu: ',
         /*#__PURE__*/React.createElement('span', { style: { fontWeight: 'bold' } }, errorCode),
         /*#__PURE__*/React.createElement(Clipboard, {
           size: 14,
           className: 'ml-1 cursor-pointer',
-          title: 'Sao chép mã lỗi',
+          title: 'Sao chép mã tra cứu',
           onClick: () => {
             navigator.clipboard.writeText(String(errorCode));
-            toastSuccess('Đã sao chép mã lỗi');
+            toastSuccess('Đã sao chép mã tra cứu');
           }
         })
       ) : null
