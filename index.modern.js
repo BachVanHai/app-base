@@ -211,6 +211,7 @@ const USER_ROLE = {
   HTKD: 'HT.IO',
   KT: 'KT.IO',
   VH: 'VH.IO',
+  BANCA: 'BANCA.MNG',
   DTL1: 'L1.DT',
   DTL2: 'L2.DT',
   DTL3: 'L3.DT',
