@@ -1139,7 +1139,7 @@ const logoutAction = () => {
       if (id) {
         await AuthService.logout(id);
       }
-    } catch (e) {}
+    } catch (e) { }
     dispatch({
       type: LOGOUT_ACTION
     });
@@ -2548,10 +2548,18 @@ const Bells = () => {
         checkNewNotifications([event.data]);
       },
       onerror: err => {
-        console.error('SSE notification error:', err);
+        if (err && err.message && err.message.includes('SSE open failed')) {
+          console.info('SSE notification info:', err.message);
+        } else {
+          console.error('SSE notification error:', err);
+        }
         _sseController = null;
         _sseUserId = null;
         throw err;
+      }
+    }).catch(err => {
+      if (err && 'AbortError' === err.name) {
+        return;
       }
     });
 
