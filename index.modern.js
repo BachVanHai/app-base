@@ -567,6 +567,104 @@ const setUpHttpClient = (store, apiBaseUrl) => {
   });
 };
 
+let _eventSourceStore;
+let _eventSourceBaseUrl;
+const setUpEventSourceClient = (store, sseBaseUrl) => {
+  _eventSourceStore = store;
+  _eventSourceBaseUrl = sseBaseUrl || API_BASE_SIT_URL;
+};
+const buildEventSourceRequestHeaders = store => {
+  const token = store.getState().auth.guest.authToken || store.getState().auth.authToken;
+  const sessionExpireTime = store.getState().auth.sessionExpireTime;
+  const language = localStorage.getItem('language');
+  const deviceId = localStorage.getItem('deviceId');
+  const headers = {};
+  if (token) {
+    store.dispatch(changeActionExpireTime());
+    headers.Authorization = `Bearer ${token}`;
+    const isSessionExpired = moment().isAfter(moment(sessionExpireTime));
+    if (sessionExpireTime && isSessionExpired) {
+      store.dispatch({
+        type: SHOW_ERROR_MODAL,
+        payload: {
+          message: /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.sessionExpired"
+          }),
+          errorCode: null
+        }
+      });
+      store.dispatch({
+        type: LOGOUT_ACTION
+      });
+      history.push('/login');
+      return null;
+    }
+  }
+  headers.appId = store.getState().customizer.appId;
+  headers.appVersion = 'v1';
+  headers.latitude = localStorage.getItem('latitude');
+  headers.longitude = localStorage.getItem('longitude');
+  headers.deviceId = deviceId;
+  headers['Accept-Language'] = language;
+  return headers;
+};
+const EventSourceClient = {
+  connect(path, options = {}) {
+    const store = _eventSourceStore;
+    if (!store || !_eventSourceBaseUrl) {
+      throw new Error('EventSourceClient is not configured. Call setUpEventSourceClient first.');
+    }
+    const builtHeaders = buildEventSourceRequestHeaders(store);
+    if (builtHeaders === null) {
+      return null;
+    }
+    const fullUrl = `${_eventSourceBaseUrl}${path}`;
+    const {
+      onopen: userOnOpen,
+      headers: userHeaders,
+      ...rest
+    } = options;
+    return fetchEventSource(fullUrl, {
+      ...rest,
+      headers: {
+        ...builtHeaders,
+        ...userHeaders
+      },
+      onopen: async response => {
+        if (response.status === 403) {
+          let data = {};
+          try {
+            const ct = response.headers.get('content-type');
+            if (ct && ct.includes('application/json')) {
+              data = await response.clone().json();
+            }
+          } catch (e) {}
+          if (data.error !== 'Forbidden') {
+            store.dispatch({
+              type: SHOW_ERROR_MODAL,
+              payload: {
+                message: data.message || 'Bạn không có quyền thực hiện thao tác này.',
+                errorCode: null
+              }
+            });
+            store.dispatch({
+              type: LOGOUT_ACTION
+            });
+            history.push('/login');
+          }
+          throw new Error(`SSE open failed: ${response.status}`);
+        }
+        if (userOnOpen) {
+          await userOnOpen(response);
+        }
+        if (!response.ok) {
+          throw new Error(`SSE open failed: ${response.status}`);
+        }
+      }
+    });
+  }
+};
+
 class AuthService { }
 AuthService.login = user => {
   return HttpClient.post(API_LOGIN_URL, user);
@@ -2531,17 +2629,9 @@ const Bells = () => {
     _sseController = controller;
     _sseUserId = userId;
 
-    fetchEventSource(`${API_BASE_SIT_URL}${API_SSE_SUBSCRIBE_NOTIFICATION}/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${authToken}`
-      },
+    const ssePromise = EventSourceClient.connect(`${API_SSE_SUBSCRIBE_NOTIFICATION}/${userId}`, {
       signal: controller.signal,
       openWhenHidden: true,
-      onopen: async response => {
-        if (!response.ok) {
-          throw new Error(`SSE open failed: ${response.status}`);
-        }
-      },
       onmessage: event => {
         if (!event.data || '' === event.data) return;
         dispatch(getMyNotifications());
@@ -2557,7 +2647,14 @@ const Bells = () => {
         _sseUserId = null;
         throw err;
       }
-    }).catch(err => {
+    });
+    if (ssePromise === null) {
+      controller.abort();
+      _sseController = null;
+      _sseUserId = null;
+      return cleanupWithTimeout;
+    }
+    ssePromise.catch(err => {
       if (err && 'AbortError' === err.name) {
         return;
       }
@@ -10669,6 +10766,7 @@ const App = ({
   const persistor = persistStore(store);
   setBaseHistory(history);
   setUpHttpClient(store, apiBaseUrl);
+  setUpEventSourceClient(store, API_BASE_SIT_URL);
   firebase.initializeApp(FIRE_BASE_CONFIGS);
   return /*#__PURE__*/React.createElement(Provider, {
     store: store
@@ -10797,4 +10895,4 @@ const usePageAuthorities = () => {
   return authorities;
 };
 
-export { AccountSettings, AppId, Autocomplete as AutoComplete, App as BaseApp, appConfigs as BaseAppConfigs, index as BaseAppUltils, BaseFormDatePicker, BaseFormGroup, BaseFormGroupSelect, Bells, CheckBox as Checkbox, CurrencyInput, DatePicker, FallbackSpinner, GeneralInfo, HttpClient, LandingPage, Radio, ReactTable, Select, changeIsGuest, goBackHomePage, goToAgencyApp, hideConfirmAlert, loginAction, logoutAction, showConfirmAlert, useBankList, useCityList, useDeviceDetect, useDistrictList, usePageAuthorities, useWardList, useWindowDimensions };
+export { AccountSettings, AppId, Autocomplete as AutoComplete, App as BaseApp, appConfigs as BaseAppConfigs, index as BaseAppUltils, BaseFormDatePicker, BaseFormGroup, BaseFormGroupSelect, Bells, CheckBox as Checkbox, CurrencyInput, DatePicker, EventSourceClient, FallbackSpinner, GeneralInfo, HttpClient, LandingPage, Radio, ReactTable, Select, changeIsGuest, goBackHomePage, goToAgencyApp, hideConfirmAlert, logoutAction, showConfirmAlert, useBankList, useCityList, useDeviceDetect, useDistrictList, usePageAuthorities, useWardList, useWindowDimensions };
