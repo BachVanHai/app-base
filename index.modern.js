@@ -9,6 +9,7 @@ import { Info, Check, AlertTriangle, User, Lock, Link, Users, Aperture, FileText
 import { toast, ToastContainer } from 'react-toastify';
 export { toast } from 'react-toastify';
 import moment from 'moment';
+import { fetchEventSource } from '@microsoft/fetch-event-source';
 import { FormGroup, Label, DropdownMenu, DropdownItem, Media, UncontrolledButtonDropdown, DropdownToggle, ButtonDropdown, Badge, Modal, ModalHeader, ModalBody, ModalFooter, Button, NavItem, NavLink, UncontrolledDropdown, Navbar as Navbar$1, Input, Row, Col, Card, CardHeader, CardTitle, CardBody, Nav, TabContent, TabPane, ButtonGroup, Spinner } from 'reactstrap';
 export { Button } from 'reactstrap';
 import { useDispatch, useSelector, connect, Provider } from 'react-redux';
@@ -57,6 +58,7 @@ const AppId = {
 };
 
 const API_BASE_URL = 'https://api.bmktech.vn';
+const API_BASE_SIT_URL = 'https://apisit.bmktech.vn';
 const RESOURCE_URL = 'https://sit2.bmktech.vn/resources/images/';
 const FB_APP_ID = '2651185198505964';
 const GOOGLE_APP_ID = '400818618331-k9ptcdcgr99po0g5q5mh8e5ekodgj61n.apps.googleusercontent.com';
@@ -85,6 +87,7 @@ const API_CHECK_NEW_NOTIFICATIONS = '/nth/notification/api/authenticate/notifica
 const API_GET_NOTIFICATION_FROM_ESPUBLIC = '/nth/notification/api/authenticate/user-notifications-es';
 const API_UPDATE_NOTIFICATION = '/nth/notification/api/authenticate/my-notifications/status';
 const API_UPDATE_ALL_NOTIFICATION_STATUS = '/nth/notification/api/authenticate/my-notifications-status';
+const API_SSE_SUBSCRIBE_NOTIFICATION = '/nth/notification/api/notifications/subscribe';
 const API_GET_ALL_BONUS_TRANSACTION_BY_USER = '/nth/bonusmanager/api/bonus-transaction/by-user';
 const API_GET_ALL_BONUS_WITHDRAWVAL_TRANSACTION_BY_USER = '/nth/bonusmanager/api/bonus-with-drawval-transactions/by-user';
 const API_GET_USER_SOCIAL = '/api/user-social-network';
@@ -429,15 +432,15 @@ const hideConfirmAlert = () => {
 
 
 var index = {
-    __proto__: null,
-    generateUUID: generateUUID,
-    trimValue: trimValue,
-    bytesToMb: bytesToMb,
-    trimObjectValues: trimObjectValues,
-    numberFormat: numberFormat,
-    toastError: toastError,
-    toastSuccess: toastSuccess,
-    toastInfo: toastInfo,
+  __proto__: null,
+  generateUUID: generateUUID,
+  trimValue: trimValue,
+  bytesToMb: bytesToMb,
+  trimObjectValues: trimObjectValues,
+  numberFormat: numberFormat,
+  toastError: toastError,
+  toastSuccess: toastSuccess,
+  toastInfo: toastInfo,
 
 };
 
@@ -565,15 +568,8 @@ const setUpHttpClient = (store, apiBaseUrl) => {
 };
 
 class AuthService { }
-AuthService.login = userToken => {
-
-  const headers = {
-    clientMessageId: BaseAppUltils.generateUUID()
-  }
-
-  return HttpClient.post(API_LOGIN_URL, userToken, {
-    headers: headers
-  });
+AuthService.login = user => {
+  return HttpClient.post(API_LOGIN_URL, user);
 };
 AuthService.guestSocialLogin = data => {
   return HttpClient.post(API_GUEST_SOCIAL_LOGIN, data);
@@ -1138,10 +1134,12 @@ const resetPassword = password => {
 };
 const logoutAction = () => {
   return async (dispatch, getState) => {
-    const {
-      id
-    } = getState().auth.user;
-    await AuthService.logout(id);
+    const id = getState().auth.guest?.user?.id || getState().auth.user?.id;
+    try {
+      if (id) {
+        await AuthService.logout(id);
+      }
+    } catch (e) {}
     dispatch({
       type: LOGOUT_ACTION
     });
@@ -2472,36 +2470,93 @@ const Notifications = ({
   })))));
 };
 
+let _sseController = null;
+let _sseUserId = null;
+let _sseRefCount = 0;
+
 const Bells = () => {
   const dispatch = useDispatch();
   const {
     notifications
   } = useSelector(state => state.notifications);
+  const authToken = useSelector(state => state.auth.guest?.authToken || state.auth.authToken);
+  const userId = useSelector(state => state.auth.guest?.user?.id || state.auth.user?.id);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notificationModal, setNotificationModal] = useState(false);
   const [numberNewNotification, setNumberNewNotification] = useState(0);
   const [notification, setNotification] = useState(null);
   const [centeredModal, setCenteredModal] = useState(false);
   useEffect(() => {
-    dispatch(getMyNotifications());
-    const intervalId = setInterval(() => {
-      dispatch(getMyNotifications());
-    }, 30000);
-    return () => clearInterval(intervalId);
-  }, []);
-  useEffect(() => {
     const newNotifications = notifications.filter(item => item.read === false && item.deleted === false);
     setNumberNewNotification(newNotifications.length);
   }, [notifications]);
   useEffect(() => {
-    const notifications = dispatch(checkReceiveNewNotification());
-    checkNewNotifications(notifications);
-    const intervalId = setInterval(() => {
-      const notifications = dispatch(checkReceiveNewNotification());
-      checkNewNotifications(notifications);
-    }, 30000);
-    return () => clearInterval(intervalId);
-  }, []);
+    _sseRefCount++;
+
+    const cleanupCountOnly = () => {
+      _sseRefCount--;
+    };
+
+    const cleanupWithTimeout = () => {
+      _sseRefCount--;
+      setTimeout(() => {
+        if (0 === _sseRefCount && _sseController) {
+          _sseController.abort();
+          _sseController = null;
+          _sseUserId = null;
+        }
+      }, 100);
+    };
+
+    if (!userId || !authToken) {
+      if (_sseController) {
+        _sseController.abort();
+        _sseController = null;
+        _sseUserId = null;
+      }
+      return cleanupCountOnly;
+    }
+
+    if (_sseController && _sseUserId === userId) {
+      return cleanupWithTimeout;
+    }
+
+    if (_sseController) {
+      _sseController.abort();
+      _sseController = null;
+    }
+
+    dispatch(getMyNotifications());
+    const controller = new AbortController();
+    _sseController = controller;
+    _sseUserId = userId;
+
+    fetchEventSource(`${API_BASE_SIT_URL}${API_SSE_SUBSCRIBE_NOTIFICATION}/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      },
+      signal: controller.signal,
+      openWhenHidden: true,
+      onopen: async response => {
+        if (!response.ok) {
+          throw new Error(`SSE open failed: ${response.status}`);
+        }
+      },
+      onmessage: event => {
+        if (!event.data || '' === event.data) return;
+        dispatch(getMyNotifications());
+        checkNewNotifications([event.data]);
+      },
+      onerror: err => {
+        console.error('SSE notification error:', err);
+        _sseController = null;
+        _sseUserId = null;
+        throw err;
+      }
+    });
+
+    return cleanupWithTimeout;
+  }, [userId, authToken]);
   const toggleDropdown = () => {
     if (!notificationModal) {
       setDropdownOpen(!dropdownOpen);
@@ -2515,10 +2570,8 @@ const Bells = () => {
     setCenteredModal(!centeredModal);
   };
   const checkNewNotifications = newNotifications => {
-    if (newNotifications.length > 0) {
-      toastSuccess( /*#__PURE__*/React.createElement(FormattedMessage, {
-        id: "navbar.notifications.newNotificationNotice"
-      }));
+    if (0 < newNotifications.length) {
+      toastInfo('Bạn đã nhận được một thông báo mới!');
     }
   };
   const onClickUpdateAllNotifications = status => {
@@ -3998,6 +4051,14 @@ var messages_en = {
   "menu.accountProductManagement": "Account Product Management",
   "menu.accountProductImport": "Account Product Import",
   "menu.renewalContract": "Renewal Contract",
+  "menu.notificationTemplateManagement": "Notification Template Management",
+  "menu.bankManagement": "Bank Management",
+  "menu.bankBranchManagement": "Bank Branch Management",
+  "menu.branchMappingManagement": "Branch Mapping Management",
+  "menu.carQuote": "Car Quote",
+  "menu.vehicleTypeMapping": "Vehicle Type Mapping",
+  "menu.keyRedisManagement": "Key Redis Management",
+  "menu.assignBranch": "Assign Branch",
   "navbar.language.vi": "Tiếng việt",
   "navbar.language.en": "English",
   "navbar.logout": "Logout",
@@ -4125,7 +4186,7 @@ var messages_en = {
   "generalInfo.policy.10.3": "10.3  Và nếu bạn thay đổi ý định và/hoặc bạn muốn từ chối nhận tiếp thị trực tiếp phi điện tử, thì bạn cứ cho chúng tôi biết. Chỉ cần sử dụng một trong các tùy chọn trong mục Liên hệ với chúng tôi.",
   "generalInfo.policy.11": "11. LIÊN HỆ VỚI CHÚNG TÔI",
   "generalInfo.policy.11.1": "11.1  Nếu bạn muốn thực hiện các quyền của mình trong Phần “Quyền kiểm soát dữ liệu cá nhân của bạn” hoặc nếu bạn yêu cầu bất kỳ thông tin nào theo thông báo này, bạn có thể liên hệ với chúng tôi theo nhiều cách khác nhau.",
-  "generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0899.300.800</b>",
+  "generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0966.530.550</b>",
   "generalInfo.policy.11.1.2": "11.1.2  Gửi thư điện tử cho chúng tôi theo địa chỉ: <b>lienhe@bmktech.vn</b>",
   "generalInfo.policy.11.1.3": "11.1.3  Hoặc liên hệ trực tiếp với chúng tôi tại văn phòng: <b>Phòng 301A, Tòa nhà Thiên Bảo, số 47-49 Lê Văn Hưu, Phường Ngô Thì Nhậm, Quận Hai Bà Trưng, Thành phố Hà Nội.</b>",
   "generalInfo.terms.1": "1. CÁC ĐIỀU KHOẢN VÀ ĐIỀU KIỆN SỬ DỤNG",
@@ -4432,6 +4493,15 @@ var messages_vi = {
   "menu.telesaleCustomerInbox": "Quản lý",
   "menu.createTelesaleCustomer": "Tạo mới",
   "menu.renewalContract": "Thông tin HĐTT",
+  "menu.bankManagement": "Quản lý ngân hàng",
+  "menu.bankBranchManagement": "CN ngân hàng",
+  "menu.branchMappingManagement": "Phân giao CN",
+  "menu.carQuote": "Báo giá xe",
+  "menu.vehicleTypeMapping": "Phân giao loại xe",
+  "menu.keyRedisManagement": "Quản lý key Redis",
+  "menu.assignBranch": "Phân giao chi nhánh",
+  "menu.createCatProposal": "Tạo mới",
+  "menu.manageCatProposal": "Quản lý",
   "navbar.language.vi": "Tiếng Việt",
   "navbar.language.en": "English",
   "navbar.logout": "Đăng xuất",
@@ -4560,7 +4630,7 @@ var messages_vi = {
   "generalInfo.policy.10.3": "10.3  Và nếu bạn thay đổi ý định và/hoặc bạn muốn từ chối nhận tiếp thị trực tiếp phi điện tử, thì bạn cứ cho chúng tôi biết. Chỉ cần sử dụng một trong các tùy chọn trong mục Liên hệ với chúng tôi.",
   "generalInfo.policy.11": "11. LIÊN HỆ VỚI CHÚNG TÔI",
   "generalInfo.policy.11.1": "11.1  Nếu bạn muốn thực hiện các quyền của mình trong Phần “Quyền kiểm soát dữ liệu cá nhân của bạn” hoặc nếu bạn yêu cầu bất kỳ thông tin nào theo thông báo này, bạn có thể liên hệ với chúng tôi theo nhiều cách khác nhau.",
-  "generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0899.300.800</b>",
+  "generalInfo.policy.11.1.1": "11.1.1  Gọi cho đường dây nóng của chúng tôi: <b>0966.530.550</b>",
   "generalInfo.policy.11.1.2": "11.1.2  Gửi thư điện tử cho chúng tôi theo địa chỉ: <b>lienhe@bmktech.vn</b>",
   "generalInfo.policy.11.1.3": "11.1.3  Hoặc liên hệ trực tiếp với chúng tôi tại văn phòng: <b>Phòng 301A, Tòa nhà Thiên Bảo, số 47-49 Lê Văn Hưu, Phường Ngô Thì Nhậm, Quận Hai Bà Trưng, Thành phố Hà Nội.</b>",
   "generalInfo.terms.1": "1. CÁC ĐIỀU KHOẢN VÀ ĐIỀU KIỆN SỬ DỤNG",
