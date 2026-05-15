@@ -611,19 +611,24 @@ const buildEventSourceRequestHeaders = store => {
 const EventSourceClient = {
   connect(path, options = {}) {
     const store = _eventSourceStore;
-    if (!store || !_eventSourceBaseUrl) {
-      throw new Error('EventSourceClient is not configured. Call setUpEventSourceClient first.');
+    const {
+      onopen: userOnOpen,
+      headers: userHeaders,
+      baseUrl: optionsBaseUrl,
+      sseBaseUrl: optionsSseBaseUrl,
+      ...rest
+    } = options;
+    const effectiveBaseUrl = optionsBaseUrl || optionsSseBaseUrl || _eventSourceBaseUrl;
+    if (!store || !effectiveBaseUrl) {
+      throw new Error('EventSourceClient is not configured. Call setUpEventSourceClient first, or pass baseUrl (or sseBaseUrl) in connect options.');
     }
     const builtHeaders = buildEventSourceRequestHeaders(store);
     if (builtHeaders === null) {
       return null;
     }
-    const fullUrl = `${_eventSourceBaseUrl}${path}`;
-    const {
-      onopen: userOnOpen,
-      headers: userHeaders,
-      ...rest
-    } = options;
+    const baseNormalized = String(effectiveBaseUrl).replace(/\/+$/, '');
+    const pathPart = path.startsWith('/') ? path : `/${path}`;
+    const fullUrl = `${baseNormalized}${pathPart}`;
     return fetchEventSource(fullUrl, {
       ...rest,
       headers: {
