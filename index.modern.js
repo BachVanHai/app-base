@@ -2680,8 +2680,23 @@ const Bells = () => {
     setCenteredModal(!centeredModal);
   };
   const checkNewNotifications = newNotifications => {
-    if (0 < newNotifications.length) {
-      toastInfo('Bạn đã nhận được một thông báo mới!');
+    if (newNotifications.length <= 0) {
+      return;
+    }
+    for (const raw of newNotifications) {
+      if (!raw || '' === raw) {
+        continue;
+      }
+      let message = 'Bạn đã nhận được một thông báo mới!';
+      try {
+        const payload = typeof raw === 'string' ? JSON.parse(raw) : raw;
+        if (payload && payload.shortContent) {
+          message = payload.shortContent;
+        } else if (payload && payload.title) {
+          message = payload.title;
+        }
+      } catch (e) {}
+      toastInfo(message);
     }
   };
   const onClickUpdateAllNotifications = status => {
