@@ -23944,3 +23944,17 @@ html[dir="rtl"] body .ps__rail-y {
 
 body {
   padding: env(safe-area-inset); }
+
+.Toastify__toast.toast-primary-info {
+  background-color: var(--primary);
+  color: #fff; }
+
+.Toastify__toast.toast-primary-info .Toastify__close-button {
+  color: #fff;
+  opacity: 0.8; }
+
+.Toastify__toast.toast-primary-info svg {
+  stroke: #fff; }
+
+.Toastify__progress-bar.toast-primary-info-progress {
+  background: rgba(255, 255, 255, 0.7); }

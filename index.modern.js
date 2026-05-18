@@ -7,7 +7,23 @@ import 'axios-extensions';
 import * as Icon from 'react-feather';
 import { Info, Check, AlertTriangle, User, Lock, Link, Users, Aperture, FileText, Shield, Globe, HelpCircle, MessageSquare, Power, Bell, DollarSign, Search, X, Menu, Home, List, PlusCircle, Gift, ArrowUp, Disc, Circle, ChevronRight, Download, Clipboard, Sun } from 'react-feather';
 import { toast, ToastContainer } from 'react-toastify';
-export { toast } from 'react-toastify';
+
+toast.primaryInfo = message => {
+  return toast(/*#__PURE__*/React.createElement("div", {
+    className: "d-flex align-items-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-1 p-0"
+  }, /*#__PURE__*/React.createElement(Info, {
+    size: 24
+  })), /*#__PURE__*/React.createElement("p", {
+    className: "mx-1 my-0"
+  }, message)), {
+    className: 'toast-primary-info',
+    progressClassName: 'toast-primary-info-progress'
+  });
+};
+
+export { toast };
 import moment from 'moment';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import { FormGroup, Label, DropdownMenu, DropdownItem, Media, UncontrolledButtonDropdown, DropdownToggle, ButtonDropdown, Badge, Modal, ModalHeader, ModalBody, ModalFooter, Button, NavItem, NavLink, UncontrolledDropdown, Navbar as Navbar$1, Input, Row, Col, Card, CardHeader, CardTitle, CardBody, Nav, TabContent, TabPane, ButtonGroup, Spinner } from 'reactstrap';
@@ -452,7 +468,7 @@ const setUpHttpClient = (store, apiBaseUrl) => {
   }
   HttpClient.defaults.baseURL = apiBaseUrl || API_BASE_URL;
   HttpClient.interceptors.request.use(config => {
-    const token = store.getState().auth.guest.authToken || store.getState().auth.authToken;
+    const token = store.getState().auth.guest?.authToken || store.getState().auth.authToken;
     const sessionExpireTime = store.getState().auth.sessionExpireTime;
     language = localStorage.getItem('language');
     if (token) {
@@ -556,7 +572,7 @@ const setUpEventSourceClient = (store, sseBaseUrl) => {
   _eventSourceBaseUrl = sseBaseUrl || API_BASE_SIT_URL;
 };
 const buildEventSourceRequestHeaders = store => {
-  const token = store.getState().auth.guest.authToken || store.getState().auth.authToken;
+  const token = store.getState().auth.guest?.authToken || store.getState().auth.authToken;
   const sessionExpireTime = store.getState().auth.sessionExpireTime;
   const language = localStorage.getItem('language');
   const deviceId = localStorage.getItem('deviceId');
@@ -1739,6 +1755,7 @@ NotificationService.updateAllNotificationStatus = notifications => {
 
 const LOAD_MY_NOTIFICATIONS = 'LOAD_MY_NOTIFICATIONS';
 const RECEIVE_NEW_NOTIFICATIONS = 'RECEIVE_NEW_NOTIFICATIONS';
+const MERGE_SSE_NOTIFICATION = 'MERGE_SSE_NOTIFICATION';
 const UPDATE_NOTIFICATION = 'UPDATE_NOTIFICATION';
 const UPDATE_ALL_NOTIFICATIONS = 'UPDATE_ALL_NOTIFICATIONS';
 const getMyNotifications = () => {
@@ -1782,6 +1799,10 @@ const updateAllNotifications = (newNotificationsRequest, status) => {
     });
   };
 };
+const mergeSseNotification = notification => ({
+  type: MERGE_SSE_NOTIFICATION,
+  payload: notification
+});
 
 const initialState$2 = {
   notifications: [],
@@ -1803,31 +1824,50 @@ const notificationReducer = (state = {
         ...state,
         newNotifications: action.payload
       };
+    case MERGE_SSE_NOTIFICATION: {
+      const incoming = action.payload;
+      if (!incoming) {
+        return state;
+      }
+      const matchIndex = notifications.findIndex(item => (incoming.id != null && item.id === incoming.id) || (incoming.notificationTemplateHisId != null && item.notificationTemplateHisId === incoming.notificationTemplateHisId));
+      if (matchIndex >= 0) {
+        newNotifications = notifications.map((item, index) => index === matchIndex ? {
+          ...item,
+          ...incoming
+        } : item);
+      } else if (incoming.deleted !== true) {
+        newNotifications = [incoming, ...notifications];
+      } else {
+        newNotifications = notifications;
+      }
+      return {
+        ...state,
+        notifications: newNotifications
+      };
+    }
     case UPDATE_NOTIFICATION:
-      newNotifications = notifications.map(item => {
-        if (item.id === action.payload.id) {
-          item.deleted = action.payload.deleted;
-          item.read = action.payload.read;
-        }
-        return item;
-      });
+      newNotifications = notifications.map(item => item.id === action.payload.id ? {
+        ...item,
+        deleted: action.payload.deleted,
+        read: action.payload.read
+      } : item);
       return {
         ...state,
         notifications: newNotifications
       };
     case UPDATE_ALL_NOTIFICATIONS:
       if (action.payload === 'DELETE') {
-        newNotifications = notifications.map(item => {
-          item.deleted = true;
-          item.read = true;
-          return item;
-        });
+        newNotifications = notifications.map(item => ({
+          ...item,
+          deleted: true,
+          read: true
+        }));
       } else {
-        newNotifications = notifications.map(item => {
-          item.deleted = false;
-          item.read = action.payload;
-          return item;
-        });
+        newNotifications = notifications.map(item => ({
+          ...item,
+          deleted: false,
+          read: action.payload
+        }));
       }
       return {
         ...state,
@@ -2466,13 +2506,7 @@ const Notifications = ({
       alt: "Promotion notification"
     });
   };
-  const getNumberNotifications = notifications => {
-    const notificationsValid = notifications.filter(item => item.deleted === false);
-    return notificationsValid.length;
-  };
-  const getNotificationsValid = notifications => {
-    return notifications.filter(item => item.deleted === false).sort((a, b) => new Date(b.sendDate) - new Date(a.sendDate));
-  };
+  const notificationsValid = useMemo(() => notifications.filter(item => item.deleted === false).sort((a, b) => new Date(b.sendDate) - new Date(a.sendDate)), [notifications]);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("li", {
     className: "dropdown-menu-header d-flex justify-content-between align-items-center"
   }, /*#__PURE__*/React.createElement("div", {
@@ -2481,7 +2515,7 @@ const Notifications = ({
     className: "notification-title"
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "menu.notification"
-  })), /*#__PURE__*/React.createElement("span", null, "(", getNumberNotifications(notifications), ")")), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("span", null, "(", notificationsValid.length, ")")), /*#__PURE__*/React.createElement("div", {
     className: "cursor-pointer",
     onClick: () => onClickUpdateAllNotifications(true)
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2491,7 +2525,7 @@ const Notifications = ({
     options: {
       wheelPropagation: false
     }
-  }, getNotificationsValid(notifications).length > 0 ? getNotificationsValid(notifications).map(item => /*#__PURE__*/React.createElement(MediaCustom, {
+  }, notificationsValid.length > 0 ? notificationsValid.map(item => /*#__PURE__*/React.createElement(MediaCustom, {
     key: item.id
   }, /*#__PURE__*/React.createElement(Media, {
     className: item.read === true ? 'media-read' : 'media-unread'
@@ -2542,7 +2576,7 @@ const Notifications = ({
     className: "justify-content-center font-weight-bold"
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "navbar.notifications.noNewNotifications"
-  }))), getNotificationsValid(notifications).length > 0 && /*#__PURE__*/React.createElement("li", {
+  }))), notificationsValid.length > 0 && /*#__PURE__*/React.createElement("li", {
     className: "dropdown-menu-footer",
     onClick: () => openDeleteAllModal()
   }, /*#__PURE__*/React.createElement(DropdownItem, {
@@ -2558,6 +2592,107 @@ const Notifications = ({
 let _sseController = null;
 let _sseUserId = null;
 let _sseRefCount = 0;
+let _sseRefetchTimer = null;
+let _sseReconnectTimer = null;
+const _sseToastedIds = new Map();
+const SSE_TOAST_DEDUPE_MS = 30000;
+const SSE_REFETCH_DEBOUNCE_MS = 300;
+const SSE_RECONNECT_MS = 5000;
+const SSE_RETRY_DELAY_MS = 3000;
+
+const parseSseNotificationPayload = raw => {
+  if (!raw || '' === raw) {
+    return null;
+  }
+  try {
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    const dto = parsed && parsed.notification ? parsed.notification : parsed;
+    if (!dto || typeof dto !== 'object') {
+      return null;
+    }
+    return dto;
+  } catch (e) {
+    return null;
+  }
+};
+
+const shouldShowSseToast = id => {
+  if (!id) {
+    return true;
+  }
+  const now = Date.now();
+  const lastShown = _sseToastedIds.get(id);
+  if (lastShown && now - lastShown < SSE_TOAST_DEDUPE_MS) {
+    return false;
+  }
+  _sseToastedIds.set(id, now);
+  for (const [key, shownAt] of _sseToastedIds) {
+    if (now - shownAt >= SSE_TOAST_DEDUPE_MS) {
+      _sseToastedIds.delete(key);
+    }
+  }
+  return true;
+};
+
+const debouncedGetMyNotifications = dispatch => {
+  if (_sseRefetchTimer) {
+    clearTimeout(_sseRefetchTimer);
+  }
+  _sseRefetchTimer = setTimeout(() => {
+    _sseRefetchTimer = null;
+    dispatch(getMyNotifications());
+  }, SSE_REFETCH_DEBOUNCE_MS);
+};
+
+const stripHtmlForToast = text => {
+  if (!text) {
+    return '';
+  }
+  return String(text).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+};
+
+const scheduleSseReconnect = connectFn => {
+  if (_sseReconnectTimer) {
+    clearTimeout(_sseReconnectTimer);
+  }
+  _sseReconnectTimer = setTimeout(() => {
+    _sseReconnectTimer = null;
+    if (_sseRefCount > 0 && !_sseController) {
+      connectFn();
+    }
+  }, SSE_RECONNECT_MS);
+};
+
+const checkNewNotifications = newNotifications => {
+  if (newNotifications.length <= 0) {
+    return;
+  }
+  for (const raw of newNotifications) {
+    if (!raw || '' === raw) {
+      continue;
+    }
+    let payload = raw;
+    if (typeof raw === 'string') {
+      payload = parseSseNotificationPayload(raw);
+      if (!payload) {
+        continue;
+      }
+    }
+    if (payload.deleted === true || payload.read === true) {
+      continue;
+    }
+    if (!shouldShowSseToast(payload.id)) {
+      continue;
+    }
+    let message = 'Bạn đã nhận được một thông báo mới!';
+    if (payload.shortContent) {
+      message = stripHtmlForToast(payload.shortContent);
+    } else if (payload.title) {
+      message = stripHtmlForToast(payload.title);
+    }
+    toast.primaryInfo(message || 'Bạn đã nhận được một thông báo mới!');
+  }
+};
 
 const Bells = () => {
   const dispatch = useDispatch();
@@ -2584,6 +2719,10 @@ const Bells = () => {
 
     const cleanupWithTimeout = () => {
       _sseRefCount--;
+      if (_sseReconnectTimer) {
+        clearTimeout(_sseReconnectTimer);
+        _sseReconnectTimer = null;
+      }
       setTimeout(() => {
         if (0 === _sseRefCount && _sseController) {
           _sseController.abort();
@@ -2612,43 +2751,58 @@ const Bells = () => {
     }
 
     dispatch(getMyNotifications());
-    const controller = new AbortController();
-    _sseController = controller;
-    _sseUserId = userId;
 
-    const ssePromise = EventSourceClient.connect(`${API_SSE_SUBSCRIBE_NOTIFICATION}/${userId}`, {
-      signal: controller.signal,
-      openWhenHidden: true,
-      onmessage: event => {
-        if (!event.data || '' === event.data) return;
-        dispatch(getMyNotifications());
-        checkNewNotifications([event.data]);
-      },
-      onerror: err => {
-        if (err && err.message && err.message.includes('SSE open failed')) {
-          console.info('SSE notification info:', err.message);
-        } else {
+    const connectSse = () => {
+      if (_sseController || !userId || !authToken) {
+        return;
+      }
+      const controller = new AbortController();
+      _sseController = controller;
+      _sseUserId = userId;
+      const ssePromise = EventSourceClient.connect(`${API_SSE_SUBSCRIBE_NOTIFICATION}/${userId}`, {
+        signal: controller.signal,
+        openWhenHidden: true,
+        onmessage: event => {
+          if (event.event && event.event !== 'notification') {
+            return;
+          }
+          const notification = parseSseNotificationPayload(event.data);
+          if (!notification) {
+            return;
+          }
+          dispatch(mergeSseNotification(notification));
+          debouncedGetMyNotifications(dispatch);
+          checkNewNotifications([notification]);
+        },
+        onerror: err => {
+          if (err && err.message && err.message.includes('SSE open failed')) {
+            console.info('SSE notification info:', err.message);
+            return SSE_RETRY_DELAY_MS;
+          }
           console.error('SSE notification error:', err);
+          return SSE_RETRY_DELAY_MS;
+        }
+      });
+      if (ssePromise === null) {
+        controller.abort();
+        _sseController = null;
+        _sseUserId = null;
+        scheduleSseReconnect(connectSse);
+        return;
+      }
+      ssePromise.catch(err => {
+        if (err && 'AbortError' === err.name) {
+          return;
         }
         _sseController = null;
         _sseUserId = null;
-        throw err;
-      }
-    });
-    if (ssePromise === null) {
-      controller.abort();
-      _sseController = null;
-      _sseUserId = null;
-      return cleanupWithTimeout;
-    }
-    ssePromise.catch(err => {
-      if (err && 'AbortError' === err.name) {
-        return;
-      }
-    });
+        scheduleSseReconnect(connectSse);
+      });
+    };
 
+    connectSse();
     return cleanupWithTimeout;
-  }, [userId, authToken]);
+  }, [userId, authToken, dispatch]);
   const toggleDropdown = () => {
     if (!notificationModal) {
       setDropdownOpen(!dropdownOpen);
@@ -2660,26 +2814,6 @@ const Bells = () => {
   };
   const openDeleteAllModal = () => {
     setCenteredModal(!centeredModal);
-  };
-  const checkNewNotifications = newNotifications => {
-    if (newNotifications.length <= 0) {
-      return;
-    }
-    for (const raw of newNotifications) {
-      if (!raw || '' === raw) {
-        continue;
-      }
-      let message = 'Bạn đã nhận được một thông báo mới!';
-      try {
-        const payload = typeof raw === 'string' ? JSON.parse(raw) : raw;
-        if (payload && payload.shortContent) {
-          message = payload.shortContent;
-        } else if (payload && payload.title) {
-          message = payload.title;
-        }
-      } catch (e) {}
-      toastInfo(message);
-    }
   };
   const onClickUpdateAllNotifications = status => {
     let newNotificationsRequest;
