@@ -469,6 +469,21 @@ var toastSuccess = function toastSuccess(message) {
   }, message)));
 };
 
+reactToastify.toast.primaryInfo = function primaryInfo(message) {
+  return reactToastify.toast( /*#__PURE__*/React__default.createElement("div", {
+    className: "d-flex align-items-center"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "col-1 p-0"
+  }, /*#__PURE__*/React__default.createElement(Icon.Info, {
+    size: 24
+  })), /*#__PURE__*/React__default.createElement("p", {
+    className: "mx-1 my-0"
+  }, message)), {
+    className: 'toast-primary-info',
+    progressClassName: 'toast-primary-info-progress'
+  });
+};
+
 var index = {
   __proto__: null,
   generateUUID: generateUUID,
