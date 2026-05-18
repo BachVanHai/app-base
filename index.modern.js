@@ -649,7 +649,8 @@ const EventSourceClient = {
       ...rest,
       headers: {
         ...builtHeaders,
-        ...userHeaders
+        ...userHeaders,
+        clientMessageId: (userHeaders && userHeaders.clientMessageId) || generateUUID()
       },
       onopen: async response => {
         if (response.status === 403) {
@@ -2610,11 +2611,9 @@ const Notifications = ({
 let _sseController = null;
 let _sseUserId = null;
 let _sseRefCount = 0;
-let _sseRefetchTimer = null;
 let _sseReconnectTimer = null;
 const _sseToastedIds = new Map();
 const SSE_TOAST_DEDUPE_MS = 30000;
-const SSE_REFETCH_DEBOUNCE_MS = 300;
 const SSE_RECONNECT_MS = 5000;
 const SSE_RETRY_DELAY_MS = 3000;
 
@@ -2650,16 +2649,6 @@ const shouldShowSseToast = id => {
     }
   }
   return true;
-};
-
-const debouncedGetMyNotifications = dispatch => {
-  if (_sseRefetchTimer) {
-    clearTimeout(_sseRefetchTimer);
-  }
-  _sseRefetchTimer = setTimeout(() => {
-    _sseRefetchTimer = null;
-    dispatch(getMyNotifications());
-  }, SSE_REFETCH_DEBOUNCE_MS);
 };
 
 const stripHtmlForToast = text => {
@@ -2789,7 +2778,6 @@ const Bells = () => {
             return;
           }
           dispatch(mergeSseNotification(notification));
-          debouncedGetMyNotifications(dispatch);
           checkNewNotifications([notification]);
         },
         onerror: err => {
