@@ -10914,7 +10914,7 @@ const App = ({
   const persistor = persistStore(store);
   setBaseHistory(history);
   setUpHttpClient(store, apiBaseUrl);
-  setUpEventSourceClient(store, API_BASE_SIT_URL);
+  setUpEventSourceClient(store, apiBaseUrl);
   firebase.initializeApp(FIRE_BASE_CONFIGS);
   return /*#__PURE__*/React.createElement(Provider, {
     store: store
