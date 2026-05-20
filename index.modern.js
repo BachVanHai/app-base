@@ -10205,40 +10205,48 @@ const GlobalErrorModal = () => {
   };
   return /*#__PURE__*/React.createElement(
     Modal,
-    { isOpen: isOpen, toggle: handleClose, className: 'modal-dialog-centered', centered: true },
+    { isOpen: isOpen, toggle: handleClose, className: 'modal-dialog-centered mx-2 mx-md-auto', centered: true },
     /*#__PURE__*/React.createElement(
       ModalHeader,
-      { toggle: handleClose },
+      { toggle: handleClose, className: 'border-bottom-0 pb-0' },
       /*#__PURE__*/React.createElement(
         'div',
-        { style: { fontWeight: 'bold', color: '#338955', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '8px' } },
-        /*#__PURE__*/React.createElement(Info, { size: 18, color: '#338955' }),
+        { style: { fontWeight: 'bold', color: '#338955', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '18px' } },
+        /*#__PURE__*/React.createElement(Info, { size: 22, color: '#338955', className: 'flex-shrink-0' }),
         'Thông báo'
       )
     ),
     /*#__PURE__*/React.createElement(
       ModalBody,
-      { className: 'text-center pt-3 pb-2' },
-      /*#__PURE__*/React.createElement('div', { style: { whiteSpace: 'pre-line', marginBottom: null !== errorCode ? '12px' : '0' } }, message),
+      { className: 'text-center p-2 pt-3' },
+      /*#__PURE__*/React.createElement('div', { style: { whiteSpace: 'pre-line', wordBreak: 'break-word', marginBottom: null !== errorCode ? '24px' : '0', fontSize: '14px', color: '#333', lineHeight: '1.6' } }, message),
       null !== errorCode ? /*#__PURE__*/React.createElement(
         'div',
-        { style: { marginTop: '8px', fontSize: '14px', color: '#6c757d', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' } },
-        'Mã tra cứu: ',
-        /*#__PURE__*/React.createElement('span', { style: { fontWeight: 'bold' } }, errorCode),
-        /*#__PURE__*/React.createElement(Clipboard, {
-          size: 14,
-          className: 'ml-1 cursor-pointer',
-          title: 'Sao chép mã tra cứu',
-          onClick: () => {
-            navigator.clipboard.writeText(String(errorCode));
-            toastSuccess('Đã sao chép mã tra cứu');
-          }
-        })
+        { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' } },
+        /*#__PURE__*/React.createElement('span', { style: { fontSize: '14px', color: '#6c757d', fontWeight: '500' } }, 'Mã tra cứu:'),
+        /*#__PURE__*/React.createElement(
+          'div',
+          { style: { display: 'flex', alignItems: 'center', gap: '12px', background: '#f8f9fa', padding: '10px 14px', borderRadius: '0.4285rem', border: '1px solid #e9ecef', maxWidth: '100%' } },
+          /*#__PURE__*/React.createElement('span', { style: { fontWeight: '600', fontSize: '14px', wordBreak: 'break-all', color: '#495057', textAlign: 'left', letterSpacing: '0.5px' } }, errorCode),
+          /*#__PURE__*/React.createElement(
+            'div',
+            {
+              className: 'cursor-pointer flex-shrink-0 d-flex align-items-center justify-content-center',
+              title: 'Sao chép mã tra cứu',
+              style: { background: '#e2e8f0', borderRadius: '6px', color: '#495057' },
+              onClick: () => {
+                navigator.clipboard.writeText(String(errorCode));
+                toastSuccess('Đã sao chép mã tra cứu');
+              }
+            },
+            /*#__PURE__*/React.createElement(Clipboard, { size: 14 })
+          )
+        )
       ) : null
     ),
     /*#__PURE__*/React.createElement(
       ModalFooter,
-      { className: 'justify-content-center' },
+      { className: 'justify-content-center border-top-0 pb-2' },
       /*#__PURE__*/React.createElement(
         Button,
         { color: 'primary', onClick: handleClose },
