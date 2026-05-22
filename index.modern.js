@@ -431,6 +431,9 @@ const hideConfirmAlert = () => {
     type: HIDE_CONFIRM_ALERT
   });
 };
+const clearMustChangePassword = () => ({
+  type: CLEAR_MUST_CHANGE_PASSWORD
+});
 
 
 var index = {
@@ -642,7 +645,7 @@ const EventSourceClient = {
             if (ct && ct.includes('application/json')) {
               data = await response.clone().json();
             }
-          } catch (e) {}
+          } catch (e) { }
           if (data.error !== 'Forbidden') {
             store.dispatch({
               type: SHOW_ERROR_MODAL,
@@ -900,6 +903,7 @@ const CHANGE_IS_GUEST = 'CHANGE_IS_GUEST';
 const GOTO_GUEST_APP = 'GOTO_GUEST_APP';
 const GOTO_AGENCY_APP = 'GOTO_AGENCY_APP';
 const UPDATE_USER_SOCIAL = 'UPDATE_USER_SOCIAL';
+const CLEAR_MUST_CHANGE_PASSWORD = 'CLEAR_MUST_CHANGE_PASSWORD';
 const UPDATE_USER_FACEBOOK_AUTH = 'UPDATE_USER_FACEBOOK_AUTH';
 const UPDATE_USER_GOOGLE_AUTH = 'UPDATE_USER_GOOGLE_AUTH';
 const UPDATE_USER_AVATAR = 'UPDATE_USER_AVATAR';
@@ -952,6 +956,7 @@ const loginAction = user => {
     } = getState().auth;
     if (response.status === API_R_200) {
       const authToken = response.data.id_token;
+      const mustChangePassword = response.data.mustChangePassword === true;
       response = await AuthService.getUserInfo(user.username, authToken);
       if (user.isRemeberMe) {
         localStorage.setItem(REMEMBER_ME_TOKEN, JSON.stringify({
@@ -999,6 +1004,7 @@ const loginAction = user => {
           type: LOGIN_ACTION,
           payload: {
             authToken,
+            mustChangePassword,
             type: 'PASSWORD',
             user: response.data || []
           }
@@ -1280,6 +1286,7 @@ const changePassword = ({
       toastSuccess( /*#__PURE__*/React.createElement(FormattedMessage, {
         id: "changePassword.success"
       }));
+      dispatch(clearMustChangePassword());
       dispatch(goBackHomePage());
     }
   };
@@ -1450,6 +1457,7 @@ const customizerReducer = (state = {
 
 const authInitialState = {
   authToken: '',
+  mustChangePassword: false,
   isGuest: false,
   loginMethod: LOGIN_METHODS.PASSWORD,
   user: '',
@@ -1478,6 +1486,13 @@ const authReducers = (state = {
           ...state,
           ...action.payload,
           loginStatus: LOGIN_STATUS.SUCCESS
+        };
+      }
+    case CLEAR_MUST_CHANGE_PASSWORD:
+      {
+        return {
+          ...state,
+          mustChangePassword: false
         };
       }
     case LOGOUT_ACTION:
@@ -10156,6 +10171,70 @@ const LandingPage = props => {
   }))))));
 };
 
+const MustChangePasswordModal = () => {
+  const dispatch = useDispatch();
+  const mustChangePwd = useSelector(state => state.auth.mustChangePassword);
+  const onClickSubmit = values => {
+    dispatch(changePassword(values));
+  };
+  return /*#__PURE__*/React.createElement(Modal, {
+    isOpen: !!mustChangePwd,
+    backdrop: "static",
+    keyboard: false,
+    className: "modal-dialog-centered",
+    centered: true
+  }, /*#__PURE__*/React.createElement(ModalHeader, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 'bold',
+      color: 'green',
+      textTransform: 'uppercase'
+    }
+  }, "Thay đổi mật khẩu")), /*#__PURE__*/React.createElement(ModalBody, null, /*#__PURE__*/React.createElement(Formik, {
+    initialValues: {
+      oldPassword: '',
+      newPassword: '',
+      passwordConfirmation: ''
+    },
+    onSubmit: onClickSubmit,
+    validationSchema: formSchema
+  }, ({
+    errors,
+    touched
+  }) => /*#__PURE__*/React.createElement(Form, null, /*#__PURE__*/React.createElement(BaseFormGroup, {
+    type: "password",
+    messageId: "changePassword.oldPassword",
+    fieldName: "oldPassword",
+    errors: errors,
+    touched: touched
+  }), /*#__PURE__*/React.createElement(BaseFormGroup, {
+    type: "password",
+    messageId: "changePassword.newPassword",
+    fieldName: "newPassword",
+    errors: errors,
+    touched: touched
+  }), /*#__PURE__*/React.createElement(BaseFormGroup, {
+    type: "password",
+    messageId: "createPassword.enterThePassword",
+    fieldName: "passwordConfirmation",
+    errors: errors,
+    touched: touched
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "createPassword.condition.1"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "createPassword.condition.2"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "createPassword.condition.3"
+  })), /*#__PURE__*/React.createElement(Row, null, /*#__PURE__*/React.createElement(Col, {
+    className: "d-flex justify-content-end mt-2",
+    sm: "12"
+  }, /*#__PURE__*/React.createElement(Button, {
+    color: "primary",
+    type: "submit"
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "common.saveChanges"
+  }))))))));
+};
+
 const ConfirmAlert = () => {
   const {
     title,
@@ -10840,7 +10919,7 @@ const AppRouter = props => {
     autoClose: 5000,
     closeOnClick: true,
     pauseOnHover: true
-  }), /*#__PURE__*/React.createElement(ConfirmAlert, null), /*#__PURE__*/React.createElement(GlobalErrorModal, null));
+  }), /*#__PURE__*/React.createElement(ConfirmAlert, null), /*#__PURE__*/React.createElement(MustChangePasswordModal, null), /*#__PURE__*/React.createElement(GlobalErrorModal, null));
 };
 const mapStateToProps$3 = state => {
   return {
