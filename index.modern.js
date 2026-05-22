@@ -4440,6 +4440,7 @@ var messages_en = {
   "changePassword.passwordMustMatch": "Password must match",
   "changePassword.confirmMessage": "Do you want to change your password?",
   "changePassword.success": "Change password successfully!",
+  "changePassword.mustChangeHint": "Please change your default password before continuing",
   "generalInfo.changeLanguage.confirmMessage": "Do you want to change language?",
   "generalInfo.changeLanguage.success": "Change language successfully!",
   "generalInfo.policy.1": "1. CÁC LOẠI DỮ LIỆU CÁ NHÂN CHÚNG TÔI SẼ THU THẬP VÀ XỬ LÝ",
@@ -4884,6 +4885,7 @@ var messages_vi = {
   "changePassword.passwordMustMatch": "Mật khẩu không trùng khớp",
   "changePassword.confirmMessage": "Bạn có muốn thay đổi mật khẩu?",
   "changePassword.success": "Thay đổi mật khẩu thành công!",
+  "changePassword.mustChangeHint": "Vui lòng đổi mật khẩu mặc định trước khi tiếp tục",
   "generalInfo.changeLanguage.confirmMessage": "Bạn có muốn thay đổi ngôn ngữ?",
   "generalInfo.changeLanguage.success": "Thay đổi ngôn ngữ thành công!",
   "generalInfo.policy.1": "1. CÁC LOẠI DỮ LIỆU CÁ NHÂN CHÚNG TÔI SẼ THU THẬP VÀ XỬ LÝ",
@@ -10253,7 +10255,11 @@ const MustChangePasswordModal = () => {
   }, ({
     errors,
     touched
-  }) => /*#__PURE__*/React.createElement(Form, null, /*#__PURE__*/React.createElement(BaseFormGroup, {
+  }) => /*#__PURE__*/React.createElement(Form, null, /*#__PURE__*/React.createElement("p", {
+    className: "mb-2 primary"
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "changePassword.mustChangeHint"
+  })), /*#__PURE__*/React.createElement(BaseFormGroup, {
     type: "password",
     messageId: "changePassword.oldPassword",
     fieldName: "oldPassword",
