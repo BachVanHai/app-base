@@ -909,6 +909,12 @@ const UPDATE_USER_GOOGLE_AUTH = 'UPDATE_USER_GOOGLE_AUTH';
 const UPDATE_USER_AVATAR = 'UPDATE_USER_AVATAR';
 const checkLoginStatus = (authToken, redirectUrl) => {
   return async (dispatch, getState) => {
+    if (getState().auth.mustChangePassword) {
+      if (history.location.pathname !== '/login') {
+        history.replace('/login');
+      }
+      return;
+    }
     try {
       let response = await AuthService.checkLoginByToken();
       const {
@@ -957,6 +963,27 @@ const loginAction = user => {
     if (response.status === API_R_200) {
       const authToken = response.data.id_token;
       const mustChangePassword = response.data.mustChangePassword === true;
+      if (!isGuest && mustChangePassword) {
+        if (user.isRemeberMe) {
+          localStorage.setItem(REMEMBER_ME_TOKEN, JSON.stringify({
+            username: user.username,
+            name: user.username
+          }));
+        }
+        dispatch({
+          type: LOGIN_ACTION,
+          payload: {
+            authToken,
+            mustChangePassword: true,
+            type: 'PASSWORD',
+            user: {
+              username: user.username
+            }
+          }
+        });
+        history.replace('/login');
+        return;
+      }
       response = await AuthService.getUserInfo(user.username, authToken);
       if (user.isRemeberMe) {
         localStorage.setItem(REMEMBER_ME_TOKEN, JSON.stringify({
@@ -1004,7 +1031,7 @@ const loginAction = user => {
           type: LOGIN_ACTION,
           payload: {
             authToken,
-            mustChangePassword,
+            mustChangePassword: false,
             type: 'PASSWORD',
             user: response.data || []
           }
@@ -1277,7 +1304,8 @@ const changePassword = ({
   oldPassword,
   newPassword
 }) => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const pendingPasswordChange = getState().auth.mustChangePassword;
     const res = await AuthService.changePassword({
       oldPassword,
       newPassword
@@ -1287,7 +1315,32 @@ const changePassword = ({
         id: "changePassword.success"
       }));
       dispatch(clearMustChangePassword());
-      dispatch(goBackHomePage());
+      if (pendingPasswordChange) {
+        const {
+          authToken,
+          user
+        } = getState().auth;
+        const username = user && user.username;
+        if (username && authToken) {
+          const userRes = await AuthService.getUserInfo(username, authToken);
+          if (userRes && userRes.data) {
+            const {
+              userSettings
+            } = userRes.data;
+            if (userSettings) {
+              localStorage.setItem('language', userSettings.language.toLowerCase());
+            }
+            dispatch({
+              type: UPDATE_USER_INFO,
+              payload: userRes.data
+            });
+          }
+        }
+        dispatch(loadNavigation());
+        redirectMainApp(false);
+      } else {
+        dispatch(goBackHomePage());
+      }
     }
   };
 };
@@ -10807,6 +10860,7 @@ const AppRouter = props => {
     user,
     loginStatus,
     isAuthentication,
+    mustChangePassword,
     guest,
     authToken,
     children,
@@ -10818,13 +10872,19 @@ const AppRouter = props => {
     message
   } = props;
   useEffect(() => {
+    if (mustChangePassword) {
+      if (history.location.pathname !== '/login') {
+        history.replace('/login');
+      }
+      return;
+    }
     const urlParams = new URLSearchParams(document.location.search);
     const code = guest.authToken || authToken;
     const redirectUrl = urlParams.get('redirectUrl');
     if (code && loginStatus !== LOGIN_STATUS.SUCCESS) {
       checkLoginStatus(code, redirectUrl);
     }
-  }, [authToken]);
+  }, [authToken, mustChangePassword]);
   const appMessage = {
     en: {
       ...messages_en,
@@ -10923,7 +10983,8 @@ const AppRouter = props => {
 };
 const mapStateToProps$3 = state => {
   return {
-    isAuthentication: !!state.auth.authToken,
+    isAuthentication: !!state.auth.authToken && !state.auth.mustChangePassword,
+    mustChangePassword: state.auth.mustChangePassword,
     authToken: state.auth.authToken,
     guest: state.auth.guest,
     loginStatus: state.auth.loginStatus,
