@@ -8460,6 +8460,73 @@ const formSchema = object().shape({
     id: "changePassword.confirmPassword.required"
   }))
 });
+const MustChangePasswordForm = () => {
+  const dispatch = useDispatch();
+  const onSubmit = values => {
+    dispatch(changePassword(values));
+  };
+  const onClickLogout = () => {
+    dispatch(logoutAction());
+  };
+  return /*#__PURE__*/React.createElement(Formik, {
+    initialValues: {
+      oldPassword: '',
+      newPassword: '',
+      passwordConfirmation: ''
+    },
+    onSubmit: onSubmit,
+    validationSchema: formSchema
+  }, ({
+    errors,
+    touched
+  }) => /*#__PURE__*/React.createElement(Form, null, /*#__PURE__*/React.createElement("h4", {
+    className: "text-center mb-2 font-weight-bold text-uppercase primary"
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "setting.changePassword"
+  })), /*#__PURE__*/React.createElement("p", {
+    className: "mb-2 primary"
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "changePassword.mustChangeHint"
+  })), /*#__PURE__*/React.createElement(BaseFormGroup, {
+    type: "password",
+    messageId: "changePassword.oldPassword",
+    fieldName: "oldPassword",
+    errors: errors,
+    touched: touched
+  }), /*#__PURE__*/React.createElement(BaseFormGroup, {
+    type: "password",
+    messageId: "changePassword.newPassword",
+    fieldName: "newPassword",
+    errors: errors,
+    touched: touched
+  }), /*#__PURE__*/React.createElement(BaseFormGroup, {
+    type: "password",
+    messageId: "createPassword.enterThePassword",
+    fieldName: "passwordConfirmation",
+    errors: errors,
+    touched: touched
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "createPassword.condition.1"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "createPassword.condition.2"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "createPassword.condition.3"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "d-flex justify-content-center mt-2"
+  }, /*#__PURE__*/React.createElement(Button, {
+    color: "primary",
+    type: "submit"
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "common.saveChanges"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "text-center mt-2"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "text-secondary font-weight-bold cursor-pointer",
+    onClick: onClickLogout
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "navbar.logout"
+  })))));
+};
 const ChangePassword = () => {
   const dispatch = useDispatch();
   const onClickSubmit = values => {
@@ -9267,7 +9334,8 @@ const Login = () => {
   const [isRemeberMe, setIsRemeberMe] = useState(false);
   const dispatch = useDispatch();
   const {
-    isGuest
+    isGuest,
+    mustChangePassword
   } = useSelector(state => state.auth);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem(REMEMBER_ME_TOKEN));
@@ -9275,6 +9343,9 @@ const Login = () => {
       setRememberMe(user);
     }
   }, []);
+  if (mustChangePassword) {
+    return /*#__PURE__*/React.createElement(MustChangePasswordForm, null);
+  }
   const onSubmit = (values, actions) => {
     dispatch(loginAction({
       username: trimValue(values.username),
@@ -10114,6 +10185,7 @@ const PageStyle = styled.div(_t$1 || (_t$1 = _$1`
 const LandingPage = props => {
   const [activeTab, setActiveTab] = useState('');
   const history = useHistory();
+  const mustChangePassword = useSelector(state => state.auth.mustChangePassword);
   useEffect(() => {
     setActiveTab(props.activeTab || 'login');
   }, [props.activeTab]);
@@ -10201,7 +10273,7 @@ const LandingPage = props => {
     lg: 7
   }, /*#__PURE__*/React.createElement("div", {
     className: activeTab === 'complete-information' ? 'main-content wider' : 'main-content'
-  }, /*#__PURE__*/React.createElement(LandingPageHeader, null), activeTab === 'login' || activeTab === 'register' ? /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(LandingPageHeader, null), !mustChangePassword && (activeTab === 'login' || activeTab === 'register') ? /*#__PURE__*/React.createElement("div", {
     className: "lg-content-header d-flex cursor-pointer mt-3"
   }, /*#__PURE__*/React.createElement("div", {
     onClick: () => goToLink('/login'),
@@ -10218,80 +10290,12 @@ const LandingPage = props => {
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "register"
   }))) : null, /*#__PURE__*/React.createElement("div", {
-    className: activeTab === 'login' || activeTab === 'register' ? '' : 'lg-content'
+    className: !mustChangePassword && (activeTab === 'login' || activeTab === 'register') ? '' : 'lg-content mt-3'
   }, /*#__PURE__*/React.createElement("div", {
     className: "w-100"
   }, /*#__PURE__*/React.createElement(TabView, null))), /*#__PURE__*/React.createElement("div", {
     id: "recaptcha-container"
   }))))));
-};
-
-const MustChangePasswordModal = () => {
-  const dispatch = useDispatch();
-  const mustChangePwd = useSelector(state => state.auth.mustChangePassword);
-  const onClickSubmit = values => {
-    dispatch(changePassword(values));
-  };
-  return /*#__PURE__*/React.createElement(Modal, {
-    isOpen: !!mustChangePwd,
-    backdrop: "static",
-    keyboard: false,
-    className: "modal-dialog-centered",
-    centered: true
-  }, /*#__PURE__*/React.createElement(ModalHeader, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 'bold',
-      color: 'green',
-      textTransform: 'uppercase'
-    }
-  }, "Thay đổi mật khẩu")), /*#__PURE__*/React.createElement(ModalBody, null, /*#__PURE__*/React.createElement(Formik, {
-    initialValues: {
-      oldPassword: '',
-      newPassword: '',
-      passwordConfirmation: ''
-    },
-    onSubmit: onClickSubmit,
-    validationSchema: formSchema
-  }, ({
-    errors,
-    touched
-  }) => /*#__PURE__*/React.createElement(Form, null, /*#__PURE__*/React.createElement("p", {
-    className: "mb-2 primary"
-  }, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "changePassword.mustChangeHint"
-  })), /*#__PURE__*/React.createElement(BaseFormGroup, {
-    type: "password",
-    messageId: "changePassword.oldPassword",
-    fieldName: "oldPassword",
-    errors: errors,
-    touched: touched
-  }), /*#__PURE__*/React.createElement(BaseFormGroup, {
-    type: "password",
-    messageId: "changePassword.newPassword",
-    fieldName: "newPassword",
-    errors: errors,
-    touched: touched
-  }), /*#__PURE__*/React.createElement(BaseFormGroup, {
-    type: "password",
-    messageId: "createPassword.enterThePassword",
-    fieldName: "passwordConfirmation",
-    errors: errors,
-    touched: touched
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "createPassword.condition.1"
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "createPassword.condition.2"
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "createPassword.condition.3"
-  })), /*#__PURE__*/React.createElement(Row, null, /*#__PURE__*/React.createElement(Col, {
-    className: "d-flex justify-content-end mt-2",
-    sm: "12"
-  }, /*#__PURE__*/React.createElement(Button, {
-    color: "primary",
-    type: "submit"
-  }, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "common.saveChanges"
-  }))))))));
 };
 
 const ConfirmAlert = () => {
@@ -10985,7 +10989,7 @@ const AppRouter = props => {
     autoClose: 5000,
     closeOnClick: true,
     pauseOnHover: true
-  }), /*#__PURE__*/React.createElement(ConfirmAlert, null), /*#__PURE__*/React.createElement(MustChangePasswordModal, null), /*#__PURE__*/React.createElement(GlobalErrorModal, null));
+  }), /*#__PURE__*/React.createElement(ConfirmAlert, null), /*#__PURE__*/React.createElement(GlobalErrorModal, null));
 };
 const mapStateToProps$3 = state => {
   return {
