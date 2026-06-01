@@ -7827,7 +7827,8 @@ const BaseFormDatePicker = ({
   disabled,
   isShowErrorMessage,
   placeHolder,
-  isRequired: _isRequired = true
+  isRequired: _isRequired = true,
+  isAutoSetFieldValue = true
 }) => {
   const defaultOptions = {
     dateFormat: 'd/m/Y'
@@ -7851,7 +7852,9 @@ const BaseFormDatePicker = ({
     value: field.value,
     options: options || defaultOptions,
     onChange: date => {
-      form.setFieldValue(fieldName, date[0]);
+      if (true == isAutoSetFieldValue) {
+        form.setFieldValue(fieldName, date[0]);
+      }
       if (onChange) {
         onChange(date, form);
       }

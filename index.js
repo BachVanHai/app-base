@@ -8192,7 +8192,8 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       isShowErrorMessage = _ref.isShowErrorMessage,
       _ref$isRequired = _ref.isRequired,
       _placeHolder = _ref._placeHolder,
-      isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired;
+      isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired,
+      isAutoSetFieldValue = _ref.isAutoSetFieldValue === void 0 ? true : _ref.isAutoSetFieldValue;
   var defaultOptions = {
     dateFormat: 'd/m/Y'
   };
@@ -8215,8 +8216,9 @@ var BaseFormDatePicker = function BaseFormDatePicker(_ref) {
       value: field.value,
       options: options || defaultOptions,
       onChange: function onChange(date) {
-
-        form.setFieldValue(fieldName, date[0]);
+        if (true == isAutoSetFieldValue) {
+          form.setFieldValue(fieldName, date[0]);
+        }
 
         if (_onChange) {
           _onChange(date, form);
