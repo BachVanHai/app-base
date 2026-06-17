@@ -7789,20 +7789,44 @@ unwrapExports(vn);
 
 const DatePicker = props => {
   const intl = useIntl();
+  const fpRef = useRef(null);
+
+  useEffect(() => {
+    if (fpRef.current && fpRef.current.flatpickr) {
+      const fp = fpRef.current.flatpickr;
+      if (fp.altInput) {
+        fp.altInput.disabled = !!props.disabled;
+        if (props.disabled) {
+          fp.altInput.setAttribute('readonly', 'readonly');
+          fp.altInput.classList.remove('bg-white');
+        } else {
+          if (fp.config && fp.config.allowInput) {
+            fp.altInput.removeAttribute('readonly');
+          }
+          fp.altInput.classList.add('bg-white');
+        }
+      }
+      if (fp._input) {
+        fp._input.disabled = !!props.disabled;
+      }
+    }
+  }, [props.disabled]);
 
   return /*#__PURE__*/React.createElement(FormGroup, {
     className: "form-label-group position-relative"
   }, /*#__PURE__*/React.createElement(Flatpickr, {
+    ref: fpRef,
     options: {
       disableMobile: true,
-      allowInput: true,
+      allowInput: !props.disabled && true,
       locale: intl.locale === 'vi' ? flatpickr.l10ns.vn : '',
-      ...props.options
+      ...props.options,
+      ...(props.disabled ? { allowInput: false, clickOpens: false } : {})
     },
     disabled: props.disabled,
     placeholder: props.placeholder,
     "data-enable-time": true,
-    className: `form-control position-relative bg-white flatpickr-input ${props.className}`,
+    className: `form-control position-relative ${!props.disabled ? 'bg-white' : ''} flatpickr-input ${props.className || ''}`.replace(/\s+/g, ' ').trim(),
     value: props.value,
     onClose: (date) => {
       props.onChange && props.onChange(date);
@@ -7813,6 +7837,7 @@ const DatePicker = props => {
     className: "text-danger"
   }, getPropObject(props.errors, props.fieldName)) : null);
 };
+
 
 
 
@@ -7840,7 +7865,7 @@ const BaseFormDatePicker = ({
     field,
     form
   }) => /*#__PURE__*/React.createElement(DatePicker, {
-    className: `form-control position-relative ${!disabled ? 'bg-white' : ''} ${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'} ${className}`,
+    className: `${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) ? 'is-invalid' : ''} ${className || ''}`.trim(),
     placeholder: placeHolder ? placeHolder : intl.formatMessage({ id: messageId }),
     label: messageId ? intl.formatMessage({ id: messageId }) : '',
     isShowErrorMessage: isShowErrorMessage,
@@ -7935,7 +7960,7 @@ const Select = props => {
     className: classnames({
       'text-primary': isFocused
     }, props.marginLabel)
-  }, props.placeholder) : '');
+  }, props.label || props.placeholder) : '');
 };
 
 const BaseFormGroupSelect = ({
@@ -7953,7 +7978,8 @@ const BaseFormGroupSelect = ({
   type,
   isShowErrorMessage: _isShowErrorMessage = true,
   defaultOptions,
-  marginLabel
+  marginLabel,
+  placeholder
 }) => {
   const intl = useIntl();
   return /*#__PURE__*/React.createElement(Field, {
@@ -7962,7 +7988,10 @@ const BaseFormGroupSelect = ({
     field,
     form
   }) => /*#__PURE__*/React.createElement(Select, {
-    placeholder: intl.formatMessage({
+    placeholder: placeholder || intl.formatMessage({
+      id: messageId
+    }),
+    label: intl.formatMessage({
       id: messageId
     }),
     className: `${_isRequired && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) && 'is-invalid'}`,
