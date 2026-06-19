@@ -4674,7 +4674,7 @@ var messages_vi = {
   "common.noResults": "Không có kết quả",
   "common.sessionExpired": "Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại để tiếp tục!",
   "common.error.400": "Yêu cầu không hợp lệ. Vui lòng kiểm tra lại thông tin hoặc liên hệ BMK để được hỗ trợ!",
-  "common.error.500": "Hệ thống gặp gián đoạn tạm thời. Vui lòng thử lại sau hoặc liên hệ BMK để được hỗ trợ!",
+  "common.error.500": "Hệ thống đang cập nhật. Vui lòng thử lại sau hoặc liên hệ BMK để được hỗ trợ!",
   "common.table.previous": "Trước",
   "common.table.next": "Tiếp",
   "common.table.page": "Trang",
