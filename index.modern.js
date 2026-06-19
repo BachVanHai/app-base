@@ -531,12 +531,20 @@ const setUpHttpClient = (store, apiBaseUrl) => {
       case 500: {
         const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
         let errorMessage;
-        if (e.response.data.message) {
-          errorMessage = e.response.data.message;
-        } else if (clientMessageId) {
-          errorMessage = 'Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất.';
+        if (500 === e.response.status) {
+          errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.error.500"
+          });
         } else {
-          errorMessage = e.response.status === 400 ? 'Yêu cầu không hợp lệ. Vui lòng kiểm tra lại thông tin.' : 'Có lỗi xảy ra phía máy chủ. Vui lòng thử lại sau.';
+          if (e.response.data.message) {
+            errorMessage = e.response.data.message;
+          } else if (e.response.data.errMsg) {
+            errorMessage = e.response.data.errMsg;
+          } else {
+            errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
+              id: "common.error.400"
+            });
+          }
         }
         store.dispatch({
           type: SHOW_ERROR_MODAL,
