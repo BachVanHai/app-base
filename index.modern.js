@@ -7987,7 +7987,9 @@ const BaseFormGroupSelect = ({
   isShowErrorMessage: _isShowErrorMessage = true,
   defaultOptions,
   marginLabel,
-  placeholder
+  placeholder,
+  isMulti,
+  isClearable
 }) => {
   const intl = useIntl();
   return /*#__PURE__*/React.createElement(Field, {
@@ -8008,7 +8010,7 @@ const BaseFormGroupSelect = ({
     classNamePrefix: "Select",
     fieldName: fieldName,
     required: _isRequired,
-    value: options.find(item => item.value === field.value),
+    value: isMulti ? field.value : options.find(item => item.value === field.value),
     defaultValue: defaultValue,
     disabled: disabled,
     errors: errors,
@@ -8017,8 +8019,14 @@ const BaseFormGroupSelect = ({
     defaultOptions: defaultOptions,
     touched: touched,
     options: options,
+    isMulti: isMulti,
+    isClearable: isClearable,
     onChange: e => {
-      form.setFieldValue(fieldName, e.value);
+      if (isMulti) {
+        form.setFieldValue(fieldName, e ? e.map(item => item.value).join(',') : '');
+      } else {
+        form.setFieldValue(fieldName, e ? e.value : '');
+      }
       if (onChange) {
         onChange(e, form);
       }

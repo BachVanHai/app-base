@@ -8369,7 +8369,9 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
     isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
     defaultOptions = _ref.defaultOptions,
     marginLabel = _ref.marginLabel,
-    placeholder = _ref.placeholder;
+    placeholder = _ref.placeholder,
+    isMulti = _ref.isMulti,
+    isClearable = _ref.isClearable;
   var intl = reactIntl.useIntl();
   return /*#__PURE__*/React__default.createElement(formik.Field, {
     name: fieldName
@@ -8389,7 +8391,7 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
       classNamePrefix: "Select",
       fieldName: fieldName,
       required: isRequired,
-      value: options.find(function (item) {
+      value: isMulti ? field.value : options.find(function (item) {
         return item.value === field.value;
       }),
       defaultValue: defaultValue,
@@ -8400,8 +8402,14 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
       defaultOptions: defaultOptions,
       touched: touched,
       options: options,
+      isMulti: isMulti,
+      isClearable: isClearable,
       onChange: function onChange(e) {
-        form.setFieldValue(fieldName, e.value);
+        if (isMulti) {
+          form.setFieldValue(fieldName, e ? e.map(function (item) { return item.value; }).join(',') : '');
+        } else {
+          form.setFieldValue(fieldName, e ? e.value : '');
+        }
 
         if (_onChange) {
           _onChange(e, form);
