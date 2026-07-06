@@ -4839,6 +4839,7 @@ var messages_vi = {
   "menu.catProposalManagement": "Quản lý GYCBH",
   "menu.roleProductConfig": "Cấu hình cấp đơn",
   "menu.carImageConfig": "Cấu hình ảnh xe",
+  "menu.collaboratorDocManagement": "Quản lý hồ sơ CTV",
   "navbar.language.vi": "Tiếng Việt",
   "navbar.language.en": "English",
   "navbar.logout": "Đăng xuất",
