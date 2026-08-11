@@ -4839,7 +4839,7 @@ var messages_vi = {
   "menu.createCatProposal": "Tạo mới",
   "menu.manageCatProposal": "Quản lý",
   "menu.catProposalManagement": "Quản lý GYCBH",
-  "menu.roleProductConfig": "Cấu hình cấp đơn",
+  "menu.roleProductConfig": "Phân quyền cấp đơn",
   "menu.carImageConfig": "Cấu hình ảnh xe",
   "menu.collaboratorDocManagement": "Quản lý hồ sơ CTV",
   "menu.settings": "Cài đặt",
