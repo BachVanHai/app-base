@@ -7959,6 +7959,7 @@ const Select = props => {
   return /*#__PURE__*/React.createElement(FormGroup, {
     className: "form-label-group position-relative"
   }, /*#__PURE__*/React.createElement(SelectComponent, Object.assign({}, props, {
+    maxMenuHeight: void 0 !== props.maxMenuHeight ? props.maxMenuHeight : 200,
     isDisabled: props.disabled,
     onChange: onChange,
     onBlur: onBlur,
@@ -8001,7 +8002,9 @@ const BaseFormGroupSelect = ({
   marginLabel,
   placeholder,
   isMulti,
-  isClearable
+  isClearable,
+  maxMenuHeight = 200,
+  ...rest
 }) => {
   const intl = useIntl();
   return /*#__PURE__*/React.createElement(Field, {
@@ -8009,7 +8012,7 @@ const BaseFormGroupSelect = ({
   }, ({
     field,
     form
-  }) => /*#__PURE__*/React.createElement(Select, {
+  }) => /*#__PURE__*/React.createElement(Select, Object.assign({
     placeholder: placeholder || intl.formatMessage({
       id: messageId
     }),
@@ -8022,7 +8025,7 @@ const BaseFormGroupSelect = ({
     classNamePrefix: "Select",
     fieldName: fieldName,
     required: _isRequired,
-    value: isMulti ? field.value : options.find(item => item.value === field.value),
+    value: isMulti ? field.value : options && options.find(item => field.value === item.value),
     defaultValue: defaultValue,
     disabled: disabled,
     errors: errors,
@@ -8033,6 +8036,7 @@ const BaseFormGroupSelect = ({
     options: options,
     isMulti: isMulti,
     isClearable: isClearable,
+    maxMenuHeight: maxMenuHeight,
     onChange: e => {
       if (isMulti) {
         form.setFieldValue(fieldName, e ? e.map(item => item.value).join(',') : '');
@@ -8044,7 +8048,7 @@ const BaseFormGroupSelect = ({
       }
     },
     marginLabel: marginLabel
-  }));
+  }, rest)));
 };
 
 class DataColetionService {

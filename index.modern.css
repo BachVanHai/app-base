@@ -23772,8 +23772,10 @@ html[dir="rtl"] body .false-cjs {
   html[dir="rtl"] .false-cjs .false-cjs .false-cjs.false-cjs .false-cjs {
     transform: translate3d(26px, 64px, 0px) !important; } }
 
+.Select__menu-list,
+.select__menu-list,
 .false-cjs {
-  max-height: 120px !important; }
+  max-height: 200px !important; }
 
 .false-cjs {
   color: #D4D5D6 !important;

@@ -8327,6 +8327,7 @@ var Select = function Select(props) {
   return /*#__PURE__*/React__default.createElement(reactstrap.FormGroup, {
     className: "form-label-group position-relative"
   }, /*#__PURE__*/React__default.createElement(SelectComponent, _extends({}, props, {
+    maxMenuHeight: void 0 !== props.maxMenuHeight ? props.maxMenuHeight : 200,
     isDisabled: props.disabled,
     onChange: onChange,
     onBlur: onBlur,
@@ -8359,19 +8360,21 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
     options = _ref.options,
     defaultValue = _ref.defaultValue,
     _ref$isRequired = _ref.isRequired,
-    isRequired = _ref$isRequired === void 0 ? true : _ref$isRequired,
+    isRequired = void 0 === _ref$isRequired ? true : _ref$isRequired,
     isAsync = _ref.isAsync,
     disabled = _ref.disabled,
     _onChange = _ref.onChange,
     loadOptions = _ref.loadOptions,
     type = _ref.type,
     _ref$isShowErrorMessa = _ref.isShowErrorMessage,
-    isShowErrorMessage = _ref$isShowErrorMessa === void 0 ? true : _ref$isShowErrorMessa,
+    isShowErrorMessage = void 0 === _ref$isShowErrorMessa ? true : _ref$isShowErrorMessa,
     defaultOptions = _ref.defaultOptions,
     marginLabel = _ref.marginLabel,
     placeholder = _ref.placeholder,
     isMulti = _ref.isMulti,
-    isClearable = _ref.isClearable;
+    isClearable = _ref.isClearable,
+    _ref$maxMenuHeight = _ref.maxMenuHeight,
+    maxMenuHeight = void 0 === _ref$maxMenuHeight ? 200 : _ref$maxMenuHeight;
   var intl = reactIntl.useIntl();
   return /*#__PURE__*/React__default.createElement(formik.Field, {
     name: fieldName
@@ -8391,8 +8394,8 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
       classNamePrefix: "Select",
       fieldName: fieldName,
       required: isRequired,
-      value: isMulti ? field.value : options.find(function (item) {
-        return item.value === field.value;
+      value: isMulti ? field.value : options && options.find(function (item) {
+        return field.value === item.value;
       }),
       defaultValue: defaultValue,
       disabled: disabled,
@@ -8404,6 +8407,7 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
       options: options,
       isMulti: isMulti,
       isClearable: isClearable,
+      maxMenuHeight: maxMenuHeight,
       onChange: function onChange(e) {
         if (isMulti) {
           form.setFieldValue(fieldName, e ? e.map(function (item) { return item.value; }).join(',') : '');

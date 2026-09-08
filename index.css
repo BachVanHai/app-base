@@ -23904,8 +23904,9 @@ html[dir="rtl"] body .ps__rail-y {
   html[dir="rtl"] .app-content .header-navbar .dropdown.dropdown-language .dropdown-menu {
     transform: translate3d(26px, 64px, 0px) !important; } }
 
-.Select__menu-list {
-  max-height: 120px !important; }
+.Select__menu-list,
+.select__menu-list {
+  max-height: 200px !important; }
 
 .Select__placeholder {
   color: #D4D5D6 !important;
