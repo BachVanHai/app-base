@@ -7306,7 +7306,9 @@ const BaseFormGroupSelect = ({
   type,
   isShowErrorMessage: _isShowErrorMessage = true,
   defaultOptions,
-  marginLabel
+  marginLabel,
+  maxMenuHeight = 200,
+  ...rest
 }) => {
   const intl = useIntl();
   return /*#__PURE__*/React.createElement(Field, {
@@ -7314,7 +7316,7 @@ const BaseFormGroupSelect = ({
   }, ({
     field,
     form
-  }) => /*#__PURE__*/React.createElement(Select, {
+  }) => /*#__PURE__*/React.createElement(Select, Object.assign({
     placeholder: intl.formatMessage({
       id: messageId
     }),
@@ -7324,7 +7326,7 @@ const BaseFormGroupSelect = ({
     classNamePrefix: "Select",
     fieldName: fieldName,
     required: _isRequired,
-    value: options.find(item => item.value === field.value),
+    value: options && options.find(item => field.value === item.value),
     defaultValue: defaultValue,
     disabled: disabled,
     errors: errors,
@@ -7333,6 +7335,7 @@ const BaseFormGroupSelect = ({
     defaultOptions: defaultOptions,
     touched: touched,
     options: options,
+    maxMenuHeight: maxMenuHeight,
     onChange: e => {
       form.setFieldValue(fieldName, e.value);
       if (onChange) {
@@ -7340,7 +7343,7 @@ const BaseFormGroupSelect = ({
       }
     },
     marginLabel: marginLabel
-  }));
+  }, rest)));
 };
 
 class DataColetionService {
