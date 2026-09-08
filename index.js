@@ -8131,6 +8131,7 @@ var Select = function Select(props) {
   return /*#__PURE__*/React__default.createElement(reactstrap.FormGroup, {
     className: "form-label-group position-relative"
   }, /*#__PURE__*/React__default.createElement(SelectComponent, _extends({}, props, {
+    maxMenuHeight: void 0 !== props.maxMenuHeight ? props.maxMenuHeight : 200,
     isDisabled: props.disabled,
     onChange: onChange,
     onBlur: onBlur,

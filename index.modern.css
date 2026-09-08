@@ -23773,6 +23773,7 @@ html[dir="rtl"] body .false-cjs {
     transform: translate3d(26px, 64px, 0px) !important; } }
 
 .Select__menu-list,
+.select__menu-list,
 .false-cjs {
   max-height: 200px !important; }
 
