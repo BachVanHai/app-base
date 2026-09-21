@@ -453,6 +453,110 @@ const HttpClient = Axios.create({
   timeout: API_TIME_OUT
 });
 HttpClient.defaults.headers['Content-Type'] = 'application/json';
+
+const isResponseData = data => {
+  if (!data || 'object' !== typeof data || true === Array.isArray(data)) {
+    return false;
+  }
+  return (
+    Object.prototype.hasOwnProperty.call(data, 'data') &&
+    (Object.prototype.hasOwnProperty.call(data, 'errCode') ||
+      Object.prototype.hasOwnProperty.call(data, 'clientMessageId') ||
+      Object.prototype.hasOwnProperty.call(data, 'errMsg'))
+  );
+};
+
+const unwrapResponseData = response => {
+  if (!response || !response.data || response.responseData) {
+    return response;
+  }
+  const rawData = response.data;
+  if (true === isResponseData(rawData)) {
+    const unwrapped = rawData.data;
+    if (unwrapped && 'object' === typeof unwrapped && true === Object.isExtensible(unwrapped)) {
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'data')) {
+        Object.defineProperty(unwrapped, 'data', {
+          get() {
+            return this;
+          },
+          configurable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'clientMessageId') && undefined !== rawData.clientMessageId) {
+        Object.defineProperty(unwrapped, 'clientMessageId', {
+          value: rawData.clientMessageId,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'errCode') && undefined !== rawData.errCode) {
+        Object.defineProperty(unwrapped, 'errCode', {
+          value: rawData.errCode,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'errMsg') && undefined !== rawData.errMsg) {
+        Object.defineProperty(unwrapped, 'errMsg', {
+          value: rawData.errMsg,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+    }
+    response.responseData = rawData;
+    if (undefined !== rawData.clientMessageId) {
+      response.clientMessageId = rawData.clientMessageId;
+    }
+    if (undefined !== rawData.errCode) {
+      response.errCode = rawData.errCode;
+    }
+    if (undefined !== rawData.errMsg) {
+      response.errMsg = rawData.errMsg;
+    }
+    response.data = unwrapped;
+  }
+  return response;
+};
+
+try {
+  if (!Object.prototype.hasOwnProperty.call(Boolean.prototype, 'data')) {
+    Object.defineProperty(Boolean.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+  if (!Object.prototype.hasOwnProperty.call(Number.prototype, 'data')) {
+    Object.defineProperty(Number.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+  if (!Object.prototype.hasOwnProperty.call(String.prototype, 'data')) {
+    Object.defineProperty(String.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+} catch (e) {
+  // ignore in restricted environments
+}
+
+HttpClient.interceptors.response.use(unwrapResponseData);
+
 const setUpHttpClient = (store, apiBaseUrl) => {
   let deviceId = localStorage.getItem('deviceId');
   let language = localStorage.getItem('language');
@@ -517,7 +621,7 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         payload: response.config.requestUUID
       });
     }
-    return response;
+    return unwrapResponseData(response);
   }, e => {
     store.dispatch({
       type: HIDE_LOADING_BAR,
@@ -529,16 +633,16 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     switch (e.response.status) {
       case 400:
       case 500: {
-        const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+        const clientMessageId = e.response.data?.clientMessageId || e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
         let errorMessage;
         if (500 === e.response.status) {
           errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
             id: "common.error.500"
           });
         } else {
-          if (e.response.data.message) {
+          if (e.response.data?.message) {
             errorMessage = e.response.data.message;
-          } else if (e.response.data.errMsg) {
+          } else if (e.response.data?.errMsg) {
             errorMessage = e.response.data.errMsg;
           } else {
             errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
