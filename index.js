@@ -623,6 +623,8 @@ try {
 
 HttpClient.interceptors.response.use(unwrapResponseData);
 
+var isLoggingOut = false;
+
 var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
   var deviceId = localStorage.getItem('deviceId');
   var language = localStorage.getItem('language');
@@ -719,8 +721,33 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
         }
         break;
       }
+      case 401: {
+        var isAuthRequest = Boolean(e.response.config && e.response.config.url && e.response.config.url.indexOf(API_LOGIN_URL) >= 0);
+        var isLoginPage = Boolean(window.location.pathname && window.location.pathname.indexOf('/login') >= 0);
+
+        if (true === isAuthRequest || true === isLoginPage) {
+          return e.response;
+        }
+
+        if (false === isLoggingOut) {
+          isLoggingOut = true;
+          var message = (e.response.data && (e.response.data.message || e.response.data.errMsg)) || React.createElement(FormattedMessage, {
+            id: "common.sessionExpired"
+          });
+          toastError(message);
+          store.dispatch({
+            type: LOGOUT_ACTION
+          });
+          var redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
+          history.push('/login?redirect=' + redirectUrl);
+          setTimeout(function () {
+            isLoggingOut = false;
+          }, 2000);
+        }
+        break;
+      }
       case 403: {
-        if (e.response.data.error === 'Forbidden') {
+        if (e.response.data && 'Forbidden' === e.response.data.error) {
           return e.response;
         }
 

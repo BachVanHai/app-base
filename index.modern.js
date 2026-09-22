@@ -557,6 +557,8 @@ try {
 
 HttpClient.interceptors.response.use(unwrapResponseData);
 
+let isLoggingOut = false;
+
 const setUpHttpClient = (store, apiBaseUrl) => {
   let deviceId = localStorage.getItem('deviceId');
   let language = localStorage.getItem('language');
@@ -656,8 +658,36 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         });
         break;
       }
+      case 401: {
+        const isAuthRequest = Boolean(e.response.config?.url && e.response.config.url.includes(API_LOGIN_URL));
+        const isLoginPage = Boolean(window.location.pathname && window.location.pathname.includes('/login'));
+
+        if (true === isAuthRequest || true === isLoginPage) {
+          return e.response;
+        }
+
+        if (false === isLoggingOut) {
+          isLoggingOut = true;
+          const message = (e.response.data && (e.response.data.message || e.response.data.errMsg)) || /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.sessionExpired"
+          });
+          store.dispatch({
+            type: SHOW_ERROR_MODAL,
+            payload: { message: message, errorCode: null }
+          });
+          store.dispatch({
+            type: LOGOUT_ACTION
+          });
+          const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
+          history.push(`/login?redirect=${redirectUrl}`);
+          setTimeout(() => {
+            isLoggingOut = false;
+          }, 2000);
+        }
+        break;
+      }
       case 403: {
-        if (e.response.data.error === 'Forbidden') {
+        if ('Forbidden' === e.response.data?.error) {
           return e.response;
         }
 
