@@ -635,22 +635,25 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     switch (e.response.status) {
       case 400:
       case 500: {
-        const clientMessageId = e.response.data?.clientMessageId || e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+        const clientMessageId = e.response.data?.clientMessageId || e.response.config?.headers?.clientmessageid || e.response.config?.headers?.clientMessageId || "";
+        let serverMessage = null;
+        if (e.response.data && 'object' === typeof e.response.data) {
+          serverMessage = e.response.data.errMsg || e.response.data.message || e.response.data.detail || e.response.data.error || null;
+        } else if ('string' === typeof e.response.data && '' !== e.response.data.trim()) {
+          serverMessage = e.response.data.trim();
+        }
+
         let errorMessage;
-        if (500 === e.response.status) {
+        if (null !== serverMessage && '' !== serverMessage) {
+          errorMessage = serverMessage;
+        } else if (500 === e.response.status) {
           errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
             id: "common.error.500"
           });
         } else {
-          if (e.response.data?.message) {
-            errorMessage = e.response.data.message;
-          } else if (e.response.data?.errMsg) {
-            errorMessage = e.response.data.errMsg;
-          } else {
-            errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
-              id: "common.error.400"
-            });
-          }
+          errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.error.400"
+          });
         }
         store.dispatch({
           type: SHOW_ERROR_MODAL,

@@ -707,11 +707,16 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
     switch (e.response.status) {
       case 400:
       case 500: {
-        const clientMessageId = (e.response.data && e.response.data.clientMessageId) || e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
-        if (e.response.data && e.response.data.message) {
-          toastInfo(e.response.data.message);
-        } else if (e.response.data && e.response.data.errMsg) {
-          toastInfo(e.response.data.errMsg);
+        const clientMessageId = (e.response.data && e.response.data.clientMessageId) || (e.response.config && e.response.config.headers && (e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId)) || "";
+        var serverMessage = null;
+        if (e.response.data && 'object' === typeof e.response.data) {
+          serverMessage = e.response.data.errMsg || e.response.data.message || e.response.data.detail || e.response.data.error || null;
+        } else if ('string' === typeof e.response.data && '' !== e.response.data.trim()) {
+          serverMessage = e.response.data.trim();
+        }
+
+        if (null !== serverMessage && '' !== serverMessage) {
+          toastInfo(serverMessage);
         } else if (clientMessageId) {
           toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         } else {
