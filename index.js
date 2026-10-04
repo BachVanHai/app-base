@@ -519,6 +519,112 @@ var HttpClient = Axios.create({
   timeout: API_TIME_OUT
 });
 HttpClient.defaults.headers['Content-Type'] = 'application/json';
+
+var isResponseData = function (data) {
+  if (!data || 'object' !== typeof data || true === Array.isArray(data)) {
+    return false;
+  }
+  return (
+    Object.prototype.hasOwnProperty.call(data, 'data') &&
+    (Object.prototype.hasOwnProperty.call(data, 'errCode') ||
+      Object.prototype.hasOwnProperty.call(data, 'clientMessageId') ||
+      Object.prototype.hasOwnProperty.call(data, 'errMsg'))
+  );
+};
+
+var unwrapResponseData = function (response) {
+  if (!response || !response.data || response.responseData) {
+    return response;
+  }
+  var rawData = response.data;
+  if (true === isResponseData(rawData)) {
+    var unwrapped = rawData.data;
+    if (unwrapped && 'object' === typeof unwrapped && true === Object.isExtensible(unwrapped)) {
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'data')) {
+        Object.defineProperty(unwrapped, 'data', {
+          get: function () {
+            return this;
+          },
+          configurable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'clientMessageId') && undefined !== rawData.clientMessageId) {
+        Object.defineProperty(unwrapped, 'clientMessageId', {
+          value: rawData.clientMessageId,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'errCode') && undefined !== rawData.errCode) {
+        Object.defineProperty(unwrapped, 'errCode', {
+          value: rawData.errCode,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'errMsg') && undefined !== rawData.errMsg) {
+        Object.defineProperty(unwrapped, 'errMsg', {
+          value: rawData.errMsg,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+    }
+    response.responseData = rawData;
+    if (undefined !== rawData.clientMessageId) {
+      response.clientMessageId = rawData.clientMessageId;
+    }
+    if (undefined !== rawData.errCode) {
+      response.errCode = rawData.errCode;
+    }
+    if (undefined !== rawData.errMsg) {
+      response.errMsg = rawData.errMsg;
+    }
+    response.data = unwrapped;
+  }
+  return response;
+};
+
+try {
+  if (!Object.prototype.hasOwnProperty.call(Boolean.prototype, 'data')) {
+    Object.defineProperty(Boolean.prototype, 'data', {
+      get: function () {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+  if (!Object.prototype.hasOwnProperty.call(Number.prototype, 'data')) {
+    Object.defineProperty(Number.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+  if (!Object.prototype.hasOwnProperty.call(String.prototype, 'data')) {
+    Object.defineProperty(String.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+} catch (e) {
+  // ignore in restricted environments
+}
+
+HttpClient.interceptors.response.use(unwrapResponseData);
+
+var isLoggingOut = false;
+
 var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
   var deviceId = localStorage.getItem('deviceId');
   var language = localStorage.getItem('language');
@@ -541,7 +647,7 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
 
   HttpClient.defaults.baseURL = apiBaseUrl || API_BASE_URL;
   HttpClient.interceptors.request.use(function (config) {
-    var token = store.getState().auth.guest.authToken || store.getState().auth.authToken;
+    var token = (store.getState().auth.guest && store.getState().auth.guest.authToken) || store.getState().auth.authToken;
     var sessionExpireTime = store.getState().auth.sessionExpireTime;
     language = localStorage.getItem('language');
 
@@ -587,7 +693,7 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
       });
     }
 
-    return response;
+    return unwrapResponseData(response);
   }, function (e) {
     store.dispatch({
       type: HIDE_LOADING_BAR,
@@ -601,20 +707,52 @@ var setUpHttpClient = function setUpHttpClient(store, apiBaseUrl) {
     switch (e.response.status) {
       case 400:
       case 500: {
-        const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
-        if (e.response.data.message) {
-          toastInfo(e.response.data.message);
+        const clientMessageId = (e.response.data && e.response.data.clientMessageId) || (e.response.config && e.response.config.headers && (e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId)) || "";
+        var serverMessage = null;
+        if (e.response.data && 'object' === typeof e.response.data) {
+          serverMessage = e.response.data.errMsg || e.response.data.message || e.response.data.detail || e.response.data.error || null;
+        } else if ('string' === typeof e.response.data && '' !== e.response.data.trim()) {
+          serverMessage = e.response.data.trim();
+        }
+
+        if (null !== serverMessage && '' !== serverMessage) {
+          toastInfo(serverMessage);
         } else if (clientMessageId) {
           toastInfo(`Có lỗi trong quá trình xử lý. Vui lòng cung cấp mã tra cứu của bạn cho IT BMK để được hỗ trợ sớm nhất. Mã tra cứu: ${clientMessageId}`);
         } else {
           toastInfo(React.createElement(FormattedMessage, {
-            id: e.response.status === 400 ? "common.error.400" : "common.error.500"
+            id: 400 === e.response.status ? "common.error.400" : "common.error.500"
           }));
         }
         break;
       }
+      case 401: {
+        var isAuthRequest = Boolean(e.response.config && e.response.config.url && e.response.config.url.indexOf(API_LOGIN_URL) >= 0);
+        var isLoginPage = Boolean(window.location.pathname && window.location.pathname.indexOf('/login') >= 0);
+
+        if (true === isAuthRequest || true === isLoginPage) {
+          return e.response;
+        }
+
+        if (false === isLoggingOut) {
+          isLoggingOut = true;
+          var message = (e.response.data && (e.response.data.message || e.response.data.errMsg)) || React.createElement(FormattedMessage, {
+            id: "common.sessionExpired"
+          });
+          toastError(message);
+          store.dispatch({
+            type: LOGOUT_ACTION
+          });
+          var redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
+          history.push('/login?redirect=' + redirectUrl);
+          setTimeout(function () {
+            isLoggingOut = false;
+          }, 2000);
+        }
+        break;
+      }
       case 403: {
-        if (e.response.data.error === 'Forbidden') {
+        if (e.response.data && 'Forbidden' === e.response.data.error) {
           return e.response;
         }
 

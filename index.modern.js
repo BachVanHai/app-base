@@ -453,6 +453,112 @@ const HttpClient = Axios.create({
   timeout: API_TIME_OUT
 });
 HttpClient.defaults.headers['Content-Type'] = 'application/json';
+
+const isResponseData = data => {
+  if (!data || 'object' !== typeof data || true === Array.isArray(data)) {
+    return false;
+  }
+  return (
+    Object.prototype.hasOwnProperty.call(data, 'data') &&
+    (Object.prototype.hasOwnProperty.call(data, 'errCode') ||
+      Object.prototype.hasOwnProperty.call(data, 'clientMessageId') ||
+      Object.prototype.hasOwnProperty.call(data, 'errMsg'))
+  );
+};
+
+const unwrapResponseData = response => {
+  if (!response || !response.data || response.responseData) {
+    return response;
+  }
+  const rawData = response.data;
+  if (true === isResponseData(rawData)) {
+    const unwrapped = rawData.data;
+    if (unwrapped && 'object' === typeof unwrapped && true === Object.isExtensible(unwrapped)) {
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'data')) {
+        Object.defineProperty(unwrapped, 'data', {
+          get() {
+            return this;
+          },
+          configurable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'clientMessageId') && undefined !== rawData.clientMessageId) {
+        Object.defineProperty(unwrapped, 'clientMessageId', {
+          value: rawData.clientMessageId,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'errCode') && undefined !== rawData.errCode) {
+        Object.defineProperty(unwrapped, 'errCode', {
+          value: rawData.errCode,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+      if (!Object.prototype.hasOwnProperty.call(unwrapped, 'errMsg') && undefined !== rawData.errMsg) {
+        Object.defineProperty(unwrapped, 'errMsg', {
+          value: rawData.errMsg,
+          configurable: true,
+          writable: true,
+          enumerable: false
+        });
+      }
+    }
+    response.responseData = rawData;
+    if (undefined !== rawData.clientMessageId) {
+      response.clientMessageId = rawData.clientMessageId;
+    }
+    if (undefined !== rawData.errCode) {
+      response.errCode = rawData.errCode;
+    }
+    if (undefined !== rawData.errMsg) {
+      response.errMsg = rawData.errMsg;
+    }
+    response.data = unwrapped;
+  }
+  return response;
+};
+
+try {
+  if (!Object.prototype.hasOwnProperty.call(Boolean.prototype, 'data')) {
+    Object.defineProperty(Boolean.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+  if (!Object.prototype.hasOwnProperty.call(Number.prototype, 'data')) {
+    Object.defineProperty(Number.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+  if (!Object.prototype.hasOwnProperty.call(String.prototype, 'data')) {
+    Object.defineProperty(String.prototype, 'data', {
+      get() {
+        return this.valueOf();
+      },
+      configurable: true,
+      enumerable: false
+    });
+  }
+} catch (e) {
+  // ignore in restricted environments
+}
+
+HttpClient.interceptors.response.use(unwrapResponseData);
+
+let isLoggingOut = false;
+
 const setUpHttpClient = (store, apiBaseUrl) => {
   let deviceId = localStorage.getItem('deviceId');
   let language = localStorage.getItem('language');
@@ -517,7 +623,7 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         payload: response.config.requestUUID
       });
     }
-    return response;
+    return unwrapResponseData(response);
   }, e => {
     store.dispatch({
       type: HIDE_LOADING_BAR,
@@ -529,22 +635,25 @@ const setUpHttpClient = (store, apiBaseUrl) => {
     switch (e.response.status) {
       case 400:
       case 500: {
-        const clientMessageId = e.response.config.headers.clientmessageid || e.response.config.headers.clientMessageId || "";
+        const clientMessageId = e.response.data?.clientMessageId || e.response.config?.headers?.clientmessageid || e.response.config?.headers?.clientMessageId || "";
+        let serverMessage = null;
+        if (e.response.data && 'object' === typeof e.response.data) {
+          serverMessage = e.response.data.errMsg || e.response.data.message || e.response.data.detail || e.response.data.error || null;
+        } else if ('string' === typeof e.response.data && '' !== e.response.data.trim()) {
+          serverMessage = e.response.data.trim();
+        }
+
         let errorMessage;
-        if (500 === e.response.status) {
+        if (null !== serverMessage && '' !== serverMessage) {
+          errorMessage = serverMessage;
+        } else if (500 === e.response.status) {
           errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
             id: "common.error.500"
           });
         } else {
-          if (e.response.data.message) {
-            errorMessage = e.response.data.message;
-          } else if (e.response.data.errMsg) {
-            errorMessage = e.response.data.errMsg;
-          } else {
-            errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
-              id: "common.error.400"
-            });
-          }
+          errorMessage = /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.error.400"
+          });
         }
         store.dispatch({
           type: SHOW_ERROR_MODAL,
@@ -552,8 +661,36 @@ const setUpHttpClient = (store, apiBaseUrl) => {
         });
         break;
       }
+      case 401: {
+        const isAuthRequest = Boolean(e.response.config?.url && e.response.config.url.includes(API_LOGIN_URL));
+        const isLoginPage = Boolean(window.location.pathname && window.location.pathname.includes('/login'));
+
+        if (true === isAuthRequest || true === isLoginPage) {
+          return e.response;
+        }
+
+        if (false === isLoggingOut) {
+          isLoggingOut = true;
+          const message = (e.response.data && (e.response.data.message || e.response.data.errMsg)) || /*#__PURE__*/React.createElement(FormattedMessage, {
+            id: "common.sessionExpired"
+          });
+          store.dispatch({
+            type: SHOW_ERROR_MODAL,
+            payload: { message: message, errorCode: null }
+          });
+          store.dispatch({
+            type: LOGOUT_ACTION
+          });
+          const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
+          history.push(`/login?redirect=${redirectUrl}`);
+          setTimeout(() => {
+            isLoggingOut = false;
+          }, 2000);
+        }
+        break;
+      }
       case 403: {
-        if (e.response.data.error === 'Forbidden') {
+        if ('Forbidden' === e.response.data?.error) {
           return e.response;
         }
 
@@ -5127,10 +5264,54 @@ const BaseFormGroup = ({
   disabled,
   onChange,
   onBlur,
+  onKeyDown,
   isShowErrorMessage: _isShowErrorMessage = true,
   isRequired: _isRequired = true,
   ...rest
 }) => {
+  const getStepDecimals = () => {
+    if ('number' !== type || undefined === rest.step || null === rest.step || 'any' === rest.step) {
+      return null;
+    }
+    const stepStr = rest.step.toString();
+    const parts = stepStr.split('.');
+    return 1 < parts.length ? parts[1].length : 0;
+  };
+
+  const handleKeyDown = (e) => {
+    const maxDecimals = getStepDecimals();
+    if ('number' === type && null !== maxDecimals) {
+      if (['e', 'E', '+'].includes(e.key) || ('-' === e.key && 0 <= Number(rest.min))) {
+        e.preventDefault();
+        return;
+      }
+      if (0 === maxDecimals) {
+        if (['.', ','].includes(e.key)) {
+          e.preventDefault();
+          return;
+        }
+      } else {
+        const val = e.target.value || '';
+        if (['.', ','].includes(e.key) && (val.includes('.') || val.includes(','))) {
+          e.preventDefault();
+          return;
+        }
+        if (val.includes('.')) {
+          const parts = val.split('.');
+          if (parts[1] && parts[1].length >= maxDecimals && e.target.selectionStart > val.indexOf('.')) {
+            if (!['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+              e.preventDefault();
+              return;
+            }
+          }
+        }
+      }
+    }
+    if (onKeyDown) {
+      onKeyDown(e);
+    }
+  };
+
   const handleOnBlur = (e, form) => {
     form.handleBlur(e);
     let {
@@ -5142,12 +5323,38 @@ const BaseFormGroup = ({
       onBlur(e, form);
     }
   };
+
   const handleChange = (e, form) => {
-    form.handleChange(e);
+    const maxDecimals = getStepDecimals();
+    if ('number' === type && null !== maxDecimals) {
+      let raw = (e.target.value || '').replace(',', '.');
+      if (0 === maxDecimals) {
+        const integerPart = raw.split('.')[0];
+        const sanitized = integerPart.replace(/\D/g, '');
+        if (sanitized !== e.target.value) {
+          form.setFieldValue(fieldName, sanitized);
+          e.target.value = sanitized;
+        } else {
+          form.handleChange(e);
+        }
+      } else {
+        const match = raw.match(new RegExp('^\\d*(\\.\\d{0,' + maxDecimals + '})?'));
+        const sanitized = match ? match[0] : '';
+        if (sanitized !== e.target.value) {
+          form.setFieldValue(fieldName, sanitized);
+          e.target.value = sanitized;
+        } else {
+          form.handleChange(e);
+        }
+      }
+    } else {
+      form.handleChange(e);
+    }
     if (onChange) {
       onChange(e, form);
     }
   };
+
   return /*#__PURE__*/React.createElement(FormGroup, {
     className: `form-label-group position-relative ${className}`
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -5166,7 +5373,8 @@ const BaseFormGroup = ({
     value: field.value,
     placeholder: msg,
     onBlur: e => handleOnBlur(e, form),
-    onChange: e => handleChange(e, form)
+    onChange: e => handleChange(e, form),
+    onKeyDown: handleKeyDown
   }, rest))), _isRequired && _isShowErrorMessage && getPropObject(errors, fieldName) && getPropObject(touched, fieldName) ? /*#__PURE__*/React.createElement("div", {
     className: "text-danger"
   }, getPropObject(errors, fieldName)) : null, /*#__PURE__*/React.createElement(Label, null, msg))));
