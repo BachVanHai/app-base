@@ -8497,6 +8497,7 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
     messageId = _ref.messageId,
     options = _ref.options,
     defaultValue = _ref.defaultValue,
+    value = _ref.value,
     _ref$isRequired = _ref.isRequired,
     isRequired = void 0 === _ref$isRequired ? true : _ref$isRequired,
     isAsync = _ref.isAsync,
@@ -8519,6 +8520,17 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
   }, function (_ref2) {
     var field = _ref2.field,
       form = _ref2.form;
+    var resolvedValue;
+    if (true === isMulti) {
+      resolvedValue = void 0 !== value ? value : field.value;
+    } else if (void 0 !== value && null !== value && 'object' === typeof value && !Array.isArray(value)) {
+      resolvedValue = value;
+    } else {
+      var targetVal = (void 0 !== value && null !== value && '' !== value) ? value : field.value;
+      resolvedValue = options ? options.find(function (item) {
+        return targetVal === item.value || (void 0 !== targetVal && null !== targetVal && String(targetVal) === String(item.value));
+      }) : undefined;
+    }
     return /*#__PURE__*/React__default.createElement(Select, {
       placeholder: placeholder || intl.formatMessage({
         id: messageId
@@ -8532,9 +8544,7 @@ var BaseFormGroupSelect = function BaseFormGroupSelect(_ref) {
       classNamePrefix: "Select",
       fieldName: fieldName,
       required: isRequired,
-      value: isMulti ? field.value : options && options.find(function (item) {
-        return field.value === item.value;
-      }),
+      value: resolvedValue,
       defaultValue: defaultValue,
       disabled: disabled,
       errors: errors,
