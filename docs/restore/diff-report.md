@@ -128,3 +128,11 @@ Thay đổi có chủ đích, khớp với bản cuối:
 - Module mới: `services/notificationService.js`, `services/bonusHistoryService.js`, `redux/actions/notification`, `redux/reducers/notification`, `layouts/components/navbar/Bells.js`, `components/GlobalErrorModal.js`, `components/Pagination.js`, `customHooks/usePagination.js`, `pages/authentication/VerifyAccount.js`, `pages/account-settings/tabs/ConnectWithSocial.js`, `pages/bonus-point/BonusPoint.js`, `pages/bonus-point/BonusPointItem.js`.
 - Xoá module không còn trong bản cuối: `assets/data/{terms,policies}.js`, `pages/general-info/tabs/{InfoItems,Terms,Policies}.js`.
 - Locale `en.json`/`vi.json` lấy từ `messages_en`/`messages_vi` của bản cuối (428/446 khóa).
+
+## Kết quả cuối (Task 7, 2026-11-06)
+
+- `decl-report` dist ↔ `legacy-bundle-final`: **45** câu lệnh khác, toàn bộ thuộc bảng "Kết quả Task 6" (flatpickr 33, `_extends` 1, import specifier 6, export 2, code chết 2, `appConfigs` 1).
+- Danh sách export (`index.modern.js`): **37 = 37**, trùng tên hoàn toàn (đã bổ sung `Bells`). Đủ 34 tên mà `inon-app` đang import.
+- `index.js` (cjs): 38 export — thêm `EventSourceClient` so với cjs cũ (bản cuối chỉ sửa tay bản modern); cjs và modern nay sinh từ cùng nguồn.
+- `dist/index.css` trùng từng byte với `legacy-bundle-final/index.css`.
+- `scripts/lib/undef.js`: 0 identifier chưa khai báo/import trong `src/`.

@@ -25,6 +25,7 @@ export { default as Checkbox } from './components/Checkbox'
 export { default as AccountSettings } from './pages/account-settings/AccountSettings'
 export { default as GeneralInfo } from './pages/general-info/GeneralInfo'
 export { default as LandingPage } from './pages/authentication/LandingPage'
+export { default as Bells } from './layouts/components/navbar/Bells'
 export { BaseAppConfigs, BaseAppUltils }
 export { toast } from 'react-toastify'
 export { Button } from 'reactstrap'
