@@ -4,11 +4,13 @@ import { IntlProvider } from 'react-intl'
 const Context = React.createContext()
 
 class IntlProviderWrapper extends React.Component {
-  state = {
-    locale: this.props.locale,
-    messages: this.props.appMessage[this.props.locale]
+  constructor(...args) {
+    super(...args)
+    this.state = {
+      locale: this.props.locale,
+      messages: this.props.appMessage[this.props.locale],
+    }
   }
-
   render() {
     const { children } = this.props
     const { locale, messages } = this.state
@@ -17,20 +19,15 @@ class IntlProviderWrapper extends React.Component {
         value={{
           state: this.state,
           switchLanguage: (language) => {
-            localStorage.setItem('language', language);
+            localStorage.setItem('language', language)
             this.setState({
               locale: language,
-              messages: this.props.appMessage[language]
+              messages: this.props.appMessage[language],
             })
-          }
+          },
         }}
       >
-        <IntlProvider
-          key={locale}
-          locale={locale}
-          messages={messages}
-          defaultLocale='vi'
-        >
+        <IntlProvider key={locale} locale={locale} messages={messages} defaultLocale='vi'>
           {children}
         </IntlProvider>
       </Context.Provider>

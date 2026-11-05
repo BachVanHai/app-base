@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Disc, X, Circle } from 'react-feather'
 import classnames from 'classnames'
 import { IMAGE } from '../../../../configs/app-configs'
 import { useDispatch } from 'react-redux'
-import { goBackHomePage } from '../../../../redux/actions/navbar/Index'
+import { goBackHomePage } from '../../../../redux/actions/navbar/index'
 
 const SidebarHeader = (props) => {
 
@@ -17,7 +17,6 @@ const SidebarHeader = (props) => {
   } = props
 
   const dispatch = useDispatch();
-
 
   const onClickHome = () => {
     dispatch(goBackHomePage())

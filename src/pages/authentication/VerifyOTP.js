@@ -2,13 +2,10 @@ import React, {useEffect, useState} from 'react'
 import {Button} from 'reactstrap'
 import OtpInput from "react-otp-input";
 import {FormattedMessage, useIntl} from "react-intl";
-import firebase from "firebase";
 import {useDispatch, useSelector} from "react-redux";
-import {register, verifyPhoneNumber} from "../../redux/actions/auth";
+import { verifyPhoneNumber } from '../../redux/actions/auth'
 import {useHistory} from "react-router-dom";
 import {toastError} from "../../utility";
-import {Form} from "formik";
-
 
 const VerifyOtp = () => {
 
@@ -80,6 +77,5 @@ const VerifyOtp = () => {
     </React.Fragment>
   )
 }
-
 
 export default VerifyOtp

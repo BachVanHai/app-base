@@ -2,11 +2,12 @@
 // Statement order mirrors the legacy entry (../base-app/src/index.js + later additions) so the
 // build output stays comparable to the legacy bundle; do not reorder without re-running bundle-diff.
 import './styles/custom.scss'
+import 'moment/locale/vi'
 import * as BaseAppConfigs from './configs/app-configs'
 import * as BaseAppUltils from './utility'
 
 export { default as BaseApp } from './App'
-export { default as HttpClient } from './utility/HttpClient'
+export { default as HttpClient, EventSourceClient } from './utility/HttpClient'
 export { default as FallbackSpinner } from './components/Fallback-spinner'
 export { default as DatePicker } from './components/DatePicker'
 export { default as Radio } from './components/Radio'

@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux'
+import UserAccountTab from './tabs/Account'
 import React, { useEffect, useState } from 'react'
 import {
   Card,
@@ -13,8 +15,7 @@ import {
   CardTitle
 } from 'reactstrap'
 import classnames from 'classnames'
-import {User, Lock, Share, Link} from 'react-feather'
-import AccountTab from './tabs/Account'
+import { User, Lock, Link } from 'react-feather'
 import ChangePassword from './tabs/ChangePassword'
 import { FormattedMessage } from 'react-intl'
 import { useHistory } from 'react-router-dom'
@@ -22,27 +23,29 @@ import {ShareWithFriends} from "./tabs/ShareWithFriends";
 
 const AccountSettings = (props) => {
   const [activeTab, setActiveTab] = useState('account-info')
+  const { appId } = useSelector((state) => state.customizer)
   const history = useHistory()
   useEffect(() => setActiveTab(props.activeTab), [props.activeTab])
-
   return (
     <Row>
       <Col sm='12'>
         <Card>
           <CardHeader>
             <CardTitle className='text-uppercase'>
-              <FormattedMessage id={'setting.personalSetting'} />
+              <FormattedMessage id='setting.personalSetting' />
             </CardTitle>
           </CardHeader>
           <CardBody className='pt-2'>
-            <Nav tabs>
+            <Nav tabs={true}>
               <NavItem>
                 <NavLink
                   className={classnames({
-                    active: activeTab === 'account-info'
+                    active: activeTab === 'account-info',
                   })}
                   onClick={() => {
-                    history.push('/account-info')
+                    if (appId !== 'APP_NO1') {
+                      history.push('/account-info')
+                    } else history.push('/app/account-info')
                   }}
                 >
                   <User size={16} />
@@ -54,10 +57,12 @@ const AccountSettings = (props) => {
               <NavItem>
                 <NavLink
                   className={classnames({
-                    active: activeTab === 'change-password'
+                    active: activeTab === 'change-password',
                   })}
                   onClick={() => {
-                    history.push('/change-password')
+                    if (appId !== 'APP_NO1') {
+                      history.push('/change-password')
+                    } else history.push('/app/change-password')
                   }}
                 >
                   <Lock size={16} />
@@ -69,10 +74,12 @@ const AccountSettings = (props) => {
               <NavItem>
                 <NavLink
                   className={classnames({
-                    active: activeTab === 'share-with-friends'
+                    active: activeTab === 'share-with-friends',
                   })}
                   onClick={() => {
-                    history.push('/share-with-friends')
+                    if (appId !== 'APP_NO1') {
+                      history.push('/share-with-friends')
+                    } else history.push('/app/share-with-friends')
                   }}
                 >
                   <Link size={16} />
@@ -84,7 +91,7 @@ const AccountSettings = (props) => {
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId='account-info'>
-                <AccountTab />
+                <UserAccountTab />
               </TabPane>
               <TabPane tabId='change-password'>
                 <Col md='6' sm='11' className='mx-auto'>
@@ -103,4 +110,5 @@ const AccountSettings = (props) => {
     </Row>
   )
 }
+
 export default AccountSettings

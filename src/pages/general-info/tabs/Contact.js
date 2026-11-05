@@ -4,13 +4,12 @@ import { useDispatch } from 'react-redux'
 import { Card, CardBody, Row, Col, Button } from 'reactstrap'
 import { CONTACT_PHONE } from '../../../configs/app-configs'
 import useDeviceDetect from '../../../customHooks/useDeviceDetect'
-import { goBackHomePage } from '../../../redux/actions/navbar/Index'
-import { showConfirmAlert } from '../../../redux/actions/ui/Index'
+import { goBackHomePage } from '../../../redux/actions/navbar/index'
+import { showConfirmAlert } from '../../../redux/actions/ui/index'
 
 const ContactTab = () => {
   const { isMobile } = useDeviceDetect()
   const dispatch = useDispatch()
-
   const onClickBackHome = () => {
     dispatch(
       showConfirmAlert({
@@ -19,24 +18,29 @@ const ContactTab = () => {
         content: <FormattedMessage id='common.backHome.confirmMessage' />,
         onConfirm: () => {
           dispatch(goBackHomePage())
-        }
+        },
       })
     )
   }
-
   const onClickCall = () => {
     dispatch(
       showConfirmAlert({
         title: <FormattedMessage id='setting.call' />,
         isShow: true,
-        content: <FormattedMessage id='setting.call.confirmMessage' values={{phoneNumber : CONTACT_PHONE}} />,
+        content: (
+          <FormattedMessage
+            id='setting.call.confirmMessage'
+            values={{
+              phoneNumber: CONTACT_PHONE,
+            }}
+          />
+        ),
         onConfirm: () => {
           window.open(`tel:0899300800`, '_blank')
-        }
+        },
       })
     )
   }
-
   return (
     <React.Fragment>
       <Row className='d-flex justify-content-center'>
@@ -44,17 +48,13 @@ const ContactTab = () => {
           <Card>
             <CardBody className='w-300px mx-auto'>
               <div className='box-content'>
-                <a href='mailto:lienhe@inon.vn' target='_blank'>
-                  lienhe@inon.vn
+                <a href='mailto:lienhe@bmktech.com.vn' target='_blank'>
+                  lienhe@bmktech.com.vn
                 </a>
               </div>
               <div className='card-btns d-flex justify-content-center mt-2'>
                 <Button.Ripple className='gradient-light-primary text-white'>
-                  <a
-                    className='text-white'
-                    href='mailto:lienhe@inon.vn'
-                    target='_blank'
-                  >
+                  <a className='text-white' href='mailto:lienhe@bmktech.com.vn' target='_blank'>
                     <FormattedMessage id={`setting.sendEmail`} />
                   </a>
                 </Button.Ripple>
@@ -68,7 +68,6 @@ const ContactTab = () => {
               <div className='box-content'>
                 <h5>{CONTACT_PHONE}</h5>
               </div>
-
               <div className='card-btns d-flex justify-content-center mt-2'>
                 {isMobile ? (
                   <Button.Ripple
@@ -87,11 +86,7 @@ const ContactTab = () => {
       </Row>
       <Row>
         <Col className='d-flex justify-content-end flex-wrap mt-2' sm='12'>
-          <Button.Ripple
-            type='button'
-            color='secondary'
-            onClick={onClickBackHome}
-          >
+          <Button.Ripple type='button' color='secondary' onClick={onClickBackHome}>
             <FormattedMessage id={`common.home`} />
           </Button.Ripple>
         </Col>
@@ -99,4 +94,5 @@ const ContactTab = () => {
     </React.Fragment>
   )
 }
+
 export default ContactTab

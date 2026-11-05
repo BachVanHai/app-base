@@ -5,13 +5,12 @@ import {setAppId} from "../redux/actions/customizer";
 import {AppId} from "../index";
 
 export const CheckLocationChange = () => {
-
   const history = useHistory()
   const dispatch = useDispatch()
-  const {appId} = useSelector(state => state.customizer)
-
+  const { appId } = useSelector((state) => state.customizer)
+  const { authToken } = useSelector((state) => state.auth)
   useEffect(() => {
-    let id;
+    let id
     if (window.location.href.includes('/app/')) {
       id = AppId.APP_NO1
     } else if (window.location.href.includes('/insurance/')) {
@@ -24,8 +23,11 @@ export const CheckLocationChange = () => {
     if (appId !== id) {
       dispatch(setAppId(id))
     }
+    if ([AppId.APP_NO1, AppId.SUPPLEMENT_APP, AppId.INSURANCE_APP].indexOf(id) >= 0 && !authToken) {
+      history.push('/')
+    }
   }, [history.location.pathname])
-  return <span/>
+  return <span />
 }
 
 export default CheckLocationChange

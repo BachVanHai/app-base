@@ -1,9 +1,9 @@
-import { LOAD_NATIVGATION, LOAD_USER_ROLE } from '../../actions/navbar/Index'
+import { LOAD_NATIVGATION, LOAD_USER_ROLE } from '../../actions/navbar/index'
 
 const initialState = {
   navConfigs: [],
   roles: [],
-  userRoles: []
+  userRoles: [],
 }
 
 const navbarReducer = (state = initialState, action) => {
@@ -12,12 +12,12 @@ const navbarReducer = (state = initialState, action) => {
       return {
         ...state,
         navConfigs: action.payload.navConfigs,
-        roles: action.payload.roles
+        roles: action.payload.roles,
       }
     case LOAD_USER_ROLE:
       return {
         ...state,
-        userRoles: action.payload
+        userRoles: action.payload,
       }
     default:
       return state

@@ -14,7 +14,6 @@ import {
 } from '../redux/actions/customizer/index'
 import Sidebar from './components/menu/vertical-menu/Sidebar'
 
-
 class Layout extends PureComponent {
   state = {
     width: window.innerWidth,

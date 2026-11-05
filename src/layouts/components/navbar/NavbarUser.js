@@ -1,3 +1,7 @@
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { DollarSign, Search, X } from 'react-feather'
+import Bells from './Bells'
 import React from 'react'
 import {
   NavItem,
@@ -10,88 +14,81 @@ import classnames from 'classnames'
 import Autocomplete from '../../../components/AutoCompleteComponent'
 import UserDropdown from './UserDropDown'
 import { history } from '../../../history'
-import { injectIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { getExternalAppUrl } from '../../../configs/app-configs'
 
-class NavbarUser extends React.PureComponent {
-  state = {
-    navbarSearch: false,
-    suggestions: []
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.roles !== this.props.roles) {
-      const suggestions = this.props.roles.map((item) => {
-        item.name = this.props.intl.formatMessage({
-          id: `menu.${item.keyLang}`
-        })
-        item.isExternalApp = item.appId !== this.props.appId
-        item.navLinkExternal =  getExternalAppUrl(item.appId, item.menuPath);
-        return item
-      })
-      this.setState({
-        suggestions
-      })
+const NavbarUser = (props) => {
+  let { userSettings, userDetails, ...user } = useSelector((state) => state.auth.user)
+  let { appId } = useSelector((state) => state.customizer)
+  let { roles = [] } = useSelector((state) => state.navbar)
+  const [navbarSearch, setNavbarSearch] = useState(false)
+  const [suggestions, setSuggestions] = useState([])
+  const intl = useIntl()
+  userSettings = userSettings || {}
+  useEffect(() => {
+    let roleData = []
+    if (Array.isArray(roles)) {
+      roleData = [...roles]
     }
-  }
-
-  handleNavbarSearch = () => {
-    this.setState({
-      navbarSearch: !this.state.navbarSearch
+    const newSuggestions = roleData.map((item) => {
+      item.name = intl.formatMessage({
+        id: `menu.${item.keyLang}`,
+        defaultMessage: item.description,
+      })
+      item.isExternalApp = false
+      item.navLinkExternal = getExternalAppUrl(item.appId, item.menuPath)
+      return item
     })
+    setSuggestions(newSuggestions)
+  }, [roles])
+  const handleNavbarSearch = () => {
+    setNavbarSearch((prevState) => !prevState)
   }
-
-  getCountryCode = (locale) => {
-    const countryCode = { en: 'us', vi: 'vn' }
-    return countryCode[locale]
+  const handleNavigation = (e, path) => {
+    e.preventDefault()
+    history.push(path)
   }
-
-  onSuggestionItemClick = (item) => {
-    if (!item.isExternalApp) {
-      history.push(`${item.menuPath}`)
-    } else {
-      window.location.href = item.navLinkExternal
-    }
+  const onSuggestionItemClick = (item) => {
+    history.push(item.navLinkExternal)
   }
-
-  render() {
-    let { userSettings, userDetails, ...user } = this.props.user
-
-    userSettings = userSettings || {}
-    userDetails = userDetails || {}
-
-
-    return (
+  return (
+    <React.Fragment>
       <ul className='nav navbar-nav navbar-nav-user float-right'>
-        <NavItem className='nav-search' onClick={this.handleNavbarSearch}>
+        <NavItem className='nav-search'>
+          <NavLink
+            className='nav-link-search pt-2'
+            onClick={(e) => handleNavigation(e, '/app/bonus-point')}
+          >
+            <DollarSign size={21} color='#338955' />
+          </NavLink>
+        </NavItem>
+        <NavItem className='nav-search' onClick={handleNavbarSearch}>
           <NavLink className='nav-link-search pt-2'>
-            <Icon.Search size={21} data-tour='search' />
+            <Search size={21} data-tour='search' />
           </NavLink>
           <div
             className={classnames('search-input', {
-              open: this.state.navbarSearch,
-              'd-none': this.state.navbarSearch === false
+              open: navbarSearch,
+              'd-none': navbarSearch === false,
             })}
           >
             <div className='search-input-icon'>
-              <Icon.Search size={17} className='primary' />
+              <Search size={17} className='primary' />
             </div>
             <Autocomplete
               className='form-control'
-              suggestions={this.state.suggestions}
+              suggestions={suggestions}
               filterKey='name'
-              onSuggestionClick={this.onSuggestionItemClick}
+              onSuggestionClick={onSuggestionItemClick}
               autoFocus={true}
-              clearInput={this.state.navbarSearch}
+              clearInput={navbarSearch}
               externalClick={() => {
-                this.setState({ navbarSearch: false })
+                setNavbarSearch(false)
               }}
               onKeyDown={(e) => {
                 if (e.keyCode === 27 || e.keyCode === 13) {
-                  this.setState({
-                    navbarSearch: false
-                  })
-                  this.props.handleAppOverlay('')
+                  setNavbarSearch(false)
+                  props.handleAppOverlay('')
                 }
               }}
               customRender={(
@@ -106,13 +103,11 @@ class NavbarUser extends React.PureComponent {
                 return (
                   <li
                     className={classnames('suggestion-item', {
-                      active: filteredData.indexOf(item) === activeSuggestion
+                      active: filteredData.indexOf(item) === activeSuggestion,
                     })}
                     key={i}
                     onClick={(e) => onSuggestionItemClick(item, e)}
-                    onMouseEnter={() =>
-                      onSuggestionItemHover(filteredData.indexOf(item))
-                    }
+                    onMouseEnter={() => onSuggestionItemHover(filteredData.indexOf(item))}
                   >
                     <div className='d-flex align-items-center'>
                       <IconTag size={17} />
@@ -122,186 +117,28 @@ class NavbarUser extends React.PureComponent {
                 )
               }}
               onSuggestionsShown={(userInput) => {
-                if (this.state.navbarSearch) {
-                  this.props.handleAppOverlay(userInput)
+                if (navbarSearch) {
+                  props.handleAppOverlay(userInput)
                 }
               }}
             />
             <div className='search-input-close'>
-              <Icon.X
+              <X
                 size={24}
                 onClick={(e) => {
                   e.stopPropagation()
-                  this.setState({
-                    navbarSearch: false
-                  })
-                  this.props.handleAppOverlay('')
+                  setNavbarSearch(false)
+                  props.handleAppOverlay('')
                 }}
               />
             </div>
           </div>
         </NavItem>
-        <UncontrolledDropdown
-          tag='li'
-          className='dropdown-notification nav-item'
-        >
-          <DropdownToggle tag='a' className='nav-link nav-link-label'>
-            <Icon.Bell size={21} />
-          </DropdownToggle>
-          {/* <DropdownMenu tag='ul' right className='dropdown-menu-media'>
-            <li className='dropdown-menu-header'>
-              <div className='dropdown-header mt-0'>
-                <h3 className='text-white'>5 New</h3>
-                <span className='notification-title'>App Notifications</span>
-              </div>
-            </li>
-            <PerfectScrollbar
-              className='media-list overflow-hidden position-relative'
-              options={{
-                wheelPropagation: false
-              }}
-            >
-              <div className='d-flex justify-content-between'>
-                <Media className='d-flex align-items-start'>
-                  <Media left href='#'>
-                    <Icon.PlusSquare
-                      className='font-medium-5 primary'
-                      size={21}
-                    />
-                  </Media>
-                  <Media body>
-                    <Media heading className='primary media-heading' tag='h6'>
-                      You have new order!
-                    </Media>
-                    <p className='notification-text'>
-                      Are your going to meet me tonight?
-                    </p>
-                  </Media>
-                  <small>
-                    <time
-                      className='media-meta'
-                      dateTime='2015-06-11T18:29:20+08:00'
-                    >
-                      9 hours ago
-                    </time>
-                  </small>
-                </Media>
-              </div>
-              <div className='d-flex justify-content-between'>
-                <Media className='d-flex align-items-start'>
-                  <Media left href='#'>
-                    <Icon.DownloadCloud
-                      className='font-medium-5 success'
-                      size={21}
-                    />
-                  </Media>
-                  <Media body>
-                    <Media heading className='success media-heading' tag='h6'>
-                      99% Server load
-                    </Media>
-                    <p className='notification-text'>
-                      You got new order of goods?
-                    </p>
-                  </Media>
-                  <small>
-                    <time
-                      className='media-meta'
-                      dateTime='2015-06-11T18:29:20+08:00'
-                    >
-                      5 hours ago
-                    </time>
-                  </small>
-                </Media>
-              </div>
-              <div className='d-flex justify-content-between'>
-                <Media className='d-flex align-items-start'>
-                  <Media left href='#'>
-                    <Icon.AlertTriangle
-                      className='font-medium-5 danger'
-                      size={21}
-                    />
-                  </Media>
-                  <Media body>
-                    <Media heading className='danger media-heading' tag='h6'>
-                      Warning Notification
-                    </Media>
-                    <p className='notification-text'>
-                      Server has used 99% of CPU
-                    </p>
-                  </Media>
-                  <small>
-                    <time
-                      className='media-meta'
-                      dateTime='2015-06-11T18:29:20+08:00'
-                    >
-                      Today
-                    </time>
-                  </small>
-                </Media>
-              </div>
-              <div className='d-flex justify-content-between'>
-                <Media className='d-flex align-items-start'>
-                  <Media left href='#'>
-                    <Icon.CheckCircle
-                      className='font-medium-5 info'
-                      size={21}
-                    />
-                  </Media>
-                  <Media body>
-                    <Media heading className='info media-heading' tag='h6'>
-                      Complete the task
-                    </Media>
-                    <p className='notification-text'>
-                      One of your task is pending.
-                    </p>
-                  </Media>
-                  <small>
-                    <time
-                      className='media-meta'
-                      dateTime='2015-06-11T18:29:20+08:00'
-                    >
-                      Last week
-                    </time>
-                  </small>
-                </Media>
-              </div>
-              <div className='d-flex justify-content-between'>
-                <Media className='d-flex align-items-start'>
-                  <Media left href='#'>
-                    <Icon.File className='font-medium-5 warning' size={21} />
-                  </Media>
-                  <Media body>
-                    <Media heading className='warning media-heading' tag='h6'>
-                      Generate monthly report
-                    </Media>
-                    <p className='notification-text'>
-                      Reminder to generate monthly report
-                    </p>
-                  </Media>
-                  <small>
-                    <time
-                      className='media-meta'
-                      dateTime='2015-06-11T18:29:20+08:00'
-                    >
-                      Last month
-                    </time>
-                  </small>
-                </Media>
-              </div>
-            </PerfectScrollbar>
-            <li className='dropdown-menu-footer'>
-              <DropdownItem tag='a' className='p-1 text-center'>
-                <span className='align-middle'>Read all notifications</span>
-              </DropdownItem>
-            </li>
-          </DropdownMenu> */}
-        </UncontrolledDropdown>
+        <Bells />
         <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
           <DropdownToggle tag='a' className='nav-link dropdown-user-link'>
             <div className='user-nav d-sm-flex d-none'>
-              <span className='user-name text-bold-600 mb-0'>
-                {user.fullName}
-              </span>
+              <span className='user-name text-bold-600 mb-0'>{user.fullName}</span>
             </div>
             <span data-tour='user'>
               <img
@@ -316,7 +153,8 @@ class NavbarUser extends React.PureComponent {
           <UserDropdown />
         </UncontrolledDropdown>
       </ul>
-    )
-  }
+    </React.Fragment>
+  )
 }
-export default injectIntl(NavbarUser)
+
+export default NavbarUser

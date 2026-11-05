@@ -1,25 +1,27 @@
+import { authReducers } from './auth'
+import notificationReducer from './notification'
+import navbarReducer from './navbar'
+import customizerReducer from './customizer/customizer'
 import { combineReducers } from 'redux'
-import customizer from './customizer/customizer'
-import auth from './auth/'
-import navbar from './navbar/'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
 import uiReducer from './ui'
 
 const rootReducer = (appReducer) =>
   combineReducers({
-    customizer,
-    ui : uiReducer,
+    customizer: customizerReducer,
+    ui: uiReducer,
     auth: persistReducer(
       {
         storage,
         key: 'root',
-        blacklist : ['loginStatus']
+        blacklist: ['loginStatus'],
       },
-      auth
+      authReducers
     ),
-    navbar,
-    app: appReducer
+    navbar: navbarReducer,
+    notifications: notificationReducer,
+    app: appReducer,
   })
 
 export default rootReducer

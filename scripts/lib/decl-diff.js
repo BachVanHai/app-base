@@ -42,17 +42,36 @@ function splitStatements(code) {
   return out.filter((s) => s.text);
 }
 
+// Statements are grouped by name; within a group, identical texts are matched first (so module
+// reordering between builds does not mis-pair same-named declarations), then leftovers are paired
+// in order as "changed", with surplus reported as removed/added. Keys come from the baseline for
+// changed/removed and from the target for added.
 function diffDeclarations(baselineCode, targetCode) {
-  const A = new Map(splitStatements(baselineCode).map((s) => [s.key, s.text]));
-  const B = new Map(splitStatements(targetCode).map((s) => [s.key, s.text]));
+  const group = (code) => {
+    const g = new Map();
+    for (const s of splitStatements(code)) {
+      if (!g.has(s.name)) g.set(s.name, []);
+      g.get(s.name).push(s);
+    }
+    return g;
+  };
+  const A = group(baselineCode);
+  const B = group(targetCode);
   const changed = [];
   const removed = [];
   const added = [];
-  for (const [k, v] of A) {
-    if (!B.has(k)) removed.push(k);
-    else if (B.get(k) !== v) changed.push(k);
+  for (const [name, as] of A) {
+    const bs = [...(B.get(name) || [])];
+    const leftA = [];
+    for (const a of as) {
+      const j = bs.findIndex((b) => b.text === a.text);
+      if (j >= 0) bs.splice(j, 1);
+      else leftA.push(a);
+    }
+    leftA.forEach((a, i) => (i < bs.length ? changed : removed).push(a.key));
+    bs.slice(leftA.length).forEach((b) => added.push(b.key));
   }
-  for (const k of B.keys()) if (!A.has(k)) added.push(k);
+  for (const [name, bs] of B) if (!A.has(name)) bs.forEach((b) => added.push(b.key));
   return { changed, removed, added };
 }
 

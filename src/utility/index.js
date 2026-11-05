@@ -1,5 +1,5 @@
 import React from 'react'
-import { AlertTriangle, Check } from 'react-feather'
+import { Check, Info } from 'react-feather'
 import { toast } from 'react-toastify'
 
 export const generateUUID = () => {
@@ -40,11 +40,12 @@ export const numberFormat = (value) => {
   return Intl.NumberFormat().format(value)
 }
 
+// NOTE: legacy-bundle-final shows errors as info toasts with the Info icon; kept as-is.
 export const toastError = (message) => {
-  toast.error(
+  toast.info(
     <div className='d-flex align-items-center'>
       <div className='col-1 p-0'>
-        <AlertTriangle size={24} />
+        <Info size={24} />
       </div>
       <p className='mx-1 my-0'>{message}</p>
     </div>
@@ -56,6 +57,17 @@ export const toastSuccess = (message) => {
     <div className='d-flex align-items-center'>
       <div className='col-1 p-0'>
         <Check size={24} />
+      </div>
+      <p className='mx-1 my-0'>{message}</p>
+    </div>
+  )
+}
+
+export const toastInfo = (message) => {
+  toast.info(
+    <div className='d-flex align-items-center'>
+      <div className='col-1 p-0'>
+        <Info size={24} />
       </div>
       <p className='mx-1 my-0'>{message}</p>
     </div>

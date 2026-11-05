@@ -10,149 +10,121 @@ import { getExternalAppUrl } from '../../../../../configs/app-configs'
 class SideMenuContent extends React.Component {
   constructor(props) {
     super(props)
-    this.parentArr = []
-    this.collapsedPath = null
-
-  }
-
-  state = {
-    flag: true,
-    isHovered: false,
-    activeGroups: [],
-    currentActiveGroup: [],
-    tempArr: []
-  }
-
-  handleGroupClick = (id, parent = null, type = '') => {
-    let open_group = this.state.activeGroups
-    let active_group = this.state.currentActiveGroup
-    let temp_arr = this.state.tempArr
-    // Active Group to apply sidebar-group-active class
-    if (type === 'item' && parent === null) {
-      active_group = []
-      temp_arr = []
-    } else if (type === 'item' && parent !== null) {
-      active_group = []
-      if (temp_arr.includes(parent)) {
-        temp_arr.splice(temp_arr.indexOf(parent) + 1, temp_arr.length)
+    this.state = {
+      flag: true,
+      isHovered: false,
+      activeGroups: [],
+      currentActiveGroup: [],
+      tempArr: [],
+    }
+    this.handleGroupClick = (id, parent = null, type = '') => {
+      let open_group = this.state.activeGroups
+      let active_group = this.state.currentActiveGroup
+      let temp_arr = this.state.tempArr
+      if (type === 'item' && parent === null) {
+        active_group = []
+        temp_arr = []
+      } else if (type === 'item' && parent !== null) {
+        active_group = []
+        if (temp_arr.includes(parent)) {
+          temp_arr.splice(temp_arr.indexOf(parent) + 1, temp_arr.length)
+        } else {
+          temp_arr = []
+          temp_arr.push(parent)
+        }
+        active_group = temp_arr.slice(0)
+      } else if (type === 'collapse' && parent === null) {
+        temp_arr = []
+        temp_arr.push(id)
+      } else if (type === 'collapse' && parent !== null) {
+        if (active_group.includes(parent)) {
+          temp_arr = active_group.slice(0)
+        }
+        if (temp_arr.includes(id)) {
+          temp_arr.splice(temp_arr.indexOf(id), temp_arr.length)
+        } else {
+          temp_arr.push(id)
+        }
       } else {
         temp_arr = []
-        temp_arr.push(parent)
       }
-      active_group = temp_arr.slice(0)
-    } else if (type === 'collapse' && parent === null) {
-      temp_arr = []
-      temp_arr.push(id)
-    } else if (type === 'collapse' && parent !== null) {
-      if (active_group.includes(parent)) {
-        temp_arr = active_group.slice(0)
-      }
-      if (temp_arr.includes(id)) {
-        // temp_arr.splice(temp_arr.indexOf(id), 1)
-        temp_arr.splice(temp_arr.indexOf(id), temp_arr.length)
-      } else {
-        temp_arr.push(id)
-      }
-    } else {
-      temp_arr = []
-    }
-
-    if (type === 'collapse') {
-      // If open group does not include clicked group item
-      if (!open_group.includes(id)) {
-        // Get unmatched items that are not in the active group
-        let temp = open_group.filter(function (obj) {
-          return active_group.indexOf(obj) === -1
-        })
-        // Remove those unmatched items from open group
-        if (temp.length > 0 && !open_group.includes(parent)) {
-          open_group = open_group.filter(function (obj) {
-            return !temp.includes(obj)
-          })
-        }
-        if (open_group.includes(parent) && active_group.includes(parent)) {
-          open_group = active_group.slice(0)
-        }
-        // Add group item clicked in open group
+      if (type === 'collapse') {
         if (!open_group.includes(id)) {
-          open_group.push(id)
+          let temp = open_group.filter(function (obj) {
+            return active_group.indexOf(obj) === -1
+          })
+          if (temp.length > 0 && !open_group.includes(parent)) {
+            open_group = open_group.filter(function (obj) {
+              return !temp.includes(obj)
+            })
+          }
+          if (open_group.includes(parent) && active_group.includes(parent)) {
+            open_group = active_group.slice(0)
+          }
+          if (!open_group.includes(id)) {
+            open_group.push(id)
+          }
+        } else {
+          open_group.splice(open_group.indexOf(id), 1)
         }
-      } else {
-        // If open group includes click group item, remove it from open group
-        open_group.splice(open_group.indexOf(id), 1)
       }
+      if (type === 'item') {
+        open_group = active_group.slice(0)
+      }
+      this.setState({
+        activeGroups: open_group,
+        tempArr: temp_arr,
+        currentActiveGroup: active_group,
+      })
     }
-    if (type === 'item') {
-      open_group = active_group.slice(0)
+    this.initRender = (parentArr) => {
+      this.setState({
+        activeGroups: parentArr.slice(0),
+        currentActiveGroup: parentArr.slice(0),
+        flag: false,
+      })
     }
-
-    this.setState({
-      activeGroups: open_group,
-      tempArr: temp_arr,
-      currentActiveGroup: active_group
-    })
+    this.getItemLink = (item) => {
+      return item.isExternalApp ? getExternalAppUrl(item.appId, item.navLink) : ''
+    }
+    this.parentArr = []
+    this.collapsedPath = null
   }
-
-  initRender = (parentArr) => {
-    this.setState({
-      activeGroups: parentArr.slice(0),
-      currentActiveGroup: parentArr.slice(0),
-      flag: false
-    })
-  }
-
   componentDidMount() {
     this.initRender(this.parentArr[0] || [])
   }
-
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.activePath !== this.props.activePath || prevProps.navConfigs !== this.props.navConfigs ) {
+    if (
+      prevProps.activePath !== this.props.activePath ||
+      prevProps.navConfigs !== this.props.navConfigs
+    ) {
       if (this.collapsedMenuPaths !== null) {
         this.props.collapsedMenuPaths(this.collapsedMenuPaths)
       }
-
-      this.initRender(
-        this.parentArr[0] ? this.parentArr[this.parentArr.length - 1] : []
-      )
+      this.initRender(this.parentArr[0] ? this.parentArr[this.parentArr.length - 1] : [])
     }
   }
-
-  getItemLink = (item) => {
-    return item.isExternalApp ? getExternalAppUrl(item.appId, item.navLink) : ''
-  }
-
   render() {
-    // Loop over sidebar items
-    // eslint-disable-next-line
     const menuItems = this.props.navConfigs.map((item) => {
       const CustomAnchorTag = item.isExternalApp ? `a` : Link
-      // checks if item has groupheader
       if (item.type === 'groupHeader') {
         return (
-          <li
-            className='navigation-header'
-            key={`group-header-${item.groupTitle}`}
-          >
+          <li className='navigation-header' key={`group-header-${item.groupTitle}`}>
             <span>{item.groupTitle}</span>
           </li>
         )
       }
-
       let renderItem = (
         <li
           className={classnames('nav-item', {
             'has-sub': item.type === 'collapse',
             open: this.state.activeGroups.includes(item.id),
-            'sidebar-group-active': this.state.currentActiveGroup.includes(
-              item.id
-            ),
+            'sidebar-group-active': this.state.currentActiveGroup.includes(item.id),
             hover: this.props.hoverIndex === item.id,
             active:
-              (this.props.activeItemState === item.navLink &&
-                item.type === 'item') ||
-              (item.parentOf &&
-                item.parentOf.includes(this.props.activeItemState)),
-            disabled: item.disabled
+              (this.props.activeItemState === item.navLink && item.type === 'item') ||
+              (item.parentOf && item.parentOf.includes(this.props.activeItemState)),
+            disabled: item.disabled,
           })}
           key={item.id}
           onClick={(e) => {
@@ -178,9 +150,7 @@ class SideMenuContent extends React.Component {
             }
             href={this.getItemLink(item)}
             className={`d-flex ${
-              item.badgeText
-                ? 'justify-content-between'
-                : 'justify-content-start'
+              item.badgeText ? 'justify-content-between' : 'justify-content-start'
             }`}
             onMouseEnter={() => {
               this.props.handleSidebarMouseEnter(item.id)
@@ -197,13 +167,12 @@ class SideMenuContent extends React.Component {
             <div className='menu-text'>
               {item.icon}
               <span className='menu-item menu-title'>
-                <FormattedMessage id={item.title} />
+                <FormattedMessage id={item.title} defaultMessage={item.description} />
               </span>
             </div>
-
             {item.badge ? (
               <div className='menu-badge'>
-                <Badge color={item.badge} className='mr-1' pill>
+                <Badge color={item.badge} className='mr-1' pill={true}>
                   {item.badgeText}
                 </Badge>
               </div>
@@ -243,16 +212,10 @@ class SideMenuContent extends React.Component {
           )}
         </li>
       )
-
-      if (
-        item.navLink &&
-        item.collapsed !== undefined &&
-        item.collapsed === true
-      ) {
+      if (item.navLink && item.collapsed !== undefined && item.collapsed === true) {
         this.collapsedPath = item.navLink
         this.props.collapsedMenuPaths(item.navLink)
       }
-
       if (
         item.type === 'collapse' ||
         item.type === 'external-link' ||
@@ -273,4 +236,5 @@ class SideMenuContent extends React.Component {
     return <React.Fragment>{menuItems}</React.Fragment>
   }
 }
+
 export default SideMenuContent

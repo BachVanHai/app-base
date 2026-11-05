@@ -2,7 +2,8 @@ import React from 'react'
 import SweetAlert from 'react-bootstrap-sweetalert'
 import { useIntl } from 'react-intl'
 import { useDispatch, useSelector } from 'react-redux'
-import { hideConfirmAlert } from '../redux/actions/ui/Index'
+import { hideConfirmAlert } from '../redux/actions/ui/index'
+
 const ConfirmAlert = () => {
   const {
     title,
@@ -14,37 +15,40 @@ const ConfirmAlert = () => {
     cancelBtnText,
     ...otherConfigs
   } = useSelector((state) => state.ui.confirmAlert)
-
   const dispatch = useDispatch()
   const intl = useIntl()
-
-
   const onClickConfirm = () => {
     if (onConfirm) {
       onConfirm()
     }
     dispatch(hideConfirmAlert())
   }
-
-
   const onClickCancel = () => {
     if (onCancel) {
       onCancel()
     }
     dispatch(hideConfirmAlert())
   }
-
-
   return (
     <SweetAlert
       title={title}
       show={isShow}
-      showCancel
-      reverseButtons
+      showCancel={true}
+      reverseButtons={true}
       btnSize='md'
       cancelBtnBsStyle='secondary'
-      confirmBtnText={confirmBtnText || intl.formatMessage({id : 'common.ok'})}
-      cancelBtnText={cancelBtnText || intl.formatMessage({id : 'common.cancel'})}
+      confirmBtnText={
+        confirmBtnText ||
+        intl.formatMessage({
+          id: 'common.ok',
+        })
+      }
+      cancelBtnText={
+        cancelBtnText ||
+        intl.formatMessage({
+          id: 'common.cancel',
+        })
+      }
       onConfirm={onClickConfirm}
       onCancel={onClickCancel}
       {...otherConfigs}

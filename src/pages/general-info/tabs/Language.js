@@ -3,10 +3,10 @@ import { Row, Col, Button } from 'reactstrap'
 import Radio from '../../../components/Radio'
 import { useDispatch } from 'react-redux'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { goBackHomePage } from '../../../redux/actions/navbar/Index'
+import { goBackHomePage } from '../../../redux/actions/navbar/index'
 import { IntlContext } from '../../../utility/context/Internationalization'
 import { changeLanguageSetting } from '../../../redux/actions/auth'
-import { showConfirmAlert } from '../../../redux/actions/ui/Index'
+import { showConfirmAlert } from '../../../redux/actions/ui/index'
 
 const LanguageTab = () => {
   const dispatch = useDispatch()

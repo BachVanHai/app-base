@@ -104,3 +104,27 @@ Sinh bởi `node scripts/decl-report.js dist .work/legacy/final <out>` (so theo 
 - flatpickr 4.6.6 được bọc bằng `createCommonjsModule` thay vì trải phẳng (32 khai báo nội bộ flatpickr).
 - Thứ tự module/import và danh sách specifier của các câu `import` (8 câu).
 - `export { toast } from "react-toastify"` ↔ `export { toast }`; câu `export {...}` cuối được so riêng ở Task 7.
+
+## Kết quả Task 6 (2026-11-06)
+
+Cách làm: mỗi module được dựng lại từ đúng các câu lệnh của `legacy-bundle-final` thuộc module đó (chuyển `React.createElement` → JSX, styled-components tagged template, `static` class property), giữ import/export của file cũ, tự bổ sung import còn thiếu; `scripts/lib/undef.js` xác nhận **không còn identifier nào chưa khai báo/import** trong `src/`.
+
+`node scripts/decl-report.js dist .work/legacy/final <out>` còn **46 câu lệnh khác**, tất cả thuộc các loại sau (không khác logic):
+
+| Loại | Câu lệnh | Ghi chú |
+|---|---|---|
+| Cách bundle flatpickr | `flatpickr`, `vn` + 31 khai báo nội bộ flatpickr | Bản cuối trải phẳng flatpickr; bản build bọc `createCommonjsModule`. Tên tháng 11/12 tiếng Việt (bản cuối sửa tay) được tái tạo trong `src/components/DatePicker.js`. |
+| Helper babel | `_extends` | Bản build dùng `Object.assign`. |
+| Danh sách specifier của `import` | 6 câu `import` | Bản cuối còn specifier không dùng (vd. `ButtonGroup`). |
+| Dạng câu `export` | `export:local`, `export:local#2`, `export:react-toastify` | Danh sách tên export so riêng ở Task 7. |
+| Code chết trong bản cuối | `AppSelection` (`onClickChangeAppType`), `checkReceiveNewNotification` | Không được gọi; rollup loại bỏ. |
+| Namespace `BaseAppConfigs` | `appConfigs` | Có thêm `API_BASE_SIT_URL`, `API_SSE_SUBSCRIBE_NOTIFICATION`: bản cuối khai báo mà không export (chỉ làm được khi sửa tay bundle); mã nguồn ES module buộc phải export. |
+
+Thay đổi có chủ đích, khớp với bản cuối:
+
+- `toastError` hiển thị `toast.info` + icon `Info` (đúng như bản cuối, đã ghi chú trong code).
+- Import `.../Index` → `.../index`: bản cuối không còn module trùng lặp.
+- `NavbarUser` export trực tiếp (không `injectIntl`), như bản cuối.
+- Module mới: `services/notificationService.js`, `services/bonusHistoryService.js`, `redux/actions/notification`, `redux/reducers/notification`, `layouts/components/navbar/Bells.js`, `components/GlobalErrorModal.js`, `components/Pagination.js`, `customHooks/usePagination.js`, `pages/authentication/VerifyAccount.js`, `pages/account-settings/tabs/ConnectWithSocial.js`, `pages/bonus-point/BonusPoint.js`, `pages/bonus-point/BonusPointItem.js`.
+- Xoá module không còn trong bản cuối: `assets/data/{terms,policies}.js`, `pages/general-info/tabs/{InfoItems,Terms,Policies}.js`.
+- Locale `en.json`/`vi.json` lấy từ `messages_en`/`messages_vi` của bản cuối (428/446 khóa).

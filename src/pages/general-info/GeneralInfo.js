@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux'
+import LanguageTab from './tabs/Language'
 import React, { useEffect, useState } from 'react'
 import {
   Card,
@@ -13,69 +15,36 @@ import {
   CardTitle
 } from 'reactstrap'
 import classnames from 'classnames'
-import { Shield, Globe, MessageSquare, FileText } from 'react-feather'
-import TermsTab from './tabs/Terms'
-import LangTab from './tabs/Language'
-import PolicyTab from './tabs/Policies'
+import { Globe, MessageSquare } from 'react-feather'
 import ContactTab from './tabs/Contact'
 import { FormattedMessage } from 'react-intl'
 import { useHistory } from 'react-router-dom'
 
 const GeneralInfo = (props) => {
+  const { appId } = useSelector((state) => state.customizer)
   const [activeTab, setActiveTab] = useState('terms-and-condition')
-
   const history = useHistory()
-
   useEffect(() => setActiveTab(props.activeTab), [props.activeTab])
-
   return (
     <Row className='general-info'>
       <Col sm='12'>
         <Card>
           <CardHeader>
             <CardTitle className='text-uppercase'>
-              <FormattedMessage id={'setting.generalInformation'} />
+              <FormattedMessage id='setting.generalInformation' />
             </CardTitle>
           </CardHeader>
           <CardBody className='pt-2'>
-            <Nav tabs>
+            <Nav tabs={true}>
               <NavItem>
                 <NavLink
                   className={classnames({
-                    active: activeTab === 'terms-and-condition'
+                    active: activeTab === 'language',
                   })}
                   onClick={() => {
-                    history.push('/terms-and-condition')
-                  }}
-                >
-                  <FileText size={16} />
-                  <span className='align-middle ml-50'>
-                    <FormattedMessage id='setting.termAndCondition' />
-                  </span>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={classnames({
-                    active: activeTab === 'privacy-policy'
-                  })}
-                  onClick={() => {
-                    history.push('/privacy-policy')
-                  }}
-                >
-                  <Shield size={16} />
-                  <span className='align-middle ml-50'>
-                    <FormattedMessage id='setting.privacyPolicy' />
-                  </span>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={classnames({
-                    active: activeTab === 'language'
-                  })}
-                  onClick={() => {
-                    history.push('/language')
+                    if (appId === 'APP_NO1') {
+                      history.push('/app/language')
+                    } else history.push('/language')
                   }}
                 >
                   <Globe size={16} />
@@ -87,10 +56,12 @@ const GeneralInfo = (props) => {
               <NavItem>
                 <NavLink
                   className={classnames({
-                    active: activeTab === 'contact'
+                    active: activeTab === 'contact',
                   })}
                   onClick={() => {
-                    history.push('/contact')
+                    if (appId === 'APP_NO1') {
+                      history.push('/app/contact')
+                    } else history.push('/contact')
                   }}
                 >
                   <MessageSquare size={16} />
@@ -101,14 +72,8 @@ const GeneralInfo = (props) => {
               </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>
-              <TabPane tabId='terms-and-condition'>
-                <TermsTab />
-              </TabPane>
-              <TabPane tabId='privacy-policy'>
-                <PolicyTab />
-              </TabPane>
               <TabPane tabId='language'>
-                <LangTab />
+                <LanguageTab />
               </TabPane>
               <TabPane tabId='contact'>
                 <ContactTab />
@@ -120,4 +85,5 @@ const GeneralInfo = (props) => {
     </Row>
   )
 }
+
 export default GeneralInfo

@@ -34,6 +34,18 @@ test('diffDeclarations reports changed, removed and added', () => {
   assert.deepStrictEqual(diffDeclarations(a, b), { changed: ['B'], removed: ['C'], added: ['D'] });
 });
 
+test('diffDeclarations matches same-name statements by content, not ordinal', () => {
+  const a = 'const x = 1;\nconst y = 0;\nconst x = 2;';
+  const b = 'const x = 2;\nconst y = 0;\nconst x = 1;';
+  assert.deepStrictEqual(diffDeclarations(a, b), { changed: [], removed: [], added: [] });
+});
+
+test('diffDeclarations reports only unmatched same-name statements', () => {
+  const a = 'const x = 1;\nconst x = 2;';
+  const b = 'const x = 3;\nconst x = 1;';
+  assert.deepStrictEqual(diffDeclarations(a, b), { changed: ['x#2'], removed: [], added: [] });
+});
+
 test('attributeDeclarations maps added decls to the source of the nearest preceding known decl', () => {
   const target = 'const A = 1;\nconst New1 = 2;\nconst New2 = 3;';
   const result = { changed: ['A'], removed: [], added: ['New1', 'New2'] };

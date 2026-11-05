@@ -2,14 +2,16 @@ import React from 'react'
 import {FormattedMessage} from 'react-intl'
 import AppId from './appId'
 
-export const API_BASE_URL = 'https://apisit.inon.vn'
-export const RESOURCE_URL = 'https://x.inon.vn/resources/images/'
+export const API_BASE_URL = 'https://api.bmktech.vn'
+export const API_BASE_SIT_URL = 'https://apisit.bmktech.vn'
+export const RESOURCE_URL = 'https://sit2.bmktech.vn/resources/images/'
 export const FB_APP_ID = '2651185198505964'
 export const GOOGLE_APP_ID = '400818618331-k9ptcdcgr99po0g5q5mh8e5ekodgj61n.apps.googleusercontent.com'
 // export const API_BASE_URL = 'https://apidev.inon.vn'
 export const API_LOGIN_URL = '/api/authenticate'
 export const API_LOGOUT_URL = '/api/logout'
 export const API_GUEST_SOCIAL_LOGIN = '/api/social-login/guest'
+export const API_PARTNER_SOCIAL_LOGIN = '/api/social-login/partner'
 export const API_CHANGE_PASSWORD = '/api/change-password'
 export const API_REGISTER = '/nth/onboarding/api/authenticate/register'
 export const API_VERIFY_ACCOUNT = '/nth/onboarding/api/authenticate/verify-account'
@@ -28,7 +30,16 @@ export const API_COMPLETE_INFO =
 export const API_FORGOT_PASSWORD = '/api/authenticate/forgot-password'
 export const API_RESET_PASSWORD = '/api/authenticate/reset-password'
 export const API_EMAIL_SUGGESTION = '/nth/user/api/authenticate/email-suggestion'
-
+export const API_GET_MY_NOTIFICATIONS = '/nth/notification/api/my-notification'
+export const API_CHECK_NEW_NOTIFICATIONS = '/nth/notification/api/authenticate/notifications-es'
+export const API_GET_NOTIFICATION_FROM_ESPUBLIC = '/nth/notification/api/authenticate/user-notifications-es'
+export const API_UPDATE_NOTIFICATION = '/nth/notification/api/authenticate/my-notifications/status'
+export const API_UPDATE_ALL_NOTIFICATION_STATUS = '/nth/notification/api/authenticate/my-notifications-status'
+export const API_SSE_SUBSCRIBE_NOTIFICATION = '/nth/notification/api/notifications/subscribe'
+export const API_GET_ALL_BONUS_TRANSACTION_BY_USER = '/nth/bonusmanager/api/bonus-transaction/by-user'
+export const API_GET_ALL_BONUS_WITHDRAWVAL_TRANSACTION_BY_USER = '/nth/bonusmanager/api/bonus-with-drawval-transactions/by-user'
+export const API_GET_USER_SOCIAL = '/api/user-social-network'
+export const API_GET_BONUS_BY_USER_ID = '/nth/bonusmanager/api/userBonusBalance'
 
 export const API_R_200 = 200
 
@@ -54,6 +65,8 @@ export const PERSONAL_ID_REGEX = /^(\d{9}|\d{12})$/
 export const CITIZEN_INDENTIFY_REGEX = /^(\d{12})$/
 export const PASSPORT_REGEX = /^(?!^0+$)[a-zA-Z0-9]{3,20}$/
 export const NAME_REGEX = /^([ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếềìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý0-9A-Za-z_. ])+$/g
+export const TERMS_PDF = 'https://sit2.bmktech.vn/resources/pdf/terms-and-conditions.pdf'
+export const POLICY_PDF = 'https://doc.bmktech.vn/privacy-policy'
 
 export const FIRE_BASE_CONFIGS = {
   apiKey: "AIzaSyCvWX-pLEPOxjwp2AJq3_t11JQjRMKtaT8",
@@ -78,15 +91,17 @@ export const LOGIN_METHODS = {
   PASSWORD: 'PASSWORD',
 }
 
-export const API_TIME_OUT = 70000;
+export const API_TIME_OUT = 5 * 60 * 1000;
 
 export const MAX_FILE_SIZE = 5; // MB
 
-export const CONTACT_PHONE = '0899.300.800'
+export const CONTACT_PHONE = '0966.530.550'
 
 export const SESSION_TIMEOUT = 30 // mins
 
 export const DATE_TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss'
+export const ANDROID_APP_LINK = 'https://play.google.com/store/apps/details?id=com.inon.vn'
+export const IOS_APP_LINK = 'https://apps.apple.com/app/id1574202853'
 
 export const LOGIN_STATUS = {
   SUCCESS: 'SUCCESS',
@@ -116,7 +131,6 @@ export const IC_TYPES_OPTIONS = [
   }
 ]
 
-
 export const getExternalAppUrl = (appId, url) => {
   switch (appId) {
     case AppId.APP_NO1:
@@ -129,7 +143,6 @@ export const getExternalAppUrl = (appId, url) => {
       return `${url}`
   }
 }
-
 
 export const getContextPath = (appId) => {
   switch (appId) {
@@ -153,13 +166,13 @@ export const getPropObject = (obj, prop) => {
   }, obj)
 }
 
-
 export const USER_ROLE = {
   ADMIN: 'AD.IO',
   KD: 'KD.IO',
   HTKD: 'HT.IO',
   KT: 'KT.IO',
   VH: 'VH.IO',
+  BANCA: 'BANCA.MNG',
   DTL1: 'L1.DT',
   DTL2: 'L2.DT',
   DTL3: 'L3.DT',
@@ -180,11 +193,8 @@ export const IMAGE = {
   GOOGLE_LOGO: RESOURCE_URL + 'google-icon.svg',
   LOGO_NO_TEXT: RESOURCE_URL + 'in-on-logo-no-text.svg',
   LOGO_TEXT: RESOURCE_URL + 'in-on-logo-text.svg',
-  NAV_ICON_1: RESOURCE_URL + 'nav-plane-icon.svg',
-  NAV_ICON_2: RESOURCE_URL + 'nav-bus-icon.svg',
-  NAV_ICON_3: RESOURCE_URL + 'nav-people-icon.svg',
-  NAV_ICON_4: RESOURCE_URL + 'nav-motorbike-icon.svg',
-  NAV_ICON_5: RESOURCE_URL + 'nav-car-icon.svg',
+  NAV_ICON_1: RESOURCE_URL + 'nav-help-center.png',
+  NAV_ICON_2: RESOURCE_URL + 'nav-247-icon.png',
   BUY_INSURANCE: RESOURCE_URL + 'buy-insurance-icon.svg',
   LOGO_WHITE: RESOURCE_URL + 'in-on-logo-white.svg',
   LANDING_PAGE_BG: RESOURCE_URL + 'landing-page-bg.jpg',
@@ -195,3 +205,5 @@ export const IMAGE = {
   CHECK_ICON: RESOURCE_URL + 'check_icon.png',
   FAIL_ICON: RESOURCE_URL + 'fail_icon.png',
 }
+
+export const NAV_ICONS = ['help-center', 'support 24/7']

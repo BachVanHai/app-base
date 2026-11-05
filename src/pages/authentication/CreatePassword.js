@@ -1,8 +1,8 @@
+import { object, ref, string } from 'yup'
 import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Button } from 'reactstrap'
 import { Formik, Form } from 'formik'
-import * as Yup from 'yup'
 import BaseFormGroup from '../../components/BaseFormGroup.js'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -14,47 +14,35 @@ import {
 } from '../../redux/actions/auth'
 import { PASSWORD_REGEX } from '../../configs/app-configs'
 
-const formSchema = Yup.object().shape({
-  password: Yup.string()
+const formSchema = object().shape({
+  password: string()
     .required(<FormattedMessage id='createPassword.password.required' />)
-    .matches(PASSWORD_REGEX, () => (
-      <FormattedMessage id='createPassword.password.invalid' />
-    )),
-  passwordConfirmation: Yup.string()
-    .oneOf(
-      [Yup.ref('password'), null],
-      <FormattedMessage id='createPassword.passwordMustMatch' />
-    )
-    .required(<FormattedMessage id='createPassword.password.required' />)
+    .matches(PASSWORD_REGEX, () => <FormattedMessage id='createPassword.password.invalid' />),
+  passwordConfirmation: string()
+    .oneOf([ref('password'), null], <FormattedMessage id='createPassword.passwordMustMatch' />)
+    .required(<FormattedMessage id='createPassword.password.required' />),
 })
 
-const CreatePassword = ({ isCreatePassword = false }) => {
+const CreatePassword = ({ isCreatePassword: _isCreatePassword = false }) => {
   const history = useHistory()
   const dispatch = useDispatch()
-
   useEffect(() => {
-    isCreatePassword ? setRegisterToken() : setResetPassword()
+    _isCreatePassword ? setRegisterToken() : setResetPassword()
   }, [])
-
   const onClickContinue = (values) => {
-    if (isCreatePassword) {
+    if (_isCreatePassword) {
       dispatch(createPassword(values.password))
     } else {
       dispatch(resetPassword(values.password))
     }
-
   }
-
   const setRegisterToken = () => {
-    const code = new URLSearchParams(document.location.search).get(
-      'registerToken'
-    )
+    const code = new URLSearchParams(document.location.search).get('registerToken')
     if (code) {
       dispatch(saveRegisterToken(code))
       history.replace(history.location.pathname)
     }
   }
-
   const setResetPassword = () => {
     const code = new URLSearchParams(document.location.search).get('resetToken')
     if (code) {
@@ -62,12 +50,11 @@ const CreatePassword = ({ isCreatePassword = false }) => {
       history.replace(history.location.pathname)
     }
   }
-
   return (
     <Formik
       initialValues={{
         password: '',
-        passwordConfirmation: ''
+        passwordConfirmation: '',
       }}
       onSubmit={onClickContinue}
       validationSchema={formSchema}
@@ -102,15 +89,10 @@ const CreatePassword = ({ isCreatePassword = false }) => {
           <div>
             <FormattedMessage id='createPassword.condition.3' />
           </div>
-
           <div className='d-flex justify-content-center mt-2'>
             <Button color='primary' type='submit'>
               <FormattedMessage
-                id={
-                  isCreatePassword
-                    ? 'createPassword.continutes'
-                    : 'createPassword.done'
-                }
+                id={_isCreatePassword ? 'createPassword.continutes' : 'createPassword.done'}
               />
             </Button>
           </div>

@@ -60,7 +60,14 @@
     "yup": "^0.28.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/generator": "^8.1.0",
+    "@babel/parser": "^8.1.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@babel/plugin-transform-nullish-coalescing-operator": "^8.0.1",
     "@babel/preset-modules": "^0.1.4",
+    "@babel/traverse": "^8.1.0",
+    "@babel/types": "^8.1.0",
     "bootstrap": "4.5.2",
     "diff": "^5.2.2",
     "flatpickr": "4.6.6",

@@ -1,3 +1,4 @@
+import { object, string } from 'yup'
 import React, {useState} from 'react'
 import {FormattedMessage} from 'react-intl'
 import {
@@ -9,34 +10,27 @@ import {
   ModalBody,
 } from 'reactstrap'
 import {Formik, Form, Field} from 'formik'
-import * as Yup from 'yup'
 import {Sun} from 'react-feather'
 import {AuthService} from '../../services/authService'
 import {useDispatch} from 'react-redux'
 import {forgotPassword} from '../../redux/actions/auth'
-import {PHONE_REGEX} from '../../configs/app-configs'
 import BaseFormGroup from '../../components/BaseFormGroup'
 import {Link} from "react-router-dom";
 
-const formSchema = Yup.object().shape({
-  username: Yup.string()
-    .matches(PHONE_REGEX, () => <FormattedMessage id='login.username.invalid'/>)
-    .required(
-      <FormattedMessage id='forgotPassword.username.required'/>
-    ),
-  email: Yup.string()
-    .required(<FormattedMessage id='forgotPassword.email.required'/>)
-    .email(<FormattedMessage id='register.email.invalid'/>)
+const formSchema = object().shape({
+  username: string().required(<FormattedMessage id='forgotPassword.username.required' />),
+  email: string()
+    .required(<FormattedMessage id='forgotPassword.email.required' />)
+    .email(<FormattedMessage id='register.email.invalid' />),
 })
+
 const ForgotPassword = () => {
   const [isModalOpen, setIsOpenModal] = useState(false)
   const [emailSuggestion, setEmailSuggestion] = useState('')
   const dispatch = useDispatch()
-
   const onSubmit = (values, actions) => {
     dispatch(forgotPassword(values))
   }
-
   const onClickSuggestion = async (username) => {
     const res = await AuthService.getSuggestionEmail(username)
     if (res.status === 200) {
@@ -44,25 +38,23 @@ const ForgotPassword = () => {
       toggleModal()
     }
   }
-
   const toggleModal = () => {
     setIsOpenModal(!isModalOpen)
   }
-
   return (
     <React.Fragment>
       <Formik
         initialValues={{
           username: '',
-          email: ''
+          email: '',
         }}
         onSubmit={onSubmit}
         validationSchema={formSchema}
       >
-        {({errors, touched, values}) => (
+        {({ errors, touched, values }) => (
           <Form>
             <h1 className='landing-page-title'>
-              <FormattedMessage id='forgotPassword'/>
+              <FormattedMessage id='forgotPassword' />
             </h1>
             <BaseFormGroup
               messageId='forgotPassword.username'
@@ -75,11 +67,10 @@ const ForgotPassword = () => {
                 {(msg) => (
                   <React.Fragment>
                     <Field name='email'>
-                      {({field, form}) => (
+                      {({ field, form }) => (
                         <Input
-                          className={`${errors.email &&
-                          touched.email &&
-                          'is-invalid not-show-icon'
+                          className={`${
+                            errors.email && touched.email && 'is-invalid not-show-icon'
                           }`}
                           placeholder={msg}
                           {...field}
@@ -97,7 +88,7 @@ const ForgotPassword = () => {
                         className='form-control-position text-primary cursor-pointer'
                         onClick={() => onClickSuggestion(values.username)}
                       >
-                        <Sun size={15}/>
+                        <Sun size={15} />
                       </div>
                     ) : (
                       ''
@@ -109,40 +100,35 @@ const ForgotPassword = () => {
             </FormGroup>
             <div className='d-flex justify-content-center'>
               <div className='col-md-4'>
-                <Link to={'/'}>
+                <Link to='/'>
                   <Button className='btn-second'>
-                    <FormattedMessage id='common.back'/>
+                    <FormattedMessage id='common.back' />
                   </Button>
                 </Link>
               </div>
               <div className='col-md-4'>
                 <Button color='primary' type='submit'>
-                  <FormattedMessage id='forgotPassword.verify'/>
+                  <FormattedMessage id='forgotPassword.verify' />
                 </Button>
               </div>
             </div>
           </Form>
         )}
       </Formik>
-      <Modal
-        isOpen={isModalOpen}
-        toggle={toggleModal}
-        className='modal-dialog-centered'
-      >
+      <Modal isOpen={isModalOpen} toggle={toggleModal} className='modal-dialog-centered'>
         <ModalBody className='modal-dialog-centered'>
-          <div className="w-100">
+          <div className='w-100'>
             <div>
               {!emailSuggestion ? (
-                <FormattedMessage id='forgotPassword.notFoundEmailSuggestion'/>
+                <FormattedMessage id='forgotPassword.notFoundEmailSuggestion' />
               ) : (
                 <React.Fragment>
-                  <FormattedMessage id='forgotPassword.yourEmailIs'/>:{' '}
-                  <b>{emailSuggestion}</b>
+                  <FormattedMessage id='forgotPassword.yourEmailIs' />:{' '}<b>{emailSuggestion}</b>
                 </React.Fragment>
               )}
             </div>
-            <br/>
-            <div className="d-flex justify-content-end">
+            <br />
+            <div className='d-flex justify-content-end'>
               <Button.Ripple color='primary' onClick={toggleModal}>
                 OK
               </Button.Ripple>{' '}

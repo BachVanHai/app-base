@@ -9,11 +9,9 @@ import { getPropObject } from '../configs/app-configs'
 const Select = (props) => {
   const [inputValue, setInputValue] = useState(props.value)
   const [isFocused, setIsFocused] = useState(false)
-
   useEffect(() => {
     setInputValue(props.value)
   }, [props.value])
-
   const onChange = (e, actions) => {
     if (props.onChange) {
       props.onChange(e, actions)
@@ -25,37 +23,48 @@ const Select = (props) => {
     }
     setIsFocused(false)
   }
-
   const onFocus = (e) => {
     if (props.onFocus) {
       props.onFocus(e)
     }
     setIsFocused(true)
   }
-
   const onBlur = (e) => {
     if (props.onBlur) {
       props.onBlur(e)
     }
     setIsFocused(false)
   }
-
-  const SelectComponent = useCallback((componentProps) => {
-    switch (props.type) {
-      case 'creatable':
-        return <CreatableSelect {...componentProps} />
-      case 'async':
-        return <AsyncSelect {...componentProps} />
-      default:
-        return <ReactSelect {...componentProps} />
-    }
-  }, [props])
-
-
+  const SelectComponent = useCallback(
+    (componentProps) => {
+      const newProps = {
+        ...componentProps,
+      }
+      if (props.isMulti) {
+        let values = props.value || ''
+        if (typeof props.value !== 'string') {
+          values = ''
+        }
+        newProps.value = props.options.filter((item) =>
+          values.split(',').includes(String(item.value))
+        )
+      }
+      switch (props.type) {
+        case 'creatable':
+          return <CreatableSelect {...newProps} />
+        case 'async':
+          return <AsyncSelect {...newProps} />
+        default:
+          return <ReactSelect {...newProps} />
+      }
+    },
+    [props.options, props.value]
+  )
   return (
     <FormGroup className='form-label-group position-relative'>
       <SelectComponent
         {...props}
+        maxMenuHeight={void 0 !== props.maxMenuHeight ? props.maxMenuHeight : 200}
         isDisabled={props.disabled}
         onChange={onChange}
         onBlur={onBlur}
@@ -64,28 +73,29 @@ const Select = (props) => {
           ...theme,
           colors: {
             ...theme.colors,
-            primary: '#338955'
-          }
+            primary: '#338955',
+          },
         })}
       />
       {props.required && props.isShowErrorMessage ? (
         getPropObject(props.errors, props.fieldName) &&
         getPropObject(props.touched, props.fieldName) ? (
-          <div className='text-danger'>
-            {getPropObject(props.errors, props.fieldName)}
-          </div>
+          <div className='text-danger'>{getPropObject(props.errors, props.fieldName)}</div>
         ) : null
       ) : (
         ''
       )}
-      <input
-        className='d-none'
-        placeholder={props.placeholder}
-        value={inputValue}
-      />
+      <input className='d-none' placeholder={props.placeholder} value={inputValue} />
       {inputValue ? (
-        <Label className={classnames({ 'text-primary': isFocused })}>
-          {props.placeholder}
+        <Label
+          className={classnames(
+            {
+              'text-primary': isFocused,
+            },
+            props.marginLabel
+          )}
+        >
+          {props.label || props.placeholder}
         </Label>
       ) : (
         ''
