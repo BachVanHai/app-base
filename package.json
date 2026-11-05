@@ -60,6 +60,9 @@
     "text-mask-addons": "^3.8.0"
   },
   "devDependencies": {
-    "microbundle": "^0.15.1"
+    "diff": "^5.2.2",
+    "microbundle": "^0.15.1",
+    "prettier": "^2.8.8",
+    "source-map": "^0.6.1"
   }
 }
