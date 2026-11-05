@@ -2,7 +2,6 @@ import React from 'react'
 import SweetAlert from 'react-bootstrap-sweetalert'
 import { useIntl } from 'react-intl'
 import { useDispatch, useSelector } from 'react-redux'
-import '../assets/scss/plugins/extensions/sweet-alerts.scss'
 import { hideConfirmAlert } from '../redux/actions/ui/Index'
 const ConfirmAlert = () => {
   const {

@@ -1,9 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import flatpickr from 'flatpickr'
 import Flatpickr from "react-flatpickr";
-import 'flatpickr/dist/themes/light.css'
 import 'flatpickr/dist/l10n/vn.js'
-import '../assets/scss/plugins/forms/flatpickr/flatpickr.scss'
 import {FormGroup, Label} from 'reactstrap'
 import {getPropObject} from '../configs/app-configs'
 import {useIntl} from "react-intl";

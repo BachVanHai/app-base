@@ -20,7 +20,6 @@ import PolicyTab from './tabs/Policies'
 import ContactTab from './tabs/Contact'
 import { FormattedMessage } from 'react-intl'
 import { useHistory } from 'react-router-dom'
-import '../../assets/scss/pages/general-info.scss'
 
 const GeneralInfo = (props) => {
   const [activeTab, setActiveTab] = useState('terms-and-condition')

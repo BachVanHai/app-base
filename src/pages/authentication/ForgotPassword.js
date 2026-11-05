@@ -8,7 +8,6 @@ import {
   Modal,
   ModalBody,
 } from 'reactstrap'
-import '../../assets/scss/pages/authentication.scss'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import {Sun} from 'react-feather'

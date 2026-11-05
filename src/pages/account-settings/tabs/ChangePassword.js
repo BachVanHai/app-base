@@ -1,7 +1,6 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Button, Col, Row } from 'reactstrap'
-import '../../../assets/scss/pages/authentication.scss'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import BaseFormGroup from '../../../components/BaseFormGroup.js'

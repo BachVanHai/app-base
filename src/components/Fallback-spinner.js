@@ -1,5 +1,4 @@
 import React from 'react'
-import '../assets/scss/components/app-loader.scss'
 import {IMAGE} from '../configs/app-configs'
 
 class FallbackSpinner extends React.Component {

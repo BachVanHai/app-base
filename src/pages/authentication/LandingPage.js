@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {FormattedMessage} from 'react-intl'
 import classnames from 'classnames'
-import '../../assets/scss/pages/authentication.scss'
 import {IMAGE} from '../../configs/app-configs'
 import Login from './Login'
 import {Link, useHistory} from 'react-router-dom'

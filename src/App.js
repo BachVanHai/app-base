@@ -11,9 +11,6 @@ import AppRouter from './routes/AppRouter'
 import LoadingSpinner from './components/Loading-spinner'
 import './components/RippleButton'
 import * as serviceWorker from './serviceWorker'
-import './index.scss'
-import 'react-perfect-scrollbar/dist/css/styles.css'
-import 'react-toastify/dist/ReactToastify.css'
 import { setBaseHistory } from './history'
 import firebase from "firebase";
 import {FIRE_BASE_CONFIGS} from "./configs/app-configs";
