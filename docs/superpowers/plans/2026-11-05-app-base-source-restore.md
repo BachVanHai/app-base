@@ -228,3 +228,12 @@ Quy trình **giống nhau cho mỗi nhóm**:
 - [ ] **Step 5: Commit** (inon-app) — `git commit -m "chore: pin base-app to v1.0.0 and use dist css"`. Hỏi người dùng trước khi push / mở PR.
 - [ ] **Step 6:** `app-base`: `git checkout web/develop`, thêm đầu `README.md`: `> **Nhánh legacy — không sửa nữa.** Dùng tag \`v*\` trên nhánh \`main\`. Xem CHANGELOG trên \`main\`.` Commit `docs: freeze web/develop (legacy)`; hỏi người dùng trước khi push.
 - [ ] **Step 7:** Cập nhật `.work/notes/progress.md` và memory dự án: hoàn tất đợt 1; việc tiếp theo theo spec mục 9.
+
+---
+
+## Điều chỉnh khi thực thi (2026-11-05, người dùng đã duyệt)
+
+- **Task 4:** bundle `9a98914` đã bị sửa tay so với source map của chính nó → không thể build lại khớp 100%. Chấp nhận công cụ khi các khác biệt còn lại chỉ là sửa tay hoặc khác biệt công cụ đã biết (`_extends`, cách bọc flatpickr, thứ tự module). Build = 2 lần chạy microbundle-crl (cjs, modern); `@babel/preset-modules@0.1.4`.
+- **CSS:** dùng nguyên `index.css` của `legacy-bundle-final` làm nguồn (`src/styles/base-app.legacy.css`), ghép bởi `scripts/postbuild.js` (không qua postcss); style mới ở `src/styles/custom.scss`. Task 6.7 bỏ.
+- **Task 5–7:** baseline là `dist/` (build từ `src/`), target là `.work/legacy/final`, công cụ chính là `scripts/decl-report.js` (so theo từng câu lệnh top-level, không phụ thuộc thứ tự). Tiêu chí Task 6/7: không còn câu lệnh khác nhau ngoài danh sách "Khác biệt do công cụ build" trong `docs/restore/diff-report.md`.
+- API công khai: 36 export ở 2024 (gồm re-export `FormattedMessage`, `toast`, `Button`), 37 ở bản cuối (+`EventSourceClient`).
