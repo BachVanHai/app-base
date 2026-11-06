@@ -48,7 +48,7 @@ CSS: style cũ (đã biên dịch) ở `src/styles/base-app.legacy.css` — gi�
 1. Trên `main`, thêm mục phiên bản mới vào `CHANGELOG.md` và commit.
 2. `npm run release -- patch` (hoặc `minor` / `major`) → commit `X.Y.Z` + tag `vX.Y.Z`.
 3. `git push --follow-tags`.
-4. Trong `inon-app`, đổi `#vX.Y.Z` trong `package.json` và `npm install`.
+4. Trong `inon-app`: `npm install base-app@github:BachVanHai/app-base#vX.Y.Z` (cập nhật cả `package.json` và `package-lock.json`). Chỉ sửa `package.json` rồi `npm install` là **không đủ** — npm giữ commit cũ đã khoá trong lockfile.
 
 Quy tắc phiên bản:
 
