@@ -6,9 +6,12 @@
 const fs = require('fs');
 const path = require('path');
 
+// dist/ must not depend on the builder's checkout line endings (core.autocrlf), so output is LF.
+const lf = (s) => s.replace(/\r\n/g, '\n');
+
 function assembleCss(legacyCss, customCss) {
-  if (!customCss || !customCss.trim()) return legacyCss;
-  return `${legacyCss}\n/* custom.scss */\n${customCss.trim()}\n`;
+  if (!customCss || !customCss.trim()) return lf(legacyCss);
+  return lf(`${legacyCss}\n/* custom.scss */\n${customCss.trim()}\n`);
 }
 
 function postbuild(root) {

@@ -1,2 +1,11 @@
+# Same bytes on every checkout regardless of core.autocrlf: the build output must not depend on it.
+* text=auto eol=lf
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.gif binary
+# dist/ is committed build output: never convert
 dist/** -text
-.githooks/* text eol=lf

@@ -15,3 +15,9 @@ test('assembleCss without custom css returns legacy unchanged', () => {
   assert.strictEqual(assembleCss('.a{}\n', null), '.a{}\n');
   assert.strictEqual(assembleCss('.a{}\n', '  \n'), '.a{}\n');
 });
+
+test('assembleCss output has LF line endings even when sources are CRLF', () => {
+  const out = assembleCss('a{}\r\nb{}\r\n', '.c{}\r\n');
+  assert.ok(!out.includes('\r'), 'CR found in output');
+  assert.ok(assembleCss('a{}\r\n', null) === 'a{}\n');
+});
