@@ -1,6 +1,6 @@
 {
   "name": "base-app",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Base app",
   "author": "BachVanHai",
   "license": "MIT",
@@ -17,7 +17,11 @@
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --format cjs --css-modules false && microbundle-crl --no-compress --format modern --css-modules false && node scripts/postbuild.js",
-    "test": "node --test \"scripts/**/*.test.js\""
+    "start": "node scripts/dev.js",
+    "test": "node --test \"scripts/**/*.test.js\"",
+    "verify": "node scripts/verify-dist.js",
+    "release": "npm run verify && npm version",
+    "hooks:install": "git config core.hooksPath .githooks"
   },
   "peerDependencies": {
     "@microsoft/fetch-event-source": "^2.0.1",
